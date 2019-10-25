@@ -4,12 +4,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>270</y>
-      <w>140</w>
+      <x>420</x>
+      <y>290</y>
+      <w>100</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>Apartments
+    <panel_attributes>place
 --
 title
 price per day
@@ -20,12 +20,12 @@ description</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>290</y>
+      <x>420</x>
+      <y>40</y>
       <w>140</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>User_Account
+    <panel_attributes>user
 --
 username
 password</panel_attributes>
@@ -34,50 +34,102 @@ password</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>390</y>
+      <x>610</x>
+      <y>330</y>
       <w>140</w>
-      <h>110</h>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>Reversation
+    <panel_attributes>reversation
 --
-initial date
-final date</panel_attributes>
+initial_date
+final_date</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>330</y>
-      <w>180</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=-
-tourist</panel_attributes>
-    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>220</x>
-      <y>340</y>
-      <w>30</w>
-      <h>70</h>
+      <x>560</x>
+      <y>290</y>
+      <w>140</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>120.0;40.0;120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>280</y>
-      <w>180</w>
-      <h>40</h>
+      <x>350</x>
+      <y>220</y>
+      <w>90</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>m1=*
+m2=1
+lt=-
+rental
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;70.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>170</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>owner
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>170</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>tourist
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>110</y>
+      <w>140</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;10.0;120.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>220</y>
+      <w>80</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=-
-owner</panel_attributes>
-    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+m1=*
+m2=*</panel_attributes>
+    <additional_attributes>60.0;10.0;60.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>470</x>
+      <y>110</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;100.0;40.0;100.0;60.0</additional_attributes>
   </element>
 </diagram>
