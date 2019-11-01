@@ -10,7 +10,7 @@ Work in progress!
 <img src="Mockups/HomeWithSearch.png" alt="Web page mockup of home while doing a search" title="HomeWithSearch">
 <img src="Mockups/SignIn.png" alt="Web page mockup of sign in page" title="SignIn">
 <img src="Mockups/CreateAccount.png" alt="Web page mockup of create account page" title="CreateAccount">
-<img src="Mockups/Profile.png" alt="Web page mockup of profile page" title="Profile" width=30%>
+<img src="Mockups/Profile.png" alt="Web page mockup of profile page" title="Profile">
 <img src="Mockups/EditProfile.png" alt="Web page mockup of edit profile page" title="EditProfile">
 <img src="Mockups/AddPlace.png" alt="Web page mockup of add place page" title="AddPlace">
 <img src="Mockups/Place.png" alt="Web page mockup of place page" title="Place">
