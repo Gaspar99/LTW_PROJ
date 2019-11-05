@@ -12,7 +12,7 @@ CREATE TABLE place (
     id INTEGER PRIMARY KEY,
     title VARCHAR NOT NULL,
     price_per_night REAL NOT NULL,
-    place_address VARCHAR NOT NULL,
+    place_address VARCHAR NOT NULL
 );
 
 CREATE TABLE country (
