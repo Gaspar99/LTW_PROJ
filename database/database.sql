@@ -5,6 +5,7 @@ CREATE TABLE user (
     usr_email VARCHAR  NOT NULL,
     usr_phone_number VARCHAR NOT NULL,
     usr_password VARCHAR NOT NULL,
+    usr_profile_picture VARCHAR NOT NULL,
     country_id  INTEGER REFERENCES country NOT NULL
 );
 
@@ -12,12 +13,18 @@ CREATE TABLE place (
     id INTEGER PRIMARY KEY,
     title VARCHAR NOT NULL,
     price_per_night REAL NOT NULL,
-    place_address VARCHAR NOT NULL
+    place_address VARCHAR NOT NULL,
+    city_id INTEGER REFERENCES city NOT NULL
 );
 
 CREATE TABLE country (
     id INTEGER PRIMARY KEY,
     country_name VARCHAR NOT NULL
+);
+
+CREATE TABLE city (
+    id INTEGER PRIMARY KEY,
+    city_name VARCHAR NOT NULL
 );
 
 CREATE TABLE revervation (
@@ -31,5 +38,5 @@ CREATE TABLE revervation (
 
 CREATE TABLE rental (
     usr_id INTEGER REFERENCES user PRIMARY KEY,
-    apartment_id INTEGER REFERENCES place NOT NULL
+    place_id INTEGER REFERENCES place NOT NULL
 );

@@ -1,13 +1,11 @@
 <?php 
   include_once('../includes/session.php');
   include_once('../templates/tpl_common.php');
-  include_once('../templates/tpl_auth.php');
 
-  // Verify if user is logged in
-  if (isset($_SESSION['username']))
-    die(header('Location: list.php'));
-
-  draw_header(null);
-  
+  if (isset($_SESSION['user_id'])) 
+    draw_header($_SESSION['user_id']);
+  else 
+    draw_header(null);
+  //draw_places();
   draw_footer();
 ?>
