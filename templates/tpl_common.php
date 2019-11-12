@@ -12,18 +12,21 @@
             <head>
                 <title>Web Site Title</title>
                 <meta charset="utf-8">
+                <link rel="stylesheet" href="../css/style.css">
+                <link rel="stylesheet" href="../css/layout.css">
+                <script src="../script/main.js" defer></script>
             </head>
             
-            <body>
-                <header>
-                    <a href="../pages/main_page.php"><img src="../images/logo.png" alt="Web site Logo"></a>
-                    <a href="">Search</a>
+            <body class="page_body">
+                <header class="page_header">
+                    <a href="../pages/home.php"><img class="page_logo" src="../images/logo.png" alt="Web site Logo"></a>
+                    <button onclick="openSearchForm()">Search</button>
                     <?php if ($user_id == null) { ?>
-                        <a href="">Sign In</a>
-                        <a href="">Sign Up</a>
+                        <button onclick="openSignInForm()">Sign In</button>
+                        <button onclick="openSignUpForm()">Sign Up</button>
                     <?php } else { 
                         $user = getUserName($user_id); ?>
-                        <a href=""><?=$user[first_name]?> <?=$user[last_name]?></a>
+                        <a class="button" href="../pages/home.php"><?=$user[first_name]?> <?=$user[last_name]?></a>
                     <?php } ?>
                 </header>
     <?php } ?>
@@ -35,7 +38,7 @@
     */ 
     function draw_footer() { ?>
 
-                <footer>Copyright © 2019 LTW FEUP</footer>
+                <footer class="page_footer">Copyright © 2019 LTW FEUP</footer>
             </body>
         </html>
     <?php } ?>

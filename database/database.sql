@@ -17,6 +17,7 @@ CREATE TABLE place (
     price_per_night REAL NOT NULL,
     place_address VARCHAR NOT NULL,
     place_description VARCHAR NOT NULL,
+    rating REAL DEFAULT 0,
     num_people INTEGER NOT NULL,
     owner_id INTEGER REFERENCES usr NOT NULL
 );
@@ -32,13 +33,13 @@ CREATE TABLE city (
     country_id INTEGER REFERENCES country NOT NULL
 );
 
-CREATE TABLE revervation (
+CREATE TABLE reservation (
     id INTEGER PRIMARY KEY,
     place_id INTEGER REFERENCES place NOT NULL,
     usr_id INTEGER REFERENCES usr NOT NULL,
     initial_date DATE NOT NULL,
     final_date DATE NOT NULL,
-    price REAL NOT NULL,
+    price REAL NOT NULL
 );
 
 CREATE TABLE tag (
@@ -49,11 +50,32 @@ CREATE TABLE tag (
 CREATE TABLE place_tag (
     place INTEGER REFERENCES place NOT NULL,
     tag INTEGER REFERENCES tag NOT NULL,
-    PRIMARY KEY(place, tag)
+    PRIMARY KEY (place, tag)
 );
 
 CREATE TABLE photo (
     id INTEGER PRIMARY KEY,
     file_path VARCHAR NOT NULL,
     place INTEGER REFERENCES place NOT NULL
+);
+
+CREATE TABLE avaliation (
+    reservation INTEGER REFERENCES reservation PRIMARY KEY,
+    rating REAL NOT NULL,
+    usr_tourist INTEGER REFERENCES usr NOT NULL
+);
+
+CREATE TABLE comment (
+    usr_tourist INTEGER REFERENCES usr NOT NULL,
+    reservation INTEGER REFERENCES reservation NOT NULL,
+    comment_text VARCHAR NOT NULL,
+    comment_date DATE NOT NULL,
+    PRIMARY KEY(usr_tourist, reservation)
+);
+
+CREATE TABLE reply (
+    usr_owner INTEGER REFERENCES usr NOT NULL,
+    comment INTEGER REFERENCES comment NOT NULL,
+    reply_text VARCHAR NOT NULL,
+    reply_date DATE NOT NULL
 );

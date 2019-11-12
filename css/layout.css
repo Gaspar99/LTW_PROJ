@@ -1,0 +1,16 @@
+.page_body {
+    width: 80em;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
+.page_footer {
+    position: relative;
+
+    text-align: center;
+
+    margin: 1em 0;
+    padding: 1em 0;
+}
