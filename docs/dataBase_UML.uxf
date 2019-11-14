@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=10
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -59,7 +83,7 @@ price</panel_attributes>
       <x>324</x>
       <y>351</y>
       <w>117</w>
-      <h>207</h>
+      <h>198</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=*
@@ -111,7 +135,7 @@ owns
       <x>513</x>
       <y>486</y>
       <w>234</w>
-      <h>90</h>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -149,7 +173,7 @@ name
       <x>234</x>
       <y>522</y>
       <w>207</w>
-      <h>72</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>              located
 lt=-
@@ -205,7 +229,7 @@ date</panel_attributes>
       <x>369</x>
       <y>594</y>
       <w>117</w>
-      <h>81</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -230,7 +254,7 @@ name</panel_attributes>
     <coordinates>
       <x>234</x>
       <y>378</y>
-      <w>36</w>
+      <w>27</w>
       <h>117</h>
     </coordinates>
     <panel_attributes>lt=-
@@ -244,7 +268,7 @@ m2=1</panel_attributes>
       <x>567</x>
       <y>342</y>
       <w>144</w>
-      <h>144</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -257,7 +281,7 @@ m2=1</panel_attributes>
       <x>477</x>
       <y>594</y>
       <w>216</w>
-      <h>54</h>
+      <h>45</h>
     </coordinates>
     <panel_attributes>             gallery
 lt=-
@@ -284,7 +308,7 @@ description</panel_attributes>
       <x>522</x>
       <y>207</y>
       <w>117</w>
-      <h>36</h>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -410,7 +434,7 @@ aprooved?
       <x>765</x>
       <y>450</y>
       <w>99</w>
-      <h>315</h>
+      <h>306</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -423,7 +447,7 @@ m2=*</panel_attributes>
       <x>441</x>
       <y>423</y>
       <w>72</w>
-      <h>36</h>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
@@ -463,7 +487,7 @@ m2=1</panel_attributes>
       <x>585</x>
       <y>342</y>
       <w>126</w>
-      <h>117</h>
+      <h>108</h>
     </coordinates>
     <panel_attributes>makes
 lt=-
@@ -474,13 +498,13 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>351</x>
+      <x>360</x>
       <y>108</y>
-      <w>108</w>
+      <w>90</w>
       <h>108</h>
     </coordinates>
     <panel_attributes>lt=-
 sent_messages</panel_attributes>
-    <additional_attributes>90.0;60.0;90.0;20.0;20.0;20.0;20.0;100.0;60.0;100.0</additional_attributes>
+    <additional_attributes>80.0;60.0;80.0;20.0;10.0;20.0;10.0;100.0;50.0;100.0</additional_attributes>
   </element>
 </diagram>
