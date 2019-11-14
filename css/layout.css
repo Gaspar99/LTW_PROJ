@@ -1,0 +1,74 @@
+.page_body {
+    width: 80em;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
+.page_header {
+    padding: 2em;
+    margin: 0 0 1em 0;
+}
+
+.page_logo {
+    width: 5em;
+    height: 2em;
+}
+
+.page_footer {
+    position: relative;
+
+    text-align: center;
+
+    margin: 1em 0 0 0;
+    padding: 1em 0;
+}
+
+input[type=text], input[type=password] {
+    display: inline-block;
+
+    width: 100%;
+
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    box-sizing: border-box;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid black;
+    width: 25%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+}

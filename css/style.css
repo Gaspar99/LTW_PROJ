@@ -1,0 +1,108 @@
+html {
+    background-color: dimgray;
+}
+
+.page_body {
+
+    --panel-color: #434343;
+    
+    --background-color: #E9ECEC;
+
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.page_header {
+    background-color: var(--panel-color);
+    color: white;
+}
+
+
+.page_footer {
+    background-color: var(--panel-color);
+    color: white;
+}
+
+/* 
+Model Forms. Used for Sign In and Sign Up Pop up Modal forms
+*/
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    border-width: 1px solid black;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: inherit;
+
+    padding: 0.5em;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.page_header button {
+    color: white;
+    border-color: white;
+}
+
+.form button {
+    color: black;
+    border-color: black;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.container {
+    padding: 30px;
+}
+
+/* The Modal (background) */
+.modal {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: white;
+}
+
+/* The Close Button (x) */
+.close {
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    border-width: 0;
+}
+
+.close:hover, .close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+  

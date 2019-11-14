@@ -4,7 +4,7 @@
     */
     function draw_places($places) { ?>
 
-        <section id="places">
+        <section class="places">
         <?php foreach ($places as $place)
             draw_place($place);
         ?>
