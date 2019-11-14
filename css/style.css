@@ -1,23 +1,35 @@
+<<<<<<< HEAD
 html {
     background-color: dimgray;
 }
 
+=======
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 .page_body {
 
     --panel-color: #434343;
     
+<<<<<<< HEAD
     --background-color: #E9ECEC;
 
     background-color: var(--background-color);
+=======
+    --white-color-text: #ffffff;
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 a {
     text-decoration: none;
+<<<<<<< HEAD
     color: white;
+=======
+    color: var(--white-color-text);
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 .page_header {
     background-color: var(--panel-color);
+<<<<<<< HEAD
     color: white;
 }
 
@@ -25,6 +37,19 @@ a {
 .page_footer {
     background-color: var(--panel-color);
     color: white;
+=======
+    color: var(--white-color-text);
+}
+
+.page_logo {
+    width: 5em;
+    height: 2em;
+}
+
+.page_footer {
+    background-color: var(--panel-color);
+    color: var(--white-color-text);
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 /* 
@@ -32,7 +57,16 @@ Model Forms. Used for Sign In and Sign Up Pop up Modal forms
 */
 /* Full-width input fields */
 input[type=text], input[type=password] {
+<<<<<<< HEAD
     border-width: 1px solid black;
+=======
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    box-sizing: border-box;
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 label {
@@ -44,8 +78,11 @@ button {
     background-color: inherit;
 
     padding: 0.5em;
+<<<<<<< HEAD
 
     border-style: solid;
+=======
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
     border-width: 2px;
     border-radius: 20px;
 
@@ -66,23 +103,64 @@ button:hover {
     opacity: 0.8;
 }
 
+<<<<<<< HEAD
+=======
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 .container {
     padding: 30px;
 }
 
 /* The Modal (background) */
 .modal {
+<<<<<<< HEAD
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+=======
+    display: none; /* Hidden by default */
+
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+    padding-top: 60px;
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 /* Modal Content/Box */
 .modal-content {
+<<<<<<< HEAD
     background-color: white;
+=======
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid black;
+    width: 25%; /* Could be more or less, depending on screen size */
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
 
 /* The Close Button (x) */
 .close {
+<<<<<<< HEAD
+=======
+    position: absolute;
+    right: 25px;
+    top: 0;
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
     color: #000;
     font-size: 35px;
     font-weight: bold;

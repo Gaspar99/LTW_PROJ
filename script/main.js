@@ -20,6 +20,7 @@ function closeSignUpForm() {
     form.style.display='none';
 }
 
+<<<<<<< HEAD
 var signInForm = document.getElementById('signInForm');
     var signUpForm = document.getElementById('signUpForm');
 
@@ -31,4 +32,14 @@ window.onclick = function(event) {
         signInForm.style.display = "none";
     else if (event.target == signUpForm)
         signUpForm.style.display = "none";
+=======
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    var signInForm = document.getElementById('signInForm');
+    var signUpForm = document.getElementById('signUpForm');
+
+    if (event.target == signInForm || event.target == signUpForm) {
+        modal.style.display = "none";
+    }
+>>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
 }
