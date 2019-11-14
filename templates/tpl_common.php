@@ -21,21 +21,12 @@
                 <header class="page_header">
                     <a href="../pages/home.php"><img class="page_logo" src="../images/logo.png" alt="Web site Logo"></a>
                     <button onclick="openSearchForm()">Search</button>
-<<<<<<< HEAD
                     <?php if ($user_email == null) { ?>
                         <button onclick="openSignInForm()">Sign In</button>
                         <button onclick="openSignUpForm()">Sign Up</button>
                     <?php } else { 
                         $user = getUserName($user_email); ?>
                         <a class="button" href="../pages/home.php"><?=$user['first_name']?> <?=$user['last_name']?></a>
-=======
-                    <?php if ($user_id == null) { ?>
-                        <button onclick="openSignInForm()">Sign In</button>
-                        <button onclick="openSignUpForm()">Sign Up</button>
-                    <?php } else { 
-                        $user = getUserName($user_id); ?>
-                        <a class="button" href="../pages/home.php"><?=$user[first_name]?> <?=$user[last_name]?></a>
->>>>>>> 77344190c7aa338ff6fe71abc8106b8f7d886b0a
                     <?php } ?>
                 </header>
     <?php } ?>
