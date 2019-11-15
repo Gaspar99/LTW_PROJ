@@ -53,8 +53,8 @@
           <label for="phone_num">Phone Number</label>
           <input type="text" placeholder="Enter Phone Number" name="phone_num">
 
-          <!--<label for="country">Country</label>
-          <select class="country_selection"><?php //draw_countryOptions() ?></select>-->
+          <label for="country">Country</label>
+          <select class="country_selection"><?phpdraw_countryOptions() ?></select>
           
           <button type="submit">Create Account</button>
         </div>
