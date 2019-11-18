@@ -2,7 +2,7 @@ html {
     background-color: dimgray;
 }
 
-.page_body {
+.site-container {
 
     --panel-color: #434343;
     
@@ -16,13 +16,13 @@ a {
     color: white;
 }
 
-.page_header {
+.site-header {
     background-color: var(--panel-color);
     color: white;
 }
 
 
-.page_footer {
+.site-footer {
     background-color: var(--panel-color);
     color: white;
 }
@@ -52,7 +52,7 @@ button {
     cursor: pointer;
 }
 
-.page_header button {
+.site-header button {
     color: white;
     border-color: white;
 }

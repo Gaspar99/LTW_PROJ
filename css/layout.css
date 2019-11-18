@@ -1,25 +1,28 @@
-.page_body {
+.site-container {
     width: 80em;
     margin: 0 auto;
 
-    display: grid;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.page_header {
+.site-header {
     padding: 2em;
     margin: 0 0 1em 0;
 }
 
-.page_logo {
+.site-logo {
     width: 5em;
     height: 2em;
 }
 
-.page_footer {
-    position: relative;
+.site-content {
+    flex: 1;
+}
 
-    text-align: center;
+.site-footer {
+   text-align: center;
 
     margin: 1em 0 0 0;
     padding: 1em 0;

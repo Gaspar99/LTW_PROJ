@@ -17,9 +17,9 @@
                 <script src="../script/main.js" defer></script>
             </head>
             
-            <body class="page_body">
-                <header class="page_header">
-                    <a href="../pages/home.php"><img class="page_logo" src="../images/logo.png" alt="Web site Logo"></a>
+            <body class="site-container">
+                <header class="site-header">
+                    <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
                     <button onclick="openSearchForm()">Search</button>
                     <?php if ($user_email == null) { ?>
                         <button onclick="openSignInForm()">Sign In</button>
@@ -29,6 +29,8 @@
                         <a class="button" href="../pages/home.php"><?=$user['first_name']?> <?=$user['last_name']?></a>
                     <?php } ?>
                 </header>
+
+                <main class="site-content">
     <?php } ?>
 
 
@@ -37,8 +39,8 @@
     * Draws the footer for all pages.
     */ 
     function draw_footer() { ?>
-
-                <footer class="page_footer">Copyright © 2019 LTW FEUP</footer>
+                </main>
+                <footer class="site-footer">Copyright © 2019 LTW FEUP</footer>
             </body>
         </html>
     <?php } ?>
