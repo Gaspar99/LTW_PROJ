@@ -8,7 +8,7 @@
       <form class="modal-content animate" action="../actions/action_signin.php" method="post">
         <div class="imgContainer">
           <span class="close" onclick="closeSignInForm()" title="Close Form">&times;</span>
-          <a href="../pages/home.php"><img class="page_logo" src="../images/logo.png" alt="Web site Logo"></a>
+          <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
         </div>
         <div class="container">
           <label for="email">Email</label>
@@ -35,7 +35,7 @@
       <form class="modal-content animate" action="../actions/action_signup.php" method="post">
         <div class="imgContainer">
           <button class="close" onclick="closeSignUpForm()" title="Close Form">&times;</button>
-          <a href="../pages/home.php"><img class="page_logo" src="../images/logo.png" alt="Web site Logo"></a>
+          <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
         </div>
         <div class="container">
           <label for="first_name">First Name</label>
@@ -52,9 +52,9 @@
 
           <label for="phone_num">Phone Number</label>
           <input type="text" placeholder="Enter Phone Number" name="phone_num">
-
+          <!--
           <label for="country">Country</label>
-          <select class="country_selection"><?phpdraw_countryOptions() ?></select>
+          <select class="country_selection"><?php //draw_countryOptions() ?></select>-->
           
           <button type="submit">Create Account</button>
         </div>
