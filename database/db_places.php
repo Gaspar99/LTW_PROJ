@@ -8,13 +8,16 @@
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(   
-            'SELECT city.city_name AS city, country.country_name AS country,
-                    photo.file_path AS image_name, place.title AS title,
+            'SELECT city.city_name as city, country.country_name as country, 
+                    place.title AS title, owner_photo.photo_path as image_name,
                     place.rating AS rating, place.price_per_night AS price_per_night,
                     place.num_people AS num_people
-            FROM place, city, country, photo
+            FROM place, city, country, owner_gallery, owner_photo
             WHERE place.city_id = city.id AND city.country_id = country.id
-                    AND photo.place = place.id');
+                    AND owner_gallery.place = place.id 
+                    AND owner_gallery.photo = owner_photo.id
+            GROUP BY place.id
+            LIMIT 1');
         
         $stmt->execute();
 

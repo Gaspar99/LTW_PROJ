@@ -14,6 +14,7 @@
                 <meta charset="utf-8">
                 <link rel="stylesheet" href="../css/style.css">
                 <link rel="stylesheet" href="../css/layout.css">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
                 <script src="../script/main.js" defer></script>
             </head>
             

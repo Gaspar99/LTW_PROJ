@@ -1,119 +1,170 @@
 CREATE TABLE usr (
-    usr_id INTEGER PRIMARY KEY,
-    usr_first_name VARCHAR NOT NULL,
-    usr_last_name VARCHAR NOT NULL,
-    usr_email VARCHAR  NOT NULL,
-    usr_phone_number VARCHAR NOT NULL,
-    usr_password VARCHAR NOT NULL,
-    usr_profile_picture VARCHAR DEFAULT 'default.png',
-    rating REAL DEFAULT 0,
-    country_id  INTEGER REFERENCES country NOT NULL
+   usr_id INTEGER PRIMARY KEY,
+   usr_first_name VARCHAR NOT NULL,
+   usr_last_name VARCHAR NOT NULL,
+   usr_email VARCHAR  NOT NULL,
+   usr_phone_number VARCHAR NOT NULL,
+   usr_password VARCHAR NOT NULL,
+   usr_profile_picture VARCHAR DEFAULT 'default.png',
+   rating REAL DEFAULT 0,
+   country_id  INTEGER REFERENCES country NOT NULL
 );
 
 CREATE TABLE place (
-    id INTEGER PRIMARY KEY,
-    title VARCHAR NOT NULL,
-    price_per_night REAL NOT NULL,
-    place_address VARCHAR NOT NULL,
-    place_description VARCHAR NOT NULL,
-    num_people INTEGER NOT NULL,
-    available INTEGER NOT NULL,
-    rating REAL DEFAULT 0,
-    owner_id INTEGER REFERENCES usr NOT NULL,
-    city_id INTEGER REFERENCES city NOT NULL
+   id INTEGER PRIMARY KEY,
+   title VARCHAR NOT NULL,
+   price_per_night REAL NOT NULL,
+   place_address VARCHAR NOT NULL,
+   place_description VARCHAR NOT NULL,
+   num_people INTEGER NOT NULL,
+   available INTEGER NOT NULL,
+   rating REAL DEFAULT 0,
+   owner_id INTEGER REFERENCES usr NOT NULL,
+   city_id INTEGER REFERENCES city NOT NULL
 );
 
 CREATE TABLE reservation (
-    id INTEGER PRIMARY KEY,
-    initial_date DATE NOT NULL,
-    final_date DATE NOT NULL,
-    price REAL NOT NULL,
-    usr_rating REAL DEFAULT 0,
-    usr_comment VARCHAR DEFAULT NULL,
-    usr_comment_date DATE DEFAULT NULL,
-    owner_reply VARCHAR DEFAULT NULL,
-    owner_reply_date DATE DEFAULT NULL,
-    tourist INTEGER REFERENCES usr NOT NULL,
-    place_id INTEGER REFERENCES place NOT NULL
+   id INTEGER PRIMARY KEY,
+   initial_date DATE NOT NULL,
+   final_date DATE NOT NULL,
+   price REAL NOT NULL,
+   usr_rating REAL DEFAULT 0,
+   usr_comment VARCHAR DEFAULT NULL,
+   usr_comment_date DATE DEFAULT NULL,
+   owner_reply VARCHAR DEFAULT NULL,
+   owner_reply_date DATE DEFAULT NULL,
+   tourist INTEGER REFERENCES usr NOT NULL,
+   place_id INTEGER REFERENCES place NOT NULL
 );
 
 CREATE TABLE country (
-    id INTEGER PRIMARY KEY,
-    country_name VARCHAR NOT NULL
+   id INTEGER PRIMARY KEY,
+   country_name VARCHAR NOT NULL
 );
 
 CREATE TABLE city (
-    id INTEGER PRIMARY KEY,
-    city_name VARCHAR NOT NULL,
-    country_id INTEGER REFERENCES country NOT NULL
+   id INTEGER PRIMARY KEY,
+   city_name VARCHAR NOT NULL,
+   country_id INTEGER REFERENCES country NOT NULL
 );
 
 CREATE TABLE tag (
-    id INTEGER PRIMARY KEY,
-    tag_name VARCHAR NOT NULL
+   id INTEGER PRIMARY KEY,
+   tag_name VARCHAR NOT NULL
 );
 
 CREATE TABLE place_tag (
-    place INTEGER REFERENCES place NOT NULL,
-    tag INTEGER REFERENCES tag NOT NULL,
-    PRIMARY KEY (place, tag)
-);
-
-CREATE TABLE photo (
-    id INTEGER PRIMARY KEY,
-    file_path VARCHAR NOT NULL,
-    place INTEGER REFERENCES place NOT NULL
+   place INTEGER REFERENCES place NOT NULL,
+   tag INTEGER REFERENCES tag NOT NULL,
+   PRIMARY KEY (place, tag)
 );
 
 CREATE TABLE owner_photo (
-    id INTEGER PRIMARY KEY,
-    photo_path VARCHAR NOT NULL
+   id INTEGER PRIMARY KEY,
+   photo_path VARCHAR NOT NULL
 );
 
 CREATE TABLE owner_gallery (
-    place INTEGER REFERENCES place NOT NULL,
-    photo INTEGER REFERENCES owner_photos,
-    PRIMARY KEY (place, photo)
+   place INTEGER REFERENCES place NOT NULL,
+   photo INTEGER REFERENCES owner_photo,
+   PRIMARY KEY (place, photo)
 );
 
 CREATE TABLE tourist_photo (
-    id INTEGER PRIMARY KEY,
-    photo_path VARCHAR NOT NULL,
-    aprooved INTEGER NOT NULL,
-    reservation INTEGER REFERENCES reservation NOT NULL
+   id INTEGER PRIMARY KEY,
+   photo_path VARCHAR NOT NULL,
+   aprooved INTEGER NOT NULL,
+   reservation INTEGER REFERENCES reservation NOT NULL
 );
 
 CREATE TABLE usr_notification (
-    id INTEGER PRIMARY KEY,
-    notification_date DATE NOT NULL,
-    is_read INTEGER NOT NULL,
-    usr INTEGER REFERENCES usr NOT NULL,
-    reservation INTEGER REFERENCES reservation NOT NULL
+   id INTEGER PRIMARY KEY,
+   notification_date DATE NOT NULL,
+   is_read INTEGER NOT NULL,
+   usr INTEGER REFERENCES usr NOT NULL,
+   reservation INTEGER REFERENCES reservation NOT NULL
 );
 
 CREATE TABLE usr_message (
-    id INTEGER PRIMARY KEY,
-    message_txt VARCHAR NOT NULL,
-    message_date DATE NOT NULL,
-    from_usr INTEGER REFERENCES usr NOT NULL,
-    to_usr INTEGER REFERENCES usr NOT NULL
+   id INTEGER PRIMARY KEY,
+   message_txt VARCHAR NOT NULL,
+   message_date DATE NOT NULL,
+   from_usr INTEGER REFERENCES usr NOT NULL,
+   to_usr INTEGER REFERENCES usr NOT NULL
 );
 
 --INSERTS
 INSERT INTO usr VALUES(
-    NULL,
-    'John',
-    'Doe',
-    'email@jk.com',
-    '919349157',
-    '9302483108401',
-    'default.png',
-    0,
-    0
+   1, --usr_id
+   'John', --usr_first_name
+   'Doe', --usr_last_name
+   'johndoe@email.com', --usr_email
+   '919349157', --usr_phone_number
+   '$2y$12$7UVPawz3ktTGNJYChI1/WeeuVug0J.kXsNlb9QbPHdYpwhAYWKz6', --usr_password: 123456789
+   NULL, --usr_profile_picture
+   NULL, --rating
+   1 --country_id
+);
+
+INSERT INTO usr VALUES(
+   2, --usr_id
+   'Jane', --usr_first_name
+   'Doe', --usr_last_name
+   'janedoe@email.com', --usr_email
+   '912345678', --usr_phone_number
+   '$2y$12$QEZqcaPfGauNHEh4652z0.IcfoXisY3I0wF71u5otn.4xL6qabRwS', --usr_password: password
+   NULL, --usr_profile_picture
+   NULL, --rating
+   1 --country_id
+);
+
+INSERT INTO usr VALUES(
+   3, --usr_id
+   'Jorge', --usr_first_name
+   'Fransisco', --usr_last_name
+   'fchico@email.com', --usr_email
+   '919191919', --usr_phone_number
+   '$2y$12$COAZfqw5QLwynfP.t53NjeHDK2NjBVePtaXoodXLssdSxH0p23JDu', --usr_password: jorgepass
+   NULL, --usr_profile_picture
+   NULL, --rating
+   1 --country_id
+);
+
+INSERT INTO place VALUES(
+   1, --id
+   'Cute House Near The Lake', --title
+   150, --price_per_night
+   'Johannes van der Waalsstraat 107', --place_address
+   'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+   4, --num_people
+   1, --available
+   NULL, --rating
+   1, --owner_id: John Doe
+   1411 --city_id: Amsterdam
+);
+
+INSERT INTO owner_photo VALUES(
+   1, --ID
+   'lakeHouse.png' --photo_path
+);
+
+INSERT INTO owner_photo VALUES(
+   2, --ID
+   'beachHouse.png' --photo_path
+);
+
+INSERT INTO owner_gallery VALUES(
+   1, --place id
+   1 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   1, --place id
+   2 --owner_photo id
 );
 
 -- INSERT ALL COUNTRYS --
-    INSERT INTO country VALUES(
+INSERT INTO country VALUES(
    1,   
    'Kosovo'
 );

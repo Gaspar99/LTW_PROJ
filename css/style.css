@@ -8,19 +8,37 @@ html {
     
     --background-color: #E9ECEC;
 
+    --roboto-font: 'Roboto', sans-serif;
+
     background-color: var(--background-color);
 }
 
+/**
+ * Generic
+ */
+
+a, p, input, li, button, label {
+    font-family: var(--roboto-font);
+}
+  
 a {
+    color: black;
     text-decoration: none;
-    color: white;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--roboto-font);
+}
+
+li {
+    list-style: none;
+    list-style-type: none;
 }
 
 .site-header {
     background-color: var(--panel-color);
     color: white;
 }
-
 
 .site-footer {
     background-color: var(--panel-color);
@@ -32,34 +50,37 @@ Model Forms. Used for Sign In and Sign Up Pop up Modal forms
 */
 /* Full-width input fields */
 input[type=text], input[type=password] {
-    border-width: 1px solid black;
+    border-width: 0.5em solid black;
 }
 
 label {
     font-weight: bold;
+    font-family: var(--roboto-font);
+    font-size: 1em;
 }
 
 /* Set a style for all buttons */
 button {
     background-color: inherit;
-
     padding: 0.5em;
-
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 20px;
+    border-width: 0vw;
 
     cursor: pointer;
+
+    font-family: var(--roboto-font);
+    font-size: 1em;
 }
 
 .site-header button {
     color: white;
-    border-color: white;
 }
 
 .form button {
     color: black;
-    border-color: black;
+}
+
+.submit-button {
+    background-color: lawngreen;
 }
 
 button:hover {
@@ -67,7 +88,7 @@ button:hover {
 }
 
 .container {
-    padding: 30px;
+    padding: 1em;
 }
 
 /* The Modal (background) */
@@ -84,9 +105,10 @@ button:hover {
 /* The Close Button (x) */
 .close {
     color: #000;
-    font-size: 35px;
+    font-size: 2em;
     font-weight: bold;
     border-width: 0;
+    width: auto;
 }
 
 .close:hover, .close:focus {
@@ -98,11 +120,46 @@ button:hover {
 .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
+  }
+  
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
 }
-
+    
 @keyframes animatezoom {
     from {transform: scale(0)} 
     to {transform: scale(1)}
+}
+
+.place-city-country {
+    font-family: var(--roboto-font);
+    font-size: 1.5em;
+    color: black;
+}
+
+.place-title {
+    font-family: var(--roboto-font);
+    font-size: 1em;
+    color: black;
+}
+
+.place-footer {
+    color:black;
+}
+
+.place-rating {
+   
+    color: black
+}
+
+.place-price {
+   
+    color: black;
+}
+
+.place-rating {
+
 }
 
   

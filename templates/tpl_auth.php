@@ -17,7 +17,7 @@
           <label for="password">Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" required>
 
-          <button type="submit">Sign In</button>
+          <button class="submit-button" type="submit">Sign In</button>
         </div>
       </form>
     </div>
@@ -34,7 +34,7 @@
     <div id="signUpForm" class="modal">
       <form class="modal-content animate" action="../actions/action_signup.php" method="post">
         <div class="imgContainer">
-          <button class="close" onclick="closeSignUpForm()" title="Close Form">&times;</button>
+          <span class="close" onclick="closeSignUpForm()" title="Close Form">&times;</span>
           <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
         </div>
         <div class="container">
@@ -56,7 +56,7 @@
           <label for="country">Country</label>
           <select class="country_selection"><?php //draw_countryOptions() ?></select>-->
           
-          <button type="submit">Create Account</button>
+          <button class="submit-button" type="submit">Create Account</button>
         </div>
       </form>
     </div>
