@@ -1,4 +1,5 @@
 <?php
+    #include_once('../database/db_places.php'); #idk if i need this
     /**
     * 
     */
@@ -19,7 +20,7 @@
     function draw_place($place) { ?>
 
         <article class="place">
-            <a href="">
+            <a href="../pages/place.php?id=<?=$place['place_id']?>"> <!-- TODO inset the get coise here-->
                 <h2 class="place-city-country"><?=$place['city']?> - <?=$place['country']?></h2>
                 <img class="place-image"  src="../images/places/<?=$place['image_name']?>" alt="Place Image" />
                 <h1 class="place-title"><?=$place['title']?></h1>
@@ -31,4 +32,56 @@
             </a>
         </article>
 
+    <?php }
+
+    function draw_place_info($place_id){
+        $place = get_place($place_id);
+        $image_gallery = get_place_gallery($place_id); #TODO check if the rly works
+        ?>
+        <article class="place_info"> 
+            <section class="left_side">
+                <? 
+                if($place['availability'] = 1){?> 
+                    <div class="availability" id="available">
+                    Available
+                    </div><?
+                }else{?>
+                    <div class="availability" id="not_available">
+                    Not Available
+                </div>
+                <?}?>
+                <div class="owner_profile">
+                    TODO: inserir aqui um phpzito para ir sacar o owner
+                </div>
+                <div class="image_gallery">
+                    <? foreach($image_gallery as $image){ ?>
+                       <img class= "imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
+                       <?}?>
+                    <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+                </div>
+                <div class="num_people">
+                    <?for($i = 1; $i<= $place['num_people']; $i++){ #pq n da? so estupido...?>
+                        <img id="num_people_icon" src="../images/site/num_people.png" alt="icon" >
+                    <?}?>
+                </div>
+                <h4>Rating: <?=$place['rating']?></h4>
+                <h3>Price: <?=$place['price']?></h3>
+            </section>
+            <!-- right side do it after-->
+            <section class="right_side"> 
+                <h1> <?=$place['title']?></h1>
+                <h2> <?=$place['description']?></h2>
+                <table class="place_tags"><!--TODO-->
+                <div class= "adress">
+                    <h3><?=$place['country_name']?> </h3>
+                    <h3><?=$place['city_name']?> </h4>
+                    <h4> <?=$place['adress']?></h4>
+                </div>
+                <div class="buy_section">
+                    TODO: Buy section <!--Should this be smth else?-->
+                </div>
+             </section>
+        </article>
     <?php } ?>
