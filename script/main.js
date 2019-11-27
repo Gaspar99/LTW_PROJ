@@ -20,6 +20,15 @@ function closeSignUpForm() {
     form.style.display='none';
 }
 
+function openSearchForm(){
+    let form  = document.getElementById('searchForm');
+    form.style.display='block';
+}
+function closeSearchForm(){
+    let form  = document.getElementById('searchForm');
+    form.style.display='none';
+}
+
 let signInForm = document.getElementById('signInForm');
 let signUpForm = document.getElementById('signUpForm');
 
