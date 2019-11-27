@@ -1,17 +1,19 @@
 <?php 
+    include_once('tpl_countries.php');
 
-    function draw_search_bar($countries){ 
-        ?>
-        <div id ='searchForm' class='modal'>
-            <form action="TODO">              
+    /**
+    * 
+    */
+    function draw_search_bar($countries){  ?>
+
+        <div id ='searchForm'>
+            <form>
+
                 <label for="country">Country</label>
                 <select name="country">
-                    <?
-                    foreach($countries as $country){?>
-                        <option value=<?=$country['country_name']?>><?=$country['country_name']?></option>
-                   <? }
-                    ?>                  
+                    <?php draw_countryOptions($countries); ?> 
                 </select>
+
                 <label for="city">City</label>
                 <select name="city">
                     <option value="orange">Orange</option>
@@ -24,12 +26,12 @@
                 <input type="date" value="2019-01-01">
                 
                 <label for="check_out">Check Out</label>
-                <input type="date" value="2019-01-01"> <!-- script neede for the current date -->
-                <input type="submit" value="Search">
+                <input type="date" value="2019-01-01"> <!-- script needed for the current date -->
+
+                <input class="submit-button" type="submit" value="Search">
             </form>
             <button type="button" onclick="closeSearchForm()">Close </button>
         </div>
         
-<?  } 
+<?php  }  ?>  
 
-?>  

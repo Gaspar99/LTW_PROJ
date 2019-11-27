@@ -29,22 +29,10 @@ function closeSearchForm(){
     form.style.display='none';
 }
 
-let signInForm = document.getElementById('signInForm');
-let signUpForm = document.getElementById('signUpForm');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-
-
-    if (event.target == signInForm) 
-        signInForm.style.display = "none";
-    else if (event.target == signUpForm)
-        signUpForm.style.display = "none";
-}
-
 //go through images 
 //TODO
 
+/*
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -61,4 +49,4 @@ function showDivs(n) {
     x[i].style.display = "none"; 
   }
   x[slideIndex-1].style.display = "block"; 
-}
+}*/

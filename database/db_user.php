@@ -37,14 +37,14 @@
     function addUser($user) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('INSERT INTO usr VALUES(NULL, ?, ?, ?, ?, ?)');
+        $stmt = $db->prepare('INSERT INTO usr VALUES(NULL, ?, ?, ?, ?, ?, NULL, NULL, ?)');
         $stmt->execute(array(
             $user['first_name'], 
             $user['last_name'],
             $user['email'],
             password_hash($user['password'], PASSWORD_DEFAULT),
-            $user['phone_num']
-            //$user['country_id']
+            $user['phone_num'],
+            $user['country_id']
         ));
     }
 

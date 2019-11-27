@@ -29,7 +29,7 @@
   /**
   * Draws the sign up modal form.
   */ 
-  function draw_signUp() {  ?>
+  function draw_signUp($countries) {  ?>
 
     <div id="signUpForm" class="modal">
       <form class="modal-content animate" action="../actions/action_signup.php" method="post">
@@ -52,9 +52,9 @@
 
           <label for="phone_num">Phone Number</label>
           <input type="text" placeholder="Enter Phone Number" name="phone_num">
-          <!--
-          <label for="country">Country</label>
-          <select class="country_selection"><?php //draw_countryOptions() ?></select>-->
+          
+          <label for="country_id">Country</label>
+          <select nome="country_id" class="country_selection"><?php draw_countryOptions($countries)?></select>
           
           <button class="submit-button" type="submit">Create Account</button>
         </div>

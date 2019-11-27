@@ -5,8 +5,8 @@ CREATE TABLE usr (
    usr_email VARCHAR  NOT NULL,
    usr_phone_number VARCHAR NOT NULL,
    usr_password VARCHAR NOT NULL,
-   usr_profile_picture VARCHAR DEFAULT 'default.png',
-   rating REAL DEFAULT 0,
+   usr_profile_picture VARCHAR DEFAULT 'default.png' NOT NULL,
+   rating REAL DEFAULT 0 NOT NULL,
    country_id  INTEGER REFERENCES country NOT NULL
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE place (
    place_description VARCHAR NOT NULL,
    num_people INTEGER NOT NULL,
    available INTEGER NOT NULL,
-   rating REAL DEFAULT 0,
+   rating REAL DEFAULT 0 NOT NULL,
    owner_id INTEGER REFERENCES usr NOT NULL,
    city_id INTEGER REFERENCES city NOT NULL
 );
@@ -28,7 +28,7 @@ CREATE TABLE reservation (
    initial_date DATE NOT NULL,
    final_date DATE NOT NULL,
    price REAL NOT NULL,
-   usr_rating REAL DEFAULT 0,
+   usr_rating REAL DEFAULT 0 NOT NULL,
    usr_comment VARCHAR DEFAULT NULL,
    usr_comment_date DATE DEFAULT NULL,
    owner_reply VARCHAR DEFAULT NULL,
@@ -115,7 +115,7 @@ INSERT INTO usr VALUES(
    '$2y$12$QEZqcaPfGauNHEh4652z0.IcfoXisY3I0wF71u5otn.4xL6qabRwS', --usr_password: password
    NULL, --usr_profile_picture
    NULL, --rating
-   1 --country_id
+   10 --country_id
 );
 
 INSERT INTO usr VALUES(
@@ -125,6 +125,30 @@ INSERT INTO usr VALUES(
    'fchico@email.com', --usr_email
    '919191919', --usr_phone_number
    '$2y$12$COAZfqw5QLwynfP.t53NjeHDK2NjBVePtaXoodXLssdSxH0p23JDu', --usr_password: jorgepass
+   NULL, --usr_profile_picture
+   NULL, --rating
+   1 --country_id
+);
+
+INSERT INTO usr VALUES(
+   4, --usr_id
+   'Antonio', --usr_first_name
+   'manuel', --usr_last_name
+   'antman@email.com', --usr_email
+   '986541123', --usr_phone_number
+   '$2y$12$NIdFPZ/dEtuWyxFgbhktfeMD3MqofEIoXzUr4kWrsQh5Gq/58G.6y', --usr_password: antman123
+   NULL, --usr_profile_picture
+   NULL, --rating
+   1 --country_id
+);
+
+INSERT INTO usr VALUES(
+   5, --usr_id
+   'Pedro', --usr_first_name
+   'Miguel', --usr_last_name
+   'pemigo@email.com', --usr_email
+   '967561781', --usr_phone_number
+   '$2y$12$8sU8G/HsbPtBuA7ardtQgO6zA/Lyyza15oBlXYNSYfqNuf1ztYtqC', --usr_password: migpedro00
    NULL, --usr_profile_picture
    NULL, --rating
    1 --country_id
@@ -141,6 +165,32 @@ INSERT INTO place VALUES(
    NULL, --rating
    1, --owner_id: John Doe
    1411 --city_id: Amsterdam
+);
+
+INSERT INTO place VALUES(
+   2, --id
+   'Awesome House Near The Lake', --title
+   200, --price_per_night
+   'Johannes van der Waalsstraat 107', --place_address
+   'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+   4, --num_people
+   1, --available
+   NULL, --rating
+   1, --owner_id: John Doe
+   1411 --city_id: Amsterdam
+);
+
+INSERT INTO place VALUES(
+   3, --id
+   'Fantastic House Near The Lake', --title
+   300, --price_per_night
+   'Johannes van der Waalsstraat 107', --place_address
+   'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+   4, --num_people
+   1, --available
+   NULL, --rating
+   1, --owner_id: John Doe
+   500 --city_id: Amsterdam
 );
 
 INSERT INTO owner_photo VALUES(

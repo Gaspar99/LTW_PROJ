@@ -15,8 +15,9 @@
   else {
     draw_header(null);
     draw_signIn();
-    draw_signUp();
+    draw_signUp($countries);
   }
+
   draw_search_bar($countries);
   draw_places($places);
   draw_footer();

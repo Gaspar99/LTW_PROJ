@@ -10,11 +10,9 @@
         <!DOCTYPE html>
         <html lang="en-US">
             <head>
-                <title>Web Site Title</title>
+                <title>Rental Eye</title>
                 <meta charset="utf-8">
                 <link rel="stylesheet" href="../css/style.css">
-                <link rel="stylesheet" href="../css/layout.css">
-                <link rel="stylesheet" href="../css/place_info.css">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
                 <script src="../script/main.js" defer></script>
             </head>
@@ -24,7 +22,7 @@
                     <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
                     <button onclick="openSearchForm()">Search</button>
                     <?php if ($user_email == null) { ?>
-                        <button onclick="openSignInForm()">Sign In</button>
+                        <button onclick="openSignInForm()">Log In</button>
                         <button onclick="openSignUpForm()">Sign Up</button>
                     <?php } else { 
                         $user = getUserName($user_email); ?>

@@ -6,8 +6,9 @@
     function draw_places($places) { ?>
 
         <section class="places">
-        <?php foreach ($places as $place)
+        <?php foreach ($places as $place) {
             draw_place($place);
+        }
         ?>
         </section>
 
@@ -32,39 +33,48 @@
             </a>
         </article>
 
-    <?php }
+    <?php } ?>
 
-    function draw_place_info($place_id){
+    <?php
+    /**
+    * 
+    */    
+    function draw_place_info($place_id) {
+
         $place = get_place($place_id);
-        $image_gallery = get_place_gallery($place_id); #TODO check if the rly works
-        ?>
+        $image_gallery = get_place_gallery($place_id); #TODO check if the rly works ?>
+
         <article class="place_info"> 
-            <section class="left_side">
-                <? 
-                if($place['availability'] = 1){?> 
+            <section class="left_side"> 
+
+                <?php if ($place['availability']) { ?> 
                     <div class="availability" id="available">
-                    Available
-                    </div><?
-                }else{?>
+                        Available
+                    </div> 
+                <?php } else { ?>
                     <div class="availability" id="not_available">
-                    Not Available
-                </div>
-                <?}?>
+                        Not Available
+                    </div>
+                <?php } ?>
+
                 <div class="owner_profile">
                     TODO: inserir aqui um phpzito para ir sacar o owner
                 </div>
+
                 <div class="image_gallery">
-                    <? foreach($image_gallery as $image){ ?>
-                       <img class= "imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
-                       <?}?>
-                    <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                    <?php foreach($image_gallery as $image) { ?>
+                        <img class= "imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
+                    <?php } ?>
+                <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+
                     <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
                 </div>
+                
                 <div class="num_people">
-                    <?for($i = 1; $i<= $place['num_people']; $i++){ #pq n da? so estupido...?>
+                    <?php for($i = 1; $i<= $place['num_people']; $i++){ #pq n da? so estupido...?>
                         <img id="num_people_icon" src="../images/site/num_people.png" alt="icon" >
-                    <?}?>
+                    <?php } ?>
                 </div>
                 <h4>Rating: <?=$place['rating']?></h4>
                 <h3>Price: <?=$place['price']?></h3>

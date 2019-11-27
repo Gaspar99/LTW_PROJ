@@ -3,21 +3,26 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.site-container {
-
-    --panel-color: #434343;
-    
+body {
+    /* Definition of variables */
+    --panel-color: #434343;    
     --background-color: #E9ECEC;
-
     --roboto-font: 'Roboto', sans-serif;
+}
 
+.site-container {
+    /* Layout */
+    width: 80em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    /* Style */
     background-color: var(--background-color);
 }
 
-/**
- * Generic
- */
-
+/* Generics */
 a, p, input, li, button, label {
     font-family: var(--roboto-font);
 }
@@ -36,25 +41,11 @@ li {
     list-style-type: none;
 }
 
-.site-header {
-    background-color: var(--panel-color);
-    color: white;
-}
-
-.site-footer {
-    background-color: var(--panel-color);
-    color: white;
-}
-
-/* 
-Model Forms. Used for Sign In and Sign Up Pop up Modal forms
-*/
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    border-width: 0.5em solid black;
-}
-
 label {
+    /* Layout */
+    margin: 0;
+
+    /* Style */
     font-weight: bold;
     font-family: var(--roboto-font);
     font-size: 1em;
@@ -65,13 +56,137 @@ button {
     background-color: inherit;
     padding: 0.5em;
     border-width: 0vw;
-
     cursor: pointer;
-
     font-family: var(--roboto-font);
     font-size: 1em;
 }
 
+/* Site - general */
+.site-header {
+    /* Layout */
+    padding: 2em;
+    margin: 0;
+    display: inline-block;
+
+    /* Style */
+    background-color: var(--panel-color);
+    color: white;
+}
+
+.site-content {
+    /* Layout */
+    flex: 1;
+}
+
+.site-footer {
+    /* Layout */
+    text-align: center;
+    margin: 1em 0 0 0;
+    padding: 1em 0;
+
+    /* Style */
+    background-color: var(--panel-color);
+    color: white;
+}
+
+.site-logo {
+    /* Layout */
+    width: 5em;
+    height: 5em;
+}
+
+
+/* ----------------- Model Forms ---------------- */
+/* The Modal (background) */
+.modal {
+    /* Layout */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+
+    /* Style */
+    background-color: black; /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    /* Layout */
+    display: block;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 0.2em solid black;
+    width: 30%; /* Could be more or less, depending on screen size */
+
+    /* Style */
+    background-color: white;
+}
+
+.container {
+    /* Layout */
+    padding: 1em;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    /* Layout */
+    display: inline-block;
+    width: 100%;
+    margin: 0.5em 0 1em 0;
+    padding: 1em 0.2em;
+
+    /* Style */
+    border: 0.05em solid black;
+    border-radius: 0.01em;
+    box-sizing: border-box;
+}
+
+/* Center the image */
+.imgContainer {
+    /* Layout */
+    width: 100%;
+    height: 5%;
+    position: relative;
+    text-align: center;
+    margin: 3% auto 0 auto;
+}
+
+/* The Close Button (x) */
+.close {
+    /* Layout */ 
+    position: absolute;
+    top: -0.5em;
+    right: 0.2em;
+    padding: 10px 18px;
+
+    /* Style */
+    color: #000;
+    font-size: 2em;
+    font-weight: bold;
+    border-width: 0;
+    width: auto;
+}
+
+.modal img.site-logo {
+    width: 20%;
+}
+
+.submit-button {
+    /* Layout */
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 2% auto;
+
+    /* Style */
+    color: white;
+    background-color: rgb(37, 58, 179);
+}
+
+/* Site header button has a different color */
 .site-header button {
     color: white;
 }
@@ -80,36 +195,8 @@ button {
     color: black;
 }
 
-.submit-button {
-    background-color: lawngreen;
-}
-
 button:hover {
     opacity: 0.8;
-}
-
-.container {
-    padding: 1em;
-}
-
-/* The Modal (background) */
-.modal {
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: white;
-}
-
-/* The Close Button (x) */
-.close {
-    color: #000;
-    font-size: 2em;
-    font-weight: bold;
-    border-width: 0;
-    width: auto;
 }
 
 .close:hover, .close:focus {
@@ -117,6 +204,7 @@ button:hover {
   cursor: pointer;
 }
 
+/* ---------------- Animations ----------------- */
 /* Add Zoom Animation */
 .animate {
     -webkit-animation: animatezoom 0.6s;
@@ -133,52 +221,82 @@ button:hover {
     to {transform: scale(1)}
 }
 
+/* ------------- HOME PAGE: PLACES ------------*/
+.places {
+    /* Layout */
+    display: flex;
+    padding: 0 5%;
+    justify-content: left;
+}
+
+.place {
+    /* Layout */
+    flex-basis: 20%;
+}
+
 .place-city-country {
+    /* Layout */
+    text-align: left;
+
+    /* Style */
     font-family: var(--roboto-font);
     font-size: 1.5em;
     color: black;
 }
 
 .place-title {
+    /* Style */
     font-family: var(--roboto-font);
     font-size: 1em;
     color: black;
+}
+
+.place-image {
+    /* Layout */
+    width: 90%;
+    height: auto;
 }
 
 .place-footer {
     color:black;
 }
 
-.place-rating {
-   
+.place-rating { 
     color: black
 }
 
 .place-price {
-   
     color: black;
 }
 
-.place-rating {
 
-}
-
-/*search bar*/
-#searchForm{
-    padding: 10em;
-    text-decoration: none;
-    color: white;   
-}
-#searchForm,select{
-
-    overflow: hidden;
-    appearance: none;
+/* ------------- HOME PAGE: SEARCH BAR ------------*/
+#searchForm {
+    /* Layout */
+    display: none;
+    margin: 0;
     padding: 1em;
-    margin:40px;
-    background:transparent;
-    color:#fff;
-    text-shadow:0 1px 0 rgba(0,0,0,0.4); 
-}
-#searchForm > button {
+
+    /* Style */
     color: white;
+    background: gray;
+    text-decoration: none; 
+}
+
+.availability, #available{
+    color:green;
+}
+.availability, #not_available{
+    color:red;
+}
+
+/* ------------ Images --------------*/ 
+.imgGallery{
+    width: 25%;
+    height: auto;
+}
+
+#num_people_icon{
+    width: 2%;
+    height: auto;
 }

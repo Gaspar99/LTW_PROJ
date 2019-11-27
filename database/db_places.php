@@ -23,6 +23,7 @@
 
         return $stmt->fetchAll();
     }
+    
     function get_place($place_id){
         $db = Database::instance()->db();
 

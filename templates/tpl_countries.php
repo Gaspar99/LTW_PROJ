@@ -1,35 +1,22 @@
 <?php
-    include_once('../database/db_countries.php');
-
-
+    
     /**
     * 
     */
-    function draw_countryOptions() { 
-
-        $countries = get_countries(); ?>
-
-        <select>
-            <?php 
-                foreach ($countries as $country)
-                    draw_country($country);
-            ?>
-        </select>
-
-    <?php } ?>
+    function draw_countryOptions($countries) { 
+        foreach ($countries as $country)
+            draw_country($country);  
+    } 
+?>
 
 <?php 
     /**
     * 
     */
-    function draw_country() { ?>
-
-        <option>
-
-            <?php ?>
-
+    function draw_country($country) { ?>
+        <option value=<?=$country['id']?>>
+            <?=$country['country_name']?>
         </option>
-
     <?php }  ?>
 
 
