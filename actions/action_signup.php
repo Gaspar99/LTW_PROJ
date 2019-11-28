@@ -5,7 +5,7 @@
   try {
     addUser($_POST);
 
-    $_SESSION['user_email'] = $user['email'];
+    $_SESSION['user_email'] = $_POST['email'];
     
     header('Location: ../pages/home.php');
     

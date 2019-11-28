@@ -51,10 +51,10 @@
           <input type="password" placeholder="Enter Password" name="password" required>
 
           <label for="phone_num">Phone Number</label>
-          <input type="text" placeholder="Enter Phone Number" name="phone_num">
+          <input type="text" placeholder="Enter Phone Number" name="phone_num" required>
           
           <label for="country_id">Country</label>
-          <select nome="country_id" class="country_selection"><?php draw_countryOptions($countries)?></select>
+          <select name="country_id" class="country_selection" required><?php draw_countryOptions($countries)?></select>
           
           <button class="submit-button" type="submit">Create Account</button>
         </div>
@@ -62,6 +62,19 @@
     </div>
       
 <?php } ?>
+
+<?php 
+  /**
+  * 
+  */
+  function draw_dropdrown() { ?>
+
+    <div id="dropdownMenu" class="dropdown">
+      <a href="../pages/home.php">My Profile</a>
+      <a href="../actions/action_logout.php">Logout</a>
+    </div>
+
+  <?php } ?>
 
 
     

@@ -1,8 +1,30 @@
 <?php 
     include_once('../database/db_user.php');
+    include_once('../database/db_geography.php');
+    include_once('../templates/tpl_auth.php');
+    include_once('../templates/tpl_search.php');
 
     /**
-    * Draws the header for all pages. Receives an user id 
+    * 
+    */
+    function draw_site_header() {
+        $countries = get_countries();
+
+        if (isset($_SESSION['user_email'])) {
+            draw_header($_SESSION['user_email']);
+            draw_dropdrown();
+        }
+        else {
+            draw_header(null);
+            draw_signIn();
+            draw_signUp($countries);
+        }
+    
+        draw_search_bar($countries);
+    }
+
+    /**
+    * Draws the html header for all pages. Receives an user id 
     * if the user is logged in in order to know what to draw
     */
     function draw_header($user_email) { ?>
@@ -22,11 +44,13 @@
                     <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
                     <button onclick="openSearchForm()">Search</button>
                     <?php if ($user_email == null) { ?>
-                        <button onclick="openSignInForm()">Log In</button>
-                        <button onclick="openSignUpForm()">Sign Up</button>
+                        <div class="auth">
+                            <button onclick="openSignInForm()">Log In</button>
+                            <button onclick="openSignUpForm()">Sign Up</button>
+                        </div>
                     <?php } else { 
                         $user = getUserName($user_email); ?>
-                        <a class="button" href="../pages/home.php"><?=$user['first_name']?> <?=$user['last_name']?></a>
+                        <button class="username" onclick="openDropDownMenu()"><?=$user['first_name']?> <?=$user['last_name']?></button>
                     <?php } ?>
                 </header>
 
@@ -43,6 +67,6 @@
                 <footer class="site-footer">Copyright © 2019 LTW FEUP</footer>
             </body>
         </html>
-    <?php } ?>
+<?php } ?>
     
 

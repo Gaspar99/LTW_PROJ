@@ -1,8 +1,3 @@
-html {
-    background-color: dimgray;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
     /* Definition of variables */
     --panel-color: #434343;    
@@ -12,7 +7,6 @@ body {
 
 .site-container {
     /* Layout */
-    width: 80em;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -22,13 +16,15 @@ body {
     background-color: var(--background-color);
 }
 
-/* Generics */
+/* --------------- Generics --------------- */
 a, p, input, li, button, label {
     font-family: var(--roboto-font);
+    margin: 0;
+    padding: 0;
 }
   
 a {
-    color: black;
+    color: inherit;
     text-decoration: none;
 }
   
@@ -61,17 +57,52 @@ button {
     font-size: 1em;
 }
 
-/* Site - general */
+/* ----------------- Site - General -------------- */
+/* ------------- Header --------- */
 .site-header {
     /* Layout */
-    padding: 2em;
+    padding: 1em;
     margin: 0;
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
 
     /* Style */
     background-color: var(--panel-color);
     color: white;
 }
+
+.site-header button {
+    /* Layout */
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+    
+    /* Style */
+    font-size: 1em;
+    border-width: thin;
+}
+
+.username::after {
+    /* Style */
+    color:lightblue;
+    content: ' ▾';
+}
+
+.dropdown {
+    /* Layout */
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 2em;
+    top: 8em;
+    padding: 1em;
+    box-shadow: 1em black;
+
+    /* Style */
+    background-color: white;
+}
+
 
 .site-content {
     /* Layout */
@@ -118,8 +149,9 @@ button {
     /* Layout */
     display: block;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 0.2em solid black;
-    width: 30%; /* Could be more or less, depending on screen size */
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em black;
+    width: 25em; /* Could be more or less, depending on screen size */
 
     /* Style */
     background-color: white;
@@ -131,7 +163,7 @@ button {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], select {
     /* Layout */
     display: inline-block;
     width: 100%;
@@ -151,15 +183,18 @@ input[type=text], input[type=password] {
     height: 5%;
     position: relative;
     text-align: center;
-    margin: 3% auto 0 auto;
+}
+
+.imgContainer img {
+    padding: 1em 0 0 0;
 }
 
 /* The Close Button (x) */
 .close {
     /* Layout */ 
     position: absolute;
-    top: -0.5em;
-    right: 0.2em;
+    top: 0;
+    right: 0;
     padding: 10px 18px;
 
     /* Style */
@@ -278,8 +313,8 @@ button:hover {
     padding: 1em;
 
     /* Style */
-    color: white;
-    background: gray;
+    color: black;
+    background-color: white;
     text-decoration: none; 
 }
 

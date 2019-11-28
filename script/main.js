@@ -24,9 +24,15 @@ function openSearchForm(){
     let form  = document.getElementById('searchForm');
     form.style.display='block';
 }
+
 function closeSearchForm(){
     let form  = document.getElementById('searchForm');
     form.style.display='none';
+}
+
+function openDropDownMenu() {
+    let menu = document.getElementById('dropdownMenu');
+    menu.style.display='flex';
 }
 
 //go through images 

@@ -1,5 +1,6 @@
 <?php
-    #include_once('../database/db_places.php'); #idk if i need this
+    include_once('../database/db_places.php');
+
     /**
     * 
     */
