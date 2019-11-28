@@ -4,13 +4,12 @@
 
   try {
     addUser($_POST);
-
     $_SESSION['user_email'] = $_POST['email'];
-    
-    header('Location: ../pages/home.php');
-    
   } catch (PDOException $e) {
     die($e->getMessage());
-    header('Location: ../pages/home.php');
   }
+
+  header('Location: ../pages/home.php');
+  
 ?>
+

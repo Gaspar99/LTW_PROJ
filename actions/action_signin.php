@@ -7,9 +7,8 @@
 
   if (checkUserPassword($email, $password)) {
     $_SESSION['user_email'] = $email;
-    header('Location: ../pages/home.php');
-  } else {
-    header('Location: ../pages/home.php');
-  }
+  } 
 
+  header('Location: ../pages/home.php');
+  
 ?>

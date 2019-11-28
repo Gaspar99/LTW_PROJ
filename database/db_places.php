@@ -15,9 +15,7 @@
             FROM place, city, country, owner_gallery, owner_photo
             WHERE place.city_id = city.id AND city.country_id = country.id
                     AND owner_gallery.place = place.id 
-                    AND owner_gallery.photo = owner_photo.id
-            GROUP BY place.id
-            LIMIT 1');
+                    AND owner_gallery.photo = owner_photo.id');
         
         $stmt->execute();
 

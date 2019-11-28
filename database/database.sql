@@ -5,8 +5,8 @@ CREATE TABLE usr (
    usr_email VARCHAR  NOT NULL,
    usr_phone_number VARCHAR NOT NULL,
    usr_password VARCHAR NOT NULL,
-   usr_profile_picture VARCHAR DEFAULT 'default.png' NOT NULL,
-   rating REAL DEFAULT 0 NOT NULL,
+   usr_profile_picture VARCHAR DEFAULT 'default.png',
+   rating REAL DEFAULT 0.0,
    country_id  INTEGER REFERENCES country NOT NULL
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE place (
    place_description VARCHAR NOT NULL,
    num_people INTEGER NOT NULL,
    available INTEGER NOT NULL,
-   rating REAL DEFAULT 0 NOT NULL,
+   rating REAL DEFAULT 0.0,
    owner_id INTEGER REFERENCES usr NOT NULL,
    city_id INTEGER REFERENCES city NOT NULL
 );
@@ -28,7 +28,7 @@ CREATE TABLE reservation (
    initial_date DATE NOT NULL,
    final_date DATE NOT NULL,
    price REAL NOT NULL,
-   usr_rating REAL DEFAULT 0 NOT NULL,
+   usr_rating REAL DEFAULT 0,
    usr_comment VARCHAR DEFAULT NULL,
    usr_comment_date DATE DEFAULT NULL,
    owner_reply VARCHAR DEFAULT NULL,
@@ -172,11 +172,11 @@ INSERT INTO place VALUES(
    'Awesome House Near The Lake', --title
    200, --price_per_night
    'Johannes van der Waalsstraat 107', --place_address
-   'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
-   4, --num_people
+   'An awesome house to relax near the stuff. You can fish, go jetskying and even dive.', --place_description
+   2, --num_people
    1, --available
    NULL, --rating
-   1, --owner_id: John Doe
+   2, --owner_id: John Doe
    1411 --city_id: Amsterdam
 );
 
@@ -185,12 +185,12 @@ INSERT INTO place VALUES(
    'Fantastic House Near The Lake', --title
    300, --price_per_night
    'Johannes van der Waalsstraat 107', --place_address
-   'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
-   4, --num_people
+   'A fantastic house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+   7, --num_people
    1, --available
    NULL, --rating
-   1, --owner_id: John Doe
-   500 --city_id: Amsterdam
+   3, --owner_id: John Doe
+   500 --city_id: 
 );
 
 INSERT INTO owner_photo VALUES(
