@@ -22,7 +22,7 @@ function closeSignUpForm() {
 
 function openSearchForm(){
     let form  = document.getElementById('searchForm');
-    form.style.display='block';
+    form.style.display='flex';
 }
 
 function closeSearchForm(){
