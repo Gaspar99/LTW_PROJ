@@ -21,8 +21,7 @@
     function draw_place($place) { ?>
 
         <article class="place">
-            <!--
-            <a href="../pages/place.php?id=<?=$place['place_id']?>"> TODO insert the get coise here
+            <a href="../pages/place.php?id=<?=$place['place_id']?>"> <!--TODO insert the get coise here-->
                 <h2 class="place-city-country"><?=$place['city']?> - <?=$place['country']?></h2>
                 <img class="place-image"  src="../images/places/<?=$place['image_name']?>" alt="Place Image" />
                 <h1 class="place-title"><?=$place['title']?></h1>
@@ -32,7 +31,6 @@
                     <li class="place-num-people"><?=$place['num_people']?></li>
                 </ul>
             </a>
-            -->
         </article>
 
     <?php } ?>
