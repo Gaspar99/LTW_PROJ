@@ -213,6 +213,49 @@ INSERT INTO owner_gallery VALUES(
    2 --owner_photo id
 );
 
+-- INSERT TAGS --
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Kitchen'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Bath Room'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Swimming Pool'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Fireplace'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Wi-fi'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Vegan'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'Modest'
+);
+
+INSERT INTO tag VALUES(
+   NULL, 
+   'By the Beach'
+);
+
+
 -- INSERT ALL COUNTRYS --
 INSERT INTO country VALUES(
    1,   
@@ -17496,7 +17539,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    79,   
-   '"Saint Helen'
+   'Saint Helen'
 );
 
 INSERT INTO city VALUES(
@@ -23852,7 +23895,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    113,   
-   '"Virgin Island'
+   'Virgin Island'
 );
 
 INSERT INTO city VALUES(
@@ -31716,7 +31759,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    145,   
-   '"Bahama'
+   'Bahama'
 );
 
 INSERT INTO city VALUES(
@@ -41284,7 +41327,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    183,   
-   '"Micronesi'
+   'Micronesi'
 );
 
 INSERT INTO city VALUES(
@@ -43762,7 +43805,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    195,   
-   '"Gambi'
+   'Gambi'
 );
 
 INSERT INTO city VALUES(
@@ -49513,7 +49556,7 @@ INSERT INTO city VALUES(
 
 INSERT INTO country VALUES(
    228,   
-   '"Kore'
+   'Kore'
 );
 
 INSERT INTO city VALUES(
