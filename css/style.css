@@ -1,7 +1,7 @@
 body {
     /* Definition of variables */
     --panel-color: rgb(89, 193, 249);
-    --button-color: rgb(66, 154,206);
+    --button-color: rgb(37, 58, 179);
     --search-grey: rgb(242, 242, 242);    
     --background-color:rgb(230, 230, 230);
     --form-input-color: rgb(195, 195, 195);
@@ -58,6 +58,7 @@ button {
     cursor: pointer;
     font-family: var(--roboto-font);
     font-size: 1em;
+    border-width: 0;
 }
 
 /* ----------------- Site - General -------------- */
@@ -243,11 +244,13 @@ input[type=text], input[type=password], select {
     position: relative;
     width: 100%;
     text-align: center;
-    margin: 2% auto;
+    margin: 0;
+    padding: 0.7em;
 
     /* Style */
-    color: var(--button-color);
-    background-color: rgb(37, 58, 179);
+    font-size: 1.2em;
+    color: white;
+    background-color: var(--button-color);
 }
 
 /* Site header button has a different color */
@@ -364,3 +367,19 @@ button:hover {
     width: 2%;
     height: auto;
 }
+
+.left_side{
+    float: left;
+    width: 50%;
+}
+
+.right_side{
+    float: right;
+    width: 33.33%;
+}
+´
+/*-----USER PROFILE-------*/ 
+h1,#profile_page{
+    color:blue;
+}
+

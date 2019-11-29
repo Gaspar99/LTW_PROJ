@@ -1,6 +1,5 @@
 <?php
-    include_once('../database/db_places.php');
-
+    #include_once('../database/db_places.php'); #idk if i need this
     /**
     * 
     */
@@ -22,7 +21,7 @@
     function draw_place($place) { ?>
 
         <article class="place">
-            <a href="../pages/place.php?id=<?=$place['place_id']?>"> <!-- TODO inset the get coise here-->
+            <a href="../pages/place.php?id=<?=$place['place_id']?>"> <!--TODO insert the get coise here-->
                 <h2 class="place-city-country"><?=$place['city']?> - <?=$place['country']?></h2>
                 <img class="place-image"  src="../images/places/<?=$place['image_name']?>" alt="Place Image" />
                 <h1 class="place-title"><?=$place['title']?></h1>
@@ -67,7 +66,6 @@
                         <img class= "imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
                     <?php } ?>
                 <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
-
                     <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
                 </div>
@@ -95,4 +93,43 @@
                 </div>
              </section>
         </article>
+
     <?php } ?>
+
+
+    <?php
+    /**
+    * 
+    */
+    function draw_add_place() { ?>
+        <form class="add_form">
+            <div id= "description">
+
+                <label for="title">Title</label>
+                <input type="text" name="title"  placeholder="Enter Title" required><br>
+
+                <label for="description">Description</label>
+                <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required></textarea><br>
+
+                <div id= "tags">
+                    <!-- List Tags -->
+                </div>
+
+            </div>
+            <div id= "adress">
+                <!-- country -->
+                <!-- city --> 
+                <label for="adress">Adress</label>
+                <input type="text" name="adress"  placeholder="Enter Adress" required><br>
+            </div>
+            <div id= "numbers">
+                <label for="num_people">People Number</label>
+                <input type="number" value= "1" min="1" max="10" step="1" name="num_people" required><br>
+                
+                <label for="price">Price</label>
+                <input type="number" value= "1" min="1" max="10" step="1" name="price" required><br>
+
+            </div>
+        </form>
+
+   <?php }?>

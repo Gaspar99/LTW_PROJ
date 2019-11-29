@@ -22,6 +22,9 @@
         return $stmt->fetchAll();
     }
     
+    /**
+    * 
+    */
     function get_place($place_id){
         $db = Database::instance()->db();
 
@@ -46,6 +49,10 @@
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    /**
+    * 
+    */
     function get_place_gallery($place_id){
         $db = Database::instance()->db();
 
