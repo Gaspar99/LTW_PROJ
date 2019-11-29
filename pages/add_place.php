@@ -10,11 +10,7 @@
   $places = get_places();
   $countries = get_countries();
 
-  if (isset($_SESSION['user_email'])) 
-    draw_header($_SESSION['user_email']);
-  else {
-    draw_header(null);
-  }
+  draw_site_header();
   draw_add_place();
   draw_footer();
 ?>

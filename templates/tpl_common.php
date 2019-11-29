@@ -12,7 +12,7 @@
 
         if (isset($_SESSION['user_email'])) {
             draw_header($_SESSION['user_email']);
-            draw_dropdrown();
+            draw_dropdrown($_SESSION['user_email']);
         }
         else {
             draw_header(null);

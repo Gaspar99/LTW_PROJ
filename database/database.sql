@@ -2,7 +2,7 @@ CREATE TABLE usr (
    usr_id INTEGER PRIMARY KEY,
    usr_first_name VARCHAR NOT NULL,
    usr_last_name VARCHAR NOT NULL,
-   usr_email VARCHAR  NOT NULL,
+   usr_email VARCHAR  NOT NULL UNIQUE, --Nao tem de ser unique?
    usr_phone_number VARCHAR NOT NULL,
    usr_password VARCHAR NOT NULL,
    usr_profile_picture VARCHAR DEFAULT 'default.png',

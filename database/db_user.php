@@ -17,32 +17,49 @@
     }
 
     /**
-    * Verifies if a certain email, password combination
+    * Verifies if a certain email and password combination
     * exists in the database. Use the sha1 hashing function.
     */
     function checkUserPassword($email, $password) {
         $db = Database::instance()->db();
 
-        $stmt = $db->prepare('SELECT * FROM usr WHERE usr_email = ?');
+        $stmt = $db->prepare(
+            'SELECT usr.usr_password AS usr_password
+            FROM usr 
+            WHERE usr.usr_email = ?');
+
         $stmt->execute(array($email));
 
         $user = $stmt->fetch();
 
-        return password_verify($password, $user['password']) ? $user['usr_email'] : null;
+        return $user !== false && password_verify($password, $user['usr_password']);
     }
 
+    function getUserId($email){
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare(
+            'SELECT usr.usr_id AS id
+            FROM usr 
+            WHERE usr.usr_email = ?');
+        
+        $stmt->execute(array($email));
+        return $stmt->fetch(); 
+    }
     /**
     * 
     */
     function addUser($user) {
         $db = Database::instance()->db();
 
+        $options = ['cost' => 12];
+
         $stmt = $db->prepare('INSERT INTO usr VALUES(NULL, ?, ?, ?, ?, ?, NULL, NULL, ?)');
         $stmt->execute(array(
             $user['first_name'], 
             $user['last_name'],
             $user['email'],
-            password_hash($user['password'], PASSWORD_DEFAULT),
+            password_hash($user['password'], PASSWORD_DEFAULT, $options),
             $user['phone_num'],
             $user['country_id']
         ));
