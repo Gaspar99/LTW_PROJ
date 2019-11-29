@@ -1,7 +1,10 @@
 body {
     /* Definition of variables */
-    --panel-color: #434343;    
-    --background-color: #E9ECEC;
+    --panel-color: rgb(89, 193, 249);
+    --button-color: rgb(66, 154,206);
+    --search-grey: rgb(242, 242, 242);    
+    --background-color:rgb(230, 230, 230);
+    --form-input-color: rgb(195, 195, 195);
     --roboto-font: 'Roboto', sans-serif;
 }
 
@@ -49,9 +52,9 @@ label {
 
 /* Set a style for all buttons */
 button {
-    background-color: inherit;
+    color: white;
+    background-color: var(--button-color);;
     padding: 0.5em;
-    border-width: 0vw;
     cursor: pointer;
     font-family: var(--roboto-font);
     font-size: 1em;
@@ -79,7 +82,6 @@ button {
     
     /* Style */
     font-size: 1em;
-    border-width: thin;
 }
 
 .username::after {
@@ -94,15 +96,39 @@ button {
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
-    right: 2em;
-    top: 8em;
-    padding: 1em;
-    box-shadow: 1em black;
-
+    right: 1em;
+    top: 5em;
+    padding: 0;
+    margin: 0;
+    
     /* Style */
     background-color: white;
+    box-shadow: 0 0 1em black;
+    border-radius: 0.5em;
+    font-size: 1.2em;
 }
 
+.dropdown > a {
+    width: 6em;
+    padding: 1em;
+    margin: 0em;
+    text-align: center;
+
+    color: black;
+} 
+
+.dropdown > a:hover, .dropdown > a:focus {
+    background-color: var(--button-color);
+    color: white;
+}
+
+.dropdown > a:first-child:hover, .dropdown > a:first-child:focus {
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+.dropdown > a:last-child:hover, .dropdown > :last-child:focus {
+    border-radius: 0 0 0.5em 0.5em;
+}
 
 .site-content {
     /* Layout */
@@ -117,7 +143,10 @@ button {
 
     /* Style */
     background-color: var(--panel-color);
-    color: white;
+    font-family: var(--roboto-font);
+    font-weight: bold;
+    font-size: 1em;
+    color: black;
 }
 
 .site-logo {
@@ -217,7 +246,7 @@ input[type=text], input[type=password], select {
     margin: 2% auto;
 
     /* Style */
-    color: white;
+    color: var(--button-color);
     background-color: rgb(37, 58, 179);
 }
 

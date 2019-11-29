@@ -42,7 +42,12 @@
 
         $options = ['cost' => 12];
 
-        $stmt = $db->prepare('INSERT INTO usr VALUES(NULL, ?, ?, ?, ?, ?, NULL, NULL, ?)');
+        $stmt = $db->prepare(
+            'INSERT INTO usr
+            (usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+            VALUES(?, ?, ?, ?, ?, ?)'
+        );
+
         $stmt->execute(array(
             $user['first_name'], 
             $user['last_name'],

@@ -71,6 +71,7 @@
 
     <div id="dropdownMenu" class="dropdown">
       <a href="../pages/home.php">My Profile</a>
+      <a href="../pages/home.php">Add Place</a>
       <a href="../actions/action_logout.php">Logout</a>
     </div>
 

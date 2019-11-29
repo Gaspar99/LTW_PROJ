@@ -30,9 +30,13 @@ function closeSearchForm(){
     form.style.display='none';
 }
 
-function openDropDownMenu() {
+function toggleDropDownMenu() {
     let menu = document.getElementById('dropdownMenu');
-    menu.style.display='flex';
+
+    if (menu.style.display == 'flex')
+        menu.style.display='none';
+    else 
+        menu.style.display='flex';
 }
 
 //go through images 
