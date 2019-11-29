@@ -82,7 +82,7 @@
             <section class="right_side"> 
                 <h1> <?=$place['title']?></h1>
                 <h2> <?=$place['description']?></h2>
-                <table class="place_tags"><!--TODO-->
+                <!-- <table class="place_tags">TODO </table>-->
                 <div class= "adress">
                     <h3><?=$place['country_name']?> </h3>
                     <h3><?=$place['city_name']?> </h4>
@@ -97,22 +97,30 @@
     <?php } 
 
     function draw_add_place(){?>
-        <form class="add_form">
+        <form class="add_form" action="../actions/action_add_place.php" method="post">
             <div id= "description">
 
                 <label for="title">Title</label>
                 <input type="text" name="title"  placeholder="Enter Title" required><br>
 
                 <label for="description">Description</label>
-                <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required></textarea><br>
+                <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required> </textarea><br>
 
                 <div id= "tags">
-                    <!-- List Tags -->
+                    <?php $tags = get_place_tags();?>
+                    <label for="tags">Tags</label>
+                    <select name="tags" id="tags" multiple> 
+                        <?php foreach($tags as $tag){?>
+                            <option value="<?=$tag['tag_name']?>"><?=$tag['tag_name']?></option>
+                       <?php }?>
+                    </select>
                 </div>
 
             </div>
             <div id= "adress">
                 <!-- country -->
+                TODO: country <br>
+                TODO: city <br>
                 <!-- city --> 
                 <label for="adress">Adress</label>
                 <input type="text" name="adress"  placeholder="Enter Adress" required><br>
@@ -122,9 +130,16 @@
                 <input type="number" value= "1" min="1" max="10" step="1" name="num_people" required><br>
                 
                 <label for="price">Price</label>
-                <input type="number" value= "1" min="1" max="10" step="1" name="price" required><br>
+                <input type="number" value= "1" min="0"step="1" name="price" required><br>
+            </div>
+
+            <div class= "upload">
 
             </div>
+            
+            <input type="hidden" name="owner_id" value="<?=$_GET['id']?>"> 
+
+            <button class="submit-button" type="submit">Create New Place</button>
         </form>
 
    <?php }?>

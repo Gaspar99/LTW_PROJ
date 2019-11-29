@@ -317,14 +317,6 @@ button:hover {
     background-color: white;
     text-decoration: none; 
 }
-
-.availability, #available{
-    color:green;
-}
-.availability, #not_available{
-    color:red;
-}
-
 /* ------------ Images --------------*/ 
 .imgGallery{
     width: 25%;
@@ -336,14 +328,24 @@ button:hover {
     height: auto;
 }
 
+/*----------- Place Info Page --------*/
+.availability, #available{
+    color:green;
+}
+.availability, #not_available{
+    color:red;
+}
+
 .left_side{
+    display:block;
     float: left;
     width: 50%;
 }
 
 .right_side{
+    display:block;
     float: right;
-    width: 33.33%;
+    width: 50%;
 }
 ´
 /*-----USER PROFILE-------*/ 

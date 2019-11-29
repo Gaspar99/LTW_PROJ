@@ -11,15 +11,7 @@
   $countries = get_countries();
   $place_id = $_GET['id'];
 
-  if (isset($_SESSION['user_email'])) 
-    draw_header($_SESSION['user_email']);
-  else {
-    draw_header(null);
-    draw_signIn();
-    draw_signUp($countries);
-  }
-  #should i keep it? 
-  draw_search_bar($countries);
+  draw_site_header();
   draw_place_info($place_id);
   draw_footer();
 ?>
