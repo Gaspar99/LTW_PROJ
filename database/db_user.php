@@ -8,7 +8,8 @@
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(   
-            'SELECT usr.usr_first_name AS first_name, usr.usr_last_name AS last_name
+            'SELECT usr.usr_first_name AS first_name, usr.usr_last_name AS last_name,
+                usr.usr_profile_picture AS profile_pic
             FROM usr WHERE usr_email = ?');
 
         $stmt->execute(array($user_email));
@@ -90,10 +91,11 @@
                 country_id AS country,
                 usr_password AS password 
             FROM usr 
-            WHERE usr_id = :usr_id' 
+            WHERE usr_id = ?' 
         );
-        $stmt->bindParam(':usr_id',$user_id,PDO::PARAM_INT);
-        $stmt->execute();
+
+        $stmt->execute(array($user_id));
+
         return $stmt->fetch(); 
     }
 
@@ -129,13 +131,15 @@
     /**
     * 
     */
-    function getUserPlacesId($user_id){
+    function getUserPlacesId($user_id) {
         $db = Database::instance()->db();
+
         $stmt = $db->prepare(
-            'SELECT id AS place_id FROM place WHERE owner_id = :usr_id' 
+            'SELECT id AS place_id FROM place WHERE owner_id = ?' 
         );
-        $stmt->bindParam(':usr_id',$user_id,PDO::PARAM_INT);
-        $stmt->execute();
+
+        $stmt->execute(array($user_id));
+
         return $stmt->fetchAll(); 
     }
 ?>

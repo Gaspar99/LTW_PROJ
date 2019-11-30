@@ -25,10 +25,19 @@
                 <h2 class="place-city-country"><?=$place['city']?> - <?=$place['country']?></h2>
                 <img class="place-image"  src="../images/places/<?=$place['image_name']?>" alt="Place Image" />
                 <h1 class="place-title"><?=$place['title']?></h1>
-                <ul call="place-footer">
-                    <li class="place-rating"><?=$place['rating']?></li>
-                    <li class="place-price"><?=$place['price_per_night']?></li>
-                    <li class="place-num-people"><?=$place['num_people']?></li>
+                <ul class="place-footer">
+                    <li class="place-rating">
+                        <i class="material-icons">star</i>
+                        <div class="rating-value"><?=$place['rating']?></div>
+                    </li>
+                    <li class="place-price">
+                        <div class="price-value"><?=$place['price_per_night']?></div>
+                        <i class="material-icons">euro</i>
+                    </li>
+                    <li class="place-num-people">
+                        <i class="material-icons">people</i>
+                        <div class="num-people-value"><?=$place['num_people']?></div>
+                    </li>
                 </ul>
             </a>
         </article>

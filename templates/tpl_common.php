@@ -21,6 +21,8 @@
         }
     
         draw_search_bar($countries);
+        draw_messages();
+        init_site_content();
     }
 
     /**
@@ -36,27 +38,60 @@
                 <meta charset="utf-8">
                 <link rel="stylesheet" href="../css/style.css">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                 <script src="../script/main.js" defer></script>
             </head>
             
-            <body class="site-container">
-                <header class="site-header">
-                    <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
-                    <button onclick="openSearchForm()">Search</button>
+            <body id="site-container">
+                <header id="site-header">
+                    <div id="site-logo">
+                        <a href="../pages/home.php">
+                            <img src="../images/logo.png" alt="Web site Logo">
+                            <div id='site-name'>Rental Eye</div>
+                        </a>
+                    </div>
+                    <button id="search-button" onclick="toggleSearchForm()">Search</button>
                     <?php if ($user_email == null) { ?>
-                        <div class="auth">
+                        <div id="auth-forms-buttons">
                             <button onclick="openSignInForm()">Log In</button>
                             <button onclick="openSignUpForm()">Sign Up</button>
                         </div>
                     <?php } else { 
                         $user = getUserName($user_email); ?>
-                        <button class="username" onclick="toggleDropDownMenu()"><?=$user['first_name']?> <?=$user['last_name']?></button>
+                        <button id="username-tile" onclick="toggleDropDownMenu()">
+                            <img src="../images/profiles/<?=$user['profile_pic']?>" alt="User Profile Picture">
+                            <div id="username"><?=$user['first_name']?> <?=$user['last_name']?></div>
+                            <i class="material-icons">arrow_drop_down</i>
+                        </button>
                     <?php } ?>
-                </header>
+                </header>         
+                   
+    <?php } ?> 
 
-                <main class="site-content">
+<?php
+    /**
+    * 
+    */
+    function draw_messages() { 
+        if (isset($_SESSION['messages'])) { ?>
+
+            <section id="messages">
+                <?php foreach($_SESSION['messages'] as $message) { ?>
+                    <div class="<?=$message['type']?>"><?=$message['content']?></div>
+                <?php } ?>
+            </section>
+
+            <?php unset($_SESSION['messages']); 
+        } 
+    } ?>
+
+<?php 
+    /**
+    * 
+    */
+    function init_site_content() { ?>
+        <main id="site-content">
     <?php } ?>
-
 
 <?php
     /**
@@ -64,7 +99,7 @@
     */ 
     function draw_footer() { ?>
                 </main>
-                <footer class="site-footer">Copyright © 2019 LTW FEUP</footer>
+                <footer id="site-footer">Copyright © 2019 LTW FEUP</footer>
             </body>
         </html>
 <?php } ?>
