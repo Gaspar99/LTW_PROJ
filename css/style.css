@@ -465,22 +465,33 @@ input, select {
 
 /* ------------- PLACE PAGE ------------*/
 #place_page {
-
+    display: grid;
 }
 
-#place_details {
+#place_page #place_details #owner_profile {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
 
+#place_page #place_details #owner_profile a {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+#place_page #place_details #owner_profile img {
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    border: 0 0.5em 0 0;
 }
 
 /* ------------ Images --------------*/ 
-.imgGallery{
+#place_page #place_details #place_gallery img{
     width: 25%;
     height: auto;
 }
 
-´
 /*-----USER PROFILE-------*/ 
-h1, #profile_page {
-    color:blue;
-}
 

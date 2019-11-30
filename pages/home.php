@@ -5,7 +5,7 @@
   include_once('../database/db_places.php');
 
   $places = get_places();
-
+ 
   draw_site_header();
   draw_places($places);
   draw_footer();

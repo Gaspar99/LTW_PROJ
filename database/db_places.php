@@ -6,7 +6,6 @@
     */
     function get_places() {
         $db = Database::instance()->db();
-
         $stmt = $db->prepare(   
             'SELECT place.id AS place_id,city.city_name AS city, country.country_name AS country, 
                     place.title AS title, owner_photo.photo_path AS image_name,
@@ -18,7 +17,6 @@
                     AND owner_gallery.photo = owner_photo.id');
         
         $stmt->execute();
-
         return $stmt->fetchAll();
     }
     
@@ -27,7 +25,6 @@
     */
     function get_place_info($place_id){
         $db = Database::instance()->db();
-
         $stmt = $db->prepare(   
             'SELECT DISTINCT
                 place.title AS title, 
@@ -51,9 +48,26 @@
         return $stmt->fetch();
     }
 
-    /**
-    * 
-    */
+    function add_place($place){
+        $db = Database::instance()->db();
+        
+        $stmt = $db->prepare( 
+            'INSERT INTO   
+                place
+            VALUES (NULL,?, ?, ?, ?, ?, 1, NULL, ?, 1)'
+        );
+    $stmt->execute(array(
+        $place['title'],
+        $place['description'],
+        $place['price'],
+        $place['adress'],
+        $place['num_people'],
+        $place['owner_id']
+        #$place['city'] TODO add city 
+    ));
+    
+    }
+
     function get_place_gallery($place_id){
         $db = Database::instance()->db();
 
@@ -72,4 +86,19 @@
 
         return $stmt->fetch();
     }
+
+    function get_place_tags(){
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare(   
+            'SELECT 
+                id,tag_name 
+            FROM 
+                tag'
+        );
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    #todo get place tags 
 ?>
