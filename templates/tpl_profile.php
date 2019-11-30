@@ -1,5 +1,8 @@
 <?php 
-    function draw_profile(){
+    /**
+    * 
+    */
+    function draw_profile() {
         #get user info 
         $user_info = getUserInfo($_GET['id']);?>
         <h1 id="profile_page"> My Profile </h1>
@@ -32,7 +35,10 @@
 
     <?php }
 
-    function draw_profile_edit(){
+    /**
+    * 
+    */
+    function draw_profile_edit() {
     $user_info = getUserInfo($_GET['id']);?>
 
     <form class="todo" action="../actions/action_profile_update.php" method="post">

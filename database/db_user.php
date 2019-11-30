@@ -35,7 +35,10 @@
         return $user !== false && password_verify($password, $user['usr_password']);
     }
 
-    function getUserId($email){
+    /**
+    * 
+    */
+    function getUserId($email) {
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
@@ -46,6 +49,7 @@
         $stmt->execute(array($email));
         return $stmt->fetch(); 
     }
+
     /**
     * 
     */
@@ -54,7 +58,12 @@
 
         $options = ['cost' => 12];
 
-        $stmt = $db->prepare('INSERT INTO usr VALUES(NULL, ?, ?, ?, ?, ?, NULL, NULL, ?)');
+        $stmt = $db->prepare(
+            'INSERT INTO usr
+            (usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+            VALUES(?, ?, ?, ?, ?, ?)'
+        );
+
         $stmt->execute(array(
             $user['first_name'], 
             $user['last_name'],
@@ -64,9 +73,11 @@
             $user['country_id']
         ));
     }
-
-    #should i get password?
-    function getUserInfo($user_id){
+    
+    /**
+    * 
+    */
+    function getUserInfo($user_id) { #should i get password?
         $db = Database::instance()->db();
         $stmt = $db->prepare(
             'SELECT 
@@ -86,6 +97,9 @@
         return $stmt->fetch(); 
     }
 
+    /**
+    * 
+    */
     function update_profile($user){
         #todo fix this
         $db = Database::instance()->db();
@@ -101,6 +115,7 @@
                 usr_password = ?
             WHERE usr_id = ?' 
         );
+        
         $stmt->execute(array(
             $user['first_name'],
             $user['last_name'],
@@ -111,6 +126,9 @@
         ));
    }
 
+    /**
+    * 
+    */
     function getUserPlacesId($user_id){
         $db = Database::instance()->db();
         $stmt = $db->prepare(

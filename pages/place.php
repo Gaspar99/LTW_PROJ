@@ -7,11 +7,10 @@
   include_once('../database/db_places.php');
   include_once('../database/db_geography.php');
 
-  $places = get_places();
-  $countries = get_countries();
   $place_id = $_GET['id'];
 
   draw_site_header();
   draw_place_info($place_id);
   draw_footer();
+  
 ?>

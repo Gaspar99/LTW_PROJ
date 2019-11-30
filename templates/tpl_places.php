@@ -96,6 +96,7 @@
 
     <?php } 
 
+
     function draw_add_place(){?>
         <form class="add_form" action="../actions/action_add_place.php" method="post">
             <div id= "description">
@@ -142,4 +143,4 @@
             <button class="submit-button" type="submit">Create New Place</button>
         </form>
 
-   <?php }?>
+   <?php } ?>

@@ -50,7 +50,7 @@
                         </div>
                     <?php } else { 
                         $user = getUserName($user_email); ?>
-                        <button class="username" onclick="openDropDownMenu()"><?=$user['first_name']?> <?=$user['last_name']?></button>
+                        <button class="username" onclick="toggleDropDownMenu()"><?=$user['first_name']?> <?=$user['last_name']?></button>
                     <?php } ?>
                 </header>
 
