@@ -7,7 +7,10 @@
 
   if (checkUserPassword($email, $password)) {
     $_SESSION['user_email'] = $email;
-  } 
+    $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged in successfully!');
+  }
+  else
+    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!'); 
 
   header('Location: ../pages/home.php');
   

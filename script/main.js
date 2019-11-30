@@ -20,9 +20,13 @@ function closeSignUpForm() {
     form.style.display='none';
 }
 
-function openSearchForm(){
+function toggleSearchForm(){
     let form  = document.getElementById('searchForm');
-    form.style.display='flex';
+
+    if (form.style.display=='flex')
+        form.style.display='none';
+    else
+        form.style.display='flex';
 }
 
 function closeSearchForm(){
@@ -31,7 +35,7 @@ function closeSearchForm(){
 }
 
 function toggleDropDownMenu() {
-    let menu = document.getElementById('dropdownMenu');
+    let menu = document.getElementById('userDropdownMenu');
 
     if (menu.style.display == 'flex')
         menu.style.display='none';
