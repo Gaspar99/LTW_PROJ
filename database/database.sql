@@ -17,7 +17,6 @@ CREATE TABLE place (
    place_address VARCHAR NOT NULL,
    place_description VARCHAR NOT NULL,
    num_people INTEGER NOT NULL,
-   available INTEGER DEFAULT 1 NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    owner_id INTEGER REFERENCES usr NOT NULL,
    city_id INTEGER REFERENCES city NOT NULL

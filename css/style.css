@@ -51,7 +51,7 @@ label {
 }
 
 /* Set a style for all buttons */
-button {
+button, .button {
     color: white;
     background-color: var(--button-color);;
     padding: 0.5em;
@@ -463,11 +463,13 @@ input, select {
     font-size: 1.4em;
 }
 
-.availability, #available{
-    color:green;
+/* ------------- PLACE PAGE ------------*/
+#place_page {
+
 }
-.availability, #not_available{
-    color:red;
+
+#place_details {
+
 }
 
 /* ------------ Images --------------*/ 
@@ -476,23 +478,9 @@ input, select {
     height: auto;
 }
 
-#num_people_icon{
-    width: 2%;
-    height: auto;
-}
-
-.left_side{
-    float: left;
-    width: 50%;
-}
-
-.right_side{
-    float: right;
-    width: 33.33%;
-}
 ´
 /*-----USER PROFILE-------*/ 
-h1, #profile_page{
+h1, #profile_page {
     color:blue;
 }
 

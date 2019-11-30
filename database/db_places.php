@@ -25,28 +25,29 @@
     /**
     * 
     */
-    function get_place($place_id){
+    function get_place_info($place_id){
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(   
             'SELECT DISTINCT
-            place.title, 
-            place.price_per_night AS price,
-            place.place_address AS adress, 
-            place.place_description AS description, 
-            place.num_people AS num_people, 
-            place.available AS availability, 
-            place.rating AS rating,
-            country.country_name AS country_name,
-            city.city_name AS city_name
-        FROM place,country,city,owner_gallery 
-        WHERE 
-            place.id = :id AND 
-            place.city_id = city.id AND
-            city.country_id = country.id'
+                place.title AS title, 
+                place.price_per_night AS price,
+                place.place_address AS place_address, 
+                place.place_description AS place_description, 
+                place.num_people AS num_people,  
+                place.rating AS rating,
+                place.owner_id AS place_owner,
+                city.city_name AS city_name,
+                country.country_name AS country_name
+            FROM place, country, city, owner_gallery 
+            WHERE 
+                place.id = ? AND 
+                place.city_id = city.id AND
+                city.country_id = country.id'
         );
-        $stmt->bindParam(':id',$place_id,PDO::PARAM_INT);
-        $stmt->execute();
+        
+        $stmt->execute(array($place_id));
+        
         return $stmt->fetch();
     }
 
@@ -64,10 +65,11 @@
                 owner_gallery,
                 owner_photo
             WHERE place.owner_id = owner_gallery.place AND 
-                place.owner_id = :id'
+                place.owner_id = ?'
         );
-        $stmt->bindParam(':id',$place_id,PDO::PARAM_INT);
-        $stmt->execute();
+        
+        $stmt->execute(array($place_id));
+
         return $stmt->fetch();
     }
 ?>

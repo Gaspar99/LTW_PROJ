@@ -50,57 +50,61 @@
     */    
     function draw_place_info($place_id) {
 
-        $place = get_place($place_id);
+        $place = get_place_info($place_id);
+        $owner = getUserInfo($place['place_owner']);
         $image_gallery = get_place_gallery($place_id); #TODO check if the rly works ?>
 
-        <article class="place_info"> 
-            <section class="left_side"> 
+        <h1 id="place_title"><?=$place['title']?></h1>
 
-                <?php if ($place['availability']) { ?> 
-                    <div class="availability" id="available">
-                        Available
-                    </div> 
-                <?php } else { ?>
-                    <div class="availability" id="not_available">
-                        Not Available
-                    </div>
-                <?php } ?>
+        <article id="place_page">
+            
+            <section id="place_details"> 
+                <h2>Place Details</h2>
 
-                <div class="owner_profile">
-                    TODO: inserir aqui um phpzito para ir sacar o owner
+                <div id="owner_profile">
+                    <h3>Owner Profile:</h3>
+                    <a class="button" href="../pages/usr_profile.php?id=<?=$place['place_owner']?>">
+                        <img src="../images/profiles/<?=$owner['profile_pic']?>" alt="User Profile Picture">
+                        <div id="username"><?=$owner['first_name']?> <?=$owner['last_name']?></div>
+                    </a>
                 </div>
 
-                <div class="image_gallery">
+                <div id="place_gallery">
+                    <h3>Place Gallery</h2>
                     <?php foreach($image_gallery as $image) { ?>
-                        <img class= "imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
+                        <img class="imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
                     <?php } ?>
-                <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                    <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
                     <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                     <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
                 </div>
                 
-                <div class="num_people">
-                    <?php for($i = 1; $i<= $place['num_people']; $i++){ #pq n da? so estupido...?>
-                        <img id="num_people_icon" src="../images/site/num_people.png" alt="icon" >
-                    <?php } ?>
+                <div id="num_people">
+                    <h3>Max number of people: </h3>
+                    <div id="num_people_value">
+                        <i class="material-icons">people</i>
+                        <?=$place['num_people']?>
+                    </div>
                 </div>
+
                 <h4>Rating: <?=$place['rating']?></h4>
                 <h3>Price: <?=$place['price']?></h3>
+
             </section>
-            <!-- right side do it after-->
-            <section class="right_side"> 
-                <h1> <?=$place['title']?></h1>
-                <h2> <?=$place['description']?></h2>
-                <table class="place_tags"><!--TODO-->
-                <div class= "adress">
-                    <h3><?=$place['country_name']?> </h3>
-                    <h3><?=$place['city_name']?> </h4>
-                    <h4> <?=$place['adress']?></h4>
-                </div>
-                <div class="buy_section">
-                    TODO: Buy section <!--Should this be smth else?-->
-                </div>
-             </section>
+            
+            <section id="place_info"> 
+                <p> <?=$place['place_description']?></p>
+                <ul id= "location">
+                    <li><?=$place['country_name']?></li>
+                    <li><?=$place['city_name']?></li>
+                    <li> <?=$place['place_address']?></li>
+                </ul>
+            </section>
+
+            <section class="rent_section">
+                TODO: Rent section 
+            </section>
+
         </article>
 
     <?php } ?>
