@@ -21,6 +21,8 @@
         }
     
         draw_search_bar($countries);
+        draw_messages();
+        init_site_content();
     }
 
     /**
@@ -36,6 +38,7 @@
                 <meta charset="utf-8">
                 <link rel="stylesheet" href="../css/style.css">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                 <script src="../script/main.js" defer></script>
             </head>
             
@@ -58,22 +61,37 @@
                         <button id="username-tile" onclick="toggleDropDownMenu()">
                             <img src="../images/profiles/<?=$user['profile_pic']?>" alt="User Profile Picture">
                             <div id="username"><?=$user['first_name']?> <?=$user['last_name']?></div>
+                            <i class="material-icons">arrow_drop_down</i>
                         </button>
                     <?php } ?>
-                </header>
+                </header>         
+                   
+    <?php } ?> 
 
-                <?php if (isset($_SESSION['messages'])) { ?>
-                    <section id="messages">
-                        <?php foreach($_SESSION['messages'] as $message) { ?>
-                            <div class="<?=$message['type']?>"><?=$message['content']?></div>
-                        <?php } ?>
-                    </section>
-                    <?php unset($_SESSION['messages']); 
-                } ?>
+<?php
+    /**
+    * 
+    */
+    function draw_messages() { 
+        if (isset($_SESSION['messages'])) { ?>
 
-                <main id="site-content">
+            <section id="messages">
+                <?php foreach($_SESSION['messages'] as $message) { ?>
+                    <div class="<?=$message['type']?>"><?=$message['content']?></div>
+                <?php } ?>
+            </section>
+
+            <?php unset($_SESSION['messages']); 
+        } 
+    } ?>
+
+<?php 
+    /**
+    * 
+    */
+    function init_site_content() { ?>
+        <main id="site-content">
     <?php } ?>
-
 
 <?php
     /**

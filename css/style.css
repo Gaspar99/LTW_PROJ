@@ -81,6 +81,20 @@ button:hover {
     color: white;
 }
 
+#site-footer {
+    /* Layout */
+    text-align: center;
+    margin: 0;
+    padding: 1em;
+
+    /* Style */
+    background-color: var(--panel-color);
+    font-family: var(--roboto-font);
+    font-weight: bold;
+    font-size: 1em;
+    color: black;
+}
+
 /* -------- LOGO ------- */
 #site-logo {
     margin: 0 1em;
@@ -149,19 +163,13 @@ button:hover {
     text-align: center;
 }
 
-#site-header #username-tile #username::after {
-    /* Style */
-    color: var(--panel-color);
-    content: ' ▾';
-    font-size: 1em;
-}
-
 /* ------------- DROPDOWN MENU  --------- */
 .dropdownMenu {
     /* Layout */
     display: none;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 1;
     width: max-content;
     padding: 0;
     margin: 0;
@@ -201,23 +209,37 @@ button:hover {
     top: 5em;
 }
 
-#site-content {
+/* ------------- HOME PAGE: SEARCH BAR ------------*/
+#searchForm {
     /* Layout */
-    flex: 1;
-}
-
-#site-footer {
-    /* Layout */
-    text-align: center;
-    margin: 1em 0 0 0;
-    padding: 1em 0;
+    position: relative;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 
     /* Style */
-    background-color: var(--panel-color);
-    font-family: var(--roboto-font);
-    font-weight: bold;
-    font-size: 1em;
     color: black;
+    background-color: white;
+    text-decoration: none; 
+}
+
+#searchForm > div {
+    width: 10em;
+    margin: 1em;
+}
+
+#searchForm .submit-button {
+    background-color: transparent;
+    width: min-content;
+    margin: 0;
+    padding: 0;
+}
+
+#searchForm .submit-button img{
+    width: 2em;
+    height: 2em;
 }
 
 /* MESSAGES */
@@ -269,7 +291,7 @@ body > #messages .success {
 .modal-content {
     /* Layout */
     display: block;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: auto;
     border-radius: 0.5em;
     box-shadow: 0 0 1em black;
     width: 25em; /* Could be more or less, depending on screen size */
@@ -326,6 +348,11 @@ input, select {
     width: auto;
 }
 
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+
 .modal img.site-logo {
     width: 20%;
 }
@@ -335,27 +362,13 @@ input, select {
     position: relative;
     width: 100%;
     text-align: center;
-    margin: 0;
+    margin: 0.5em 0;
     padding: 0.7em;
 
     /* Style */
     font-size: 1.2em;
     color: white;
     background-color: var(--button-color);
-}
-
-/* Site header button has a different color */
-.site-header button {
-    color: white;
-}
-
-.form button {
-    color: black;
-}
-
-.close:hover, .close:focus {
-  color: red;
-  cursor: pointer;
 }
 
 /* ---------------- Animations ----------------- */
@@ -376,85 +389,78 @@ input, select {
 }
 
 /* ------------- HOME PAGE: PLACES ------------*/
-.places {
+#site-content {
+    flex: 1;
+    max-width: 60em;
+    margin: 1em auto;
+}
+
+#site-content .places {
     /* Layout */
     display: flex;
-    padding: 0 5%;
-    justify-content: left;
+    justify-content: flex-start;
+
 }
 
-.place {
-    /* Layout */
-    flex-basis: 20%;
-}
-
-.place-city-country {
+#site-content .places .place {
     /* Layout */
     text-align: left;
+    max-width: 15em;
+    margin: 0 1em;
 
-    /* Style */
-    font-family: var(--roboto-font);
-    font-size: 1.5em;
-    color: black;
+    background-color: lightgray;
 }
 
-.place-title {
+#site-content .places .place a .place-city-country {
+    /* Layout */
+    margin: 0;
+    padding: 1em;
+
     /* Style */
-    font-family: var(--roboto-font);
     font-size: 1em;
-    color: black;
+    font-weight: normal;
 }
 
-.place-image {
-    /* Layout */
-    width: 90%;
-    height: auto;
-}
-
-.place-footer {
-    color:black;
-}
-
-.place-rating { 
-    color: black
-}
-
-.place-price {
-    color: black;
-}
-
-
-/* ------------- HOME PAGE: SEARCH BAR ------------*/
-#searchForm {
-    /* Layout */
-    position: relative;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-
+#site-content .places .place a .place-title {
     /* Style */
-    color: black;
-    background-color: white;
-    text-decoration: none; 
-}
-
-#searchForm > div {
-    width: 10em;
-    margin: 1em;
-}
-
-#searchForm .submit-button {
-    background-color: transparent;
-    width: min-content;
+    font-size: 1.2em;
     margin: 0;
-    padding: 0;
+    padding: 0 1em;
 }
 
-#searchForm .submit-button img{
-    width: 2em;
-    height: 2em;
+#site-content .places .place a .place-image {
+    /* Layout */
+    width: 100%;
+    margin: 0;
+}
+
+#site-content .places .place a .place-footer {
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em;
+    padding: 0;
+
+    font-size: 1em;
+}
+
+#site-content .places .place a .place-footer > * { 
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#site-content .places .place a .place-footer > * > *{ 
+    padding: 0 0.1em;
+}
+
+#site-content .places .place a .place-footer .place-rating i { 
+    color: yellow;
+    font-size: 1.3em;
+}
+
+#site-content .places .place a .place-footer .place-price * {
+    font-size: 1.4em;
 }
 
 .availability, #available{
