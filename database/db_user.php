@@ -69,8 +69,8 @@
             $user['first_name'], 
             $user['last_name'],
             $user['email'],
-            password_hash($user['password'], PASSWORD_DEFAULT, $options),
             $user['phone_num'],
+            password_hash($user['password'], PASSWORD_DEFAULT, $options),
             $user['country_id']
         ));
     }

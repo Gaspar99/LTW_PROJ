@@ -91,6 +91,8 @@
                 <h3>Price: <?=$place['price']?></h3>
 
             </section>
+
+            <div class="vertical-rule"></div>
             
             <section id="place_info"> 
                 <p> <?=$place['place_description']?></p>

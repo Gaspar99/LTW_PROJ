@@ -468,6 +468,8 @@ input, select {
     display: grid;
 }
 
+
+/*--------- Owner Profile ------- */
 #place_page #place_details #owner_profile {
     display: flex;
     align-items: center;
@@ -478,19 +480,37 @@ input, select {
     display: flex;
     align-items: center;
     width: max-content;
+    margin: 1em;
 }
 
 #place_page #place_details #owner_profile img {
     width: 2em;
     height: 2em;
     border-radius: 1em;
-    border: 0 0.5em 0 0;
+    margin: 0 0.5em;
 }
 
-/* ------------ Images --------------*/ 
+#place_page #place_details #owner_profile #username {
+    padding: 0 0.5em;
+}
+
+/* ------ Place Gallery ------*/ 
 #place_page #place_details #place_gallery img{
-    width: 25%;
+    width: 10em;
     height: auto;
+}
+
+#place_page #place_details #num_people {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+#place_page #place_details #num_people #num_people_value {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: 1em;
 }
 
 /*-----USER PROFILE-------*/ 
