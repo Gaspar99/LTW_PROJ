@@ -9,5 +9,4 @@
   draw_site_header();
   draw_profile();
   draw_footer();
-
 ?>

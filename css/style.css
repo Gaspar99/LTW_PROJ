@@ -637,3 +637,68 @@ body > #messages .success {
 
 /*-----USER PROFILE-------*/ 
 
+/* bio section */
+
+#usr_profile{
+    display: block;
+    position: static ;
+    margin: 1em;
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+#usr_profile #usr_bio{
+    display: block;
+    width: 75%;
+    height: 100%;
+    border-color: black;
+    margin: 1em;
+    text-align: center;
+}
+
+#usr_profile #profile_pic{
+    width: 100%;
+    height: 100%;
+    margin: 0.5em;
+}
+
+#profile_button{
+    display: block;
+    width: 40%;
+    margin: 0.25em;
+    padding: 0.5em ; 
+
+    text-align: center;
+}
+
+/* places section */
+#usr_places{
+    display: block;
+}
+
+#usr_places  .place{
+    display: flex;
+    width:30%;
+    height:30%;
+}
+
+/* owned places */
+#rental{
+    display: block;
+    height: 40%;
+    width: 50%;
+    border-bottom: 0.1em solid grey;
+    position: absolute;
+}
+/* history */
+
+#rented{
+    display: block;
+    border-bottom: 0.1em solid grey;
+    float: left; 
+    height: 40%;
+     width: 50%;
+    position: relative;
+    top:215px;
+}

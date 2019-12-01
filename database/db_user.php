@@ -131,11 +131,18 @@
     /**
     * 
     */
-    function getUserPlacesId($user_id) {
+    function getUserPlaces($user_id) {
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
-            'SELECT id AS place_id FROM place WHERE owner_id = ?' 
+            'SELECT place.id AS place_id,city.city_name AS city, country.country_name AS country, 
+                place.title AS title, owner_photo.photo_path AS image_name,
+                place.rating AS rating, place.price_per_night AS price_per_night,
+                place.num_people AS num_people
+            FROM place, city, country, owner_gallery, owner_photo
+            WHERE place.city_id = city.id AND city.country_id = country.id
+                AND owner_gallery.place = place.id 
+                AND owner_gallery.photo = owner_photo.id AND place.owner_id=?' 
         );
 
         $stmt->execute(array($user_id));

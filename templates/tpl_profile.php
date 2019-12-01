@@ -6,32 +6,39 @@
         #get user info 
         $user_info = getUserInfo($_GET['id']);?>
         <h1 id="profile_page"> My Profile </h1>
-        <section class = "usr_profile">
-            <h2><?=$user_info['first_name']?></h2>
-            <!-- é suposto colocar um paragrafo ou pode ficar tudo na mesmma linha??-->
-            <h2><?=$user_info['last_name']?></h2>    
-            <img src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
-            <h3><?=$user_info['phone_number']?></h3>
-            <h4><?=$user_info['email']?></h4>
-            <a href="../pages/add_place.php"> Add Place</a>
-            <a href="../pages/edit_profile.php?id=<?=$_GET['id']?>">Edit Profile</a>
-            <!-- <button type="button"> Add Place </button>
-            <button type="button"> Edit Profile  </button> -->
+        <section id = "usr_profile">
+            <section id="usr_bio">
+                <h2><?=$user_info['first_name']?> <?=$user_info['last_name']?></h2>    
+                <img id="profile_pic" src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+                <h3><?=$user_info['phone_number']?></h3>
+                <h4><?=$user_info['email']?></h4>
+            </section>
+            <a class= "button" id="profile_button" href="../pages/add_place.php"> Add Place</a> <br>
+            <a class= "button" id="profile_button" href="../pages/edit_profile.php?id=<?=$_GET['id']?>">Edit Profile</a>
         </section>
-        <section class = "usr_places"> <!-- can use ids for each place if needed-->
-            <div class="rental">
+
+        <section id="usr_places" class = "places"> <!-- can use ids for each place if needed-->
+            <div id="rental"> 
+            <label for="rental"> My Places</label>
 			<?php
-                $usr_places_id = getUserPlacesId($_GET['id']);
-				foreach($usr_places_id as $usr_place_id){
-					$place = get_place($usr_place_id); 
-					draw_place($place); 
+                $usr_places = getUserPlaces($_GET['id']); #get places user places id 
+				foreach($usr_places as $usr_place){
+					draw_place($usr_place); 
 				}		
-			?>
+            ?>
             </div>
-            <div class="rented">
-                <!-- Database must e populated -->
+            <div id="rented"> 
+            <label for="rented"> History</label>
+                <!-- Database must be populated -->
+                <?php
+                $usr_places = getUserPlaces($_GET['id']); #get places user places id 
+				foreach($usr_places as $usr_place){
+					draw_place($usr_place); 
+				}		
+            ?>
+                TODO:Populate DB and get porperty history
             </div>
-        </section>
+        </section> 
 
     <?php }
 
