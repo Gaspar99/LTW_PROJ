@@ -54,57 +54,105 @@
         $owner = getUserInfo($place['place_owner']);
         $image_gallery = get_place_gallery($place_id); #TODO check if the rly works ?>
 
-        <h1 id="place_title"><?=$place['title']?></h1>
-
         <article id="place_page">
 
-            <section id="place_details"> 
-                <h2>Place Details</h2>
+            <div id="place_header">
+                <h1 id="place_title"><?=$place['title']?></h1>
 
+                <?php if (isset($_SESSION['user_email']) && $owner['email'] == $_SESSION['user_email']) { ?>
+                <a class="button" id="edit_place" href="../pages/home.php">
+                    Edit Place
+                </a>
+                <?php } else { ?>
                 <div id="owner_profile">
-                    <h3>Owner Profile:</h3>
                     <a class="button" href="../pages/usr_profile.php?id=<?=$place['place_owner']?>">
                         <img src="../images/profiles/<?=$owner['profile_pic']?>" alt="User Profile Picture">
                         <div id="username"><?=$owner['first_name']?> <?=$owner['last_name']?></div>
                     </a>
                 </div>
+                <?php } ?>
+            </div>
 
-                <div id="place_gallery">
-                    <h3>Place Gallery</h2>
-                    <?php foreach($image_gallery as $image) { ?>
-                        <img class="imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
-                    <?php } ?>
-                    <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
-                    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-                </div>
-                
-                <div id="num_people">
-                    <h3>Max number of people: </h3>
-                    <div id="num_people_value">
-                        <i class="material-icons">people</i>
-                        <?=$place['num_people']?>
-                    </div>
-                </div>
-
-                <h4>Rating: <?=$place['rating']?></h4>
-                <h3>Price: <?=$place['price']?></h3>
-
-            </section>
-
-            <div class="vertical-rule"></div>
+            <ul id= "location">
+                <li><?=$place['city_name']?></li>
+                <li><?=$place['country_name']?></li>
+                <li><?=$place['place_address']?></li>
+            </ul>
             
-            <section id="place_info"> 
-                <p> <?=$place['place_description']?></p>
-                <ul id= "location">
-                    <li><?=$place['country_name']?></li>
-                    <li><?=$place['city_name']?></li>
-                    <li> <?=$place['place_address']?></li>
-                </ul>
-            </section>
+            <div id="place_info">
 
-            <section class="rent_section">
-                TODO: Rent section 
+                <div id="place_details">
+                    <div class="rating">
+                        <i class="material-icons">star</i>
+                        <?=$place['rating']?>
+                    </div>
+
+                    <li id="num_people">
+                        <i class="material-icons">people</i>
+                        <div class="num_people_value"><?=$place['num_people']?></div>
+                    </li>
+                </div>
+
+                <div id="place_tags">
+                    PLACE TAGS
+                </div>
+
+            </div>
+            <hr>
+
+            <section id="place_body"> 
+                
+                <section id="gallery_rent">
+            
+                    <section id="place_gallery">
+                        <div id="image_container">
+                            <?php foreach($image_gallery as $image) { ?>
+                                <img class="imgGallery" src="../images/places/<?=$image?>" alt="Image Place">
+                            <?php } ?>
+                            <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                            <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
+                        </div>
+                    </section>
+                
+                    <section id="rent_section">
+                        <div id="price">
+                            <div><?=$place['price']?></div>
+                            <i class="material-icons">euro</i> 
+                        </div>
+                        <form id="rent_form">
+                            <div class="form-date">
+                                <label for="check_in">Check In</label>
+                                <input type="date" value="2019-01-01">
+                            </div>
+                
+                            <div class="form-date">
+                                <label for="check_out">Check Out</label>
+                                <input type="date" value="2019-01-01"> <!-- script needed for the current date -->
+                            </div>
+
+                            <button class="submit-button" type="submit">Rent Place</button>
+                        </form>
+                    </section>
+
+                </section>
+
+                <div class="vertical-rule"></div>
+                                
+                <section id="description_comments">
+
+                    <section id="description">
+                        <h2>Description</h2> 
+                        <p><?=$place['place_description']?></p>
+                    </section>
+                    
+                    <section id="comments">
+                        <h2>Comments</h2>
+                        TODO: Get comments from database
+                    </section>
+
+                </section>
+        
             </section>
 
         </article>
