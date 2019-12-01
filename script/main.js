@@ -64,3 +64,34 @@ function showDivs(n) {
   }
   x[slideIndex-1].style.display = "block"; 
 }*/
+
+//::::: AJAX STUFF ::::::://
+
+/*------ Search Bar ----*/
+
+let countryIdSelected = document.getElementById('country_select');
+countryIdSelected.addEventListener('change',getCityByCountry);
+
+function getCityByCountry(){
+
+    let countryIdSelected = document.getElementById('country_select');
+    let currentCountry = countryIdSelected.options[countryIdSelected.selectedIndex].value;
+    
+    let request = new XMLHttpRequest();
+    request.addEventListener("load",citiesReceived);
+    request.open("get","../database/get_cities.php?country_id=" + currentCountry,true);
+    request.send();
+}
+
+function citiesReceived(){
+    let cities = JSON.parse(this.responseText);
+    let list = document.getElementById("city_select");
+    list.innerHTML = ""; // Clean current cities
+
+    // Add new suggestions
+    for (let i = 0; i<cities.length; i++) {
+        let item = document.createElement("option");
+        item.innerHTML = cities[i].city_name;
+        list.appendChild(item);
+    }
+}

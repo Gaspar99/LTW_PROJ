@@ -11,18 +11,15 @@
 
             <div class="form-country">
                 <label for="country">Country</label>
-                <select name="country">
+                <select name="country" id="country_select" onclick="getCityByCountry()">
                     <?php draw_countryOptions($countries); ?> 
                 </select>
             </div>
 
             <div class="form-city">
                 <label for="city">City</label>
-                <select name="city">
-                    <option value="orange">Orange</option>
-                    <option value="banana" selected>Banana</option>
-                    <option value="tomato">Tomato</option>
-                    <option value="apple">Apple</option> 
+                <select name="city" id="city_select">
+                    <option disabled selected>Select City</option>
                 </select>
             </div>
                 
