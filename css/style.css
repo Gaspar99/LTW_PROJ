@@ -33,6 +33,8 @@ a {
   
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--roboto-font);
+    margin: 0;
+    padding: 0;
 }
 
 li {
@@ -62,8 +64,22 @@ button, .button {
     border-radius: 0.5em;
 }
 
-button:hover {
+button:hover, .button:hover {
     opacity: 0.8;
+}
+
+/* Full-width input fields */
+input, select, textarea {
+    /* Layout */
+    display: inline-block;
+    width: 100%;
+    margin: 0.5em 0 1em 0;
+    padding: 1em 0.2em;
+
+    /* Style */
+    border: 0.05em solid black;
+    border-radius: 0.01em;
+    box-sizing: border-box;
 }
 
 /* ----------------- Site - General -------------- */
@@ -305,20 +321,6 @@ body > #messages .success {
     padding: 1em;
 }
 
-/* Full-width input fields */
-input, select {
-    /* Layout */
-    display: inline-block;
-    width: 100%;
-    margin: 0.5em 0 1em 0;
-    padding: 1em 0.2em;
-
-    /* Style */
-    border: 0.05em solid black;
-    border-radius: 0.01em;
-    box-sizing: border-box;
-}
-
 /* Center the image */
 .imgContainer {
     /* Layout */
@@ -391,7 +393,7 @@ input, select {
 /* ------------- HOME PAGE: PLACES ------------*/
 #site-content {
     flex: 1;
-    max-width: 60em;
+    max-width: 80em;
     margin: 1em auto;
 }
 
@@ -465,52 +467,172 @@ input, select {
 
 /* ------------- PLACE PAGE ------------*/
 #place_page {
-    display: grid;
+    display: block;
+    margin: 0 1em;
 }
 
+#place_page #place_header {
+    display: flex;
+    align-items: flex-end;
+}
+
+#place_page #place_header h1 {
+    font-size: 2em;
+}
 
 /*--------- Owner Profile ------- */
-#place_page #place_details #owner_profile {
+#place_page #place_header #owner_profile {
+    display: flex;
+    align-items: flex-end;
+    width: max-content; 
+}
+
+#place_page #place_header #owner_profile::before {
+    content: 'By:';
+    padding: 0 0.2em 0 0.6em;
+}
+
+#place_page #place_header #owner_profile a {
     display: flex;
     align-items: center;
     width: max-content;
+    font-size: 0.9em;
 }
 
-#place_page #place_details #owner_profile a {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    margin: 1em;
-}
-
-#place_page #place_details #owner_profile img {
+#place_page #place_header #owner_profile img {
     width: 2em;
     height: 2em;
     border-radius: 1em;
     margin: 0 0.5em;
 }
 
-#place_page #place_details #owner_profile #username {
+#place_page #place_header #owner_profile #username {
     padding: 0 0.5em;
 }
 
-/* ------ Place Gallery ------*/ 
-#place_page #place_details #place_gallery img{
-    width: 10em;
+/*--------- Location ------- */
+#place_page #location {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0.5em 0;
+}
+
+#place_page #location > li:first-child::after,
+#place_page #location > li:last-child::before {
+    content: '-';
+    padding: 0 0.5em;
+}
+
+/*--------- Place Info ------- */
+#place_page #place_info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 1em 0 0 0;
+}
+
+/*--------- Place Details ------- */
+#place_page #place_info #place_details {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    justify-content: space-between;
+}
+
+#place_page #place_info #place_details > * {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+#place_page #place_info #place_details > * > *{
+    padding: 0 0.1em;
+}
+
+#place_page hr {
+    margin: 0.2em 0 1em 0;
+}
+
+/*--------- Place Body ------- */
+#place_page #place_body {
+    display: grid;
+    grid-template-columns: 25em 2em auto;
+}
+
+/* ------ Gallery & Rent Section ------*/
+#place_page #place_body #gallery_rent {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+/* ------ Place Gallery ------*/
+#place_page #place_body #gallery_rent #place_gallery #image_container {
+    position: relative;
+}
+
+#place_page #place_body #gallery_rent #place_gallery img {
+    width: 100%;
     height: auto;
 }
 
-#place_page #place_details #num_people {
-    display: flex;
-    align-items: center;
-    width: max-content;
+#place_page #place_body #gallery_rent #place_gallery #image_container .display_left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-color: transparent;
 }
 
-#place_page #place_details #num_people #num_people_value {
+#place_page #place_body #gallery_rent #place_gallery #image_container .display_right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    background-color: transparent;
+}
+
+/* ------ Rent Section ------*/
+#place_page #place_body #gallery_rent #rent_section {
+    border-width: 4em;
+    border-radius: 1em;
+    border: solid black;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+/* ------ Rent Section ------*/
+#place_page #place_body #gallery_rent #rent_section #price {
     display: flex;
     align-items: center;
-    width: max-content;
+    justify-content: center;
+}
+
+#place_page #place_body #gallery_rent #rent_section #price > *{
+    font-size: 1.7em;
+}
+
+#place_page #place_body #gallery_rent #rent_section #price::after {
+    content: '/night';
+    font-size: 1em;
+}
+
+#place_page #place_body .vertical-rule {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    background-color: black;
+    margin: 0 0.95em;
+}
+
+#place_page #place_body #description_comments {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+#place_page #place_body #description_comments #description p {
     padding: 1em;
+}
+
+#place_page #place_body #description_comments #comments {
+  
 }
 
 /*-----USER PROFILE-------*/ 
