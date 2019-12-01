@@ -128,6 +128,24 @@
         ));
    }
 
+   function update_profile_pic($user){
+    #todo fix this
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        'UPDATE 
+            usr 
+        SET 
+            usr_profile_picture = ?
+        WHERE usr_id = ?' 
+    );
+    
+    $stmt->execute(array(
+        $user['image'],
+        $user['id']
+    ));
+}
+
     /**
     * 
     */

@@ -704,3 +704,24 @@ body > #messages .success {
     position: relative;
     top:215px;
 }
+
+/*-----USER PROFILE-------*/ 
+#profile_pic_update{
+    display: block;
+    width: 50%;
+    height: 40%;
+    float: left;
+}
+
+#profile_pic_update img{
+    width: 50%;
+    height: 50%;
+    margin: 0.5em;
+}
+
+#profile_info_update{
+    display: block;
+    width: 50%;
+    height: 50%;
+    float: right;
+}
