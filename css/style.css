@@ -664,11 +664,11 @@ body > #messages .success {
 }
 
 #profile_button{
-    display: block;
+    display: inline-block;
     width: 40%;
-    margin: 0.25em;
+    margin: 0.25em 0.25em 0.25em 3.5em;
     padding: 0.5em ; 
-
+    
     text-align: center;
 }
 
@@ -676,12 +676,15 @@ body > #messages .success {
 #usr_places{
     display: block;
 }
-
-#usr_places  .place{
-    display: flex;
-    width:30%;
-    height:30%;
+#usr_places label{
+    margin: 1em;
+    padding: 1em;
 }
+ #usr_places #rental article > * {
+    display: flex;
+    height: 30%;
+    width: 30%
+ }
 
 /* owned places */
 #rental{
@@ -696,9 +699,8 @@ body > #messages .success {
 #rented{
     display: block;
     border-bottom: 0.1em solid grey;
-    float: left; 
-    height: 40%;
-     width: 50%;
+    height: 70%;
+    width: 50%;
     position: relative;
     top:215px;
 }

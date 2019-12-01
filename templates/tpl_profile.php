@@ -30,12 +30,7 @@
             <div id="rented"> 
             <label for="rented"> History</label>
                 <!-- Database must be populated -->
-                <?php
-                $usr_places = getUserPlaces($_GET['id']); #get places user places id 
-				foreach($usr_places as $usr_place){
-					draw_place($usr_place); 
-				}		
-            ?>
+               
                 TODO:Populate DB and get porperty history
             </div>
         </section> 
