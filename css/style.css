@@ -64,8 +64,22 @@ button, .button {
     border-radius: 0.5em;
 }
 
-button:hover {
+button:hover, .button:hover {
     opacity: 0.8;
+}
+
+/* Full-width input fields */
+input, select, textarea {
+    /* Layout */
+    display: inline-block;
+    width: 100%;
+    margin: 0.5em 0 1em 0;
+    padding: 1em 0.2em;
+
+    /* Style */
+    border: 0.05em solid black;
+    border-radius: 0.01em;
+    box-sizing: border-box;
 }
 
 /* ----------------- Site - General -------------- */
@@ -305,20 +319,6 @@ body > #messages .success {
 .container {
     /* Layout */
     padding: 1em;
-}
-
-/* Full-width input fields */
-input, select {
-    /* Layout */
-    display: inline-block;
-    width: 100%;
-    margin: 0.5em 0 1em 0;
-    padding: 1em 0.2em;
-
-    /* Style */
-    border: 0.05em solid black;
-    border-radius: 0.01em;
-    box-sizing: border-box;
 }
 
 /* Center the image */
