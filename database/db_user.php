@@ -48,7 +48,10 @@
             WHERE usr.usr_email = ?');
         
         $stmt->execute(array($email));
-        return $stmt->fetch(); 
+        
+        $user = $stmt->fetch();  
+
+        return $user['id'];
     }
 
     /**

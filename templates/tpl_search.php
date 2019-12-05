@@ -4,14 +4,14 @@
     /**
     * 
     */
-    function draw_search_bar($countries){  ?>
+    function draw_search_bar($countries) { ?>
 
         <form id ="searchForm">
             <span class="close" onclick="closeSearchForm()" title="Close Form">&times;</span>
 
             <div class="form-country">
                 <label for="country">Country</label>
-                <select name="country" id="country_select" onclick="getCityByCountry()">
+                <select name="country" id="country_select" oninput="getCityByCountry()">
                     <?php draw_countryOptions($countries); ?> 
                 </select>
             </div>
@@ -25,12 +25,12 @@
                 
             <div class="form-date">
                 <label for="check_in">Check In</label>
-                <input type="date" value="2019-01-01">
+                <input type="date" name="check_in">
             </div>
                 
             <div class="form-date">
                 <label for="check_out">Check Out</label>
-                <input type="date" value="2019-01-01"> <!-- script needed for the current date -->
+                <input type="date" name="check_out">
             </div>
 
             <button class="submit-button" type="submit"><img src="../images/site/loupe.png"></button>

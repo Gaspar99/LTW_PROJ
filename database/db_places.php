@@ -48,6 +48,9 @@
         return $stmt->fetch();
     }
 
+    /**
+    * 
+    */
     function add_place($place){
         $db = Database::instance()->db();
         
@@ -56,18 +59,22 @@
                 place
             VALUES (NULL,?, ?, ?, ?, ?, 1, NULL, ?, 1)'
         );
-    $stmt->execute(array(
-        $place['title'],
-        $place['description'],
-        $place['price'],
-        $place['adress'],
-        $place['num_people'],
-        $place['owner_id']
-        #$place['city'] TODO add city 
-    ));
+
+        $stmt->execute(array(
+            $place['title'],
+            $place['description'],
+            $place['price'],
+            $place['adress'],
+            $place['num_people'],
+            $place['owner_id']
+            #$place['city'] TODO add city 
+        ));
     
     }
 
+    /**
+    * 
+    */
     function get_place_gallery($place_id){
         $db = Database::instance()->db();
 
@@ -87,16 +94,21 @@
         return $stmt->fetch();
     }
 
+    /**
+    * 
+    */
     function get_place_tags(){
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(   
             'SELECT 
-                id,tag_name 
+                id, tag_name 
             FROM 
                 tag'
         );
+
         $stmt->execute();
+
         return $stmt->fetchAll();
     }
 

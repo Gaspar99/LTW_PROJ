@@ -24,9 +24,10 @@ CREATE TABLE place (
 
 CREATE TABLE reservation (
    id INTEGER PRIMARY KEY,
-   initial_date DATE NOT NULL,
-   final_date DATE NOT NULL,
+   check_in DATE NOT NULL,
+   check_out DATE NOT NULL,
    price REAL NOT NULL,
+   num_people INTEGER NOT NULL,
    usr_rating REAL DEFAULT 0 NOT NULL,
    usr_comment VARCHAR DEFAULT NULL,
    usr_comment_date DATE DEFAULT NULL,
@@ -102,7 +103,7 @@ INSERT INTO usr
       'johndoe@email.com', --usr_email
       '919349157', --usr_phone_number
       '$2y$12$7UVPawz3ktTGNJYChI1/WeeuVug0J.kXsNlb9QbPHdYpwhAYWKz6', --usr_password: 123456789
-      1 --country_id
+      34 --country_id
 );
 
 INSERT INTO usr 
@@ -126,7 +127,7 @@ INSERT INTO usr
       'fchico@email.com', --usr_email
       '919191919', --usr_phone_number
       '$2y$12$COAZfqw5QLwynfP.t53NjeHDK2NjBVePtaXoodXLssdSxH0p23JDu', --usr_password: jorgepass
-      1 --country_id
+      64 --country_id
 );
 
 INSERT INTO usr 
@@ -138,7 +139,7 @@ INSERT INTO usr
       'antman@email.com', --usr_email
       '986541123', --usr_phone_number
       '$2y$12$NIdFPZ/dEtuWyxFgbhktfeMD3MqofEIoXzUr4kWrsQh5Gq/58G.6y', --usr_password: antman123
-      1 --country_id
+      64 --country_id
 );
 
 INSERT INTO usr
@@ -146,21 +147,33 @@ INSERT INTO usr
    VALUES(
       5, --usr_id
       'Pedro', --usr_first_name
-      'Miguel', --usr_last_name
+      'Torres', --usr_last_name
       'pemigo@email.com', --usr_email
       '967561781', --usr_phone_number
       '$2y$12$8sU8G/HsbPtBuA7ardtQgO6zA/Lyyza15oBlXYNSYfqNuf1ztYtqC', --usr_password: migpedro00
-      1 --country_id
+      64 --country_id
+);
+
+INSERT INTO usr
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   VALUES(
+      6, --usr_id
+      'Miguel', --usr_first_name
+      'Almeida', --usr_last_name
+      'migeida@email.com', --usr_email
+      '977456185', --usr_phone_number
+      '$2y$12$8sU8G/HsbPtBuA7ardtQgO6zA/Lyyza15oBlXYNSYfqNuf1ztYtqC', --usr_password: migpedro00
+      64 --country_id
 );
 
 INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id) 
    VALUES(
       1, --id
-      'Cute House Near The Lake', --title
+      'Cute House', --title
       150, --price_per_night
       'Johannes van der Waalsstraat 107', --place_address
-      'A cute house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+      'A cute house to relax near and have fun.', --place_description
       4, --num_people
       1, --owner_id: John Doe
       1411 --city_id: Amsterdam
@@ -170,11 +183,11 @@ INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
    VALUES(
       2, --id
-      'Awesome House Near The Lake', --title
+      'Awesome House', --title
       200, --price_per_night
-      'Johannes van der Waalsstraat 107', --place_address
-      'An awesome house to relax near the stuff. You can fish, go jetskying and even dive.', --place_description
-      2, --num_people
+      'Awesome street 143', --place_address
+      'An awesome house to hold events and partys.', --place_description
+      5, --num_people
       2, --owner_id: John Doe
       1411 --city_id: Amsterdam
 );
@@ -183,12 +196,103 @@ INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
    VALUES(
       3, --id
-      'Fantastic House Near The Lake', --title
+      'Fantastic House', --title
       300, --price_per_night
-      'Johannes van der Waalsstraat 107', --place_address
-      'A fantastic house to relax near the lake. You can fish, go jetskying and even dive.', --place_description
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
       7, --num_people
-      3, --owner_id: John Doe
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      4, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      5, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      6, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      7, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      8, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      9, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
+      1411 --city_id: Amsterdam
+);
+
+INSERT INTO place
+   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   VALUES(
+      10, --id
+      'Fantastic House', --title
+      300, --price_per_night
+      'Fantastic road 107', --place_address
+      'A fantastic house to simply have fun.', --place_description
+      7, --num_people
+      3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
@@ -217,45 +321,79 @@ INSERT INTO owner_gallery VALUES(
    1 --owner_photo id
 );
 
--- INSERT TAGS --
+INSERT INTO owner_gallery VALUES(
+   4, --place id
+   2 --owner_photo id
+);
 
+INSERT INTO owner_gallery VALUES(
+   5, --place id
+   1 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   6, --place id
+   2 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   3, --place id
+   7 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   8, --place id
+   2 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   9, --place id
+   1 --owner_photo id
+);
+
+INSERT INTO owner_gallery VALUES(
+   10, --place id
+   1 --owner_photo id
+);
+
+-- INSERT TAGS --
 INSERT INTO tag VALUES(
-   NULL, 
+   1, 
    'Kitchen'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   2, 
    'Bath Room'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   3, 
    'Swimming Pool'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   4, 
    'Fireplace'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   5, 
    'Wi-fi'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   6, 
    'Vegan'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   7, 
    'Modest'
 );
 
 INSERT INTO tag VALUES(
-   NULL, 
+   8, 
    'By the Beach'
 );
 

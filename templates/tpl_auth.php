@@ -71,8 +71,8 @@
     $id = getUserId($user_email); ?>
     
     <div id="userDropdownMenu" class="dropdownMenu">
-      <a href="../pages/usr_profile.php?id=<?=$id['id']?>">My Profile</a>
-      <a href="../pages/add_place.php?id=<?=$id['id']?>">Add Place</a>
+      <a href="../pages/usr_profile.php?id=<?=$id?>">My Profile</a>
+      <a href="../pages/add_place.php?id=<?=$id?>">Add Place</a>
       <a href="../actions/action_logout.php">Logout</a>
     </div>
 

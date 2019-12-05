@@ -68,6 +68,15 @@
                    
     <?php } ?> 
 
+<?php 
+    /**
+    * 
+    */
+    function draw_title($title) { ?>
+        <h1><?=$title?></h1>
+        <hr>
+<?php } ?>
+
 <?php
     /**
     * 

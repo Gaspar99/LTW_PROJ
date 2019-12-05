@@ -5,6 +5,7 @@ body {
     --search-grey: rgb(242, 242, 242);    
     --background-color:rgb(230, 230, 230);
     --form-input-color: rgb(195, 195, 195);
+    --rating-star-color: rgb(219, 203, 56);
     --roboto-font: 'Roboto', sans-serif;
 }
 
@@ -17,6 +18,12 @@ body {
 
     /* Style */
     background-color: var(--background-color);
+}
+
+#site-content {
+    flex: 1;
+    max-width: 80em;
+    margin: 1em auto;
 }
 
 /* --------------- Generics --------------- */
@@ -391,24 +398,19 @@ body > #messages .success {
 }
 
 /* ------------- HOME PAGE: PLACES ------------*/
-#site-content {
-    flex: 1;
-    max-width: 80em;
-    margin: 1em auto;
-}
-
 #site-content .places {
     /* Layout */
     display: flex;
+    align-items: center;
     justify-content: flex-start;
-
+    flex-wrap: wrap;
 }
 
 #site-content .places .place {
     /* Layout */
     text-align: left;
     max-width: 15em;
-    margin: 0 1em;
+    margin: 2em;
 
     background-color: lightgray;
 }
@@ -457,7 +459,7 @@ body > #messages .success {
 }
 
 #site-content .places .place a .place-footer .place-rating i { 
-    color: yellow;
+    color: var(--rating-star-color);
     font-size: 1.3em;
 }
 
@@ -489,7 +491,7 @@ body > #messages .success {
 
 #place_page #place_header #owner_profile::before {
     content: 'By:';
-    padding: 0 0.2em 0 0.6em;
+    padding: 0 0.2em 0 1em;
 }
 
 #place_page #place_header #owner_profile a {
@@ -524,30 +526,38 @@ body > #messages .success {
     padding: 0 0.5em;
 }
 
-/*--------- Place Info ------- */
-#place_page #place_info {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin: 1em 0 0 0;
-}
-
 /*--------- Place Details ------- */
-#place_page #place_info #place_details {
+#place_page #place_details {
     display: flex;
     align-items: center;
-    width: max-content;
+    width: 14em;
     justify-content: space-between;
+    margin: 1.2em 0 0.2em 0;
 }
 
-#place_page #place_info #place_details > * {
+#place_page #place_details > * {
     display: flex;
     align-items: center;
     width: max-content;
 }
 
-#place_page #place_info #place_details > * > *{
+#place_page #place_details > * > * {
     padding: 0 0.1em;
+    font-weight: bold;
+}
+
+#place_page #place_details .rating::before {
+    content: 'Rating: ';
+    font-weight: bold;
+}
+
+#place_page #place_details .rating i {
+    color: var(--rating-star-color);
+}
+
+#place_page #place_details #num_people::before {
+    content: 'Max. ';
+    font-weight: bold;
 }
 
 #place_page hr {
@@ -580,14 +590,18 @@ body > #messages .success {
     position: absolute;
     left: 0;
     top: 50%;
+    transform: translateY(-50%);
     background-color: transparent;
+    font-size: 2em;
 }
 
 #place_page #place_body #gallery_rent #place_gallery #image_container .display_right {
     position: absolute;
     right: 0;
     top: 50%;
+    transform: translateY(-50%);
     background-color: transparent;
+    font-size: 2em;
 }
 
 /* ------ Rent Section ------*/
@@ -597,22 +611,29 @@ body > #messages .success {
     border: solid black;
     padding: 1em;
     margin: 1em 0;
+    text-align: center;
 }
 
-/* ------ Rent Section ------*/
-#place_page #place_body #gallery_rent #rent_section #price {
+/* ------ Price ------*/
+#place_page #place_body #gallery_rent #rent_section #price_per_night {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#place_page #place_body #gallery_rent #rent_section #price > *{
+#place_page #place_body #gallery_rent #rent_section #price_per_night > *{
     font-size: 1.7em;
 }
 
-#place_page #place_body #gallery_rent #rent_section #price::after {
+#place_page #place_body #gallery_rent #rent_section #price_per_night::after {
     content: '/night';
     font-size: 1em;
+}
+
+#place_page #place_body #gallery_rent #rent_section h2 {
+    font-size: 2em;
+    width: 60%;
+    margin: 0.5em auto;
 }
 
 #place_page #place_body .vertical-rule {
@@ -622,16 +643,17 @@ body > #messages .success {
     margin: 0 0.95em;
 }
 
-#place_page #place_body #description_comments {
+#place_page #place_body #place_info {
     grid-column-start: 3;
     grid-column-end: 4;
 }
 
-#place_page #place_body #description_comments #description p {
-    padding: 1em;
+#place_page #place_body #place_info #description p {
+    padding: 0.5em;
+    font-size: 2em;
 }
 
-#place_page #place_body #description_comments #comments {
+#place_page #place_body #place_info #comments {
   
 }
 

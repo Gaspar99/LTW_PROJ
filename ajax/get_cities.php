@@ -1,5 +1,4 @@
 <?php
-
     include_once('../includes/database.php'); #db connection 
 
     $country_id= $_GET['country_id'];
@@ -12,10 +11,9 @@
     );
 
     $stmt->execute(array($country_id));
-    //$cities= $smtp->fetchAll();
     
     $cities = $stmt->fetchAll();
+
     // JSON encode them
     echo json_encode($cities);
-
 ?>

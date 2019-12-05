@@ -7,6 +7,7 @@
   $places = get_places();
  
   draw_site_header();
+  draw_title('Places for Rent');
   draw_places($places);
   draw_footer();
 

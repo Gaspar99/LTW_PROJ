@@ -74,28 +74,22 @@
             </div>
 
             <ul id= "location">
-                <li><?=$place['city_name']?></li>
                 <li><?=$place['country_name']?></li>
+                <li><?=$place['city_name']?></li>
                 <li><?=$place['place_address']?></li>
             </ul>
-            
-            <div id="place_info">
 
-                <div id="place_details">
-                    <div class="rating">
-                        <i class="material-icons">star</i>
-                        <?=$place['rating']?>
-                    </div>
-
-                    <li id="num_people">
-                        <i class="material-icons">people</i>
-                        <div class="num_people_value"><?=$place['num_people']?></div>
-                    </li>
+            <div id="place_details">
+                 <div class="rating">
+                    <i class="material-icons">star</i>
+                    <div class="rating_value"><?=$place['rating']?></div>
                 </div>
 
-                <div id="place_tags">
-                    PLACE TAGS
-                </div>
+                <li id="num_people">
+                    <i class="material-icons">people</i>
+                    <div class="num_people_value"><?=$place['num_people']?></div>
+                </li>
+            </div>
 
             </div>
             <hr>
@@ -116,35 +110,57 @@
                     </section>
                 
                     <section id="rent_section">
-                        <div id="price">
+
+                        <div id="price_per_night">
                             <div><?=$place['price']?></div>
                             <i class="material-icons">euro</i> 
                         </div>
-                        <form id="rent_form">
+
+                        <?php if(isset($_SESSION['user_email'])) { ?>
+                        <form id="rent_form" action="../actions/action_rent_place.php" method="post">
+
                             <div class="form-date">
                                 <label for="check_in">Check In</label>
-                                <input type="date" value="2019-01-01">
+                                <input id="check_in_value" type="date" name="check_in" oninput="calculateRentPrice(<?=$place['price']?>)">
                             </div>
                 
                             <div class="form-date">
                                 <label for="check_out">Check Out</label>
-                                <input type="date" value="2019-01-01"> <!-- script needed for the current date -->
+                                <input id="check_out_value" type="date" name="check_out" oninput="calculateRentPrice(<?=$place['price']?>)">
                             </div>
+                            
+                            <div class="price">
+                                <label for="price">Price</label>
+                                <input type="number" name="price">
+                            </div>
+
+                            <input type="hidden" name="tourist" value="<?=getUserId($_SESSION['user_email'])?>">
+                            <input type="hidden" name="place_id" value="<?=$place_id?>">
 
                             <button class="submit-button" type="submit">Rent Place</button>
                         </form>
+                        <?php } else { ?>
+                        <h2>Log In To Rent This Place</h2>
+                        <?php } ?>
                     </section>
 
                 </section>
 
                 <div class="vertical-rule"></div>
                                 
-                <section id="description_comments">
+                <section id="place_info">
 
                     <section id="description">
-                        <h2>Description</h2> 
                         <p><?=$place['place_description']?></p>
                     </section>
+
+                    <hr>
+
+                    <div id="place_tags">
+                        TODO: Tags
+                    </div>
+
+                    <hr>
                     
                     <section id="comments">
                         <h2>Comments</h2>

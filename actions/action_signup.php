@@ -4,12 +4,18 @@
 
   try {
     addUser($_POST);
+
     $_SESSION['user_email'] = $_POST['email'];
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
+    
     header('Location: ../pages/home.php');
+
   } catch (PDOException $e) {
+    
     die($e->getMessage());
+    
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
+    
     header('Location: ../pages/home.php');
   }
   
