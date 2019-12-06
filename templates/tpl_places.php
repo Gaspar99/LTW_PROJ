@@ -6,10 +6,13 @@
     function draw_places($places) { ?>
 
         <section class="places">
-        <?php foreach ($places as $place) {
-            draw_place($place);
-        }
-        ?>
+        <?php 
+        if (sizeof($places)) {
+            foreach ($places as $place) 
+                draw_place($place);
+        } else { ?>
+            <h2 id="no_place">No places found</h2>
+        <?php } ?>
         </section>
 
     <?php } ?> 
@@ -121,17 +124,17 @@
 
                             <div class="form-date">
                                 <label for="check_in">Check In</label>
-                                <input id="check_in_value" type="date" name="check_in" oninput="calculateRentPrice(<?=$place['price']?>)">
+                                <input required id="check_in_value" type="date" name="check_in" oninput="calculateRentPrice(<?=$place['price']?>)">
                             </div>
                 
                             <div class="form-date">
                                 <label for="check_out">Check Out</label>
-                                <input id="check_out_value" type="date" name="check_out" oninput="calculateRentPrice(<?=$place['price']?>)">
+                                <input required id="check_out_value" type="date" name="check_out" oninput="calculateRentPrice(<?=$place['price']?>)">
                             </div>
                             
-                            <div class="price">
-                                <label for="price">Price</label>
-                                <input type="number" name="price">
+                            <div class="num_people">
+                                <label for="num_people">Number of People</lable>
+                                <input required id="num_people_value" type="number" name="num_people" oninput="calculateRentPrice(<?=$place['price']?>)" min="1" max="<?=$place['num_people']?>">
                             </div>
 
                             <input type="hidden" name="tourist" value="<?=getUserId($_SESSION['user_email'])?>">
