@@ -56,13 +56,13 @@ function plusDivs(n) {
 
 function showDivs(n) {
   var i;
-  var x = document.getElementsByClassName("mySlides");
+  var x = document.getElementsByClassName('mySlides');
   if (n > x.length) {slideIndex = 1} 
   if (n < 1) {slideIndex = x.length} ;
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none"; 
+    x[i].style.display = 'none'; 
   }
-  x[slideIndex-1].style.display = "block"; 
+  x[slideIndex-1].style.display = 'block'; 
 }*/
 
 //::::: AJAX STUFF ::::::://
@@ -78,39 +78,73 @@ function getCityByCountry() {
     let currentCountry = countryIdSelected.options[countryIdSelected.selectedIndex].value
     
     let request = new XMLHttpRequest()
-    request.addEventListener("load",citiesReceived)
-    request.open("get","../database/get_cities.php?country_id=" + currentCountry,true)
+    request.addEventListener('load',citiesReceived)
+    request.open('get','../ajax/get_cities.php?country_id=' + currentCountry,true)
     request.send()
 }
 
 function citiesReceived() {
     let cities = JSON.parse(this.responseText)
-    let list = document.getElementById("city_select")
-    list.innerHTML = ""; // Clean current cities
+    let list = document.getElementById('city_select')
+    list.innerHTML = ''; // Clean current cities
 
     // Add new suggestions
     for (let i = 0; i<cities.length; i++) {
-        let item = document.createElement("option")
+        let item = document.createElement('option')
         item.innerHTML = cities[i].city_name
         list.appendChild(item)
     }
 }
 
 function calculateRentPrice(price_per_night) {
-    let final_price = 0.0
+    let check_in = document.getElementById('check_in_value')
+    let check_out = document.getElementById('check_out_value')
+    let num_people = document.getElementById('num_people_value')
 
-    let check_in = document.getElementById("check_in_value")
-    let check_out = document.getElementById("check_out_value")
-    let price = document.querySelector('.price > input')
-
-    if (!(check_in.value == undefined || check_out.value == undefined)) {
-        let check_in_value = new Date(check_in.value)
-        let check_out_value = new Date(check_out.value)
-
-        let diff = Math.abs(check_out_value.getTime() - check_in_value.getTime());
-
-        final_price = Math.ceil(diff / (1000 * 3600 * 24)) * price_per_night
+    //One of the inputs required was not defined yet
+    if (check_in.value.length == 0 || check_out.value.length == 0 || num_people.value.length == 0) {
+        return 
     }
-        
-    price.value = final_price
+
+    // Calculation of number of days
+    let check_in_value = new Date(check_in.value)
+    let check_out_value = new Date(check_out.value)
+    let diff = Math.abs(check_out_value.getTime() - check_in_value.getTime())
+    let num_days = Math.ceil(diff / (1000 * 3600 * 24))
+
+    let final_price = num_days * price_per_night * num_people.value
+
+    //Add final price to rent section
+    let rent_section = document.getElementById('rent_section')
+
+    // Get price tag div inside rent section
+    let price_tag = document.getElementById('price_tag')
+
+    //Price tag does not exist yet 
+    if (price_tag == null) {
+
+        //Price tag
+        price_tag = document.createElement('div')
+        price_tag.id = 'price_tag'
+
+        //Price title
+        let price_title = document.createElement('h3')
+        price_title.id = 'price_title'
+        price_title.innerHTML = 'Price'
+    
+        //Price value
+        let price_value = document.createElement('h2')
+        price_value.id = 'price_value'
+        price_value.innerHTML = final_price + '€'
+
+        price_tag.appendChild(price_title)
+        price_tag.appendChild(price_value)
+        rent_section.appendChild(price_tag)
+    }
+    else {
+        //Price was previsouly calculated. Just need to change its value
+        let price_value = document.getElementById('price_value')
+        price_value.innerHTML = final_price + '€';
+    }
+    
 }
