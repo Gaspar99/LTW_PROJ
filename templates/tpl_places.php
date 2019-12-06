@@ -66,7 +66,7 @@
                 <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/usr_profile.php?id=<?=$place['place_owner']?>">
-                        <img src="../images/profiles/<?=$owner['profile_pic']?>" alt="User Profile Picture">
+                        <img src="../images/profiles/originals/<?=$owner['profile_pic']?>" alt="User Profile Picture">
                         <div id="username"><?=$owner['first_name']?> <?=$owner['last_name']?></div>
                     </a>
                 </div>

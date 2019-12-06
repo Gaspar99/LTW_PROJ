@@ -9,7 +9,7 @@
         <section id = "usr_profile">
             <section id="usr_bio">
                 <h2><?=$user_info['first_name']?> <?=$user_info['last_name']?></h2>    
-                <img id="profile_pic" src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+                <img id="profile_pic" src="../images/profiles/originals/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
                 <h3><?=$user_info['phone_number']?></h3>
                 <h4><?=$user_info['email']?></h4>
             </section>
@@ -43,10 +43,10 @@
     function draw_profile_edit() {
     $user_info = getUserInfo($_GET['id']);?>
 
-    <form class="todo" action="../actions/action_profile_update.php" method="post">
+    <form class="todo" action="../actions/action_profile_update.php" method="post"  enctype="multipart/form-data">
         <section id="profile_pic_update">
-            <img src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
-            <input type="file" name="image" accept="image/*" alt="Upload"> <!--check this later idk-->
+            <img src="../images/profiles/originals/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+            <input type="file" name="image">
         </section>
         <section id= "profile_info_update">
 
@@ -67,7 +67,7 @@
 
             <input type="hidden" name="id" value="<?=$_GET['id']?>"> 
 
-            <button class="submit-button" type="submit">Save</button>
+            <button class="submit-button" type="submit" value="Upload">Save</button>
         </section>
     </form>
 <?php } ?> 

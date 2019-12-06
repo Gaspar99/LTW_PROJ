@@ -132,22 +132,59 @@
    }
 
    function update_profile_pic($user){
-    #todo fix this
-    $db = Database::instance()->db();
 
-    $stmt = $db->prepare(
-        'UPDATE 
-            usr 
-        SET 
-            usr_profile_picture = ?
-        WHERE usr_id = ?' 
-    );
+        #todo fix this 
+        $db = Database::instance()->db();
+
+        $stmt = $db->prepare(
+            'UPDATE 
+                usr 
+            SET 
+                usr_profile_picture = ?
+            WHERE usr_id = ?' 
+        );
     
-    $stmt->execute(array(
-        $user['image'],
-        $user['id']
-    ));
-}
+        $stmt->execute(array(
+            $_FILES['image']['name'],
+            $user['id']
+        )); 
+
+        //todo see smth to better handle image id 
+        //get id image 
+        //$id = $db->lastInsertId();
+        $img_name=  $_FILES['image']['name'];
+        //generate filenames dor original, medium and small sizes 
+        //todo check how should i storage 
+        $originalFileName = "../images/profiles/originals/$img_name";
+        $smallFileName = "../images/profiles/thumbs_small/$img_name";
+        $mediumFileName = "../images/profiles/thumbs_medium/$img_name";
+                 
+        move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);    
+       
+        //Create an image representation of the original image
+        $original = imagecreatefromjpeg($originalFileName);
+
+        $width = imagesx($original);     // width of the original image
+        $height = imagesy($original);    // height of the original image
+        $square = min($width, $height);  // size length of the maximum square
+
+        // Create and save a small square thumbnail
+        $small = imagecreatetruecolor(200, 200);
+        imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 200, 200, $square, $square);
+        imagejpeg($small, $smallFileName);
+
+        // Calculate width and height of medium sized image (max width: 400)
+        $mediumwidth = $width;
+        $mediumheight = $height;
+        if ($mediumwidth > 400) {
+            $mediumwidth = 400;
+            $mediumheight = $mediumheight * ( $mediumwidth / $width );
+        }
+        // Create and save a medium image
+        $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
+        imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
+        imagejpeg($medium, $mediumFileName);
+    }
 
     /**
     * 
