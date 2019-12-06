@@ -406,6 +406,13 @@ body > #messages .success {
     flex-wrap: wrap;
 }
 
+#site-content .places #no_place{
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
 #site-content .places .place {
     /* Layout */
     text-align: left;
@@ -658,73 +665,95 @@ body > #messages .success {
 }
 
 /*-----USER PROFILE-------*/ 
+#profile_page {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
 
-/* bio section */
+/*-- User Info --*/
+#profile_page #user_info {
+    grid-column-start: 1;
+    grid-column-end: 2;
 
-#usr_profile{
-    display: block;
-    position: static ;
     margin: 1em;
-    width: 25%;
-    height: 100%;
-    float: left;
 }
 
-#usr_profile #usr_bio{
-    display: block;
-    width: 75%;
-    height: 100%;
-    border-color: black;
-    margin: 1em;
-    text-align: center;
+/*-- User Name --*/
+#profile_page #user_info #user_first_name {
+    margin: 0 0 0.2em 0;
+    font-size: 2.5em;
 }
 
-#usr_profile #profile_pic{
-    width: 100%;
-    height: 100%;
-    margin: 0.5em;
+#profile_page #user_info #user_last_name {
+    margin: 0 0 0.5em 0;
+    font-size: 2em;
 }
 
-#profile_button{
-    display: inline-block;
-    width: 40%;
-    margin: 0.25em 0.25em 0.25em 3.5em;
-    padding: 0.5em ; 
-    
-    text-align: center;
-}
-
-/* places section */
-#usr_places{
-    display: block;
-}
-#usr_places label{
-    margin: 1em;
-    padding: 1em;
-}
- #usr_places #rental article > * {
+/*- User Bio Section -*/
+#profile_page #user_info #user_bio {
     display: flex;
-    height: 30%;
-    width: 30%
- }
-
-/* owned places */
-#rental{
-    display: block;
-    height: 40%;
-    width: 50%;
-    border-bottom: 0.1em solid grey;
-    position: absolute;
+    flex-direction: column;
+    align-items: center;
 }
-/* history */
 
-#rented{
-    display: block;
-    border-bottom: 0.1em solid grey;
-    height: 70%;
-    width: 50%;
+#profile_page #user_info #user_bio #profile_pic {
+    width: 100%;
+    height: auto;
+}
+
+#profile_page #user_info #user_bio #phone_number {
+    padding: 1em;
+    font-size: 1.4em;
+}
+
+#profile_page #user_info #user_bio #email {
+    padding: 0;
+    max-width: fit-content;
+    font-size: auto;
+}
+
+/*- User Options -*/
+#profile_page #user_info #user_options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 1em;
+}
+
+#profile_page #user_info #user_options .button {
+    padding: 1em;
+    margin: 0.5em;
+    width: 40%;
+    text-align: center;
+}
+
+/*-- User Places --*/
+#profile_page #user_places {
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+    display: grid;
+    grid-template-rows: auto auto;
+    margin: 1em;
+}
+
+/*- Placs for Rental -*/
+#profile_page #user_places #for_rental {
+    grid-row-start: 1;
+    grid-row-end: 2;
     position: relative;
-    top:215px;
+}
+
+#profile_page #user_places h3 {
+   font-size: 1.5em;
+}
+
+/*- Reservations -*/
+#profile_page #user_places #reservations {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    position: relative;
 }
 
 /*-----USER PROFILE-------*/ 

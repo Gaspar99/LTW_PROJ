@@ -6,10 +6,13 @@
     function draw_places($places) { ?>
 
         <section class="places">
-        <?php foreach ($places as $place) {
-            draw_place($place);
-        }
-        ?>
+        <?php 
+        if (sizeof($places)) {
+            foreach ($places as $place) 
+                draw_place($place);
+        } else { ?>
+            <h2 id="no_place">No places found</h2>
+        <?php } ?>
         </section>
 
     <?php } ?> 

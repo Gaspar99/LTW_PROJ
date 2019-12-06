@@ -3,37 +3,40 @@
     * 
     */
     function draw_profile() {
-        #get user info 
-        $user_info = getUserInfo($_GET['id']);?>
-        <h1 id="profile_page"> My Profile </h1>
-        <section id = "usr_profile">
-            <section id="usr_bio">
-                <h2><?=$user_info['first_name']?> <?=$user_info['last_name']?></h2>    
-                <img id="profile_pic" src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
-                <h3><?=$user_info['phone_number']?></h3>
-                <h4><?=$user_info['email']?></h4>
-            </section>
-            <a class= "button" id="profile_button" href="../pages/add_place.php"> Add Place</a> <br>
-            <a class= "button" id="profile_button" href="../pages/edit_profile.php?id=<?=$_GET['id']?>">Edit Profile</a>
-        </section>
+        $user_info = getUserInfo($_GET['id']); ?>
 
-        <section id="usr_places" class = "places"> <!-- can use ids for each place if needed-->
-            <div id="rental"> 
-            <label for="rental"> My Places</label>
-			<?php
-                $usr_places = getUserPlaces($_GET['id']); #get places user places id 
-				foreach($usr_places as $usr_place){
-					draw_place($usr_place); 
-				}		
-            ?>
-            </div>
-            <div id="rented"> 
-            <label for="rented"> History</label>
-                <!-- Database must be populated -->
-               
-                TODO:Populate DB and get porperty history
-            </div>
-        </section> 
+        <article id="profile_page">
+
+            <section id="user_info">
+                <div id="user_bio">
+                    <h1 id="user_first_name"><?=$user_info['first_name']?></h1> 
+                    <h1 id="user_last_name"><?=$user_info['last_name']?></h1>
+                    <img id="profile_pic" src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+                    <h2 id="phone_number"><?=$user_info['phone_number']?></h3>
+                    <h2 id="email"><?=$user_info['email']?></h4>
+                </div>
+
+                <?php if (isset($_SESSION['user_email']) && $user_info['email'] == $_SESSION['user_email']) { ?>
+                <div id="user_options">
+                    <a class="button" href="../pages/add_place.php">Add Place</a>
+                    <a class="button" href="../pages/edit_profile.php?id=<?=$_GET['id']?>">Edit Profile</a>
+                </div>
+                <?php } ?>
+            </section>
+
+            <section id="user_places"> <!-- can use ids for each place if needed-->
+                <div id="for_rental"> 
+                    <h3>My Places</h3>
+			        <?php draw_places(getUserPlaces($_GET['id'])); #get user places id ?>
+                </div>
+
+                <div id="reservations"> 
+                    <h3>My Reservations</h2>
+                    <!-- Database must be populated -->
+                    TODO: Populate DB and get property history
+                </div>
+            </section>
+        </article> 
 
     <?php }
 
