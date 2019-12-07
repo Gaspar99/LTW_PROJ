@@ -604,7 +604,7 @@ body > #messages .success {
     color: var(--rating-star-color);
 }
 
-#place_page #place_details #num_people::before {
+#place_page #place_details #num_guests::before {
     content: 'Max. ';
     font-weight: bold;
 }

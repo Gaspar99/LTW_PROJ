@@ -41,7 +41,7 @@
                     </li>
                     <li class="place-num-people">
                         <i class="material-icons">people</i>
-                        <div class="num-people-value"><?=$place['num_people']?></div>
+                        <div class="num-people-value"><?=$place['num_guests']?></div>
                     </li>
                 </ul>
             </a>
@@ -69,7 +69,7 @@
                 <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/usr_profile.php?id=<?=$place['place_owner']?>">
-                        <img src="../images/profiles/<?=$owner['profile_pic']?>" alt="User Profile Picture">
+                        <img src="../images/profiles/originals/<?=$owner['profile_pic']?>" alt="User Profile Picture">
                         <div id="username"><?=$owner['first_name']?> <?=$owner['last_name']?></div>
                     </a>
                 </div>
@@ -88,10 +88,10 @@
                     <div class="rating_value"><?=$place['rating']?></div>
                 </div>
 
-                <li id="num_people">
+                <div id="num_guests">
                     <i class="material-icons">people</i>
-                    <div class="num_people_value"><?=$place['num_people']?></div>
-                </li>
+                    <div class="num_guests_value"><?=$place['num_guests']?></div>
+                </div>
             </div>
 
             </div>
@@ -194,14 +194,14 @@
 
                 <div class="form-country">
                     <label for="country">Country</label>
-                    <select name="country" id="country_select" oninput="getCityByCountry()">
+                    <select name="country" class="country_select" oninput="getCityByCountry(event)">
                     <?php draw_countryOptions($countries); ?> 
                     </select>
                 </div>
 
                 <div class="form-city">
                     <label for="city">City</label>
-                    <select name="city" id="city_select">
+                    <select name="city" class="city_select">
                         <option disabled selected>Select City</option>
                     </select>
                 </div>
@@ -226,7 +226,7 @@
                 <div id="price">
                     <label for="price">Price per Night</label>
                     <div class="price_input">
-                        <input type="number" value="1" min="0" step="10" name="price" required>
+                        <input type="number" value="1" min="0" name="price" required>
                         <i class="material-icons">euro</i>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
                     <hr>
             
                     <section id="tags_section">
-                        <?php $tags = get_place_tags(); ?>
+                        <?php $tags = get_tags(); ?>
                         <label for="tags">Tags</label>
                         <div id="tags">
                             <?php foreach($tags as $tag) { ?>

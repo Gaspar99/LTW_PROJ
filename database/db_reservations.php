@@ -9,7 +9,7 @@
 
         $stmt = $db->prepare(
             'INSERT INTO reservation
-            (check_in, check_out, price, num_people, tourist, place_id)
+            (check_in, check_out, price, num_guests, tourist, place_id)
             VALUES(?, ?, ?, ?, ?, ?)'
         );
 
@@ -17,7 +17,7 @@
             $reservation['check_in'], 
             $reservation['check_out'],
             $reservation['price'],
-            $reservation['num_people'],
+            $reservation['num_guests'],
             $reservation['tourist'],
             $reservation['place_id']
         ));

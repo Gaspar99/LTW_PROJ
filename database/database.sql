@@ -16,7 +16,7 @@ CREATE TABLE place (
    price_per_night REAL NOT NULL,
    place_address VARCHAR NOT NULL,
    place_description VARCHAR NOT NULL,
-   num_people INTEGER NOT NULL,
+   num_guests INTEGER NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    owner_id INTEGER REFERENCES usr NOT NULL,
    city_id INTEGER REFERENCES city NOT NULL
@@ -27,7 +27,7 @@ CREATE TABLE reservation (
    check_in DATE NOT NULL,
    check_out DATE NOT NULL,
    price REAL NOT NULL,
-   num_people INTEGER NOT NULL,
+   num_guests INTEGER NOT NULL,
    usr_rating REAL DEFAULT 0 NOT NULL,
    usr_comment VARCHAR DEFAULT NULL,
    usr_comment_date DATE DEFAULT NULL,
@@ -102,7 +102,7 @@ INSERT INTO usr
       'Doe', --usr_last_name
       'johndoe@email.com', --usr_email
       '919349157', --usr_phone_number
-      '$2y$12$7UVPawz3ktTGNJYChI1/WeeuVug0J.kXsNlb9QbPHdYpwhAYWKz6', --usr_password: 123456789
+      '$2y$10$EpKKrCShHulwh5iaUUSbG.DaXPSpf4nIEnXmRp4BwU/kXBaDiSWmm', --usr_password: 123456789
       34 --country_id
 );
 
@@ -114,7 +114,7 @@ INSERT INTO usr
       'Doe', --usr_last_name
       'janedoe@email.com', --usr_email
       '912345678', --usr_phone_number
-      '$2y$12$QEZqcaPfGauNHEh4652z0.IcfoXisY3I0wF71u5otn.4xL6qabRwS', --usr_password: password
+      '$2y$10$obkm2f3lNnqIGjmybxt6SuwdvcNjrk4.A.yqFTktL2IN9UJu9xue6', --usr_password: password
       10 --country_id
 );
 
@@ -126,7 +126,7 @@ INSERT INTO usr
       'Fransisco', --usr_last_name
       'fchico@email.com', --usr_email
       '919191919', --usr_phone_number
-      '$2y$12$COAZfqw5QLwynfP.t53NjeHDK2NjBVePtaXoodXLssdSxH0p23JDu', --usr_password: jorgepass
+      '$2y$10$xzf4B.Tij5DnMBm4lx/ENOH.ng0fitnmBo2hr1FO7GxxRSTxEZg7.', --usr_password: jorgepass
       64 --country_id
 );
 
@@ -138,7 +138,7 @@ INSERT INTO usr
       'manuel', --usr_last_name
       'antman@email.com', --usr_email
       '986541123', --usr_phone_number
-      '$2y$12$NIdFPZ/dEtuWyxFgbhktfeMD3MqofEIoXzUr4kWrsQh5Gq/58G.6y', --usr_password: antman123
+      '$2y$10$EZTbD2U2MqM8gRF.WZ2nwuDEMvQjkpaWSkr/CJFIY4xDRJvTEEUUC', --usr_password: antman123
       64 --country_id
 );
 
@@ -150,7 +150,7 @@ INSERT INTO usr
       'Torres', --usr_last_name
       'pemigo@email.com', --usr_email
       '967561781', --usr_phone_number
-      '$2y$12$8sU8G/HsbPtBuA7ardtQgO6zA/Lyyza15oBlXYNSYfqNuf1ztYtqC', --usr_password: migpedro00
+      '$2y$10$vQUO45NWCDO9U2siFdKQCubk.9MRDzEpsXLE3SAUL.TOq9NtsQ.72', --usr_password: migpedro00
       64 --country_id
 );
 
@@ -162,136 +162,142 @@ INSERT INTO usr
       'Almeida', --usr_last_name
       'migeida@email.com', --usr_email
       '977456185', --usr_phone_number
-      '$2y$12$8sU8G/HsbPtBuA7ardtQgO6zA/Lyyza15oBlXYNSYfqNuf1ztYtqC', --usr_password: migpedro00
+      '$2y$10$iAzeY7eOqZcM5a4k0SHy7uIqSwD9cjTsmZZvWE9xEgs0OJjzXtc0e', --usr_password: migueida87
       64 --country_id
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id) 
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id) 
    VALUES(
       1, --id
-      'Cute House', --title
-      150, --price_per_night
-      'Johannes van der Waalsstraat 107', --place_address
-      'A cute house to relax near and have fun.', --place_description
-      4, --num_people
+      'The Porto Concierge - Unexpected Journey C', --title
+      30, --price_per_night
+      'Porto Street 107', --place_address
+      'Practical and conveniently located Studio with all amenities for a comfortable stay. Centrally located to enjoy all the city has to offer! In this apartment can sleep up to 4 people comfortably.
+      Shared outside garden.
+      Free Wifi is available on all areas of the apartment.
+      Towels and bed Linen are provided for your stay.', --place_description
+      4, --num_guests
       1, --owner_id: John Doe
-      1411 --city_id: Amsterdam
+      1867 --city_id: Porto
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       2, --id
-      'Awesome House', --title
-      200, --price_per_night
+      'Champs-Élysées Golden triangle flat with mezzanine', --title
+      80, --price_per_night
       'Awesome street 143', --place_address
-      'An awesome house to hold events and partys.', --place_description
-      5, --num_people
+      'Newly renovated tiny apartment with mezzanine, compact and design,well-equipped, direct elevator. (The space design is more suitable for young people)
+      Located in the center of Paris, surrounded by Avenue Champs Élysées, Avenue George V and Avenue Montaigne, called the Golden Triangle area.
+      Arc de Triomphe, LV flagship store, Lido nightclub, Ladurée and Subway station are all within a 1-5 minute walk.', --place_description
+      2, --num_guests
       2, --owner_id: John Doe
-      1411 --city_id: Amsterdam
+      6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       3, --id
-      'Fantastic House', --title
+      'Sweet & cosy room next to Canal Saint Martin', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      2, --num_guests
       3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
+      6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       4, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
-      'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      'The room is located right in the heart of la République area, in the 10th district of Paris. It’s close to lively streets, transportation and shops, making your stay in Paris easy and enjoyable.
+      The room is bright, quiet and comfy, which makes it the perfect place to rest after your long and exciting days exploring the capital city.', --place_description
+      7, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       5, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      7, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       6, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      9, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       7, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      7, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       8, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      4, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       9, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      3, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_people, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
    VALUES(
       10, --id
       'Fantastic House', --title
       300, --price_per_night
       'Fantastic road 107', --place_address
       'A fantastic house to simply have fun.', --place_description
-      7, --num_people
+      6, --num_guests
       3, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
@@ -337,8 +343,8 @@ INSERT INTO owner_gallery VALUES(
 );
 
 INSERT INTO owner_gallery VALUES(
-   3, --place id
-   7 --owner_photo id
+   7, --place id
+   1 --owner_photo id
 );
 
 INSERT INTO owner_gallery VALUES(
@@ -364,7 +370,7 @@ INSERT INTO tag VALUES(
 
 INSERT INTO tag VALUES(
    2, 
-   'Bath Room'
+   'Bathroom'
 );
 
 INSERT INTO tag VALUES(
@@ -379,7 +385,7 @@ INSERT INTO tag VALUES(
 
 INSERT INTO tag VALUES(
    5, 
-   'Wi-fi'
+   'Wi-Fi'
 );
 
 INSERT INTO tag VALUES(
@@ -389,12 +395,17 @@ INSERT INTO tag VALUES(
 
 INSERT INTO tag VALUES(
    7, 
-   'Modest'
+   'Work desk'
 );
 
 INSERT INTO tag VALUES(
    8, 
    'By the Beach'
+);
+
+INSERT INTO tag VALUES(
+   9, 
+   'Air conditioning'
 );
 
 -- INSERT ALL COUNTRYS --

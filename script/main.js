@@ -69,23 +69,33 @@ function showDivs(n) {
 
 /*------ Search Bar ----*/
 
-let countryIdSelected = document.getElementById('country_select')
-countryIdSelected.addEventListener('change', getCityByCountry)
+function getCityByCountry(event) {
 
-function getCityByCountry() {
-
-    let countryIdSelected = document.getElementById('country_select')
+    let countryIdSelected = event.target
     let currentCountry = countryIdSelected.options[countryIdSelected.selectedIndex].value
 
     let request = new XMLHttpRequest()
-    request.addEventListener('load', citiesReceived)
+    request.addEventListener('load', function () {
+        citiesReceived(event.target, this)
+    })
     request.open('get', '../ajax/get_cities.php?country_id=' + currentCountry, true)
     request.send()
 }
 
-function citiesReceived() {
-    let cities = JSON.parse(this.responseText)
-    let list = document.getElementById('city_select')
+function citiesReceived(country_select_element, obj) {
+    let cities = JSON.parse(obj.responseText)
+
+    let common_acestor_id = ""
+    let city_selects = document.getElementsByClassName('city_select')
+    for(let i = 0; i < city_selects.length; i++) {
+        let element = findFirstCommonAncestor(country_select_element, city_selects[i])
+        if (element.id != 'site-container') {
+            common_acestor_id = element.id
+            break
+        }
+    }
+
+    let list = document.querySelector('#' + common_acestor_id + ' .city_select')
     list.innerHTML = '' // Clean current cities
 
     // Add new suggestions
@@ -94,6 +104,28 @@ function citiesReceived() {
         item.innerHTML = city.city_name
         list.appendChild(item)
     })
+}
+
+function findFirstCommonAncestor(nodeA, nodeB, ancestorsB) {
+    var ancestorsB = ancestorsB || getAncestors(nodeB);
+    if(ancestorsB.length == 0) return null;
+    else if(ancestorsB.indexOf(nodeA) > -1) return nodeA;
+    else if(nodeA == document) return null;
+    else return findFirstCommonAncestor(nodeA.parentNode, nodeB, ancestorsB);
+}
+
+function getAncestors(node) {
+    if(node != document) return [node].concat(getAncestors(node.parentNode));
+    else return [node];
+}
+
+if(Array.prototype.indexOf === undefined) {
+    Array.prototype.indexOf = function(element) {
+        for(var i=0, l=this.length; i<l; i++) {
+            if(this[i] == element) return i;
+        }
+        return -1;
+    };
 }
 
 function calculateRentPrice(price_per_night) {

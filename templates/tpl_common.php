@@ -59,7 +59,7 @@
                     <?php } else { 
                         $user = getUserName($user_email); ?>
                         <button id="username-tile" onclick="toggleDropDownMenu()">
-                            <img src="../images/profiles/<?=$user['profile_pic']?>" alt="User Profile Picture">
+                            <img src="../images/profiles/originals/<?=$user['profile_pic']?>" alt="User Profile Picture">
                             <div id="username"><?=$user['first_name']?> <?=$user['last_name']?></div>
                             <i class="material-icons">arrow_drop_down</i>
                         </button>

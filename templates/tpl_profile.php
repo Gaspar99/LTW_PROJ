@@ -11,14 +11,14 @@
                 <div id="user_bio">
                     <h1 id="user_first_name"><?=$user_info['first_name']?></h1> 
                     <h1 id="user_last_name"><?=$user_info['last_name']?></h1>
-                    <img id="profile_pic" src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+                    <img id="profile_pic" src="../images/profiles/originals/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
                     <h2 id="phone_number"><?=$user_info['phone_number']?></h3>
                     <h2 id="email"><?=$user_info['email']?></h4>
                 </div>
 
                 <?php if (isset($_SESSION['user_email']) && $user_info['email'] == $_SESSION['user_email']) { ?>
                 <div id="user_options">
-                    <a class="button" href="../pages/add_place.php">Add Place</a>
+                    <a class="button" href="../pages/add_place.php?id=<?=$_GET['id']?>">Add Place</a>
                     <a class="button" href="../pages/edit_profile.php?id=<?=$_GET['id']?>">Edit Profile</a>
                 </div>
                 <?php } ?>
@@ -46,11 +46,10 @@
     function draw_profile_edit() {
     $user_info = getUserInfo($_GET['id']);?>
 
-    <form class="todo" action="../actions/action_profile_update.php" method="post">
-        
+    <form class="todo" action="../actions/action_profile_update.php" method="post"  enctype="multipart/form-data">
         <section id="profile_pic_update">
-            <img src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
-            <input type="file" name="image" accept="image/*" alt="Upload"> <!--check this later idk-->
+            <img src="../images/profiles/originals/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
+            <input type="file" name="image">
         </section>
 
         <section id= "profile_info_update">
@@ -72,7 +71,7 @@
 
             <input type="hidden" name="id" value="<?=$_GET['id']?>"> 
 
-            <button class="submit-button" type="submit">Save</button>
+            <button class="submit-button" type="submit" value="Upload">Save</button>
         </section>
     </form>
 <?php } ?> 

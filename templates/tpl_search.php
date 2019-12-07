@@ -6,19 +6,19 @@
     */
     function draw_search_bar($countries) { ?>
 
-        <form id ="searchForm">
+        <form id="searchForm">
             <span class="close" onclick="closeSearchForm()" title="Close Form">&times;</span>
 
             <div class="form-country">
                 <label for="country">Country</label>
-                <select name="country" id="country_select" oninput="getCityByCountry()">
+                <select name="country" class="country_select" oninput="getCityByCountry(event)">
                     <?php draw_countryOptions($countries); ?> 
                 </select>
             </div>
 
             <div class="form-city">
                 <label for="city">City</label>
-                <select name="city" id="city_select">
+                <select name="city" class="city_select">
                     <option disabled selected>Select City</option>
                 </select>
             </div>
