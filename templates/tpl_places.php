@@ -1,5 +1,7 @@
 <?php
-    #include_once('../database/db_places.php'); #idk if i need this
+    include_once('../database/db_places.php');
+    
+    
     /**
     * 
     */
@@ -63,9 +65,7 @@
                 <h1 id="place_title"><?=$place['title']?></h1>
 
                 <?php if (isset($_SESSION['user_email']) && $owner['email'] == $_SESSION['user_email']) { ?>
-                <a class="button" id="edit_place" href="../pages/home.php">
-                    Edit Place
-                </a>
+                <a class="button" id="edit_place" href="../pages/home.php">Edit Place</a>
                 <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/usr_profile.php?id=<?=$place['place_owner']?>">
@@ -132,9 +132,10 @@
                                 <input required id="check_out_value" type="date" name="check_out" oninput="calculateRentPrice(<?=$place['price']?>)">
                             </div>
                             
-                            <div class="num_people">
-                                <label for="num_people">Number of People</lable>
-                                <input required id="num_people_value" type="number" name="num_people" oninput="calculateRentPrice(<?=$place['price']?>)" min="1" max="<?=$place['num_people']?>">
+                            <div id="num_guests_input">
+                                <span class="button" onclick="update_guests(event, -1)">-</span>
+                                <input disabled type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
+                                <span class="button" onclick="update_guests(event, +1)">+</span>
                             </div>
 
                             <input type="hidden" name="tourist" value="<?=getUserId($_SESSION['user_email'])?>">
@@ -179,49 +180,94 @@
     <?php } 
 
 
-    function draw_add_place() { ?>
+    function draw_add_place() { 
+        $countries = get_countries()?>
 
-        <form class="add_place_form" action="../actions/action_add_place.php" method="post">
+        <form id="add_place" action="../actions/action_add_place.php" method="post">
 
-            <div id= "description">
-
+            <div id="place_title">
                 <label for="title">Title</label>
-                <input type="text" name="title"  placeholder="Enter Title" required><br>
+                <input type="text" name="title"  placeholder="Enter Title" required>
+            </div>
 
-                <label for="description">Description</label>
-                <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required></textarea>
+            <section id="location">
 
-                <div id= "tags">
-                    <?php $tags = get_place_tags(); ?>
-                    <label for="tags">Tags</label>
-                    <select name="tags" id="tags" multiple> 
-                        <?php foreach($tags as $tag) { ?>
-                            <option value="<?=$tag['tag_name']?>"><?=$tag['tag_name']?></option>
-                       <?php } ?>
+                <div class="form-country">
+                    <label for="country">Country</label>
+                    <select name="country" id="country_select" oninput="getCityByCountry()">
+                    <?php draw_countryOptions($countries); ?> 
                     </select>
                 </div>
 
-            </div>
-
-            <div id= "address">
-                <!-- country -->
-                TODO: country 
-                TODO: city
-                <!-- city --> 
-                <label for="address">Adress</label>
-                <input type="text" name="adress"  placeholder="Enter Adress" required><br>
-            </div>
-            <div id= "numbers">
-                <label for="num_people">People Number</label>
-                <input type="number" value= "1" min="1" max="10" step="1" name="num_people" required><br>
+                <div class="form-city">
+                    <label for="city">City</label>
+                    <select name="city" id="city_select">
+                        <option disabled selected>Select City</option>
+                    </select>
+                </div>
                 
-                <label for="price">Price</label>
-                <input type="number" value= "1" min="0"step="1" name="price" required><br>
-            </div>
+                <div class="address">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" placeholder="Enter Place Address" required>
+                </div>
+                
+            </section>
 
-            <div class= "upload">
+            <section id="numbers">
+                <div class="num_guests">
+                    <label for="num_guests">Max. Guests</label>
+                    <div id="num_guests_input">
+                        <span class="button" onclick="update_guests(event, -1)">-</span>
+                        <input disabled type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
+                        <span class="button" onclick="update_guests(event, +1)">+</span>
+                    </div>
+                </div>
 
-            </div>
+                <div id="price">
+                    <label for="price">Price per Night</label>
+                    <div class="price_input">
+                        <input type="number" value="1" min="0" step="10" name="price" required>
+                        <i class="material-icons">euro</i>
+                    </div>
+                </div>
+            
+            </section>
+
+            <hr>
+
+            <article id="body">
+        
+                <div id="upload">
+                    <img src="../images/site/default_place.jpg" width="400" height="300">
+                    
+                </div>
+            
+                <section id="details">
+                    <div id="description">
+                        <label for="description">Description</label>
+                        <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required></textarea>
+                    </div>
+
+                    <hr>
+            
+                    <section id="tags_section">
+                        <?php $tags = get_place_tags(); ?>
+                        <label for="tags">Tags</label>
+                        <div id="tags">
+                            <?php foreach($tags as $tag) { ?>
+                            <div class="tag">
+                                <div class="tag_name"><?=$tag['tag_name']?></div>
+                                <div class="checkbox_container">
+                                    <input type="checkbox" name="tag" value="<?=$tag['tag_name']?>" oninput="toggle_checkbox(event)">
+                                    <i class="material-icons">check</i>
+                                </div>
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </section>
+                </section>
+            </article>
+            
             
             <input type="hidden" name="owner_id" value="<?=$_GET['id']?>"> 
 

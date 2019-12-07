@@ -33,6 +33,20 @@
                 <input type="date" name="check_out">
             </div>
 
+            <div class="num_guests">
+                <label for="num_guests">Max. Guests</label>
+                <div id="num_guests_input">
+                    <span class="button" onclick="update_guests(event, -1)">-</span>
+                    <input disabled type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
+                    <span class="button" onclick="update_guests(event, +1)">+</span>
+                </div>
+            </div>
+
+            <div class="price">
+                <label for="price">Price</label>
+                <input class="price_input" type="number" value= "0" min="0" step="10" name="price" required>
+            </div>
+
             <button class="submit-button" type="submit"><img src="../images/site/loupe.png"></button>
         </form>
         

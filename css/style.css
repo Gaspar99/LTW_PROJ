@@ -22,15 +22,13 @@ body {
 
 #site-content {
     flex: 1;
-    max-width: 80em;
+    width: 80em;
     margin: 1em auto;
 }
 
 /* --------------- Generics --------------- */
-a, p, input, li, button, label, div {
+a, p, input, li, button, label, div, textarea {
     font-family: var(--roboto-font);
-    margin: 0;
-    padding: 0;
 }
   
 a {
@@ -49,14 +47,12 @@ li {
     list-style-type: none;
 }
 
-label {
-    /* Layout */
-    margin: 0;
+textarea {
+    resize: none;
+}
 
-    /* Style */
+label {
     font-weight: bold;
-    font-family: var(--roboto-font);
-    font-size: 1em;
 }
 
 /* Set a style for all buttons */
@@ -75,18 +71,34 @@ button:hover, .button:hover {
     opacity: 0.8;
 }
 
+button:focus, .button:focus {
+    outline: 0;
+}
+
 /* Full-width input fields */
 input, select, textarea {
     /* Layout */
     display: inline-block;
     width: 100%;
     margin: 0.5em 0 1em 0;
-    padding: 1em 0.2em;
+    padding: 1em;
 
     /* Style */
-    border: 0.05em solid black;
-    border-radius: 0.01em;
+    border: 0.08em solid grey;
+    border-radius: 0.5em;
     box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 0.08em solid var(--panel-color);
+    outline: 0;
+}
+
+/* Customizing input of type number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outter-spin-button
+{
+    -webkit-appearance: none;
 }
 
 /* ----------------- Site - General -------------- */
@@ -249,8 +261,38 @@ input, select, textarea {
 }
 
 #searchForm > div {
-    width: 10em;
+    max-width: 8em;
     margin: 1em;
+}
+
+/*Customizing every input for number of guests */
+#num_guests_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+#num_guests_input input {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: min-content;
+}
+
+#num_guests_input .button {
+    padding: auto;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    margin: 0;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
 }
 
 #searchForm .submit-button {
@@ -660,10 +702,6 @@ body > #messages .success {
     font-size: 2em;
 }
 
-#place_page #place_body #place_info #comments {
-  
-}
-
 /*-----USER PROFILE-------*/ 
 #profile_page {
     display: grid;
@@ -756,7 +794,7 @@ body > #messages .success {
     position: relative;
 }
 
-/*-----USER PROFILE-------*/ 
+/*----- USER PROFILE -------*/ 
 #profile_pic_update{
     display: block;
     width: 50%;
@@ -764,7 +802,7 @@ body > #messages .success {
     float: left;
 }
 
-#profile_pic_update img{
+#profile_pic_update img {
     width: 50%;
     height: 50%;
     margin: 0.5em;
@@ -775,4 +813,185 @@ body > #messages .success {
     width: 50%;
     height: 50%;
     float: right;
+}
+
+/*----- ADD PLACE -------*/
+#add_place {
+    display: block;
+    margin: 0 1em;
+} 
+
+/*-- Place title --*/
+#add_place #place_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 0 1.2em 0;
+}
+
+#add_place #place_title label {
+    padding: 0 0.5em 0 0;
+    font-size: 2em;
+}
+
+#add_place #place_title input {
+    margin: 0;
+    padding: 0.4em 1em;
+    font-size: 1.2em;
+}
+
+/*-- Place location --*/
+#add_place #location {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#add_place #location .form-country, 
+#add_place #location .form-city {
+    margin: 0 1em 0 0;
+    max-width: 10em;
+}
+
+#add_place #location #address {
+    flex-grow: 5;
+}
+
+/*-- Place numbers - price & num guests --*/
+#add_place #numbers {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin: 1.8em 0 0.5em 0;
+}
+
+#add_place #numbers > * {
+    display: flex;
+    align-items: center;
+    margin: 0 2em 0 0;
+    width: min-content;
+}
+
+#add_place #numbers > * label {
+    margin: 0 0.6em 0 0;
+    font-size: 1.3em;
+    width: max-content;
+}
+
+/* Price */
+#add_place #numbers #price label {
+    min-width: max-content;
+}
+
+#add_place #numbers #price .price_input {
+    position: relative;
+}
+
+#add_place #numbers #price .price_input input {
+    max-width: 10em;
+    min-width: 5em;
+    font-size: 1.5em;
+    padding: 0.2em 0.7em;
+    margin: 0;
+}
+
+#add_place #numbers #price .price_input i {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    padding: 0.3em 0.5em;
+}
+
+#add_place #body {
+    display: grid;
+    grid-template-columns: 25em 2em auto;
+    margin: 1em 0;
+}
+
+/* Upload */
+#add_place #body #upload {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#add_place #body #upload:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Details */
+#add_place #body #details {
+    grid-column-start: 3;
+    grid-column-end: end;
+}
+
+#add_place #body #details label {
+    font-size: 1.4em;
+}
+
+#add_place #body #details #description textarea {
+    font-size: 1.2em;
+}
+
+/* Tags */
+#add_place #body #details #tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#add_place #body #details #tags .tag {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1em;
+}
+
+#add_place #body #details #tags .tag .checkbox_container {
+    position: relative;
+    margin: 0 0.6em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    width: 1.2em;
+    height: 1.2em;
+    border: 0.08em solid var(--panel-color);
+    border-radius: 30%;
+}
+
+/* Hiding default checkbox to crete our own */ 
+#add_place #body #details #tags .tag .checkbox_container input {
+    position: absolute;
+    left: 0;
+    top: -0.5em;
+    z-index: 1;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+#add_place #body #details #tags .tag .checkbox_container:hover {
+    opacity: 0.6;
+}
+
+#add_place #body #details #tags .tag .checkbox_container i {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Sumbit button */
+#add_place .submit-button {
+    width: 15%;
+    margin: 2em 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }

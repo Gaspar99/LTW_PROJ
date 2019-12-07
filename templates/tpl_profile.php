@@ -47,10 +47,12 @@
     $user_info = getUserInfo($_GET['id']);?>
 
     <form class="todo" action="../actions/action_profile_update.php" method="post">
+        
         <section id="profile_pic_update">
             <img src="../images/profiles/<?=$user_info['profile_pic']?>" alt="Profile_pic"/>
             <input type="file" name="image" accept="image/*" alt="Upload"> <!--check this later idk-->
         </section>
+
         <section id= "profile_info_update">
 
             <label for="first_name">First Name:</label>
