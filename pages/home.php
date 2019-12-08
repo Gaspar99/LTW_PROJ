@@ -1,14 +1,12 @@
-<?php 
-  include_once('../includes/session.php');
-  include_once('../templates/tpl_common.php');
-  include_once('../templates/tpl_places.php');
-  include_once('../database/db_places.php');
+<?php
+include_once("../includes/session.php");
+include_once("../templates/tpl_common.php");
+include_once("../templates/tpl_places.php");
+include_once("../database/db_places.php");
 
-  $places = get_places();
- 
-  draw_site_header();
-  draw_title('Places for Rent');
-  draw_places($places);
-  draw_footer();
+$places = get_places();
 
-?>
+draw_site_header();
+draw_title("Places for Rent");
+draw_places($places);
+draw_footer();

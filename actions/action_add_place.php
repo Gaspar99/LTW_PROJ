@@ -1,17 +1,22 @@
 <?php
-    include_once('../includes/session.php');
-    include_once('../database/db_places.php');
+include_once("../includes/session.php");
+include_once("../database/db_places.php");
 
-    try {
-        add_place($_POST);
+$user_id = get_user_id($_SESSION["user_email"]);
 
-    } catch (PDOException $e) {
-        die($e->getMessage());
-    }
+$place["title"] = $_POST["title"];
+$place["price"] = $_POST["price"];
+$place["address"] = $_POST["address"];
+$place["description"] = $_POST["description"];
+$place["num_guests"] = $_POST["num_guests"];
+$place["owner"] = $_POST["owner"];
+$place["city"] = $_POST["city"];
 
-    #redirect
-    $id= (string) $_POST['owner_id'];
+try {
+    add_place($place);
+    //add_place_photo()
+} catch (PDOException $e) {
+    die($e->getMessage());
+}
 
-    header("Location: ../pages/usr_profile.php?id=$id");
-
-?>
+header("Location: ../pages/usr_profile.php?id=$user_id");

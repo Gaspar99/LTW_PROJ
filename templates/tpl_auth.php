@@ -1,83 +1,82 @@
-<?php 
-  /**
-  * Draws the sign in modal form.
-  */ 
-  function draw_signIn() {  ?>
+<?php
 
-    <div id="signInForm" class="modal">
-      <form class="modal-content animate" action="../actions/action_signin.php" method="post">
-        <div class="imgContainer">
-          <span class="close" onclick="closeSignInForm()" title="Close Form">&times;</span>
-          <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
-        </div>
-        <div class="container">
-          <label for="email">Email</label>
-          <input type="text" placeholder="Enter Email" name="email" required>
+/**
+ * Draws the sign in modal form.
+ */
+function draw_sign_in()
+{  ?>
 
-          <label for="password">Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" required>
+  <div id="sign_in_form" class="modal">
+    <form class="modal_content animate" action="../actions/action_signin.php" method="post">
+      <div class="img_container">
+        <span class="close" onclick="close_sign_in_form()" title="Close Form">&times;</span>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/logo.png" alt="Web site Logo"></a>
+      </div>
+      <div class="container">
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter Email" name="email" required>
 
-          <button class="submit-button" type="submit">Sign In</button>
-        </div>
-      </form>
-    </div>
-      
+        <label for="password">Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button class="submit_button" type="submit">Sign In</button>
+      </div>
+    </form>
+  </div>
+
+<?php } 
+
+
+/**
+ * Draws the sign up modal form.
+ */
+function draw_sign_up($countries)
+{  ?>
+
+  <div id="sign_up_form" class="modal">
+    <form class="modal_content animate" action="../actions/action_signup.php" method="post">
+      <div class="img_container">
+        <span class="close" onclick="close_sign_up_form()" title="Close Form">&times;</span>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/logo.png" alt="Web site Logo"></a>
+      </div>
+      <div class="container">
+        <label for="first_name">First Name</label>
+        <input type="text" placeholder="Enter First Name" name="first_name" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" placeholder="Enter Last Name" name="last_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="Enter Email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <label for="phone_num">Phone Number</label>
+        <input type="text" placeholder="Enter Phone Number" name="phone_num" required>
+
+        <label for="country_id">Country</label>
+        <select name="country_id" class="country_selection" required><?=draw_country_options($countries)?></select>
+
+        <button class="submit_button" type="submit">Create Account</button>
+      </div>
+    </form>
+  </div>
+
+<?php } 
+
+
+/**
+ * 
+ */
+function draw_dropdrown($user_email)
+{
+  $id = get_user_id($user_email); ?>
+
+  <div id="user_dropdown_menu" class="dropdown_menu">
+    <a href="../pages/profile.php?id=<?= $id ?>">My Profile</a>
+    <a href="../pages/add_place.php">Add Place</a>
+    <a href="../actions/action_logout.php">Logout</a>
+  </div>
+
 <?php } ?>
-
-
-<?php 
-  /**
-  * Draws the sign up modal form.
-  */ 
-  function draw_signUp($countries) {  ?>
-
-    <div id="signUpForm" class="modal">
-      <form class="modal-content animate" action="../actions/action_signup.php" method="post">
-        <div class="imgContainer">
-          <span class="close" onclick="closeSignUpForm()" title="Close Form">&times;</span>
-          <a href="../pages/home.php"><img class="site-logo" src="../images/logo.png" alt="Web site Logo"></a>
-        </div>
-        <div class="container">
-          <label for="first_name">First Name</label>
-          <input type="text" placeholder="Enter First Name" name="first_name" required>
-
-          <label for="last_name">Last Name</label>
-          <input type="text" placeholder="Enter Last Name" name="last_name" required>
-
-          <label for="email">Email</label>
-          <input type="text" placeholder="Enter Email" name="email" required>
-
-          <label for="password">Password</label>
-          <input type="password" placeholder="Enter Password" name="password" required>
-
-          <label for="phone_num">Phone Number</label>
-          <input type="text" placeholder="Enter Phone Number" name="phone_num" required>
-          
-          <label for="country_id">Country</label>
-          <select name="country_id" class="country_selection" required><?php draw_countryOptions($countries)?></select>
-          
-          <button class="submit-button" type="submit">Create Account</button>
-        </div>
-      </form>
-    </div>
-      
-<?php } ?>
-
-<?php 
-  /**
-  * 
-  */
-  function draw_dropdrown($user_email) { 
-    $id = getUserId($user_email); ?>
-    
-    <div id="userDropdownMenu" class="dropdownMenu">
-      <a href="../pages/usr_profile.php?id=<?=$id?>">My Profile</a>
-      <a href="../pages/add_place.php?id=<?=$id?>">Add Place</a>
-      <a href="../actions/action_logout.php">Logout</a>
-    </div>
-
-  <?php } ?>
-
-
-    
-

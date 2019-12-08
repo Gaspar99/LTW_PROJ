@@ -1,9 +1,8 @@
 <?php
-  include_once('../includes/session.php');
-  
-  session_destroy();
+include_once("../includes/session.php");
 
-  $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged out!');
+session_destroy();
 
-  header('Location: ../pages/home.php');
-?>
+$_SESSION["messages"][] = array("type" => "success", "content" => "Logged out!");
+
+header("Location: ../pages/home.php");
