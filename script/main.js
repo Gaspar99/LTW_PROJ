@@ -136,6 +136,36 @@ function cities_received(country_select_element, obj) {
     })
 }
 
+/*------ Search Bar ----*/
+let text = document.getElementById("search_input")
+text.addEventListener("keyup", country_city_changed)
+
+function country_city_changed(event){
+
+    let text = event.target
+    let request = new XMLHttpRequest()
+  
+    request.addEventListener("load", countries_received)
+    request.open("get", "../ajax/search.php?name=" + text.value, true)
+    request.send()
+}
+
+// Handler for ajax response received
+function countries_received() {
+    
+    let countries = JSON.parse(this.responseText)
+    let list = document.getElementById("suggestions")
+    list.innerHTML = ""; // Clean current countries
+    // Add new suggestions
+    for (let country in countries) {
+        console.log(country)
+      let item = document.createElement("li")
+      item.innerHTML = countries[country].country_name
+      list.appendChild(item)
+    }
+}
+
+
 /**
  * 
  * @param {*} node_a 
