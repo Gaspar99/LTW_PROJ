@@ -10,11 +10,11 @@ function draw_search_bar($countries)
     <form id="search_form">
         <span class="close" onclick="close_search_form()" title="Close Form">&times;</span>
 
-
+        <div class="search_type">
             <label for= "search"> Search </label> 
             <input id="search_input" type = "text" name = "search" >
             <ul id="search_suggestions"> </ul>
-
+        </div>
         
         <div class="form_country">
             <label for="country">Country</label>
