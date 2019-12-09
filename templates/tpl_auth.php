@@ -14,7 +14,7 @@ function draw_sign_in()
       </div>
       <div class="container">
         <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <input type="text" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
 
         <label for="password">Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
@@ -47,13 +47,17 @@ function draw_sign_up($countries)
         <input type="text" placeholder="Enter Last Name" name="last_name" required>
 
         <label for="email">Email</label>
-        <input type="email" placeholder="Enter Email" name="email" required>
+        <input type="email" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter Password" name="password" 
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
+          title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
+          required>
 
         <label for="phone_num">Phone Number</label>
-        <input type="text" placeholder="Enter Phone Number" name="phone_num" required>
+        <input type="text" placeholder="Enter Phone Number" name="phone_num" 
+        pattern="(9([0-9]{8}))"  title ="Phone Number should start with a 9 have 9 character length" required>
 
         <label for="country_id">Country</label>
         <select name="country_id" class="country_selection" required><?=draw_country_options($countries)?></select>
