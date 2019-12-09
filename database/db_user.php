@@ -120,7 +120,30 @@ function get_user_info($user_id)
 function update_profile($user)
 {
     $db = Database::instance()->db();
-    if($user["password"] != null){
+
+    if($user["password"] == null){
+
+        $stmt = $db->prepare(
+            "UPDATE 
+                    usr 
+                SET 
+                    usr_first_name = ?, 
+                    usr_last_name = ?, 
+                    usr_email = ?, 
+                    usr_phone_number = ?
+                WHERE usr_id = ?"
+        );
+    
+        $stmt->execute(array(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["phone_number"],
+            $user["id"]
+        ));
+
+    }else{
+       
         $stmt = $db->prepare(
             "UPDATE 
                     usr 
@@ -139,25 +162,6 @@ function update_profile($user)
             $user["email"],
             $user["phone_number"],
             password_hash($user["password"], PASSWORD_DEFAULT),
-            $user["id"]
-        ));
-    }else{
-        $stmt = $db->prepare(
-            "UPDATE 
-                    usr 
-                SET 
-                    usr_first_name = ?, 
-                    usr_last_name = ?, 
-                    usr_email = ?, 
-                    usr_phone_number = ?, 
-                WHERE usr_id = ?"
-        );
-    
-        $stmt->execute(array(
-            $user["first_name"],
-            $user["last_name"],
-            $user["email"],
-            $user["phone_number"],
             $user["id"]
         ));
     }
