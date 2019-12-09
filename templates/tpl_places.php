@@ -29,7 +29,7 @@ function draw_place($place)
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
             <!--TODO insert the get coise here-->
             <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
-            <img class="place_image" src="../images/places/<?= $place["image_name"] ?>" alt="Place Image" />
+            <img class="place_image" src="../images/places/thumbs_medium/<?= $place["image_name"] ?>.jpeg" alt="Place Image" />
             <h1 class="place_title"><?= $place["title"] ?></h1>
             <ul class="place_footer">
                 <li class="place_rating">
@@ -71,7 +71,7 @@ function draw_place_info($place_id)
             <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/profile.php?id=<?= $place["place_owner"] ?>">
-                        <img src="../images/profiles/originals/<?= $owner["profile_pic"] ?>" alt="User Profile Picture">
+                        <img src="../images/profiles/thumbs_small/<?= $owner["profile_pic"] ?>.jpeg" alt="User Profile Picture">
                         <div id="username"><?= $owner["first_name"] ?> <?= $owner["last_name"] ?></div>
                     </a>
                 </div>
@@ -106,7 +106,7 @@ function draw_place_info($place_id)
                 <section id="place_gallery">
                     <div id="image_container">
                         <?php foreach ($image_gallery as $image) { ?>
-                            <img src="../images/places/<?= $image ?>" alt="Image Place">
+                            <img src="../images/places/thumbs_medium/<?= $image ?>.jpeg" alt="Image Place">
                         <?php } ?>
                         <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
                         <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
@@ -154,8 +154,6 @@ function draw_place_info($place_id)
                 </section>
 
             </section>
-
-            <div class="vertical_rule"></div>
 
             <section id="place_info">
 
@@ -226,7 +224,7 @@ function draw_add_place($user_id)
                 <label for="num_guests">Max. Guests</label>
                 <div id="num_guests_input">
                     <span class="button" onclick="update_guests(event, -1)">-</span>
-                    <input disabled type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
+                    <input readonly type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
                     <span class="button" onclick="update_guests(event, +1)">+</span>
                 </div>
             </div>
@@ -246,7 +244,7 @@ function draw_add_place($user_id)
         <article id="body">
 
             <div id="upload">
-                <img src="../images/site/default_place.jpg" width="400" height="300">
+                <img src="../images/site/default_place.jpeg" width="400" height="300">
                 <div class="button upload_button">
                     Upload Photo
                     <input type="file" name="image" required>

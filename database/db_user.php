@@ -1,5 +1,6 @@
 <?php
 include_once("../includes/database.php");
+include_once("../util/upload.php");
 
 /**
  * Goes through the database and gets the user name with the email passed
@@ -166,14 +167,14 @@ function update_profile_pic($user_id)
     ));
 
     // Generate filenames for original, medium and small sizes 
-    $originalFileName = "../images/profiles/originals/$img_name";
-    $smallFileName = "../images/profiles/thumbs_small/$img_name";
-    $mediumFileName = "../images/profiles/thumbs_medium/$img_name";
+    $originalFileName = "../images/profiles/originals/$img_name.jpeg";
+    $mediumFileName = "../images/profiles/thumbs_medium/$img_name.jpeg";
+    $smallFileName = "../images/profiles/thumbs_small/$img_name.jpeg";
 
     move_uploaded_file($_FILES["image"]["tmp_name"], $originalFileName);
 
     //Create an image representation of the original image
-    $original = imagecreatefromjpeg($originalFileName);
+    $original = imagecreatefromfile($originalFileName);
 
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
@@ -191,6 +192,7 @@ function update_profile_pic($user_id)
         $mediumwidth = 400;
         $mediumheight = $mediumheight * ($mediumwidth / $width);
     }
+    
     // Create and save a medium image
     $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);

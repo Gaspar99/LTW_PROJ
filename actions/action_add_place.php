@@ -1,6 +1,7 @@
 <?php
 include_once("../includes/session.php");
 include_once("../database/db_places.php");
+include_once("../database/db_user.php");
 
 $user_id = get_user_id($_SESSION["user_email"]);
 
@@ -13,10 +14,10 @@ $place["owner"] = $_POST["owner"];
 $place["city"] = $_POST["city"];
 
 try {
-    add_place($place);
-    //add_place_photo()
+    $place_id = add_place($place);
+    add_place_photo($place_id);
 } catch (PDOException $e) {
     die($e->getMessage());
 }
 
-header("Location: ../pages/usr_profile.php?id=$user_id");
+header("Location: ../pages/profile.php?id=$user_id");

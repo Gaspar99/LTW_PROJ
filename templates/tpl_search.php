@@ -48,7 +48,7 @@ function draw_search_bar($countries)
             <input class="price_input" type="number" value="0" min="0" step="10" name="price" required>
         </div>
 
-        <button class="submit_button" type="submit"><img src="../images/site/loupe.png"></button>
+        <button class="submit_button" type="submit"><img src="../images/site/loupe.jpeg"></button>
     </form>
 
 <?php  }  ?>

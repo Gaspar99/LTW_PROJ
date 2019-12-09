@@ -10,11 +10,11 @@ function draw_sign_in()
     <form class="modal_content animate" action="../actions/action_signin.php" method="post">
       <div class="img_container">
         <span class="close" onclick="close_sign_in_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/logo.png" alt="Web site Logo"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
       <div class="container">
         <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <input type="email" placeholder="Enter Email" name="email" required>
 
         <label for="password">Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
@@ -37,7 +37,7 @@ function draw_sign_up($countries)
     <form class="modal_content animate" action="../actions/action_signup.php" method="post">
       <div class="img_container">
         <span class="close" onclick="close_sign_up_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/logo.png" alt="Web site Logo"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
       <div class="container">
         <label for="first_name">First Name</label>

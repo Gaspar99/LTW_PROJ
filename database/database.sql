@@ -6,7 +6,7 @@ CREATE TABLE usr
    usr_email VARCHAR NOT NULL UNIQUE,
    usr_phone_number VARCHAR NOT NULL,
    usr_password VARCHAR NOT NULL,
-   usr_profile_picture VARCHAR DEFAULT "default.png" NOT NULL,
+   usr_profile_picture VARCHAR DEFAULT "default" NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    country_id INTEGER REFERENCES country NOT NULL
 );
@@ -320,13 +320,13 @@ VALUES(
 INSERT INTO owner_photo
 VALUES(
       1, --ID
-      "lakeHouse.png" --photo_path
+      "lakeHouse" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       2, --ID
-      "beachHouse.png" --photo_path
+      "beachHouse" --photo_path
 );
 
 INSERT INTO owner_gallery

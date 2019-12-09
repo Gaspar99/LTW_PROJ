@@ -131,6 +131,7 @@ function cities_received(country_select_element, obj) {
     // Add new suggestions
     cities.forEach((city) => {
         let item = document.createElement("option")
+        item.value = city.city_id
         item.innerHTML = city.city_name
         list.appendChild(item)
     })
