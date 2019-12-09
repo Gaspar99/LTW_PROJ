@@ -9,8 +9,8 @@
       'SELECT id AS country_id, country_name
         FROM country
         WHERE country_name
-            LIKE upper(?) '
-            //LIMIT 10'
+            LIKE upper(?) 
+            LIMIT 10'
   );
   $stmt->execute(array("$name%"));
   $countries = $stmt->fetchAll();

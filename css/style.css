@@ -301,6 +301,20 @@ input[type=number]::-webkit-outter-spin-button {
     margin: 1em;
 }
 
+#search_suggestions {
+    float: right;
+    width: 50%;
+}
+
+#result_suggestions{
+    margin: 0.1em;
+    border-bottom:  0.05em solid var(--panel-color);
+    cursor: pointer;
+   
+}
+#result_suggestions:hover{
+    background-color: var(--search-grey);
+}
 
 /* Customizing every input for number of guests */
 

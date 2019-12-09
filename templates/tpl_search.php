@@ -13,8 +13,7 @@ function draw_search_bar($countries)
 
             <label for= "search"> Search </label> 
             <input id="search_input" type = "text" name = "search" >
-            <ul id="suggestions">
-            </ul>
+            <ul id="search_suggestions"> </ul>
 
         
         <div class="form_country">

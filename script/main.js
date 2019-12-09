@@ -146,7 +146,9 @@ function country_city_changed(event){
     let request = new XMLHttpRequest()
   
     request.addEventListener("load", countries_received)
-    request.open("get", "../ajax/search.php?name=" + text.value, true)
+    if(text.value != "")
+        request.open("get", "../ajax/search.php?name=" + text.value, true)
+    else( document.getElementById("search_suggestions").innerHTML = "")
     request.send()
 }
 
@@ -154,17 +156,19 @@ function country_city_changed(event){
 function countries_received() {
     
     let countries = JSON.parse(this.responseText)
-    let list = document.getElementById("suggestions")
+    let list = document.getElementById("search_suggestions")
     list.innerHTML = ""; // Clean current countries
     // Add new suggestions
     for (let country in countries) {
-        console.log(country)
-      let item = document.createElement("li")
+        //console.log(country)
+      let item = document.createElement("li") 
+      item.id = "result_suggestions"
       item.innerHTML = countries[country].country_name
       list.appendChild(item)
     }
 }
-
+//todo make element selectable, apply css and see how to display cities
+//todo find a way to save the ids
 
 /**
  * 
