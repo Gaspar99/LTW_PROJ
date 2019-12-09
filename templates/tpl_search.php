@@ -15,7 +15,7 @@ function draw_search_bar($countries)
             <input id="search_input" type = "text" name="search" >
             <ul id="search_suggestions"> </ul>
         </div>
-        
+        <!--
         <div class="form_country">
             <label for="country">Country</label>
             <select name="country" class="country_select" oninput="get_city_by_country(event)">
@@ -29,7 +29,7 @@ function draw_search_bar($countries)
                 <option disabled selected>Select City</option>
             </select>
         </div>
-
+-->
         <div class="form_date">
             <label for="check_in">Check In</label>
             <input type="date" name="check_in">

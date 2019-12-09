@@ -165,18 +165,25 @@ function countries_received() {
             let item = document.createElement("li") 
             item.id = "result_suggestions" //css 
             item.innerHTML = countries[country].country_name
+            //item.addEventListener("click", fill_search_bar(countries[country].country_name));
+            item.addEventListener("click", function () {
+                let search_input = document.getElementById("search_input").value=countries[country].country_name 
+                let ul = document.getElementById("search_suggestions").innerHTML=""
+            });
             list.appendChild(item)
         }
         if(countries[country].city_name != null){
             let item = document.createElement("li") 
             item.id = "result_suggestions" //css 
             item.innerHTML = countries[country].country_name + ',' + countries[country].city_name
+            item.addEventListener("click", function () {
+                let search_input = document.getElementById("search_input").value=countries[country].country_name + ',' + countries[country].city_name 
+                let ul = document.getElementById("search_suggestions").innerHTML=""
+            });
             list.appendChild(item)
         }
     }
 }
-//todo make element selectable
-
 /**
  * 
  * @param {*} node_a 
