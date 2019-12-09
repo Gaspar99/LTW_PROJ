@@ -301,6 +301,20 @@ input[type=number]::-webkit-outter-spin-button {
     margin: 1em;
 }
 
+#search_suggestions {
+    float: left;
+    width: 50%;
+}
+
+#result_suggestions{
+    margin: 0.1em;
+    border-bottom:  0.05em solid var(--panel-color);
+    cursor: pointer;
+   
+}
+#result_suggestions:hover{
+    background-color: var(--search-grey);
+}
 
 /* Customizing every input for number of guests */
 
@@ -899,9 +913,6 @@ body>#messages .success {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
-}
-
-#edit_profile #profile_info #profile_pic_update {
 }
 
 #edit_profile #profile_info #profile_pic_update img {

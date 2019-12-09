@@ -122,26 +122,51 @@ function update_profile($user)
 {
     $db = Database::instance()->db();
 
-    $stmt = $db->prepare(
-        "UPDATE 
-                usr 
-            SET 
-                usr_first_name = ?, 
-                usr_last_name = ?, 
-                usr_email = ?, 
-                usr_phone_number = ?, 
-                usr_password = ?
-            WHERE usr_id = ?"
-    );
+    if($user["password"] == null){
 
-    $stmt->execute(array(
-        $user["first_name"],
-        $user["last_name"],
-        $user["email"],
-        $user["phone_number"],
-        password_hash($user["password"], PASSWORD_DEFAULT),
-        $user["id"]
-    ));
+        $stmt = $db->prepare(
+            "UPDATE 
+                    usr 
+                SET 
+                    usr_first_name = ?, 
+                    usr_last_name = ?, 
+                    usr_email = ?, 
+                    usr_phone_number = ?
+                WHERE usr_id = ?"
+        );
+    
+        $stmt->execute(array(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["phone_number"],
+            $user["id"]
+        ));
+
+    }else{
+       
+        $stmt = $db->prepare(
+            "UPDATE 
+                    usr 
+                SET 
+                    usr_first_name = ?, 
+                    usr_last_name = ?, 
+                    usr_email = ?, 
+                    usr_phone_number = ?, 
+                    usr_password = ?
+                WHERE usr_id = ?"
+        );
+    
+        $stmt->execute(array(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["phone_number"],
+            password_hash($user["password"], PASSWORD_DEFAULT),
+            $user["id"]
+        ));
+    }
+    
 }
 
 /**

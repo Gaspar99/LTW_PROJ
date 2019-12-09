@@ -78,22 +78,24 @@ function draw_edit_profile($user_id)
 
         </section>
 
-
         <section id="profile_details">
 
             <div id="phone_number">
                 <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>">
+                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="(9([0-9]{8}))" 
+                title ="Phone Number should start with a 9 and have 9 characters length">
             </div>
 
             <div id="email">
                 <label for="email">Email</label>
-                <input type="email" name="email" value="<?= $user_info["email"] ?>">
+                <input type="email" name="email" value="<?= $user_info["email"] ?>" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
             </div>
 
             <div id="password">
                 <label for="password">Password</b></label>
-                <input type="password" name="password" value="<?= $user_info["password"] ?>">
+                <input type="password" name="password" value="" 
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
             </div>
 
         </section>
