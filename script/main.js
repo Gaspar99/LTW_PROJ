@@ -161,14 +161,21 @@ function countries_received() {
     // Add new suggestions
     for (let country in countries) {
         //console.log(country)
-      let item = document.createElement("li") 
-      item.id = "result_suggestions"
-      item.innerHTML = countries[country].country_name
-      list.appendChild(item)
+        if(countries[country].city_name == null){
+            let item = document.createElement("li") 
+            item.id = "result_suggestions" //css 
+            item.innerHTML = countries[country].country_name
+            list.appendChild(item)
+        }
+        if(countries[country].city_name != null){
+            let item = document.createElement("li") 
+            item.id = "result_suggestions" //css 
+            item.innerHTML = countries[country].country_name + ',' + countries[country].city_name
+            list.appendChild(item)
+        }
     }
 }
-//todo make element selectable, apply css and see how to display cities
-//todo find a way to save the ids
+//todo make element selectable
 
 /**
  * 
