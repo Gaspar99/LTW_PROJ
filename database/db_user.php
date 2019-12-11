@@ -206,15 +206,15 @@ function update_profile_pic($user_id)
     $square = min($width, $height);  // size length of the maximum square
 
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(200, 200);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 200, 200, $square, $square);
+    $small = imagecreatetruecolor(50, 50);
+    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 50, 50, $square, $square);
     imagejpeg($small, $smallFileName);
 
     // Calculate width and height of medium sized image (max width: 400)
     $mediumwidth = $width;
     $mediumheight = $height;
-    if ($mediumwidth > 400) {
-        $mediumwidth = 400;
+    if ($mediumwidth > 300) {
+        $mediumwidth = 300;
         $mediumheight = $mediumheight * ($mediumwidth / $width);
     }
     

@@ -22,7 +22,7 @@ body {
 #site_content {
     flex: 1;
     width: 80em;
-    margin: 1em auto;
+    margin: 2em auto;
 }
 
 
@@ -371,7 +371,7 @@ body>#messages div {
     padding: 1em;
     text-align: center;
     box-shadow: 0 0 1em black;
-    border: 0.2em solid;
+    border: 0.05em solid;
     border-radius: 0.5em;
     font-size: 1.2em;
     color: black;
@@ -539,9 +539,15 @@ body>#messages .success {
 #site_content .places .place {
     /* Layout */
     text-align: left;
-    max-width: 15em;
+    max-width: 20em;
     margin: 2em;
-    background-color: lightgray;
+    background-color: white;
+    border-radius: 1em;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25,1);
+}
+
+#site_content .places .place:hover {
+    box-shadow: 0 0 1em black;
 }
 
 #site_content .places .place a .place_city_country {
@@ -556,13 +562,14 @@ body>#messages .success {
 #site_content .places .place a .place_title {
     /* Style */
     font-size: 1.2em;
-    margin: 0;
+    margin: 1em 0;
     padding: 0 1em;
 }
 
 #site_content .places .place a .place_image {
     /* Layout */
     width: 100%;
+    height: 100%;
     margin: 0;
 }
 
@@ -570,15 +577,19 @@ body>#messages .success {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5em;
+    margin: 0;
     padding: 0;
     font-size: 1em;
+    background-color: lightblue;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 #site_content .places .place a .place_footer>* {
     display: flex;
     align-items: center;
     font-weight: bold;
+    margin: 1em;
 }
 
 #site_content .places .place a .place_footer>*>* {

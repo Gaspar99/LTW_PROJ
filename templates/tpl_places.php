@@ -29,7 +29,7 @@ function draw_place($place)
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
             <!--TODO insert the get coise here-->
             <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
-            <img class="place_image" src="../images/places/thumbs_medium/<?= $place["image_name"] ?>.jpeg" alt="Place Image" />
+            <img class="place_image" src="../images/places/thumbs_small/<?= $place["image_name"] ?>.jpeg" alt="Place Image" width="400" height="250" />
             <h1 class="place_title"><?= $place["title"] ?></h1>
             <ul class="place_footer">
                 <li class="place_rating">
@@ -106,7 +106,7 @@ function draw_place_info($place_id)
                 <section id="place_gallery">
                     <div id="image_container">
                         <?php foreach ($image_gallery as $image) { ?>
-                            <img src="../images/places/thumbs_medium/<?= $image ?>.jpeg" alt="Image Place">
+                            <img src="../images/places/thumbs_medium/<?= $image['img_name'] ?>.jpeg" alt="Image Place">
                         <?php } ?>
                         <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
                         <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>

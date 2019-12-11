@@ -51,7 +51,7 @@ function draw_search_bar($countries)
 
         <div class="price">
             <label for="price">Price</label>
-            <input class="price_input" type="number" value="0" min="0" step="10" name="price" required>
+            <input class="price_input" type="range" value="0" min="0" name="price" required>
         </div>
 
         <button class="submit_button" type="submit"><img src="../images/site/loupe.jpeg"></button>

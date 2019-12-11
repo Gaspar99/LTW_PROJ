@@ -129,11 +129,18 @@ function add_place_photo($place_id)
 
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
-    $square = min($width, $height);  // size length of the maximum square
 
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(200, 200);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 200, 200, $square, $square);
+    $small_width = 350;
+    $small_height = 230;
+
+    if ($width < $small_width) {
+        $small_width = $width;
+        $mediumheight = $$small_height * ($small_height / $width);
+    }
+        
+    $small = imagecreatetruecolor($small_width, $small_height);
+    imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
     imagejpeg($small, $smallFileName);
 
     // Calculate width and height of medium sized image (max width: 400)
@@ -157,20 +164,21 @@ function get_place_gallery($place_id)
 {
     $db = Database::instance()->db();
 
+    // Get photos uploaded by owner
     $stmt = $db->prepare(
-        "SELECT DISTINCT 
+        "SELECT 
                 owner_photo.photo_path AS img_name
             FROM 
-                place, 
                 owner_gallery,
                 owner_photo
-            WHERE place.owner_id = owner_gallery.place AND 
-                place.owner_id = ?"
+            WHERE 
+                owner_gallery.place = ? 
+                AND owner_gallery.photo = owner_photo.id"
     );
 
     $stmt->execute(array($place_id));
 
-    return $stmt->fetch();
+    return $stmt->fetchAll();
 }
 
 /**
