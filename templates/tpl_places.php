@@ -28,7 +28,7 @@ function draw_place($place)
     <article class="place">
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
             <!--TODO insert the get coise here-->
-            <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
+            <h2 class="place_city_country"><?= $place["city_name"] ?> - <?= $place["country_name"] ?></h2>
             <img class="place_image" src="../images/places/thumbs_small/<?= $place["image_name"] ?>.jpeg" alt="Place Image" width="400" height="250" />
             <h1 class="place_title"><?= $place["title"] ?></h1>
             <ul class="place_footer">

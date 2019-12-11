@@ -10,7 +10,7 @@ function get_places()
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id,city.city_name AS city, country.country_name AS country, 
+        "SELECT place.id AS place_id,city.city_name AS city_name, country.country_name AS country_name, 
                     place.title AS title, owner_photo.photo_path AS image_name,
                     place.rating AS rating, place.price_per_night AS price_per_night,
                     place.num_guests AS num_guests
@@ -23,6 +23,25 @@ function get_places()
     $stmt->execute();
 
     return $stmt->fetchAll();
+}
+
+function get_place_card_info($place_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT place.id AS place_id,city.city_name AS city_name, country.country_name AS country_name, 
+                    place.title AS title, owner_photo.photo_path AS image_name,
+                    place.rating AS rating, place.price_per_night AS price_per_night,
+                    place.num_guests AS num_guests
+            FROM place, city, country, owner_gallery, owner_photo
+            WHERE place.city_id = city.id AND city.country_id = country.id
+                    AND owner_gallery.place = place.id 
+                    AND owner_gallery.photo = owner_photo.id AND place.id = ?"
+    );
+
+    $stmt->execute(array($place_id));
+
+    return $stmt->fetch();
 }
 
 /**

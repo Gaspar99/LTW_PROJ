@@ -4,24 +4,20 @@
     function search_places($options){
         //open db connection 
         $db = Database::instance()->db();
-
+        printf($options);
         //todo geography stuff
         //execute querry 
         $stmt = $db->prepare(
-            "SELECT *
+            "SELECT id
             FROM place
             WHERE num_guests < ? AND price_per_night < ? "
         );
-    
+        
         $stmt->execute(array(
             $options["num_guests"],
             $options["price"]
         ));
-
-        //get each place reservation
-
-        //select those avaliable
-
+ 
         //return search 
         return $stmt->fetchAll(); 
     }
