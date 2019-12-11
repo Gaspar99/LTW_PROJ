@@ -23,3 +23,25 @@ function add_reservation($reservation)
         $reservation["place_id"]
     ));
 }
+
+function get_reservations($places){
+    $db = Database::instance()->db();
+
+    $reservations[]=""; 
+    foreach($places as $place){
+        
+        $stmt = $db->prepare(
+            "SELECT id,place_id, check_in,check_out 
+            FROM reservation
+            WHERE ? = place_id"
+        );
+
+        $stmt->execute(array(
+            $place["id"]      
+        ));
+
+        array_push($reservations,$stmt->fetchAll()); 
+    }    
+    return $reservations; 
+
+}
