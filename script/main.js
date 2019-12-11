@@ -101,6 +101,19 @@ function option_navigate(event){
     }
 }
 
+function price_change(){ 
+    //get price selected
+    let price = document.getElementById("price_input")
+    //create new element to display price
+    let div =document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
+    let e = document.createElement("label");
+    div.appendChild("Price: "+price.value)
+    console.log(div.innerHTML)
+
+    //make new element displaying price
+    
+}
+
 
 //::::: AJAX STUFF ::::::://
 

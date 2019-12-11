@@ -35,9 +35,9 @@ function draw_search_bar($countries)
             </div>
         </div>
 
-        <div class="price">
+        <div id="price" class="price">
             <label for="price">Price</label>
-            <input class="price_input" type="range" value="0" min="0" name="price" required>
+            <input id="price_input" type="range" value="0" min="0" name="price" onChange="price_change()" required>     
         </div>
 
         <button class="submit_button" type="submit"><img src="../images/site/loupe.jpeg"></button>
