@@ -91,11 +91,16 @@ function draw_edit_profile($user_id)
                 <input type="email" name="email" value="<?= $user_info["email"] ?>" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
             </div>
 
-            <div id="password">
+            <div id="password_div">
                 <label for="password">Password</b></label>
-                <input type="password" name="password" value="" 
+                <input id="password" type="password" name="password" value="" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                 title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
+
+                <label for="confirm_password">Confirm Password</label>
+                <input id="confirm_password" type="password" placeholder="Repeat Password" name="confirm_password" 
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
+                title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" required>
             </div>
 
         </section>

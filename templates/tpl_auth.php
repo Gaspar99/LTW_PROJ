@@ -16,7 +16,7 @@ function draw_sign_in()
 
       <div class="container">
         <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <input type="text" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
 
         <label for="password">Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
@@ -52,7 +52,12 @@ function draw_sign_up($countries)
         <input type="email" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Enter Password" name="password" 
+        <input id ="password" type="password" placeholder="Enter Password" name="password" 
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
+          title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" required>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input id="confirm_password" type="password" placeholder="Repeat Password" name="confirm_password" 
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
           title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" required>
 

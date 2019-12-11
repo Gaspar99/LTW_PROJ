@@ -86,6 +86,22 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block" 
 }*/
 
+/**
+ * 
+ * @param {*} event 
+ */
+function option_navigate(event){
+    let options = document.getElementById("search_suggestions")
+    console.log(options);
+    if (e.keyCode == '38') {
+        console.log('up')
+    }
+    else if (e.keyCode == '40') {
+        console.log('down')
+    }
+}
+
+
 //::::: AJAX STUFF ::::::://
 
 /*------ Search Bar ----*/
@@ -306,3 +322,25 @@ function toggle_checkbox(event) {
     else
         checkmark.style.display = "block"
 }
+
+/**
+ * password validation 
+ */
+//todo
+/*
+let password = document.getElementById("password")
+confirm_password = document.getElementById("confirm_password")
+
+function validatePassword(){
+
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match")
+  } else {
+    confirm_password.setCustomValidity('')
+  }
+
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+*/

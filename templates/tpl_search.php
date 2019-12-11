@@ -10,26 +10,12 @@ function draw_search_bar($countries)
     <form id="search_form">
         <span class="close" onclick="close_search_form()" title="Close Form">&times;</span>
 
-        <div class="search_type">
+        <div class="search_type" >
             <label for= "search"> Search </label> 
-            <input id="search_input" type = "text" name="search" >
+            <input id="search_input" type = "text" name="search" autocomplete="off" onkeydown="option_navigate(event)" >
             <ul id="search_suggestions"> </ul>
         </div>
-        <!--
-        <div class="form_country">
-            <label for="country">Country</label>
-            <select name="country" class="country_select" oninput="get_city_by_country(event)">
-                <?= draw_country_options($countries); ?>
-            </select>
-        </div>
 
-        <div class="form_city">
-            <label for="city">City</label>
-            <select name="city" class="city_select">
-                <option disabled selected>Select City</option>
-            </select>
-        </div>
--->
         <div class="form_date">
             <label for="check_in">Check In</label>
             <input type="date" name="check_in">

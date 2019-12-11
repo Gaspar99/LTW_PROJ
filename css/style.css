@@ -287,7 +287,7 @@ input[type=number]::-webkit-outter-spin-button {
     position: relative;
     display: none;
     justify-content: center;
-    align-items: center;
+    vertical-align: middle;
     margin: 0;
     padding: 0;
     /* Style */
@@ -296,12 +296,20 @@ input[type=number]::-webkit-outter-spin-button {
     text-decoration: none;
 }
 
+#search_form>.search_type{
+    max-width: 16em;
+    margin: 1em;
+    align-content: center;
+}
+
 #search_form>div {
     max-width: 8em;
     margin: 1em;
 }
 
+/*suggestions*/
 #search_suggestions {
+
     float: left;
     width: 50%;
 }
@@ -358,8 +366,6 @@ input[type=number]::-webkit-outter-spin-button {
     width: 2em;
     height: 2em;
 }
-
-
 /* MESSAGES */
 
 body>#messages div {
