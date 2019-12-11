@@ -205,9 +205,9 @@ function countries_received() {
         if(countries[country].city_name != null){
             let item = document.createElement("li") 
             item.id = "result_suggestions" //css 
-            item.innerHTML = countries[country].country_name + ',' + countries[country].city_name
+            item.innerHTML = countries[country].country_name + ', ' + countries[country].city_name
             item.addEventListener("click", function () {
-                document.getElementById("search_input").value=countries[country].country_name + ',' + countries[country].city_name 
+                document.getElementById("search_input").value=countries[country].country_name + ', ' + countries[country].city_name 
                 document.getElementById("search_suggestions").innerHTML=""
             });
             list.appendChild(item)

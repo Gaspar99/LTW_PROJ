@@ -4,10 +4,9 @@ include_once("tpl_countries.php");
 /**
  * 
  */
-function draw_search_bar($countries)
+function draw_search_bar()
 { ?>
-
-    <form id="search_form">
+    <form id="search_form" action="../actions/action_search.php" method="post">
         <span class="close" onclick="close_search_form()" title="Close Form">&times;</span>
 
         <div class="search_type" >
@@ -18,12 +17,12 @@ function draw_search_bar($countries)
 
         <div class="form_date">
             <label for="check_in">Check In</label>
-            <input type="date" name="check_in">
+            <input type="date" name="check_in" required>
         </div>
 
         <div class="form_date">
             <label for="check_out">Check Out</label>
-            <input type="date" name="check_out">
+            <input type="date" name="check_out" required>
         </div>
 
         <div class="num_guests">
