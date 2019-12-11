@@ -287,6 +287,7 @@ input[type=number]::-webkit-outter-spin-button {
     display: none;
     justify-content: center;
     vertical-align: middle;
+    text-align: cente;
     margin: 0;
     padding: 0;
     z-index: 0;
@@ -358,6 +359,7 @@ input[type=number]::-webkit-outter-spin-button {
     font-weight: bold;
     width: 50%;
     -webkit-appearance: none; 
+    -moz-appearance:textfield;
 }
 
 #num_guests_input .button {
