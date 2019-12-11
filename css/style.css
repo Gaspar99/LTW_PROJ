@@ -281,7 +281,6 @@ input[type=number]::-webkit-outter-spin-button {
 
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
-
 #search_form {
     /* Layout */
     position: relative;
@@ -295,6 +294,7 @@ input[type=number]::-webkit-outter-spin-button {
     color: black;
     background-color: white;
     text-decoration: none;
+    
 }
 
 #search_form>.search_type{
@@ -313,7 +313,6 @@ input[type=number]::-webkit-outter-spin-button {
     max-width: 8em;
     margin: 1em;
 }
-
 /*suggestions*/
 #search_suggestions {
     background-color: white;
@@ -325,7 +324,7 @@ input[type=number]::-webkit-outter-spin-button {
     position: absolute;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    z-index: 1;
+    z-index: 5;
 }
 
 #result_suggestions{
@@ -346,7 +345,7 @@ input[type=number]::-webkit-outter-spin-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1em 0em 0em 0em;
+    margin: 0.5em 0em 0em 0em;
 }
 
 #num_guests_input input {
@@ -358,6 +357,7 @@ input[type=number]::-webkit-outter-spin-button {
     font-size: 1.2em;
     font-weight: bold;
     width: 50%;
+    -webkit-appearance: none; 
 }
 
 #num_guests_input .button {
@@ -369,6 +369,7 @@ input[type=number]::-webkit-outter-spin-button {
     border-radius: 50%;
     text-align: center;
     font-weight: bold;
+    
 }
 
 #search_form .submit_button {
@@ -382,6 +383,56 @@ input[type=number]::-webkit-outter-spin-button {
     width: 2em;
     height: 2em;
 }
+
+#search_form>.price{
+    max-width: 16em;
+    margin: 1em;
+    align-content: center;
+
+}
+
+
+#show_price{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+/* SLIDER */
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--button-color);
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: var(--button-color);
+    cursor: pointer;
+  }
+
 /* MESSAGES */
 
 body>#messages div {

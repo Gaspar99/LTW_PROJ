@@ -36,8 +36,8 @@ function draw_search_bar($countries)
         </div>
 
         <div id="price" class="price">
-            <label for="price">Price</label>
-            <input id="price_input" type="range" value="0" min="0" name="price" onChange="price_change()" required>     
+            <label id="show_price" for="price">Price: 0€</label>
+            <input id="price_input" type="range" value="0" min="0" max='1000' name="price" onChange="price_change()" class= "slider" required>
         </div>
 
         <button class="submit_button" type="submit"><img src="../images/site/loupe.jpeg"></button>

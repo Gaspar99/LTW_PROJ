@@ -104,14 +104,14 @@ function option_navigate(event){
 function price_change(){ 
     //get price selected
     let price = document.getElementById("price_input")
+    let show_price = document.getElementById("show_price")
+
+    show_price.textContent = 'Price: '+price.value + '€'
     //create new element to display price
     let div =document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
-    let e = document.createElement("label");
-    div.appendChild("Price: "+price.value)
-    console.log(div.innerHTML)
 
-    //make new element displaying price
-    
+     div.insertBefore(show_price,div.firstChild)
+
 }
 
 
