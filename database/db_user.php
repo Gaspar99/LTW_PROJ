@@ -122,7 +122,7 @@ function update_profile($user)
 {
     $db = Database::instance()->db();
 
-    if($user["password"] == null){
+    if ($user["password"] == null) {
 
         $stmt = $db->prepare(
             "UPDATE 
@@ -134,7 +134,7 @@ function update_profile($user)
                     usr_phone_number = ?
                 WHERE usr_id = ?"
         );
-    
+
         $stmt->execute(array(
             $user["first_name"],
             $user["last_name"],
@@ -142,9 +142,8 @@ function update_profile($user)
             $user["phone_number"],
             $user["id"]
         ));
+    } else {
 
-    }else{
-       
         $stmt = $db->prepare(
             "UPDATE 
                     usr 
@@ -156,7 +155,7 @@ function update_profile($user)
                     usr_password = ?
                 WHERE usr_id = ?"
         );
-    
+
         $stmt->execute(array(
             $user["first_name"],
             $user["last_name"],
@@ -166,7 +165,6 @@ function update_profile($user)
             $user["id"]
         ));
     }
-    
 }
 
 /**
@@ -204,20 +202,20 @@ function update_profile_pic($user_id)
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
     $square = min($width, $height);  // size length of the maximum square
-    
+
     // Create and save a small square thumbnail
     $small = imagecreatetruecolor(200, 200);
     imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 200, 200, $square, $square);
     imagejpeg($small, $smallFileName, 100);
-    
+
     // Calculate width and height of medium sized image (max width: 400)
     $mediumwidth = $width;
     $mediumheight = $height;
     if ($mediumwidth > 400) {
-      $mediumwidth = 400;
-      $mediumheight = $mediumheight * ($mediumwidth / $width);
+        $mediumwidth = 400;
+        $mediumheight = $mediumheight * ($mediumwidth / $width);
     }
-    
+
     // Create and save a medium image
     $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);

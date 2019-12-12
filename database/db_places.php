@@ -10,14 +10,23 @@ function get_places()
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id, city.city_name AS city, country.country_name AS country, 
-                    place.title AS title, owner_photo.photo_path AS image_name,
-                    place.rating AS rating, place.price_per_night AS price_per_night,
-                    place.num_guests AS num_guests
-            FROM place, city, country, owner_gallery, owner_photo
-            WHERE place.city_id = city.id AND city.country_id = country.id
-                    AND owner_gallery.place = place.id 
-                    AND owner_gallery.photo = owner_photo.id"
+        "SELECT
+            place.id AS place_id, 
+            city.city_name AS city, 
+            country.country_name AS country, 
+            place.title AS title,
+            owner_photo.photo_path AS image_name,
+            place.rating AS rating, 
+            place.price_per_night AS price_per_night,        
+            place.num_guests AS num_guests
+        FROM 
+            place, city, country, owner_gallery, owner_photo
+         WHERE 
+            place.city_id = city.id AND 
+            city.country_id = country.id AND 
+            owner_gallery.place = place.id AND 
+            owner_gallery.photo = owner_photo.id
+        GROUP BY place_id"
     );
 
     $stmt->execute();
@@ -25,18 +34,28 @@ function get_places()
     return $stmt->fetchAll();
 }
 
-function get_place_card_info($place_id){
+function get_place_card_info($place_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id,city.city_name AS city_name, country.country_name AS country_name, 
-                    place.title AS title, owner_photo.photo_path AS image_name,
-                    place.rating AS rating, place.price_per_night AS price_per_night,
-                    place.num_guests AS num_guests
-            FROM place, city, country, owner_gallery, owner_photo
-            WHERE place.city_id = city.id AND city.country_id = country.id
-                    AND owner_gallery.place = place.id 
-                    AND owner_gallery.photo = owner_photo.id AND place.id = ?"
+        "SELECT 
+            place.id AS place_id,
+            city.city_name AS city_name, 
+            country.country_name AS country_name, 
+            place.title AS title, 
+            owner_photo.photo_path AS image_name,
+            place.rating AS rating,
+            place.price_per_night AS price_per_night,
+            place.num_guests AS num_guests
+            FROM 
+                place, city, country, owner_gallery, owner_photo
+            WHERE 
+                place.city_id = city.id AND 
+                city.country_id = country.id AND 
+                owner_gallery.place = place.id AND 
+                owner_gallery.photo = owner_photo.id AND 
+                place.id = ?"
     );
 
     $stmt->execute(array($place_id));
@@ -103,7 +122,7 @@ function add_place($place)
 /**
  * 
  */
-function add_place_photo($place_id) 
+function add_place_photo($place_id)
 {
     //Hash image name based on user email and current time
     $string_to_hash = $place_id + time();
@@ -157,7 +176,7 @@ function add_place_photo($place_id)
         $small_width = $width;
         $small_height = $small_height * ($small_height / $width);
     }
-        
+
     $small = imagecreatetruecolor($small_width, $small_height);
     imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
     imagejpeg($small, $smallFileName, 100);
@@ -170,11 +189,70 @@ function add_place_photo($place_id)
         $medium_width = $width;
         $medium_height = $medium_height * ($medium_height / $medium_width);
     }
-    
+
     // Create and save a medium image
     $medium = imagecreatetruecolor($medium_width, $medium_height);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
     imagejpeg($medium, $mediumFileName, 100);
+}
+
+/**
+ * 
+ */
+function update_place_info($place)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "UPDATE 
+            place 
+        SET 
+            title = ?, 
+            price_per_night = ?, 
+            place_description = ?,
+            num_guests = ?
+        WHERE id = ?"
+    );
+
+    $stmt->execute(array(
+        $place["title"],
+        $place["price"],
+        $place["description"],
+        $place["num_guests"],
+        $place["id"]
+    ));
+}
+
+/**
+ * 
+ */
+function remove_place($place_id)
+{ 
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            place 
+        WHERE id = ?"
+    );
+
+    $stmt->execute(array($place_id));
+}
+
+/**
+ * 
+ */
+function remove_place_photos($place_id) 
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            owner_gallery 
+        WHERE place = ?"
+    );
+
+    $stmt->execute(array($place_id));
 }
 
 /**
@@ -187,13 +265,13 @@ function get_place_gallery($place_id)
     // Get photos uploaded by owner
     $stmt = $db->prepare(
         "SELECT 
-                owner_photo.photo_path AS img_name
-            FROM 
-                owner_gallery,
-                owner_photo
-            WHERE 
-                owner_gallery.place = ? 
-                AND owner_gallery.photo = owner_photo.id"
+            owner_photo.photo_path AS img_name
+        FROM 
+            owner_gallery,
+            owner_photo
+        WHERE 
+            owner_gallery.place = ? AND 
+            owner_gallery.photo = owner_photo.id"
     );
 
     $stmt->execute(array($place_id));
@@ -209,11 +287,13 @@ function get_place_tags($place_id)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT tag.tag_name 
-            FROM place_tag, tag
-            WHERE 
-                place_tag.place = ? AND 
-                tag.id = place_tag.tag"
+        "SELECT 
+            tag.tag_name 
+        FROM 
+            place_tag, tag
+        WHERE 
+            place_tag.place = ? AND 
+            tag.id = place_tag.tag"
     );
 
     $stmt->execute(array($place_id));
@@ -229,8 +309,10 @@ function get_tags()
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT id, tag_name 
-            FROM tag"
+        "SELECT 
+            id, tag_name 
+        FROM 
+            tag"
     );
 
     $stmt->execute();
