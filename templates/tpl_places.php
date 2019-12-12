@@ -16,7 +16,7 @@ function draw_places($places)
         <?php } ?>
     </section>
 
-<?php } 
+<?php }
 
 
 /**
@@ -48,7 +48,7 @@ function draw_place($place)
         </a>
     </article>
 
-<?php } 
+<?php }
 
 
 /**
@@ -59,7 +59,6 @@ function draw_place_info($place_id)
     $place = get_place_info($place_id);
     $owner = get_user_info($place["place_owner"]);
     $image_gallery = get_place_gallery($place_id); #TODO check if the rly works 
-    $_POST["place_id"] = $place_id;
     ?>
 
     <article id="place_page">
@@ -68,8 +67,14 @@ function draw_place_info($place_id)
             <h1 id="place_title"><?= $place["title"] ?></h1>
 
             <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) { ?>
-                <a class="button" id="edit_place" href="../pages/edit_place.php">Edit Place</a>
-                <a class="button" id="remove_place" href="../pages/home.php">Remove Place</a>
+                <form method="POST" action="../pages/edit_place.php">
+                    <input type="hidden" name="place_id" value="<?= $place_id ?>" />
+                    <button id="edit_place" type="submit">Edit Place</button>
+                </form>
+                <form method="POST" action="../actions/action_remove_place.php">
+                    <input type="hidden" name="place_id" value="<?= $place_id ?>" />
+                    <button id="remove_place" type="submit">Remove Place</button>
+                </form>
             <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/profile.php?id=<?= $place["place_owner"] ?>">
@@ -109,10 +114,13 @@ function draw_place_info($place_id)
                     <div id="image_container">
                         <?php foreach ($image_gallery as $image) { ?>
                             <img src="../images/places/thumbs_medium/<?= $image['img_name'] ?>.jpeg" alt="Image Place">
+                        <?php }
+
+                            if (sizeof($image_gallery) > 0) {  ?>
+                            <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                            <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
                         <?php } ?>
-                        <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
-                        <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
-                        <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
                     </div>
                 </section>
 
@@ -128,7 +136,7 @@ function draw_place_info($place_id)
 
                             <div class="form_date">
                                 <label for="check_in">Check In</label>
-                                <input required id="check_in_value" type="date" name="check_in" oninput="calculate_rent_price(<?=$place["price"] ?>)">
+                                <input required id="check_in_value" type="date" name="check_in" oninput="calculate_rent_price(<?= $place["price"] ?>)">
                             </div>
 
                             <div class="form_date">
@@ -141,7 +149,7 @@ function draw_place_info($place_id)
                                 <div id="num_guests_input">
                                     <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?= $place["price"] ?>);">-</span>
                                     <input readonly type="number" value="1" min="1" max="<?= $place["num_guests"] ?>" step="1" name="num_guests" required>
-                                    <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?=$place["price"]?>);">+</span>
+                                    <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?= $place["price"] ?>);">+</span>
                                 </div>
                             </div>
 
@@ -187,17 +195,15 @@ function draw_place_info($place_id)
 /**
  * 
  */
-function draw_edit_place($user_id, $place_id)
+function draw_add_place($user_id)
 {
-    $countries = get_countries();
-    if ($place_id != null) $place = get_place_info($place_id);
-    ?>
+    $countries = get_countries(); ?>
 
     <form id="add_place" action="../actions/action_add_place.php" method="post" enctype="multipart/form-data">
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" value="<?= ($place_id != null) ? $place['title'] : null ?>" placeholder="Enter Title" required>
+            <input type="text" name="title" placeholder="Enter Title" required>
         </div>
 
         <section id="location">
@@ -287,5 +293,121 @@ function draw_edit_place($user_id, $place_id)
         <button class="submit_button" type="submit">Create New Place</button>
     </form>
 
-<?php } ?>
+<?php }
 
+/*
+ * 
+ */
+function draw_edit_place($user_id, $place_id)
+{
+    $place = get_place_info($place_id);
+    $place_tags = get_place_tags($place_id);
+    $image_gallery = get_place_gallery($place_id);
+    ?>
+
+    <form id="edit_place" action="../actions/action_update_place.php" method="post" enctype="multipart/form-data">
+
+        <div id="place_title">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="<?= $place["title"] ?>" placeholder="Enter Title" required>
+        </div>
+
+        <section id="location">
+
+            <div class="form_country">
+                <label for="country">Country</label>
+                <div id="country"><?=$place["country_name"]?></div>
+            </div>
+
+            <div class="form_city">
+                <label for="city">City</label>
+                <div id="city"><?=$place["city_name"]?></div>
+            </div>
+
+            <div class="address">
+                <label for="address">Address</label>
+                <div id="address"><?=$place["place_address"]?></div>
+            </div>
+
+        </section>
+
+        <section id="numbers">
+            <div class="num_guests">
+                <label for="num_guests">Max. Guests</label>
+                <div id="num_guests_input">
+                    <span class="button" onclick="update_guests(event, -1)">-</span>
+                    <input readonly type="number" value="<?= $place["num_guests"] ?>" min="1" max="10" step="1" name="num_guests" required>
+                    <span class="button" onclick="update_guests(event, +1)">+</span>
+                </div>
+            </div>
+
+            <div id="price">
+                <label for="price">Price per Night</label>
+                <div class="price_input">
+                    <input type="number" value="<?= $place['price'] ?>" min="0" name="price" required>
+                    <i class="material-icons">euro</i>
+                </div>
+            </div>
+
+        </section>
+
+        <hr>
+
+        <article id="body">
+
+            <div id="upload">
+                <section id="place_gallery">
+
+                    <div id="image_container">
+                        <?php foreach ($image_gallery as $image) { ?>
+                            <img src="../images/places/thumbs_medium/<?= $image['img_name'] ?>.jpeg" alt="Image Place">
+                        <?php }
+
+                            if (sizeof($image_gallery) > 0) {  ?>
+                            <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+                            <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
+                        <?php } ?>
+                    </div>
+
+                    <div class="button upload_button">
+                        Upload Photo
+                        <input type="file" name="image">
+                    </div>
+                </section>
+            </div>
+
+            <section id="details">
+                <div id="description">
+                    <label for="description">Description</label>
+                    <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required><?= $place["place_description"] ?></textarea>
+                </div>
+
+                <hr>
+
+                <section id="tags_section">
+                    <?php $tags = get_tags(); ?>
+                    <label for="tags">Tags</label>
+                    <div id="tags">
+                        <?php foreach ($tags as $tag) { ?>
+                            <div class="tag">
+                                <div class="tag_name"><?= $tag["tag_name"] ?></div>
+                                <div class="checkbox_container">
+                                    <input type="checkbox" name="tag" value="<?= $tag["tag_name"] ?>" oninput="toggle_checkbox(event)" <?= in_array($tag['tag_name'], $place_tags) ? "checked" : null ?>>
+                                    <i class="material-icons">check</i>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </section>
+            </section>
+        </article>
+
+
+        <input type="hidden" name="owner" value="<?= $user_id ?>">
+        <input type="hidden" name="id" value="<?= $place_id ?>">
+
+        <button class="submit_button" type="submit">Save Changes</button>
+    </form>
+
+<?php } ?>
