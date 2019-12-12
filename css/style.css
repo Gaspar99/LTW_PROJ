@@ -686,6 +686,8 @@ body>#messages .success {
 #place_page {
     display: block;
     margin: 0 1em;
+    width: 100%;
+    height: 100%;
 }
 
 #place_page #place_header {
@@ -695,6 +697,17 @@ body>#messages .success {
 
 #place_page #place_header h1 {
     font-size: 2em;
+}
+
+#place_page #place_header #edit_place{
+    margin: 0 0 0 2em;
+    padding: 0.7em 1em;
+}
+
+#place_page #place_header #remove_place {
+    margin: 0 0 0 1em;
+    padding: 0.7em 1em;
+    background-color: red;
 }
 
 
@@ -790,7 +803,9 @@ body>#messages .success {
 
 #place_page #place_body {
     display: grid;
-    grid-template-columns: auto auto;
+    width: 100%;
+    margin: 0;
+    grid-template-columns: max-content auto;
 }
 
 
@@ -800,6 +815,7 @@ body>#messages .success {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
+    width: max-content;
 }
 
 
@@ -807,10 +823,11 @@ body>#messages .success {
 
 #place_page #place_body #gallery_rent #place_gallery #image_container {
     position: relative;
+    width: auto;
 }
 
 #place_page #place_body #gallery_rent #place_gallery img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
 }
 
@@ -872,11 +889,13 @@ body>#messages .success {
     grid-column-start: 2;
     grid-column-end: 3;
     margin: 1em;
+    width: auto;
 }
 
 #place_page #place_body #place_info #description p {
     padding: 0.5em;
     font-size: 1.5em;
+    margin: 0;
 }
 
 

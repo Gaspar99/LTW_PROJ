@@ -320,13 +320,13 @@ VALUES(
 INSERT INTO owner_photo
 VALUES(
       1, --ID
-      "lakeHouse" --photo_path
+      "a9d9171b7ab59dc34f74cf07aa247faf2ab5c9bb61ba533cd93338a97c2aeb0e" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       2, --ID
-      "beachHouse" --photo_path
+      "7e07f3cfafe2039db10652b734e0e11d6a4e08d33dbe99f86010f44f813d4f8a" --photo_path
 );
 
 INSERT INTO owner_gallery

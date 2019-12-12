@@ -10,7 +10,7 @@ function get_places()
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id,city.city_name AS city_name, country.country_name AS country_name, 
+        "SELECT place.id AS place_id, city.city_name AS city, country.country_name AS country, 
                     place.title AS title, owner_photo.photo_path AS image_name,
                     place.rating AS rating, place.price_per_night AS price_per_night,
                     place.num_guests AS num_guests
@@ -155,25 +155,26 @@ function add_place_photo($place_id)
 
     if ($width < $small_width) {
         $small_width = $width;
-        $mediumheight = $$small_height * ($small_height / $width);
+        $small_height = $small_height * ($small_height / $width);
     }
         
     $small = imagecreatetruecolor($small_width, $small_height);
     imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
-    imagejpeg($small, $smallFileName);
+    imagejpeg($small, $smallFileName, 100);
 
     // Calculate width and height of medium sized image (max width: 400)
-    $mediumwidth = $width;
-    $mediumheight = $height;
-    if ($mediumwidth > 400) {
-        $mediumwidth = 400;
-        $mediumheight = $mediumheight * ($mediumwidth / $width);
+    $medium_width = 550;
+    $medium_height = 400;
+
+    if ($width < $medium_width) {
+        $medium_width = $width;
+        $medium_height = $medium_height * ($medium_height / $medium_width);
     }
     
     // Create and save a medium image
-    $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
-    imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
-    imagejpeg($medium, $mediumFileName);
+    $medium = imagecreatetruecolor($medium_width, $medium_height);
+    imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
+    imagejpeg($medium, $mediumFileName, 100);
 }
 
 /**

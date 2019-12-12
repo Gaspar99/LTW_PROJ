@@ -28,7 +28,7 @@ function draw_place($place)
     <article class="place">
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
             <!--TODO insert the get coise here-->
-            <h2 class="place_city_country"><?= $place["city_name"] ?> - <?= $place["country_name"] ?></h2>
+            <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
             <img class="place_image" src="../images/places/thumbs_small/<?= $place["image_name"] ?>.jpeg" alt="Place Image" width="400" height="250" />
             <h1 class="place_title"><?= $place["title"] ?></h1>
             <ul class="place_footer">
@@ -59,6 +59,7 @@ function draw_place_info($place_id)
     $place = get_place_info($place_id);
     $owner = get_user_info($place["place_owner"]);
     $image_gallery = get_place_gallery($place_id); #TODO check if the rly works 
+    $_POST["place_id"] = $place_id;
     ?>
 
     <article id="place_page">
@@ -67,7 +68,8 @@ function draw_place_info($place_id)
             <h1 id="place_title"><?= $place["title"] ?></h1>
 
             <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) { ?>
-                <a class="button" id="edit_place" href="../pages/home.php">Edit Place</a>
+                <a class="button" id="edit_place" href="../pages/edit_place.php">Edit Place</a>
+                <a class="button" id="remove_place" href="../pages/home.php">Remove Place</a>
             <?php } else { ?>
                 <div id="owner_profile">
                     <a class="button" href="../pages/profile.php?id=<?= $place["place_owner"] ?>">
@@ -185,15 +187,17 @@ function draw_place_info($place_id)
 /**
  * 
  */
-function draw_add_place($user_id)
+function draw_edit_place($user_id, $place_id)
 {
-    $countries = get_countries() ?>
+    $countries = get_countries();
+    if ($place_id != null) $place = get_place_info($place_id);
+    ?>
 
     <form id="add_place" action="../actions/action_add_place.php" method="post" enctype="multipart/form-data">
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="Enter Title" required>
+            <input type="text" name="title" value="<?= ($place_id != null) ? $place['title'] : null ?>" placeholder="Enter Title" required>
         </div>
 
         <section id="location">
@@ -284,3 +288,4 @@ function draw_add_place($user_id)
     </form>
 
 <?php } ?>
+
