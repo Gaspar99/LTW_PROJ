@@ -96,7 +96,7 @@ function draw_edit_profile($user_id)
                 <input id="password" type="password" name="password" value="" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                 title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
-
+                <!-- todo only required if passord above has smth in value, a script basically -->
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" type="password" placeholder="Repeat Password" name="confirm_password" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
