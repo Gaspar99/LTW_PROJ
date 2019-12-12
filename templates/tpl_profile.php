@@ -120,24 +120,57 @@ function draw_list_reservations($user_id){
     $user_reservations = get_user_reservations($user_id); ?>
     <ul id="reservations_list" > <?php
         foreach($user_reservations as $reservation){
-            $place_info = get_place_reserved($reservation['place_id'])?>
+            $place_info = get_place_reserved($reservation['place_id']);?>
             <li id="reservation_line"> 
-                <?=$place_info['title']?>
-                <?=$place_info['country_name']?>
-                <?=$place_info['city_name']?>
-                <?=$place_info['address']?>  
-                <?=$reservation['num_guests']?>   
-                <?=$reservation['check_in']?> - <?=$reservation['check_out']?>       
-                <?=$reservation['price']?>   
-                <div id="owner_profile">
-                    <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
-                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>.jpeg" alt="User Profile Picture">
-                        <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
+                    <a id="title">
+                        <?=$place_info['title']?>
                     </a>
-                </div>
-                <button> Review </button>
-                <button> Cancel </button>
+                    <a id="adress">
+                        <?=$place_info['country_name']?> - <?=$place_info['city_name']?> <?=$place_info['address']?> 
+                    </a> 
+                    <a id="numerical">
+                        Guests: <?=$reservation['num_guests']?>  
+                        <?=$reservation['check_in']?> - <?=$reservation['check_out']?>       
+                        Price: <?=$reservation['price']?>€  
+                    </a>
+                    <div id="owner_profile">
+                        <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
+                            <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>.jpeg" alt="User Profile Picture">
+                            <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
+                        </a>
+                    </div>
+                    <!-- display or check if can be reviewed -->
+                    <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
+                    <!-- display or check if can be canceled -->
+                    <button id="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)"> Cancel </button>
+                
+                    
+                    <?php draw_review_box($reservation['id']);?>
+                
             </li>
         <?php } ?>
     </ul>
+<?php }
+/**
+ * 
+ */
+function draw_review_box($id)
+{
+    $box_id = "review_box";
+    $box_id .= $id; ?>
+  <div id=<?=$box_id?> class="modal">
+   
+    <span class="close" onclick="close_review_box(<?=$id?>)" title="Close Form">&times;</span>
+     
+    <div class="container">
+        <label for="comment"></label>
+        <input type="text_area" placeholder="Write your comment" name="comment" required>
+
+        <label for="rating">Rate</label>
+        <input type="number" name="rating" min="1" max="5" required>
+
+        <button class="submit_button" onclick="upload_comment(<?=$id?>)">Post</button><!-- todo ajax submit-->
+    </div>
+  </div>
 <?php } ?>
+

@@ -863,6 +863,33 @@ body>#messages .success {
     text-align: center;
 }
 
+#reservation_line{
+    border-width: 4em;
+    border-radius: 1em;
+    border: solid black;
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0em;
+}
+#reservation_line>#title{
+    text-align: left;
+    font-weight: bold;
+}
+
+#reservation_line >#owner_profile,#reservation_line >#owner_profile>*{
+    display: flex;
+    align-items: center;
+    width: 5em;
+    font-size: 0.9em;
+}
+
+#reservation_line>div, #reservation_line>button{
+    float: right;
+}
+
+#reservation_line>#cancel{
+    background-color: red;
+}
 
 /* ------ Price ------*/
 
