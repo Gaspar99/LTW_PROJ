@@ -204,24 +204,24 @@ function update_profile_pic($user_id)
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
     $square = min($width, $height);  // size length of the maximum square
-
+    
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(50, 50);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 50, 50, $square, $square);
-    imagejpeg($small, $smallFileName);
-
+    $small = imagecreatetruecolor(200, 200);
+    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 200, 200, $square, $square);
+    imagejpeg($small, $smallFileName, 100);
+    
     // Calculate width and height of medium sized image (max width: 400)
     $mediumwidth = $width;
     $mediumheight = $height;
-    if ($mediumwidth > 300) {
-        $mediumwidth = 300;
-        $mediumheight = $mediumheight * ($mediumwidth / $width);
+    if ($mediumwidth > 400) {
+      $mediumwidth = 400;
+      $mediumheight = $mediumheight * ($mediumwidth / $width);
     }
     
     // Create and save a medium image
     $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
-    imagejpeg($medium, $mediumFileName);
+    imagejpeg($medium, $mediumFileName, 100);
 }
 
 /**
@@ -232,7 +232,7 @@ function get_user_places($user_id)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id,city.city_name AS city, country.country_name AS country, 
+        "SELECT place.id AS place_id, city.city_name AS city, country.country_name AS country, 
                 place.title AS title, owner_photo.photo_path AS image_name,
                 place.rating AS rating, place.price_per_night AS price_per_night,
                 place.num_guests AS num_guests
