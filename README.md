@@ -20,3 +20,7 @@ Work in progress!
 
 ## Database
 <img src="docs/dataBase_UML.png" alt="UML diagram of database" title="Database">
+
+## Todo 
+- [Gustavo] - Adicionar regex no php 
+

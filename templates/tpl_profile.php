@@ -1,5 +1,6 @@
 <?php
 
+include_once("../database/db_reservations.php");
 /**
  * 
  */
@@ -35,9 +36,8 @@ function draw_profile($user_id,$user_email)
             <?php 
                 if($user_id == get_id_by_email($user_email)['id']){ ?>
                     <div id="reservations">
-                        <h3>My Reservations</h2>
-                            <!-- Database must be populated -->
-                        TODO: Populate DB and get property history
+                        <h3>My Reservations</h3>
+                            <?php draw_list_reservations($user_id); ?>
                     </div>
                 <?php }?>
         </section>
@@ -112,4 +112,32 @@ function draw_edit_profile($user_id)
         <button class="submit_button" type="submit" value="Upload">Save</button>
 
     </form>
+<?php } 
+/**
+ * 
+ */
+function draw_list_reservations($user_id){
+    $user_reservations = get_user_reservations($user_id); ?>
+    <ul id="reservations_list" > <?php
+        foreach($user_reservations as $reservation){
+            $place_info = get_place_reserved($reservation['place_id'])?>
+            <li id="reservation_line"> 
+                <?=$place_info['title']?>
+                <?=$place_info['country_name']?>
+                <?=$place_info['city_name']?>
+                <?=$place_info['address']?>  
+                <?=$reservation['num_guests']?>   
+                <?=$reservation['check_in']?> - <?=$reservation['check_out']?>       
+                <?=$reservation['price']?>   
+                <div id="owner_profile">
+                    <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
+                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>.jpeg" alt="User Profile Picture">
+                        <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
+                    </a>
+                </div>
+                <button> Review </button>
+                <button> Cancel </button>
+            </li>
+        <?php } ?>
+    </ul>
 <?php } ?>

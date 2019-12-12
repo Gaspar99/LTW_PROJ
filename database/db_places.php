@@ -41,8 +41,8 @@ function get_place_card_info($place_id)
     $stmt = $db->prepare(
         "SELECT 
             place.id AS place_id,
-            city.city_name AS city_name, 
-            country.country_name AS country_name, 
+            city.city_name AS city, 
+            country.country_name AS country, 
             place.title AS title, 
             owner_photo.photo_path AS image_name,
             place.rating AS rating,
