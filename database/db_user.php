@@ -246,3 +246,16 @@ function get_user_places($user_id)
 
     return $stmt->fetchAll();
 }
+
+function get_id_by_email($user_email)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT usr_id AS id FROM usr WHERE usr_email=?"
+    );
+
+    $stmt->execute(array($user_email));
+
+    return $stmt->fetch();
+}

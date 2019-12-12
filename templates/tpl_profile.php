@@ -3,7 +3,7 @@
 /**
  * 
  */
-function draw_profile($user_id)
+function draw_profile($user_id,$user_email)
 {
     $user_info = get_user_info($user_id); ?>
 
@@ -32,12 +32,14 @@ function draw_profile($user_id)
                 <h3>My Places</h3>
                 <?php draw_places(get_user_places($user_id)); ?>
             </div>
-
-            <div id="reservations">
-                <h3>My Reservations</h2>
-                    <!-- Database must be populated -->
-                    TODO: Populate DB and get property history
-            </div>
+            <?php 
+                if($user_id == get_id_by_email($user_email)['id']){ ?>
+                    <div id="reservations">
+                        <h3>My Reservations</h2>
+                            <!-- Database must be populated -->
+                        TODO: Populate DB and get property history
+                    </div>
+                <?php }?>
         </section>
     </article>
 
