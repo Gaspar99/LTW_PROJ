@@ -4,7 +4,7 @@ include_once("../database/db_user.php");
 include_once("../database/db_places.php");
 
 $user_id = get_user_id($_SESSION["user_email"]);
-$place_id = $_POST['place_id'];
+$place_id = $_POST["id"];
 
 update_place_info($_POST); 
 

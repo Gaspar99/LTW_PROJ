@@ -11,7 +11,7 @@ if (isset($_SESSION['search_results'])){
     $search_results = $_SESSION['search_results'];
 
 }
-$places[] = "";  //todo rm this afterwards
+$places[] = ""; 
 
 //get place info to draw
 foreach($search_results as $sr){
@@ -20,6 +20,7 @@ foreach($search_results as $sr){
 draw_site_header();
 draw_title("Search Results");
 //todo function to draw search inputed
+$rm = array_shift($places); 
 draw_places($places); //draw search results
 draw_footer();
 

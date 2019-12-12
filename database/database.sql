@@ -256,31 +256,31 @@ VALUES(
 INSERT INTO owner_photo
 VALUES(
       1, --ID
-      "poolHouse" --photo_path
+      "poolHouse.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       2, --ID
-      "beachHouse" --photo_path
+      "beachHouse.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       3, --ID
-      "lakeHouse" --photo_path
+      "lakeHouse.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       4, --ID
-      "nycApartment" --photo_path
+      "nycApartment.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       5, --ID
-      "modernInterior" --photo_path
+      "modernInterior.jpeg" --photo_path
 );
 
 INSERT INTO owner_gallery

@@ -41,8 +41,8 @@ function get_place_card_info($place_id)
     $stmt = $db->prepare(
         "SELECT 
             place.id AS place_id,
-            city.city_name AS city_name, 
-            country.country_name AS country_name, 
+            city.city_name AS city, 
+            country.country_name AS country, 
             place.title AS title, 
             owner_photo.photo_path AS image_name,
             place.rating AS rating,
@@ -126,7 +126,8 @@ function add_place_photo($place_id)
 {
     //Hash image name based on user email and current time
     $string_to_hash = $place_id + time();
-    $img_name = hash("sha256", $string_to_hash);
+    $file_type = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+    $img_name = hash("sha256", $string_to_hash) . "." . $file_type;
 
     $db = Database::instance()->db();
 
@@ -156,14 +157,15 @@ function add_place_photo($place_id)
     ));
 
     // Generate filenames for original, medium and small sizes 
-    $originalFileName = "../images/places/originals/$img_name.jpeg";
-    $mediumFileName = "../images/places/thumbs_medium/$img_name.jpeg";
-    $smallFileName = "../images/places/thumbs_small/$img_name.jpeg";
+    $original_file_name = "../images/places/originals/$img_name";
+    $medium_file_name = "../images/places/thumbs_medium/$img_name";
+    $small_file_name = "../images/places/thumbs_small/$img_name";
 
-    move_uploaded_file($_FILES["image"]["tmp_name"], $originalFileName);
+    move_uploaded_file($_FILES["image"]["tmp_name"], $original_file_name);
 
     //Create an image representation of the original image
-    $original = imagecreatefromfile($originalFileName);
+    $original = image_create_from_file($file_type, $original_file_name);
+    imagealphablending($original, true);
 
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
@@ -174,12 +176,14 @@ function add_place_photo($place_id)
 
     if ($width < $small_width) {
         $small_width = $width;
-        $small_height = $small_height * ($small_height / $width);
+        $small_height = $small_height * ($small_width / $width);
     }
 
     $small = imagecreatetruecolor($small_width, $small_height);
+    imagealphablending($small, false);
+    imagesavealpha($small, true);  
     imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
-    imagejpeg($small, $smallFileName, 100);
+    file_create_from_image($file_type, $small, $small_file_name);
 
     // Calculate width and height of medium sized image (max width: 400)
     $medium_width = 550;
@@ -187,13 +191,15 @@ function add_place_photo($place_id)
 
     if ($width < $medium_width) {
         $medium_width = $width;
-        $medium_height = $medium_height * ($medium_height / $medium_width);
+        $medium_height = $medium_height * ($medium_width / $width);
     }
 
     // Create and save a medium image
     $medium = imagecreatetruecolor($medium_width, $medium_height);
+    imagealphablending($medium, false);
+    imagesavealpha($medium, true); 
     imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
-    imagejpeg($medium, $mediumFileName, 100);
+    file_create_from_image($file_type, $medium, $medium_file_name);
 }
 
 /**

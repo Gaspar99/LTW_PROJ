@@ -1,9 +1,10 @@
 <?php
+include_once("../database/db_reservations.php");
 
 /**
  * 
  */
-function draw_profile($user_id,$user_email)
+function draw_profile($user_id)
 {
     $user_info = get_user_info($user_id); ?>
 
@@ -13,7 +14,7 @@ function draw_profile($user_id,$user_email)
             <div id="user_bio">
                 <h1 id="user_first_name"><?= $user_info["first_name"] ?></h1>
                 <h1 id="user_last_name"><?= $user_info["last_name"] ?></h1>
-                <img id="profile_pic" src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>.jpeg" alt="Profile Picture" />
+                <img id="profile_pic" src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile Picture" />
                 <h2 id="phone_number"><?= $user_info["phone_number"] ?></h2>
                 <h2 id="email"><?= $user_info["email"] ?></h2>
             </div>
@@ -32,14 +33,12 @@ function draw_profile($user_id,$user_email)
                 <h3>My Places</h3>
                 <?php draw_places(get_user_places($user_id)); ?>
             </div>
-            <?php 
-                if($user_id == get_id_by_email($user_email)['id']){ ?>
-                    <div id="reservations">
-                        <h3>My Reservations</h2>
-                            <!-- Database must be populated -->
-                        TODO: Populate DB and get property history
-                    </div>
-                <?php }?>
+            <?php if (isset($_SESSION["user_email"]) && $user_info["email"] == $_SESSION["user_email"]) { ?>
+                <div id="reservations">
+                    <h3>My Reservations</h3>
+                    <?php draw_list_reservations($user_id); ?>
+                </div>
+            <?php } ?>
         </section>
     </article>
 
@@ -71,7 +70,7 @@ function draw_edit_profile($user_id)
             </div>
 
             <div id="profile_pic_update">
-                <img src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>.jpeg" alt="Profile_pic" />
+                <img src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile_pic" />
                 <div class="button upload_button">
                     Update Profile Picture
                     <input type="file" name="image" required>
@@ -112,4 +111,32 @@ function draw_edit_profile($user_id)
         <button class="submit_button" type="submit" value="Upload">Save</button>
 
     </form>
+<?php } 
+/**
+ * 
+ */
+function draw_list_reservations($user_id){
+    $user_reservations = get_user_reservations($user_id); ?>
+    <ul id="reservations_list" > <?php
+        foreach($user_reservations as $reservation){
+            $place_info = get_place_reserved($reservation['place_id'])?>
+            <li id="reservation_line"> 
+                <?=$place_info['title']?>
+                <?=$place_info['country_name']?>
+                <?=$place_info['city_name']?>
+                <?=$place_info['address']?>  
+                <?=$reservation['num_guests']?>   
+                <?=$reservation['check_in']?> - <?=$reservation['check_out']?>       
+                <?=$reservation['price']?>   
+                <div id="owner_profile">
+                    <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
+                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>" alt="User Profile Picture">
+                        <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
+                    </a>
+                </div>
+                <button> Review </button>
+                <button> Cancel </button>
+            </li>
+        <?php } ?>
+    </ul>
 <?php } ?>
