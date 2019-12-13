@@ -833,6 +833,12 @@ body>#messages .success {
     border-radius: 0.5em;
 }
 
+/* Genneric Place Gallery */
+
+#place_gallery .image_slide {
+    display: none;
+}
+
 #place_gallery #image_container .display_left {
     position: absolute;
     left: 0;
@@ -919,6 +925,21 @@ body>#messages .success {
     grid-column-end: 3;
     margin: 1em;
     width: auto;
+}
+
+/* Tags */
+
+#place_page #place_body #place_info #place_tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1em;
+}
+
+#place_page #place_body #place_info #place_tags .tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 #place_page #place_body #place_info #description p {

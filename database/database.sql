@@ -6,7 +6,7 @@ CREATE TABLE usr
    usr_email VARCHAR NOT NULL UNIQUE,
    usr_phone_number VARCHAR NOT NULL,
    usr_password VARCHAR NOT NULL,
-   usr_profile_picture VARCHAR DEFAULT "default" NOT NULL,
+   usr_profile_picture VARCHAR DEFAULT "default.png" NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    country_id INTEGER REFERENCES country NOT NULL
 );
@@ -56,6 +56,7 @@ CREATE TABLE city
 CREATE TABLE tag
 (
    id INTEGER PRIMARY KEY,
+   tag_icon VARCHAR NOT NULL,
    tag_name VARCHAR NOT NULL
 );
 
@@ -317,55 +318,166 @@ VALUES(
 INSERT INTO tag
 VALUES(
       1,
+      "kitchen",
       "Kitchen"
 );
 
 INSERT INTO tag
 VALUES(
       2,
+      "bathtub",
       "Bathroom"
 );
 
 INSERT INTO tag
 VALUES(
       3,
+      "pool",
       "Swimming Pool"
 );
 
 INSERT INTO tag
 VALUES(
       4,
+      "fireplace",
       "Fireplace"
 );
 
 INSERT INTO tag
 VALUES(
       5,
+      "wifi",
       "Wi-Fi"
 );
 
 INSERT INTO tag
 VALUES(
       6,
-      "Vegan"
+      "tv",
+      "TV"
 );
 
 INSERT INTO tag
 VALUES(
       7,
+      "desktop_windows",
       "Work desk"
 );
 
 INSERT INTO tag
 VALUES(
       8,
+      "beach_access",
       "By the Beach"
 );
 
 INSERT INTO tag
 VALUES(
       9,
+      "ac_unit",
       "Air conditioning"
+);
+
+INSERT INTO place_tag
+VALUES(
+      1,
+      1
+);
+
+INSERT INTO place_tag
+VALUES(
+      1,
+      2
+);
+
+INSERT INTO place_tag
+VALUES(
+      1,
+      7
+);
+
+INSERT INTO place_tag
+VALUES(
+      1,
+      8
+);
+
+INSERT INTO place_tag
+VALUES(
+      2,
+      5
+);
+
+INSERT INTO place_tag
+VALUES(
+      2,
+      6
+);
+
+INSERT INTO place_tag
+VALUES(
+      2,
+      3
+);
+
+INSERT INTO place_tag
+VALUES(
+      3,
+      1
+);
+
+INSERT INTO place_tag
+VALUES(
+      3,
+      4
+);
+
+INSERT INTO place_tag
+VALUES(
+      3,
+      9
+);
+
+INSERT INTO place_tag
+VALUES(
+      3,
+      7
+);
+
+INSERT INTO place_tag
+VALUES(
+      3,
+      3
+);
+
+INSERT INTO place_tag
+VALUES(
+      4,
+      5
+);
+
+INSERT INTO place_tag
+VALUES(
+      4,
+      3
+);
+
+INSERT INTO place_tag
+VALUES(
+      5,
+      1
+);
+
+INSERT INTO place_tag
+VALUES(
+      5,
+      6
+);
+
+INSERT INTO place_tag
+VALUES(
+      5,
+      8
 );
 
 -- INSERT ALL COUNTRYS --

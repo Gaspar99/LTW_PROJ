@@ -175,7 +175,10 @@ function draw_place_info($place_id)
 
                 <div id="place_tags">
                     <?php foreach ($place_tags as $tag) { ?>
-                    <div id="tag"><?=$tag["tag_name"]?></div>
+                    <div class="tag">
+                        <i class="material-icons"><?=$tag["tag_icon"]?></i>
+                        <div id="tag"><?=$tag["tag_name"]?></div>
+                    </div>
                     <?php } ?> 
                 </div>
 
@@ -277,6 +280,7 @@ function draw_add_place($user_id)
                     <div id="tags">
                         <?php foreach ($tags as $tag) { ?>
                             <div class="tag">
+                                <i class="material-icons"><?=$tag["tag_icon"]?></i>
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
                                     <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)">
@@ -362,10 +366,10 @@ function draw_edit_place($user_id, $place_id)
 
                     <div id="image_container">
                         <?php foreach ($image_gallery as $image) { ?>
-                            <img src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
+                            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
                         <?php }
 
-                            if (sizeof($image_gallery) > 0) {  ?>
+                            if (sizeof($image_gallery) > 1) {  ?>
                             <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
                             <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
