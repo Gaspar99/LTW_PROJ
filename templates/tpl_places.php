@@ -424,14 +424,16 @@ function draw_place_comments($place_id,$owner){
         <ul id="place_comments"> <?php 
             foreach($comments as $comment){?>
                 <li id="comment_line">
-                    <div id="comment_info">
-                        <div id="comment_owner_profile">
-                            <a class="button" href="../pages/profile.php?id=<?= $comment["usr_id"] ?>">
-                                <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"]?>" alt="User Profile Picture">
-                                <div id="username"><?= $comment["usr_first_name"] ?> <?= $comment["usr_last_name"] ?></div>
-                            </a>
+                    <div class="comment_grid">
+                        <div class="comment_item">
+                            <div id="comment_owner_profile">
+                                <a class="button" href="../pages/profile.php?id=<?= $comment["usr_id"] ?>">
+                                    <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"]?>" alt="User Profile Picture">
+                                    <div id="username"><?= $comment["usr_first_name"] ?> <?= $comment["usr_last_name"] ?></div>
+                                </a>
+                            </div>
                         </div>
-                        <article id="comment_box">
+                        <div class="comment_item">
                             <a id="comment_info">
                                 <?=$comment['usr_comment']?>       
                             </a>
@@ -447,8 +449,8 @@ function draw_place_comments($place_id,$owner){
                                             <?php #todo draw_reply_box($reservation['id']);?>  
                                         <?php }
                                     } ?>
-                            </a>
-                        </article> 
+                            </a> 
+                        </div>
                     </div>
                     <?php if($comment["owner_replay"] != NULL){?>
                         <div id="comment_reply">
