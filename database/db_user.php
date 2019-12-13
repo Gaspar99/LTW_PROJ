@@ -122,7 +122,7 @@ function update_profile($user)
 {
     $db = Database::instance()->db();
 
-    if($user["password"] == null){
+    if ($user["password"] == null) {
 
         $stmt = $db->prepare(
             "UPDATE 
@@ -134,7 +134,7 @@ function update_profile($user)
                     usr_phone_number = ?
                 WHERE usr_id = ?"
         );
-    
+
         $stmt->execute(array(
             $user["first_name"],
             $user["last_name"],
@@ -142,9 +142,8 @@ function update_profile($user)
             $user["phone_number"],
             $user["id"]
         ));
+    } else {
 
-    }else{
-       
         $stmt = $db->prepare(
             "UPDATE 
                     usr 
@@ -156,7 +155,7 @@ function update_profile($user)
                     usr_password = ?
                 WHERE usr_id = ?"
         );
-    
+
         $stmt->execute(array(
             $user["first_name"],
             $user["last_name"],
@@ -166,7 +165,6 @@ function update_profile($user)
             $user["id"]
         ));
     }
-    
 }
 
 /**
@@ -176,7 +174,8 @@ function update_profile_pic($user_id)
 {
     //Hash image name based on user email and current time
     $string_to_hash = $user_id + time();
-    $img_name = hash("sha256", $string_to_hash);
+    $file_type = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+    $img_name = hash("sha256", $string_to_hash) . "." . $file_type;
 
     $db = Database::instance()->db();
 
@@ -192,36 +191,41 @@ function update_profile_pic($user_id)
     ));
 
     // Generate filenames for original, medium and small sizes 
-    $originalFileName = "../images/profiles/originals/$img_name.jpeg";
-    $mediumFileName = "../images/profiles/thumbs_medium/$img_name.jpeg";
-    $smallFileName = "../images/profiles/thumbs_small/$img_name.jpeg";
+    $original_file_name = "../images/profiles/originals/$img_name";
+    $medium_file_name = "../images/profiles/thumbs_medium/$img_name";
+    $small_file_name = "../images/profiles/thumbs_small/$img_name";
 
-    move_uploaded_file($_FILES["image"]["tmp_name"], $originalFileName);
+    move_uploaded_file($_FILES["image"]["tmp_name"], $original_file_name);
 
     //Create an image representation of the original image
-    $original = imagecreatefromfile($originalFileName);
+    $original = image_create_from_file($file_type, $original_file_name);
+    imagealphablending($original, true);
 
     $width = imagesx($original);     // width of the original image
     $height = imagesy($original);    // height of the original image
     $square = min($width, $height);  // size length of the maximum square
-    
+
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(200, 200);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 200, 200, $square, $square);
-    imagejpeg($small, $smallFileName, 100);
-    
+    $small = imagecreatetruecolor(50, 50);
+    imagealphablending($small, false);
+    imagesavealpha($small, true);
+    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 50, 50, $square, $square);
+    file_create_from_image($file_type, $small, $small_file_name);
+
     // Calculate width and height of medium sized image (max width: 400)
-    $mediumwidth = $width;
-    $mediumheight = $height;
-    if ($mediumwidth > 400) {
-      $mediumwidth = 400;
-      $mediumheight = $mediumheight * ($mediumwidth / $width);
+    $medium_width = $width;
+    $medium_height = $height;
+    if ($medium_width > 300) {
+        $medium_width = 300;
+        $medium_height = $medium_height * ($medium_width / $width);
     }
-    
+
     // Create and save a medium image
-    $medium = imagecreatetruecolor($mediumwidth, $mediumheight);
-    imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumwidth, $mediumheight, $width, $height);
-    imagejpeg($medium, $mediumFileName, 100);
+    $medium = imagecreatetruecolor($medium_width, $medium_height);
+    imagealphablending($medium, false);
+    imagesavealpha($medium, true);
+    imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
+    file_create_from_image($file_type, $medium, $medium_file_name);
 }
 
 /**
@@ -232,17 +236,40 @@ function get_user_places($user_id)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.id AS place_id, city.city_name AS city, country.country_name AS country, 
-                place.title AS title, owner_photo.photo_path AS image_name,
-                place.rating AS rating, place.price_per_night AS price_per_night,
-                place.num_guests AS num_guests
-            FROM place, city, country, owner_gallery, owner_photo
-            WHERE place.city_id = city.id AND city.country_id = country.id
-                AND owner_gallery.place = place.id 
-                AND owner_gallery.photo = owner_photo.id AND place.owner_id=?"
+        "SELECT 
+            place.id AS place_id, 
+            city.city_name AS city, 
+            country.country_name AS country, 
+            place.title AS title, 
+            owner_photo.photo_path AS image_name,
+            place.rating AS rating,
+            place.price_per_night AS price_per_night,
+            place.num_guests AS num_guests
+        FROM 
+            place, city, country, owner_gallery, owner_photo
+        WHERE 
+            place.city_id = city.id AND 
+            city.country_id = country.id AND 
+            owner_gallery.place = place.id AND 
+            owner_gallery.photo = owner_photo.id AND 
+            place.owner_id = ?
+        GROUP BY place_id"
     );
 
     $stmt->execute(array($user_id));
 
     return $stmt->fetchAll();
+}
+
+function get_id_by_email($user_email)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT usr_id AS id FROM usr WHERE usr_email=?"
+    );
+
+    $stmt->execute(array($user_email));
+
+    return $stmt->fetch();
 }

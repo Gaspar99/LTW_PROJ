@@ -13,5 +13,5 @@ $places = get_places();
 $countries = get_countries();
 
 draw_site_header();
-draw_edit_place($user_id, null);
+draw_add_place($user_id);
 draw_footer();

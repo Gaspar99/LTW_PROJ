@@ -43,7 +43,6 @@ function toggle_search_form() {
     else
         form.style.display = "flex"
 }
-
 /**
  * 
  */
@@ -51,7 +50,24 @@ function close_search_form() {
     let form = document.getElementById("search_form")
     form.style.display = "none"
 }
+/**
+ * 
+ */
+function toggle_review_box(id){ //todo ajax 
+    let box = document.getElementById("review_box"+id)
 
+    if(box.style.display == "flex")
+        box.style.display = "none"
+    else
+        box.style.display = "flex"
+}
+/**
+ * 
+ */
+function close_review_box(id) {
+    let box = document.getElementById("review_box"+id)
+    box.style.display = "none"
+}
 /**
  * 
  */
@@ -62,6 +78,14 @@ function toggle_dropdown_menu() {
         menu.style.display = "none"
     else
         menu.style.display = "flex"
+}
+/**
+ * 
+ * @param {*} event 
+ */
+function cancel_reservation(id){
+    //todo with ajax
+    alert(id);
 }
 
 //go through images 
@@ -334,6 +358,13 @@ function toggle_checkbox(event) {
         checkmark.style.display = "none"
     else
         checkmark.style.display = "block"
+}
+
+/**
+ * 
+ */
+function upload_comment(id){
+    alert(id)
 }
 
 /**

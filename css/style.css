@@ -862,6 +862,7 @@ body>#messages .success {
 #place_page #location {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     padding: 0;
     margin: 0.5em 0;
 }
@@ -933,9 +934,9 @@ body>#messages .success {
 }
 
 
-/* ------ Place Gallery ------*/
+/* ------ Generic Place Gallery ------*/
 
-#place_page #place_body #gallery_rent #place_gallery #image_container {
+#place_gallery #image_container {
     position: relative;
     width: auto;
 }
@@ -943,9 +944,10 @@ body>#messages .success {
 #place_page #place_body #gallery_rent #place_gallery img {
     max-width: 100%;
     height: auto;
+    border-radius: 0.5em;
 }
 
-#place_page #place_body #gallery_rent #place_gallery #image_container .display_left {
+#place_gallery #image_container .display_left {
     position: absolute;
     left: 0;
     top: 50%;
@@ -954,7 +956,7 @@ body>#messages .success {
     font-size: 2em;
 }
 
-#place_page #place_body #gallery_rent #place_gallery #image_container .display_right {
+#place_gallery #image_container .display_right {
     position: absolute;
     right: 0;
     top: 50%;
@@ -975,6 +977,33 @@ body>#messages .success {
     text-align: center;
 }
 
+#reservation_line{
+    border-width: 4em;
+    border-radius: 1em;
+    border: solid black;
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0em;
+}
+#reservation_line>#title{
+    text-align: left;
+    font-weight: bold;
+}
+
+#reservation_line >#owner_profile,#reservation_line >#owner_profile>*{
+    display: flex;
+    align-items: center;
+    width: 5em;
+    font-size: 0.9em;
+}
+
+#reservation_line>div, #reservation_line>button{
+    float: right;
+}
+
+#reservation_line>#cancel{
+    background-color: red;
+}
 
 /* ------ Price ------*/
 
@@ -1148,9 +1177,10 @@ body>#messages .success {
 }
 
 
-/*----- ADD PLACE -------*/
+/*----- ADD PLACE & EDIT PLACE-------*/
 
-#add_place {
+#add_place, 
+#edit_place {
     display: block;
     margin: 0 1em;
 }
@@ -1158,19 +1188,22 @@ body>#messages .success {
 
 /*-- Place title --*/
 
-#add_place #place_title {
+#add_place #place_title, 
+#edit_place #place_title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 2em 0 1.2em 0;
 }
 
-#add_place #place_title label {
+#add_place #place_title label,
+#edit_place #place_title label {
     padding: 0 0.5em 0 0;
     font-size: 2.4em;
 }
 
-#add_place #place_title input {
+#add_place #place_title input,
+#edit_place #place_title input{
     margin: 0;
     padding: 0.6em 1em;
     font-size: 1.2em;
@@ -1179,9 +1212,17 @@ body>#messages .success {
 
 /*-- Place location --*/
 
-#add_place #location {
+#add_place #location,
+#edit_place #location {
     display: flex;
+    align-items: center;
     justify-content: flex-start;
+    padding: 0;
+    margin: 0.5em 0;
+}
+
+#edit_place #location > * {
+    margin: 1em;
 }
 
 #add_place #location .form_country,
@@ -1197,21 +1238,24 @@ body>#messages .success {
 
 /*-- Place numbers - price & num guests --*/
 
-#add_place #numbers {
+#add_place #numbers,
+#edit_place #numbers {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin: 1.8em 0 0.5em 0;
 }
 
-#add_place #numbers>* {
+#add_place #numbers>*,
+#edit_place #numbers>* {
     display: flex;
     align-items: center;
     margin: 0 2em 0 0;
     width: min-content;
 }
 
-#add_place #numbers>* label {
+#add_place #numbers>* label,
+#edit_place #numbers>* label {
     margin: 0 0.6em 0 0;
     font-size: 1.3em;
     width: max-content;
@@ -1220,15 +1264,18 @@ body>#messages .success {
 
 /* Price */
 
-#add_place #numbers #price label {
+#add_place #numbers #price label,
+#edit_place #numbers #price label {
     min-width: max-content;
 }
 
-#add_place #numbers #price .price_input {
+#add_place #numbers #price .price_input,
+#edit_place #numbers #price .price_input {
     position: relative;
 }
 
-#add_place #numbers #price .price_input input {
+#add_place #numbers #price .price_input input,
+#edit_place #numbers #price .price_input input {
     max-width: 10em;
     min-width: 5em;
     font-size: 1.5em;
@@ -1236,7 +1283,8 @@ body>#messages .success {
     margin: 0;
 }
 
-#add_place #numbers #price .price_input i {
+#add_place #numbers #price .price_input i,
+#edit_place #numbers #price .price_input i {
     position: absolute;
     right: 0;
     top: 50%;
@@ -1245,24 +1293,29 @@ body>#messages .success {
     padding: 0.3em 0.5em;
 }
 
-#add_place #body {
+#add_place #body,
+#edit_place #body {
     display: grid;
-    grid-template-columns: auto auto;
-    margin: 1em 0;
+    width: 100%;
+    margin: 0;
+    grid-template-columns: max-content auto;
 }
 
 
 /* Upload */
 
-#add_place #body #upload {
+#add_place #body #upload,
+#edit_place #body #upload {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
+    width: max-content;
 }
 
-#add_place #body #upload img {
-    width: 100%;
-    height: 100%;
+#add_place #body #upload img,
+#edit_place #body #upload img {
+    max-width: 100%;
+    height: auto;
     border-radius: 0.5em; 
 }
 
@@ -1299,37 +1352,43 @@ body>#messages .success {
 
 /* Details */
 
-#add_place #body #details {
+#add_place #body #details,
+#edit_place #body #details {
     grid-column-start: 2;
     grid-column-end: span end;
     margin: 1em;
 }
 
-#add_place #body #details label {
+#add_place #body #details label,
+#edit_place #body #details label {
     font-size: 1.4em;
 }
 
-#add_place #body #details #description textarea {
+#add_place #body #details #description textarea,
+#edit_place #body #details #description textarea {
     font-size: 1.2em;
 }
 
 
 /* Tags */
 
-#add_place #body #details #tags {
+#add_place #body #details #tags,
+#edit_place #body #details #tags {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-#add_place #body #details #tags .tag {
+#add_place #body #details #tags .tag,
+#edit_place #body #details #tags .tag  {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin: 1em;
 }
 
-#add_place #body #details #tags .tag .checkbox_container {
+#add_place #body #details #tags .tag .checkbox_container,
+#edit_place #body #details #tags .tag .checkbox_container {
     position: relative;
     margin: 0 0.6em;
     -webkit-user-select: none;
@@ -1345,7 +1404,8 @@ body>#messages .success {
 
 /* Hiding default checkbox to crete our own */
 
-#add_place #body #details #tags .tag .checkbox_container input {
+#add_place #body #details #tags .tag .checkbox_container input,
+#edit_place #body #details #tags .tag .checkbox_container input {
     position: absolute;
     left: 0;
     top: -0.5em;
@@ -1356,11 +1416,13 @@ body>#messages .success {
     cursor: pointer;
 }
 
-#add_place #body #details #tags .tag .checkbox_container:hover {
+#add_place #body #details #tags .tag .checkbox_container:hover,
+#edit_place #body #details #tags .tag .checkbox_container:hover {
     opacity: 0.6;
 }
 
-#add_place #body #details #tags .tag .checkbox_container i {
+#add_place #body #details #tags .tag .checkbox_container i,
+#edit_place #body #details #tags .tag .checkbox_container i {
     display: none;
     position: absolute;
     left: 0;
@@ -1370,7 +1432,8 @@ body>#messages .success {
 
 /* Sumbit button */
 
-#add_place .submit_button {
+#add_place .submit_button,
+#edit_place .submit_button {
     width: 15%;
     margin: 2em 0;
     position: relative;

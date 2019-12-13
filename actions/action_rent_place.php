@@ -21,7 +21,6 @@ $reservation["tourist"] = $_POST["tourist"];
 $reservation["place_id"] = $_POST["place_id"];
 
 try {
-
     add_reservation($reservation);
 } catch (PDOException $e) {
 
