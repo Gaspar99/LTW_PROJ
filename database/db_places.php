@@ -310,7 +310,8 @@ function get_place_tags($place_id)
 
     $stmt = $db->prepare(
         "SELECT 
-            tag.tag_name AS tag_name 
+            tag.tag_name AS tag_name,
+            tag.tag_icon AS tag_icon
         FROM 
             place_tag, tag
         WHERE 
@@ -332,7 +333,7 @@ function get_tags()
 
     $stmt = $db->prepare(
         "SELECT 
-            id, tag_name 
+            id, tag_icon, tag_name 
         FROM 
             tag"
     );
