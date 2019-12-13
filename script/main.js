@@ -53,10 +53,10 @@ function close_search_form() {
 /**
  * 
  */
-function toggle_review_box(id){ //todo ajax 
-    let box = document.getElementById("review_box"+id)
+function toggle_review_box(id) { //todo ajax 
+    let box = document.getElementById("review_box" + id)
 
-    if(box.style.display == "flex")
+    if (box.style.display == "flex")
         box.style.display = "none"
     else
         box.style.display = "flex"
@@ -65,7 +65,7 @@ function toggle_review_box(id){ //todo ajax
  * 
  */
 function close_review_box(id) {
-    let box = document.getElementById("review_box"+id)
+    let box = document.getElementById("review_box" + id)
     box.style.display = "none"
 }
 /**
@@ -83,44 +83,42 @@ function toggle_dropdown_menu() {
  * 
  * @param {*} event 
  */
-function cancel_reservation(id){
+function cancel_reservation(id) {
     //todo with ajax
     alert(id);
 }
 
 //  Place Gallery - a slider to display multiple images
-
-
 var slideIndex = 1
 showDivs(slideIndex)
 
 function plusDivs(n) {
-  showDivs(slideIndex += n)
+    showDivs(slideIndex += n)
 }
 
 function showDivs(n) {
 
-  let x = document.getElementsByClassName("image_slide")
+    let images = document.getElementsByClassName("image_slide")
 
-  if (n > x.length) {
-      slideIndex = 1
-    } 
-  if (n < 1) {
-      slideIndex = x.length
-    } 
+    if (n > images.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = images.length
+    }
 
-  for (let i = 0; i < x.length; i++) {
-    x[i].style.display = "none" 
-  }
+    for (let i = 0; i < images.length; i++) {
+        images[i].style.display = "none"
+    }
 
-  x[slideIndex - 1].style.display = "block" 
+    images[slideIndex - 1].style.display = "block"
 }
 
 /**
  * 
  * @param {*} event 
  */
-function option_navigate(event){
+function option_navigate(event) {
     let options = document.getElementById("search_suggestions")
     console.log(options);
     if (e.keyCode == '38') {
@@ -131,16 +129,16 @@ function option_navigate(event){
     }
 }
 
-function price_change(){ 
+function price_change() {
     //get price selected
     let price = document.getElementById("price_input")
     let show_price = document.getElementById("show_price")
 
-    show_price.textContent = 'Price: '+price.value + '€'
+    show_price.textContent = 'Price: ' + price.value + '€'
     //create new element to display price
-    let div =document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
+    let div = document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
 
-     div.insertBefore(show_price,div.firstChild)
+    div.insertBefore(show_price, div.firstChild)
 
 }
 
@@ -159,7 +157,7 @@ function get_city_by_country(event) {
     let current_country = country_id_selected.options[country_id_selected.selectedIndex].value
 
     let request = new XMLHttpRequest()
-    request.addEventListener("load", function() {
+    request.addEventListener("load", function () {
         cities_received(event.target, this)
     })
     request.open("get", "../ajax/get_cities.php?country_id=" + current_country, true)
@@ -200,45 +198,45 @@ function cities_received(country_select_element, obj) {
 let text = document.getElementById("search_input")
 text.addEventListener("keyup", country_city_changed)
 
-function country_city_changed(event){
+function country_city_changed(event) {
 
     let text = event.target
     let request = new XMLHttpRequest()
-  
+
     request.addEventListener("load", countries_received)
-    if(text.value != "")
+    if (text.value != "")
         request.open("get", "../ajax/search.php?name=" + text.value, true)
-    else( document.getElementById("search_suggestions").innerHTML = "")
+    else (document.getElementById("search_suggestions").innerHTML = "")
     request.send()
 }
 
 // Handler for ajax response received
 function countries_received() {
-    
+
     let countries = JSON.parse(this.responseText)
     let list = document.getElementById("search_suggestions")
     list.innerHTML = ""; // Clean current countries
     // Add new suggestions
     for (let country in countries) {
         //console.log(country)
-        if(countries[country].city_name == null){
-            let item = document.createElement("li") 
+        if (countries[country].city_name == null) {
+            let item = document.createElement("li")
             item.id = "result_suggestions" //css 
             item.innerHTML = countries[country].country_name
             //item.addEventListener("click", fill_search_bar(countries[country].country_name));
             item.addEventListener("click", function () {
-                document.getElementById("search_input").value=countries[country].country_name 
-                document.getElementById("search_suggestions").innerHTML=""
+                document.getElementById("search_input").value = countries[country].country_name
+                document.getElementById("search_suggestions").innerHTML = ""
             });
             list.appendChild(item)
         }
-        if(countries[country].city_name != null){
-            let item = document.createElement("li") 
+        if (countries[country].city_name != null) {
+            let item = document.createElement("li")
             item.id = "result_suggestions" //css 
             item.innerHTML = countries[country].country_name + ', ' + countries[country].city_name
             item.addEventListener("click", function () {
-                document.getElementById("search_input").value=countries[country].country_name + ', ' + countries[country].city_name 
-                document.getElementById("search_suggestions").innerHTML=""
+                document.getElementById("search_input").value = countries[country].country_name + ', ' + countries[country].city_name
+                document.getElementById("search_suggestions").innerHTML = ""
             });
             list.appendChild(item)
         }
@@ -269,7 +267,7 @@ function get_ancestors(node) {
 
 //
 if (Array.prototype.indexOf === undefined) {
-    Array.prototype.indexOf = function(element) {
+    Array.prototype.indexOf = function (element) {
         for (var i = 0, l = this.length; i < l; i++) {
             if (this[i] == element) return i;
         }
@@ -369,12 +367,12 @@ function toggle_checkbox(event) {
 /**
  * 
  */
-function upload_comment(id){
+function upload_comment(id) {
     alert(id)
 }
 
 /**
- * password validation 
+ * password validation
  */
 //todo
 /*

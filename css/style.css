@@ -707,6 +707,15 @@ body>#messages .success {
     }
 }
 
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
 
 /* ------------- HOME PAGE: PLACES ------------*/
 
@@ -950,6 +959,8 @@ body>#messages .success {
 
 #place_gallery .image_slide {
     display: none;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
 }
 
 #place_gallery #image_container .display_left {
@@ -959,6 +970,8 @@ body>#messages .success {
     transform: translateY(-50%);
     background-color: transparent;
     font-size: 2em;
+    color: white;
+    text-shadow: 0 0 0.4em black;
 }
 
 #place_gallery #image_container .display_right {
@@ -968,6 +981,8 @@ body>#messages .success {
     transform: translateY(-50%);
     background-color: transparent;
     font-size: 2em;
+    color: white;
+    text-shadow: 0 0 0.4em black;
 }
 
 
