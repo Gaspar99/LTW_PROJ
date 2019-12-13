@@ -35,6 +35,25 @@ function close_sign_up_form() {
 /**
  * 
  */
+function toggle_notifications() {
+    let box = document.getElementById("notifications_box")
+
+    if (box.style.display == "flex")
+        box.style.display = "none"
+    else
+        box.style.display = "flex"
+}
+/**
+ * 
+ */
+function close_notifications() {
+    let box = document.getElementById("notifications_box")
+    box.style.display = "none"
+}
+
+/**
+ * 
+ */
 function toggle_search_form() {
     let form = document.getElementById("search_form")
 

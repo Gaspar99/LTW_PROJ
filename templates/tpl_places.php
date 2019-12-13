@@ -1,6 +1,6 @@
 <?php
 include_once("../database/db_places.php");
-
+include_once("../database/db_comments.php");
 /**
  * 
  */
@@ -183,7 +183,7 @@ function draw_place_info($place_id)
 
                 <section id="comments">
                     <h2>Comments</h2>
-                    TODO: Get comments from database
+                    <?php draw_place_comments($place_id,$owner)?>
                 </section>
 
             </section>
@@ -411,5 +411,55 @@ function draw_edit_place($user_id, $place_id)
 
         <button class="submit_button" type="submit">Save Changes</button>
     </form>
+
+<?php } 
+
+function draw_place_comments($place_id,$owner){
+    $comments = get_place_comments($place_id); 
+    if($comments == null){?>
+        No comments to display.
+    <?php } else{?>
+        <ul id="place_comments"> <?php 
+            foreach($comments as $comment){?>
+                <li id="comment_line">
+                    <div id="comment_info">
+                        <div id="comment_owner_profile">
+                            <a class="button" href="../pages/profile.php?id=<?= $comment["usr_id"] ?>">
+                                <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"]?>" alt="User Profile Picture">
+                                <div id="username"><?= $comment["usr_first_name"] ?> <?= $comment["usr_last_name"] ?></div>
+                            </a>
+                        </div>
+                        <article id="comment_box">
+                            <a id="comment_info">
+                                <?=$comment['usr_comment']?>       
+                            </a>
+                            <a id="comment_rating">
+                                <?=$comment['usr_rating']?>       
+                            </a>
+                            <a id="comment_extra">
+                                <?=$comment['usr_comment_date']?>       
+                                 <!-- reply -->
+                                <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]){ 
+                                        if($comment["owner_replay"] != NULL){?>
+                                            <button id="reply" onclick="toggle_review_box(<?=$comment['usr_id']?>)"> Reply </button>
+                                            <?php #todo draw_reply_box($reservation['id']);?>  
+                                        <?php }
+                                    } ?>
+                            </a>
+                        </article> 
+                    </div>
+                    <?php if($comment["owner_replay"] != NULL){?>
+                        <div id="comment_reply">
+                            Replied <?=$comment['owner_reply_date']?> 
+                            <article id="reply_box">
+                                <?=$comment['owner_reply']?> 
+                            </article>
+                        </div>
+                    <?php } ?>
+                </li>
+            <?php } ?>
+        </ul>
+    <?php }
+    ?>
 
 <?php } ?>

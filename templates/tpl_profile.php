@@ -132,7 +132,7 @@ function draw_list_reservations($user_id){
                 </a>
                 <div id="owner_profile">
                     <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
-                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>.jpeg" alt="User Profile Picture">
+                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>" alt="User Profile Picture">
                         <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
                     </a>
                 </div>

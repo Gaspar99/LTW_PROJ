@@ -229,7 +229,26 @@ input[type=number]::-webkit-outter-spin-button {
 #site_header #username_tile #username {
     text-align: center;
 }
+/* ------------- NOTIFICATION BELL -------- */
 
+#site_header #notification_bell {
+
+    display: flex;
+    align-items: center;
+    margin: 0 2em;
+    padding-left: 50em;
+    width: max-content;
+    border-width: 0;
+    background-color: transparent;
+    /* make better improve */
+    position: flex;
+    left: 100px;
+   
+}
+
+#notifications_box{
+    display: none;
+}
 
 /* ------------- DROPDOWN MENU  --------- */
 

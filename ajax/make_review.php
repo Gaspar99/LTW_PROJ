@@ -25,3 +25,5 @@ $stmt = $db->prepare(
 $stmt->execute(array($rating,$comment_info,$comment_date,$reservation_id));
 
 $ret = $stmt->fetch();
+
+#todo generate a notification 
