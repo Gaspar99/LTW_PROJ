@@ -1,11 +1,11 @@
 body {
     /* Definition of variables */
-    --panel-color: rgb(89, 193, 249);
-    --button-color: rgb(37, 58, 179);
+    --panel-color: rgb(25, 195, 255);
+    --button-color: rgb(5, 139, 187);
     --search-grey: rgb(242, 242, 242);
     --background-color: rgb(230, 230, 230);
     --form-input-color: rgb(195, 195, 195);
-    --rating-star-color: rgb(219, 203, 56);
+    --rating-star-color: rgb(242, 255, 0);
     --roboto-font: "Roboto", sans-serif;
 }
 
@@ -75,18 +75,17 @@ button,
 .button {
     color: white;
     background-color: var(--button-color);
-    ;
     padding: 0.5em;
-    cursor: pointer;
     font-family: var(--roboto-font);
     font-size: 1em;
     border-width: 0;
-    border-radius: 0.5em;
+    border-radius: 0;
 }
 
 button:hover,
 .button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 button:focus,
@@ -500,15 +499,128 @@ body>#messages .success {
     margin: auto;
     border-radius: 0.5em;
     box-shadow: 0 0 1em black;
-    width: 25em;
+    width: 40em;
     /* Could be more or less, depending on screen size */
     /* Style */
     background-color: white;
 }
 
-.container {
+.modal_content_sign_up {
     /* Layout */
-    padding: 1em;
+    display: block;
+    margin: auto;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em black;
+    width: 40em;
+    /* Could be more or less, depending on screen size */
+    /* Style */
+    background-color: white;
+}
+
+.modal_content_sign_in {
+    /* Layout */
+    display: block;
+    margin: auto;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em black;
+    width: 30em;
+    /* Could be more or less, depending on screen size */
+    /* Style */
+    background-color: white;
+}
+
+.container_sign_up {
+    /* Layout */
+    padding-right: 4em;
+    padding-left: 4em;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    display: grid;
+    grid-template-columns: 15em 2em 15em;
+    grid-template-rows: auto auto auto auto;
+}
+
+.container_sign_in {
+    /* Layout */
+    padding-right: 4em;
+    padding-left: 4em;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    display: block;
+}
+
+/* ---- Sign Up Grid --- */
+.gridd_first_name {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.gridd_last_name {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.gridd_email {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.gridd_password {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.gridd_confirm_password {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.gridd_country_id {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.gridd_phone_num {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.gridd_submit_button {
+    padding-bottom: 1em;
+}
+
+/* ---- Sign In Grid --- */
+
+.grid_email {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.grid_password {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.grid_submit_button {
+    padding-bottom: 1em;
 }
 
 
@@ -602,7 +714,7 @@ body>#messages .success {
     /* Layout */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -616,13 +728,13 @@ body>#messages .success {
     text-align: left;
     max-width: 20em;
     margin: 2em;
-    background-color: white;
-    border-radius: 1em;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0em;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25,1);
 }
 
 #site_content .places .place:hover {
-    box-shadow: 0 0 1em black;
+    box-shadow: 0 0 1em rgb(128, 128, 128);
 }
 
 #site_content .places .place a .place_city_country {
@@ -655,9 +767,10 @@ body>#messages .success {
     margin: 0;
     padding: 0;
     font-size: 1em;
-    background-color: lightblue;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    color: rgb(0, 0, 0);
+    background-color: var(--panel-color);
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
 }
 
 #site_content .places .place a .place_footer>* {
