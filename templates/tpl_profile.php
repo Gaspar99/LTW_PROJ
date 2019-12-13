@@ -136,9 +136,11 @@ function draw_list_reservations($user_id){
                         <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
                     </a>
                 </div>
-                <!-- display or check if can be reviewed -->
+
+                <!-- check if can be reviewed -->
                 <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
-                <!-- display or check if can be canceled -->
+
+                <!-- check if can be canceled -->
                 <button id="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)"> Cancel </button>
             
                 
@@ -152,7 +154,14 @@ function draw_list_reservations($user_id){
  */
 function draw_review_box($id){
     $box_id = "review_box";
-    $box_id .= $id; ?>
+    $box_id .= $id; 
+
+    $comment_holder_id = "comment_holder";
+    $comment_holder_id .= $id; 
+
+    $rating_holder_id = "rating_holder";
+    $rating_holder_id .= $id; 
+    ?>
 
   <div id=<?=$box_id?> class="modal">
    
@@ -160,11 +169,10 @@ function draw_review_box($id){
      
     <div class="container">
         <label for="comment"></label>
-        <input type="text_area" placeholder="Write your comment" name="comment" required>
+        <input id=<?=$comment_holder_id?> type="text_area" placeholder="Write your comment" name="comment" required>
 
         <label for="rating">Rate</label>
-        <input type="number" name="rating" min="1" max="5" required>
-
+        <input id=<?=$rating_holder_id?> type="number" name="rating" min="1" max="5" required>
         <button class="submit_button" onclick="upload_comment(<?=$id?>)">Post</button><!-- todo ajax submit-->
     </div>
   </div>

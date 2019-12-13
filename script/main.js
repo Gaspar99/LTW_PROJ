@@ -141,6 +141,11 @@ function price_change(){
 
 //::::: AJAX STUFF ::::::://
 
+function encodeForAjax(data) {
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&')
+}
 /*------ Search Bar ----*/
 
 /**
@@ -271,6 +276,35 @@ if (Array.prototype.indexOf === undefined) {
     };
 }
 
+/** reviews  */
+/**
+ * 
+ */
+function upload_comment(id){
+    let comment = document.getElementById("comment_holder"+id).value
+    let rating =  document.getElementById("rating_holder"+id).value
+    console.log(comment) 
+    console.log(rating)
+    if(comment == "" || rating == ""){
+        alert('All sections must be filled')
+        return 
+    }
+    alert(id) 
+
+    let request = new XMLHttpRequest()
+  
+    request.addEventListener("update", function(){
+        alert('Comment submitted')
+    })
+    request.addEventListener("error", function(){
+        alert('Failed to upload comment')
+    })
+    
+    request.open("post", "../ajax/make_review.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({id: id, comment: comment, rating: rating}))
+}
+
 /**
  * 
  * @param {*} price_per_night 
@@ -359,14 +393,6 @@ function toggle_checkbox(event) {
     else
         checkmark.style.display = "block"
 }
-
-/**
- * 
- */
-function upload_comment(id){
-    alert(id)
-}
-
 /**
  * password validation 
  */
