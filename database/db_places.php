@@ -264,6 +264,22 @@ function remove_place_photos($place_id)
 /**
  * 
  */
+function remove_place_tags($place_id)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            place_tag 
+        WHERE place = ?"
+    );
+
+    $stmt->execute(array($place_id));
+}
+
+/**
+ * 
+ */
 function get_place_gallery($place_id)
 {
     $db = Database::instance()->db();
@@ -294,7 +310,7 @@ function get_place_tags($place_id)
 
     $stmt = $db->prepare(
         "SELECT 
-            tag.tag_name 
+            tag.tag_name AS tag_name 
         FROM 
             place_tag, tag
         WHERE 
@@ -324,4 +340,23 @@ function get_tags()
     $stmt->execute();
 
     return $stmt->fetchAll();
+}
+
+/**
+ * 
+ */
+function add_place_tags($place_id, $tags)
+{
+    $db = Database::instance()->db();
+
+    foreach ($tags as $tag) {
+        
+        $stmt = $db->prepare(
+            "INSERT INTO place_tag
+            (place, tag) 
+            VALUES (?, ?)" 
+        );
+    
+        $stmt->execute(array($place_id, $tag));
+    }
 }

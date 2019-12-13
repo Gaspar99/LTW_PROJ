@@ -59,6 +59,7 @@ function draw_place_info($place_id)
     $place = get_place_info($place_id);
     $owner = get_user_info($place["place_owner"]);
     $image_gallery = get_place_gallery($place_id); #TODO check if the rly works 
+    $place_tags = get_place_tags($place_id);
     ?>
 
     <article id="place_page">
@@ -115,8 +116,7 @@ function draw_place_info($place_id)
                         <?php foreach ($image_gallery as $image) { ?>
                             <img src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
                         <?php }
-
-                            if (sizeof($image_gallery) > 0) {  ?>
+                            if (sizeof($image_gallery) > 1) {  ?>
                             <!-- ver isto melhor https://www.w3schools.com/w3css/w3css_slideshow.asp-->
                             <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
@@ -174,7 +174,9 @@ function draw_place_info($place_id)
                 <hr>
 
                 <div id="place_tags">
-                    TODO: Tags
+                    <?php foreach ($place_tags as $tag) { ?>
+                    <div id="tag"><?=$tag["tag_name"]?></div>
+                    <?php } ?> 
                 </div>
 
                 <hr>
@@ -277,7 +279,7 @@ function draw_add_place($user_id)
                             <div class="tag">
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
-                                    <input type="checkbox" name="tag" value="<?= $tag["tag_name"] ?>" oninput="toggle_checkbox(event)">
+                                    <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)">
                                     <i class="material-icons">check</i>
                                 </div>
                             </div>
@@ -393,7 +395,7 @@ function draw_edit_place($user_id, $place_id)
                             <div class="tag">
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
-                                    <input type="checkbox" name="tag" value="<?= $tag["tag_name"] ?>" oninput="toggle_checkbox(event)" <?= in_array($tag['tag_name'], $place_tags) ? "checked" : null ?>>
+                                    <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)" <?= in_array($tag, $place_tags) ? "checked" : null ?>>
                                     <i class="material-icons">check</i>
                                 </div>
                             </div>

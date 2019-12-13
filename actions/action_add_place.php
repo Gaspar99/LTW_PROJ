@@ -13,9 +13,12 @@ $place["num_guests"] = $_POST["num_guests"];
 $place["owner"] = $_POST["owner"];
 $place["city"] = $_POST["city"];
 
+$tags = $_POST["tags"];
+
 try {
     $place_id = add_place($place);
     add_place_photo($place_id);
+    add_place_tags($place_id, $tags); 
 } catch (PDOException $e) {
     die($e->getMessage());
 }

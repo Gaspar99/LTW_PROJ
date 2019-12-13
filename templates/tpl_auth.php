@@ -11,7 +11,7 @@ function draw_sign_in()
 
       <div class="img_container">
         <span class="close" onclick="close_sign_in_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo" width="50" height="50"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
 
       <div class="container">
@@ -39,7 +39,7 @@ function draw_sign_up($countries)
     <form class="modal_content animate" action="../actions/action_signup.php" method="post">
       <div class="img_container">
         <span class="close" onclick="close_sign_up_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo" width="50" height="50"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
       <div class="container">
         <label for="first_name">First Name</label>
