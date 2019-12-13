@@ -49,7 +49,7 @@ function draw_header($user_email)
         <header id="site_header">
             <div id="site_logo">
                 <a href="../pages/home.php">
-                    <img src="../images/site/logo.jpeg" alt="Web site Logo">
+                    <img src="../images/site/logo.jpeg" alt="Web site Logo" width="50" height="50">
                     <div id="site_name">Rental Eye</div>
                 </a>
             </div>
@@ -62,7 +62,7 @@ function draw_header($user_email)
             <?php } else {
                     $user = get_user_name($user_email); ?>
                 <button id="username_tile" onclick="toggle_dropdown_menu()">
-                    <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>.jpeg" alt="User Profile Picture">
+                    <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
                     <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
                     <i class="material-icons">arrow_drop_down</i>
                 </button>

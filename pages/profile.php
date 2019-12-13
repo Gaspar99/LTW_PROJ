@@ -9,5 +9,5 @@ include_once("../templates/tpl_profile.php");
 $user_id = $_GET["id"];
 
 draw_site_header();
-draw_profile($user_id,$_SESSION["user_email"]);
+draw_profile($user_id);
 draw_footer();

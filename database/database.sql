@@ -129,7 +129,7 @@ VALUES
       "janedoe@email.com", --usr_email
       "912345678", --usr_phone_number
       "$2y$10$obkm2f3lNnqIGjmybxt6SuwdvcNjrk4.A.yqFTktL2IN9UJu9xue6", --usr_password: password
-      10 --country_id
+      50 --country_id
 );
 
 INSERT INTO usr
@@ -142,7 +142,7 @@ VALUES
       "fchico@email.com", --usr_email
       "919191919", --usr_phone_number
       "$2y$10$xzf4B.Tij5DnMBm4lx/ENOH.ng0fitnmBo2hr1FO7GxxRSTxEZg7.", --usr_password: jorgepass
-      64 --country_id
+      30 --country_id
 );
 
 INSERT INTO usr
@@ -154,7 +154,7 @@ VALUES(
       "antman@email.com", --usr_email
       "986541123", --usr_phone_number
       "$2y$10$EZTbD2U2MqM8gRF.WZ2nwuDEMvQjkpaWSkr/CJFIY4xDRJvTEEUUC", --usr_password: antman123
-      64 --country_id
+      20 --country_id
 );
 
 INSERT INTO usr
@@ -178,15 +178,15 @@ VALUES(
       "migeida@email.com", --usr_email
       "977456185", --usr_phone_number
       "$2y$10$iAzeY7eOqZcM5a4k0SHy7uIqSwD9cjTsmZZvWE9xEgs0OJjzXtc0e", --usr_password: migueida87
-      64 --country_id
+      53 --country_id
 );
 
 INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
 VALUES(
       1, --id
-      "The Porto Concierge - Unexpected Journey C", --title
-      30, --price_per_night
+      "Fantastic Modern Style House with an Incredible Pool", --title
+      100, --price_per_night
       "Porto Street 107", --place_address
       "Practical and conveniently located Studio with all amenities for a comfortable stay. Centrally located to enjoy all the city has to offer! In this apartment can sleep up to 4 people comfortably.
       Shared outside garden.
@@ -202,12 +202,12 @@ INSERT INTO place
 VALUES(
       2, --id
       "Champs-Élysées Golden triangle flat with mezzanine", --title
-      80, --price_per_night
+      150, --price_per_night
       "Awesome street 143", --place_address
       "Newly renovated tiny apartment with mezzanine, compact and design,well-equipped, direct elevator. (The space design is more suitable for young people)
       Located in the center of Paris, surrounded by Avenue Champs Élysées, Avenue George V and Avenue Montaigne, called the Golden Triangle area.
       Arc de Triomphe, LV flagship store, Lido nightclub, Ladurée and Subway station are all within a 1-5 minute walk.", --place_description
-      2, --num_guests
+      4, --num_guests
       2, --owner_id: John Doe
       6736 --city_id: Paris
 );
@@ -217,10 +217,11 @@ INSERT INTO place
 VALUES(
       3, --id
       "Sweet & cosy room next to Canal Saint Martin", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      2, --num_guests
+      90, --price_per_night
+      "Plaza Marquez 56", --place_address
+      "A superb luxury detached lodge with private sauna and hot tub in the exclusive Astbury Falls site, a gated complex, close to a man-made waterfall, in a dedicated area of outstanding natural beauty, just 1.8 miles from the picturesque town of Bridgnorth.
+      Please contact us if you would like a special event organised or a special welcome pack, we will do our very best to accomadate your request.", --place_description
+      5, --num_guests
       3, --owner_id: Jorge
       6736 --city_id: Paris
 );
@@ -229,13 +230,13 @@ INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
 VALUES(
       4, --id
-      "Fantastic House", --title
+      "Incredible cozy apartment in the Heart of NYC", --title
       300, --price_per_night
       "Fantastic road 107", --place_address
-      "The room is located right in the heart of la République area, in the 10th district of Paris. It’s close to lively streets, transportation and shops, making your stay in Paris easy and enjoyable.
+      "The house is located right in the heart of la République area, in the 10th district of Paris. It’s close to lively streets, transportation and shops, making your stay in Paris easy and enjoyable.
       The room is bright, quiet and comfy, which makes it the perfect place to rest after your long and exciting days exploring the capital city.", --place_description
       7, --num_guests
-      3, --owner_id: Jorge
+      4, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
@@ -243,90 +244,43 @@ INSERT INTO place
    (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
 VALUES(
       5, --id
-      "Fantastic House", --title
+      "The Salt House", --title
       300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      7, --num_guests
-      3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
-);
-
-INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
-VALUES(
-      6, --id
-      "Fantastic House", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      9, --num_guests
-      3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
-);
-
-INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
-VALUES(
-      7, --id
-      "Fantastic House", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      7, --num_guests
-      3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
-);
-
-INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
-VALUES(
-      8, --id
-      "Fantastic House", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      4, --num_guests
-      3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
-);
-
-INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
-VALUES(
-      9, --id
-      "Fantastic House", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      3, --num_guests
-      3, --owner_id: Jorge
-      1411 --city_id: Amsterdam
-);
-
-INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
-VALUES(
-      10, --id
-      "Fantastic House", --title
-      300, --price_per_night
-      "Fantastic road 107", --place_address
-      "A fantastic house to simply have fun.", --place_description
-      6, --num_guests
-      3, --owner_id: Jorge
+      "Street number 37", --place_address
+      "This property is a beautifully renovated former salt house, situated in an idyllic rural landscape. The house has a wood burning stove for cosy nights and a self enclosed garden should you wish to bring a well-behaved pet. Come and explore Yorkshire!", --place_description
+      2, --num_guests
+      5, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO owner_photo
 VALUES(
       1, --ID
-      "a9d9171b7ab59dc34f74cf07aa247faf2ab5c9bb61ba533cd93338a97c2aeb0e" --photo_path
+      "poolHouse.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       2, --ID
-      "7e07f3cfafe2039db10652b734e0e11d6a4e08d33dbe99f86010f44f813d4f8a" --photo_path
+      "beachHouse.jpeg" --photo_path
+);
+
+INSERT INTO owner_photo
+VALUES(
+      3, --ID
+      "lakeHouse.jpeg" --photo_path
+);
+
+INSERT INTO owner_photo
+VALUES(
+      4, --ID
+      "nycApartment.jpeg" --photo_path
+);
+
+INSERT INTO owner_photo
+VALUES(
+      5, --ID
+      "modernInterior.jpeg" --photo_path
 );
 
 INSERT INTO owner_gallery
@@ -344,49 +298,19 @@ VALUES(
 INSERT INTO owner_gallery
 VALUES(
       3, --place id
-      1 --owner_photo id
+      3 --owner_photo id
 );
 
 INSERT INTO owner_gallery
 VALUES(
       4, --place id
-      2 --owner_photo id
+      4 --owner_photo id
 );
 
 INSERT INTO owner_gallery
 VALUES(
       5, --place id
-      1 --owner_photo id
-);
-
-INSERT INTO owner_gallery
-VALUES(
-      6, --place id
-      2 --owner_photo id
-);
-
-INSERT INTO owner_gallery
-VALUES(
-      7, --place id
-      1 --owner_photo id
-);
-
-INSERT INTO owner_gallery
-VALUES(
-      8, --place id
-      2 --owner_photo id
-);
-
-INSERT INTO owner_gallery
-VALUES(
-      9, --place id
-      1 --owner_photo id
-);
-
-INSERT INTO owner_gallery
-VALUES(
-      10, --place id
-      1 --owner_photo id
+      5 --owner_photo id
 );
 
 -- INSERT TAGS --

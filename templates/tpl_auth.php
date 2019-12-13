@@ -11,12 +11,12 @@ function draw_sign_in()
 
       <div class="img_container">
         <span class="close" onclick="close_sign_in_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo" width="50" height="50"></a>
       </div>
 
       <div class="container">
         <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" pattern= "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
+        <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
 
         <label for="password">Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
@@ -39,7 +39,7 @@ function draw_sign_up($countries)
     <form class="modal_content animate" action="../actions/action_signup.php" method="post">
       <div class="img_container">
         <span class="close" onclick="close_sign_up_form()" title="Close Form">&times;</span>
-        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
+        <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo" width="50" height="50"></a>
       </div>
       <div class="container">
         <label for="first_name">First Name</label>
