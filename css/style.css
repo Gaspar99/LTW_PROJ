@@ -284,18 +284,34 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
     display: flex;
     align-items: center;
-    margin: 0 2em;
+    margin: 0 0em;
     width: max-content;
     border-width: 0;
     background-color: transparent;
     /* make better improve */
     position: relative;
-    left: 400px;
+    left: 720px;
    
 }
 
 #notifications_box{
     display: none;
+}
+
+/* ------------- MESSAGE ENVELOPE -------- */
+
+#site_header #messages_icon {
+
+    display: flex;
+    align-items: center;
+    margin: 0 0em;
+    width: max-content;
+    border-width: 0;
+    background-color: transparent;
+    /* make better improve */
+    position: relative;
+    left: 350px;
+   
 }
 
 /* ------------- DROPDOWN MENU  --------- */

@@ -120,7 +120,7 @@ function draw_list_reservations($user_id){
     <ul id="reservations_list" > <?php
         foreach($user_reservations as $reservation){
             $place_info = get_place_reserved($reservation['place_id']);?>
-            <li id="reservation_line"> 
+            <li id="reservation_line" name="reservation_id<?=$reservation['id']?>"> 
                 <?=$place_info['title']?>
                 <a id="adress">
                     <?=$place_info['country_name']?> - <?=$place_info['city_name']?> <?=$place_info['address']?> 
