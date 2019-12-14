@@ -35,6 +35,25 @@ function close_sign_up_form() {
 /**
  * 
  */
+function toggle_notifications() {
+    let box = document.getElementById("notifications_box")
+
+    if (box.style.display == "flex")
+        box.style.display = "none"
+    else
+        box.style.display = "flex"
+}
+/**
+ * 
+ */
+function close_notifications() {
+    let box = document.getElementById("notifications_box")
+    box.style.display = "none"
+}
+
+/**
+ * 
+ */
 function toggle_search_form() {
     let form = document.getElementById("search_form")
 
@@ -100,15 +119,15 @@ function showDivs(n) {
 
     let images = document.getElementsByClassName("image_slide")
 
-    if (n > images.length) 
+    if (n > images.length)
         slideIndex = 1
-    
-    if (n < 1) 
+
+    if (n < 1)
         slideIndex = images.length
-    
-    for (let i = 0; i < images.length; i++) 
+
+    for (let i = 0; i < images.length; i++)
         images[i].style.display = "none"
-    
+
     if (images.length)
         images[slideIndex - 1].style.display = "block"
 }
@@ -144,6 +163,11 @@ function price_change() {
 
 //::::: AJAX STUFF ::::::://
 
+function encodeForAjax(data) {
+    return Object.keys(data).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&')
+}
 /*------ Search Bar ----*/
 
 /**
@@ -294,6 +318,36 @@ function update_price() {
 
     min_price_value.innerHTML = "" + min_price_input + "€"
     max_price_value.innerHTML = "" + max_price_input + "€"
+
+}
+
+/** reviews  */
+/**
+ * 
+ */
+function upload_comment(id) {
+    let comment = document.getElementById("comment_holder" + id).value
+    let rating = document.getElementById("rating_holder" + id).value
+    console.log(comment)
+    console.log(rating)
+    if (comment == "" || rating == "") {
+        alert('All sections must be filled')
+        return
+    }
+    alert(id)
+
+    let request = new XMLHttpRequest()
+
+    request.addEventListener("update", function () {
+        alert('Comment submitted')
+    })
+    request.addEventListener("error", function () {
+        alert('Failed to upload comment')
+    })
+
+    request.open("post", "../ajax/make_review.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({ id: id, comment: comment, rating: rating }))
 }
 
 /**
@@ -384,14 +438,6 @@ function toggle_checkbox(event) {
     else
         checkmark.style.display = "block"
 }
-
-/**
- * 
- */
-function upload_comment(id) {
-    alert(id)
-}
-
 /**
  * password validation
  */

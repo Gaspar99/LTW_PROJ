@@ -13,6 +13,7 @@ function draw_site_header()
 
     if (isset($_SESSION["user_email"])) {
         draw_header($_SESSION["user_email"]);
+        draw_notifications($_SESSION["user_email"]);
         draw_dropdrown($_SESSION["user_email"]);
     } else {
         draw_header(null);
@@ -61,6 +62,9 @@ function draw_header($user_email)
                 </div>
             <?php } else {
                     $user = get_user_name($user_email); ?>
+                <button id="notification_bell" onclick="toggle_notifications()">
+                    <i class="material-icons">notifications</i>
+                </button>
                 <button id="username_tile" onclick="toggle_dropdown_menu()">
                     <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
                     <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
@@ -118,4 +122,10 @@ function draw_footer()
             <footer id="site_footer">Copyright © 2019 LTW FEUP</footer>
         </body>
     </html>
-<?php } ?>
+<?php } 
+
+function draw_notifications($email){?>
+    <div id="notifications_box">
+        bleh
+    </div>   
+<?php }?>
