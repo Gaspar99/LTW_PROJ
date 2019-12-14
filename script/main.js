@@ -119,18 +119,17 @@ function showDivs(n) {
 
     let images = document.getElementsByClassName("image_slide")
 
-    if (n > images.length) {
+    if (n > images.length)
         slideIndex = 1
-    }
-    if (n < 1) {
+
+    if (n < 1)
         slideIndex = images.length
-    }
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < images.length; i++)
         images[i].style.display = "none"
-    }
 
-    images[slideIndex - 1].style.display = "block"
+    if (images.length)
+        images[slideIndex - 1].style.display = "block"
 }
 
 /**
@@ -165,8 +164,8 @@ function price_change() {
 //::::: AJAX STUFF ::::::://
 
 function encodeForAjax(data) {
-    return Object.keys(data).map(function(k){
-      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    return Object.keys(data).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
 }
 /*------ Search Bar ----*/
@@ -299,33 +298,56 @@ if (Array.prototype.indexOf === undefined) {
     };
 }
 
+// PRICE
+
+let min_price = document.getElementById("min_price")
+let max_price = document.getElementById("max_price")
+
+min_price.oninput = update_price
+max_price.oninput = update_price
+
+function update_price() {
+    let min_price_input = parseFloat(min_price.value)
+    let max_price_input = parseFloat(max_price.value)
+
+    if (min_price_input > max_price_input)
+        [min_price_input, max_price_input] = [max_price_input, min_price_input]
+
+    let min_price_value = document.getElementById("min_price_value")
+    let max_price_value = document.getElementById("max_price_value")
+
+    min_price_value.innerHTML = "" + min_price_input + "€"
+    max_price_value.innerHTML = "" + max_price_input + "€"
+
+}
+
 /** reviews  */
 /**
  * 
  */
-function upload_comment(id){
-    let comment = document.getElementById("comment_holder"+id).value
-    let rating =  document.getElementById("rating_holder"+id).value
-    console.log(comment) 
+function upload_comment(id) {
+    let comment = document.getElementById("comment_holder" + id).value
+    let rating = document.getElementById("rating_holder" + id).value
+    console.log(comment)
     console.log(rating)
-    if(comment == "" || rating == ""){
+    if (comment == "" || rating == "") {
         alert('All sections must be filled')
-        return 
+        return
     }
-    alert(id) 
+    alert(id)
 
     let request = new XMLHttpRequest()
-  
-    request.addEventListener("update", function(){
+
+    request.addEventListener("update", function () {
         alert('Comment submitted')
     })
-    request.addEventListener("error", function(){
+    request.addEventListener("error", function () {
         alert('Failed to upload comment')
     })
-    
+
     request.open("post", "../ajax/make_review.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    request.send(encodeForAjax({id: id, comment: comment, rating: rating}))
+    request.send(encodeForAjax({ id: id, comment: comment, rating: rating }))
 }
 
 /**
