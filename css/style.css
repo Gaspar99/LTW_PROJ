@@ -258,6 +258,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 /* User Options */
+
 #site_header #user_options {
     position: absolute;
     top: 1.5em;
@@ -275,6 +276,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 /* Username Tile */
+
 #site_header #username_tile {
     display: flex;
     align-items: center;
@@ -368,6 +370,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 /*suggestions*/
 
 #search_suggestions {
+    z-index: 5 !important;
     background-color: white;
     margin: 0;
     padding: 0;
@@ -378,10 +381,10 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     top: 5em;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    z-index: 5;
 }
 
 #result_suggestions {
+    z-index: 5 !important;
     padding: 0.5em;
     border-bottom: 0.05em solid var(--panel-color);
     cursor: pointer;
@@ -403,8 +406,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     border-bottom-right-radius: 0;
 }
 
-.form_date .check_out input{
-
+.form_date .check_out input {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -990,9 +992,19 @@ body>#messages .success {
 
 /* ------ Generic Place Gallery ------*/
 
+#place_gallery {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    align-items: center;
+}
+
 #place_gallery #image_container {
     position: relative;
-    width: auto;
+    max-width: max-content;
+    margin: auto;
 }
 
 #place_page #place_body #gallery_rent #place_gallery img {
@@ -1003,7 +1015,8 @@ body>#messages .success {
 
 /* Genneric Place Gallery */
 
-#place_gallery .image_slide {
+#place_gallery .image_slide,
+#place_gallery .fullscreen_slide {
     display: none;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
@@ -1028,7 +1041,22 @@ body>#messages .success {
     background-color: transparent;
     font-size: 2em;
     color: white;
-    text-shadow: 0 0 0.4em black;
+    text-shadow: 0 0 0.5em black;
+}
+
+#place_gallery #image_container .full_screen {
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+#place_gallery #image_container .full_screen i {
+    color: white;
+    text-shadow: 0 0 0.5em black;
+    font-size: 3em;
 }
 
 /* ------ Rent Section ------*/
