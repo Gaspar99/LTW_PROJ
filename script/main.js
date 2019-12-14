@@ -91,13 +91,16 @@ function close_review_box(id) {
  * 
  */
 function toggle_dropdown_menu() {
-    let menu = document.getElementById("user_dropdown_menu")
+    let menu = document.getElementsByClassName("user_menu_option")
 
-    if (menu.style.display == "flex")
-        menu.style.display = "none"
-    else
-        menu.style.display = "flex"
+    for (let i = 0; i < menu.length; i++) {
+        if (menu[i].style.display == "block")
+            menu[i].style.display = "none"
+        else
+            menu[i].style.display = "block"
+    }
 }
+
 /**
  * 
  * @param {*} event 

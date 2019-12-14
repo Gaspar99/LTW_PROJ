@@ -238,7 +238,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     text-align: center;
     width: 6em;
     /* Style */
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 #site_header #auth_forms_buttons {
@@ -257,106 +257,78 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     transform: translateX(-50%);
 }
 
-/* User Name */
+/* User Options */
+#site_header #user_options {
+    position: absolute;
+    top: 1.5em;
+    right: 2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
+/* User Menu */
+
+#site_header #user_menu {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Username Tile */
 #site_header #username_tile {
     display: flex;
     align-items: center;
-    margin: 0 2em;
+    margin: 0;
     width: max-content;
-    border-width: 0;
 }
 
 #site_header #username_tile img {
     width: 2em;
     height: 2em;
-    border-radius: 1em;
+    border-radius: 50%;
     margin: 0 1em 0 0;
     padding: 0;
 }
 
 #site_header #username_tile #username {
     text-align: center;
-}
-/* ------------- NOTIFICATION BELL -------- */
-
-#site_header #notification_bell {
-
-    display: flex;
-    align-items: center;
-    margin: 0 0em;
-    width: max-content;
-    border-width: 0;
-    background-color: transparent;
-    /* make better improve */
-    position: relative;
-    left: 720px;
-   
+    font-size: 1.1em;
 }
 
-#notifications_box{
+#site_header #user_menu .user_menu_option {
     display: none;
-}
-
-/* ------------- MESSAGE ENVELOPE -------- */
-
-#site_header #messages_icon {
-
-    display: flex;
-    align-items: center;
-    margin: 0 0em;
-    width: max-content;
-    border-width: 0;
-    background-color: transparent;
-    /* make better improve */
-    position: relative;
-    left: 350px;
-   
-}
-
-/* ------------- DROPDOWN MENU  --------- */
-
-.dropdown_menu {
-    /* Layout */
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1;
-    width: max-content;
-    padding: 0;
-    margin: 0;
-    /* Style */
-    background-color: white;
-    box-shadow: 0 0 1em black;
-    border-radius: 0.5em;
-    font-size: 1.2em;
-}
-
-.dropdown_menu>a {
-    width: 7em;
-    padding: 1em;
-    margin: 0em;
+    width: inherit;
     text-align: center;
+    background-color: white;
     color: black;
+    padding: 1em;
+    font-size: 1.1em;
+    z-index: 2;
 }
 
-.dropdown_menu>a:hover, .dropdown_menu>a:focus {
+#site_header #user_menu .user_menu_option:hover {
     background-color: var(--button-color);
     color: white;
 }
 
-.dropdown_menu>a:first-child:hover, .dropdown_menu>a:first-child:focus {
-    border-radius: 0.5em 0.5em 0 0;
+/*  Notification Bell  */
+
+#site_header #notification_bell {
+    background: transparent;
+    margin: 1.5em 1em 0 0;
+    padding: 0;
+    cursor: pointer;
 }
 
-.dropdown_menu>a:last-child:hover, .dropdown_menu> :last-child:focus {
-    border-radius: 0 0 0.5em 0.5em;
+#notifications_box {
+    display: none;
 }
 
-#user_dropdown_menu.dropdown_menu {
-    position: absolute;
-    right: 3em;
-    top: 5em;
+/* Chat Icon Button*/
+
+#site_header #chat_icon {
+    margin: 1.5em 1em 0 0;
+    padding: 0;
 }
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
@@ -371,6 +343,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     margin: 0;
     padding: 0;
     z-index: 0;
+    width: 100%;
     /* Style */
     color: black;
     background-color: white;
@@ -389,7 +362,6 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 #search_form>div {
-    max-width: 8em;
     margin: 1em;
 }
 
@@ -403,20 +375,38 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     width: 50%;
     overflow: hidden;
     position: absolute;
+    top: 5em;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     z-index: 5;
 }
 
 #result_suggestions {
-    margin: 0.1em;
     padding: 0.5em;
     border-bottom: 0.05em solid var(--panel-color);
     cursor: pointer;
 }
 
 #result_suggestions:hover {
-    background-color: var(--search-grey);
+    color: white;
+    background-color: var(--button-color)
+}
+
+.form_date {
+    max-width: max-content;
+    display: flex;
+    align-items: center;
+}
+
+.form_date .check_in input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form_date .check_out input{
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 /* Customizing every input for number of guests */
@@ -425,7 +415,8 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5em 0em 0em 0em;
+    margin: 1em auto;
+    width: min-content;
 }
 
 #num_guests_input input {
@@ -436,18 +427,18 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
-    width: 50%;
+    width: min-content;
     -webkit-appearance: none;
     -moz-appearance: textfield;
 }
 
 #num_guests_input .button {
-    padding: auto;
+    padding: 0.5em;
     width: 1em;
     height: 1em;
     text-align: center;
     margin: 0;
-    border-radius: 50%;
+    border-radius: 100%;
     text-align: center;
     font-weight: bold;
 }
@@ -476,8 +467,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     width: 10em;
 }
 
-#search_form .price .price_slider #min_price, 
-#search_form .price .price_slider #max_price {
+#search_form .price .price_slider #min_price, #search_form .price .price_slider #max_price {
     position: absolute;
     left: 0;
     top: 0;
@@ -1134,28 +1124,31 @@ body>#messages .success {
 
 /* -------- Comment section ------- */
 
-.comment_grid{
+.comment_grid {
     display: grid;
     grid-template-columns: 1fr 5fr;
     border: 1px solid black;
     outline-style: solid;
     background-color: var(--search-grey);
 }
-.comment_item>#comment_info{
+
+.comment_item>#comment_info {
     text-align: center;
     float: left;
     padding: 1em;
 }
-#comment_rating{
-    float: right;
-    padding: 1em;
-}
-#comment_extra{
+
+#comment_rating {
     float: right;
     padding: 1em;
 }
 
-#comment_owner_profile{
+#comment_extra {
+    float: right;
+    padding: 1em;
+}
+
+#comment_owner_profile {
     border: 1px solid black;
     outline-style: solid;
     display: flex;
@@ -1163,7 +1156,6 @@ body>#messages .success {
     width: 100px;
     height: 100px;
 }
-
 
 /*-----USER PROFILE-------*/
 

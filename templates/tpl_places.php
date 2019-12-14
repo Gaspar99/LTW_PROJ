@@ -116,7 +116,7 @@ function draw_place_info($place_id)
                         <?php foreach ($image_gallery as $image) { ?>
                             <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
                         <?php }
-                        if (sizeof($image_gallery) > 1) {  ?>
+                            if (sizeof($image_gallery) > 1) {  ?>
                             <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
                         <?php } ?>
@@ -134,15 +134,34 @@ function draw_place_info($place_id)
                         <form id="rent_form" action="../actions/action_rent_place.php" method="post">
 
                             <div class="form_date">
-                                <label for="check_in">Check In</label>
-                                <input required id="check_in_value" type="date" name="check_in" oninput="calculate_rent_price(<?= $place["price"] ?>)">
-                            </div>
+                                <div class="check_in">
+                                    <label for="check_in">Check In</label>
+                                    <input id="check_in_value" name="check_in" required autocomplete="off">
+                                    <script>
+                                        let check_in_value = new Litepicker({
+                                            element: document.getElementById('check_in_value'),
+                                            minDate: new Date().getTime(),
+                                            format: "D MMM, YYYY",
+                                            numberOfMonths: 1,
+                                            numberOfColumns: 1
+                                        })
+                                    </script>
+                                </div>
 
-                            <div class="form_date">
-                                <label for="check_out">Check Out</label>
-                                <input required id="check_out_value" type="date" name="check_out" oninput="calculate_rent_price(<?= $place["price"] ?>)">
+                                <div class="check_out">
+                                    <label for="check_out">Check Out</label>
+                                    <input id="check_out_value" name="check_out" required autocomplete="off">
+                                    <script>
+                                        let check_out_value = new Litepicker({
+                                            element: document.getElementById('check_out_value'),
+                                            minDate: new Date().getTime(),
+                                            format: "D MMM, YYYY",
+                                            numberOfMonths: 1,
+                                            numberOfColumns: 1
+                                        })
+                                    </script>
+                                </div>
                             </div>
-
                             <div id="form_num_guests">
                                 <label for="num_guests">Number of Guests</label>
                                 <div id="num_guests_input">
@@ -174,18 +193,18 @@ function draw_place_info($place_id)
 
                 <div id="place_tags">
                     <?php foreach ($place_tags as $tag) { ?>
-                    <div class="tag">
-                        <i class="material-icons"><?=$tag["tag_icon"]?></i>
-                        <div id="tag"><?=$tag["tag_name"]?></div>
-                    </div>
-                    <?php } ?> 
+                        <div class="tag">
+                            <i class="material-icons"><?= $tag["tag_icon"] ?></i>
+                            <div id="tag"><?= $tag["tag_name"] ?></div>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <hr>
 
                 <section id="comments">
                     <h2>Comments</h2>
-                    <?php draw_place_comments($place_id,$owner)?>
+                    <?php draw_place_comments($place_id, $owner) ?>
                 </section>
 
             </section>
@@ -279,7 +298,7 @@ function draw_add_place($user_id)
                     <div id="tags">
                         <?php foreach ($tags as $tag) { ?>
                             <div class="tag">
-                                <i class="material-icons"><?=$tag["tag_icon"]?></i>
+                                <i class="material-icons"><?= $tag["tag_icon"] ?></i>
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
                                     <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)">
@@ -321,17 +340,17 @@ function draw_edit_place($user_id, $place_id)
 
             <div class="form_country">
                 <label for="country">Country</label>
-                <div id="country"><?=$place["country_name"]?></div>
+                <div id="country"><?= $place["country_name"] ?></div>
             </div>
 
             <div class="form_city">
                 <label for="city">City</label>
-                <div id="city"><?=$place["city_name"]?></div>
+                <div id="city"><?= $place["city_name"] ?></div>
             </div>
 
             <div class="address">
                 <label for="address">Address</label>
-                <div id="address"><?=$place["place_address"]?></div>
+                <div id="address"><?= $place["place_address"] ?></div>
             </div>
 
         </section>
@@ -368,7 +387,7 @@ function draw_edit_place($user_id, $place_id)
                             <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
                         <?php }
 
-                        if (sizeof($image_gallery) > 1) {  ?>
+                            if (sizeof($image_gallery) > 1) {  ?>
                             <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
                         <?php } ?>
@@ -414,49 +433,51 @@ function draw_edit_place($user_id, $place_id)
         <button class="submit_button" type="submit">Save Changes</button>
     </form>
 
-<?php } 
+    <?php }
 
-function draw_place_comments($place_id,$owner){
-    $comments = get_place_comments($place_id); 
-    if($comments == null){?>
+    function draw_place_comments($place_id, $owner)
+    {
+        $comments = get_place_comments($place_id);
+        if ($comments == null) { ?>
         No comments to display.
-    <?php } else{?>
-        <ul id="place_comments"> <?php 
-            foreach($comments as $comment){?>
+    <?php } else { ?>
+        <ul id="place_comments"> <?php
+                                            foreach ($comments as $comment) { ?>
                 <li id="comment_line">
                     <div class="comment_grid">
                         <div class="comment_item">
                             <div id="comment_owner_profile">
                                 <a class="button" href="../pages/profile.php?id=<?= $comment["usr_id"] ?>">
-                                    <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"]?>" alt="User Profile Picture">
+                                    <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"] ?>" alt="User Profile Picture">
                                     <div id="username"><?= $comment["usr_first_name"] ?> <?= $comment["usr_last_name"] ?></div>
                                 </a>
                             </div>
                         </div>
                         <div class="comment_item">
                             <a id="comment_info">
-                                <?=$comment['usr_comment']?>       
+                                <?= $comment['usr_comment'] ?>
                             </a>
                             <a id="comment_rating">
-                                <?=$comment['usr_rating']?>       
+                                <?= $comment['usr_rating'] ?>
                             </a>
                             <a id="comment_extra">
-                                <?=$comment['usr_comment_date']?>       
-                                 <!-- reply -->
-                                <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]){ 
-                                        if($comment["owner_replay"] != NULL){?>
-                                            <button id="reply" onclick="toggle_review_box(<?=$comment['usr_id']?>)"> Reply </button>
-                                            <?php #todo draw_reply_box($reservation['id']);?>  
-                                        <?php }
-                                    } ?>
-                            </a> 
+                                <?= $comment['usr_comment_date'] ?>
+                                <!-- reply -->
+                                <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) {
+                                                if ($comment["owner_replay"] != NULL) { ?>
+                                        <button id="reply" onclick="toggle_review_box(<?= $comment['usr_id'] ?>)"> Reply </button>
+                                        <?php #todo draw_reply_box($reservation['id']);
+                                                            ?>
+                                <?php }
+                                            } ?>
+                            </a>
                         </div>
                     </div>
-                    <?php if($comment["owner_replay"] != NULL){?>
+                    <?php if ($comment["owner_replay"] != NULL) { ?>
                         <div id="comment_reply">
-                            Replied <?=$comment['owner_reply_date']?> 
+                            Replied <?= $comment['owner_reply_date'] ?>
                             <article id="reply_box">
-                                <?=$comment['owner_reply']?> 
+                                <?= $comment['owner_reply'] ?>
                             </article>
                         </div>
                     <?php } ?>
@@ -464,7 +485,7 @@ function draw_place_comments($place_id,$owner){
             <?php } ?>
         </ul>
     <?php }
-    ?>
+        ?>
 
-<?php } 
+<?php }
 ?>

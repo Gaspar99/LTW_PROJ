@@ -14,14 +14,13 @@ function draw_site_header()
     if (isset($_SESSION["user_email"])) {
         draw_header($_SESSION["user_email"]);
         draw_notifications($_SESSION["user_email"]);
-        draw_dropdrown($_SESSION["user_email"]);
     } else {
         draw_header(null);
         draw_sign_in();
         draw_sign_up($countries);
     }
 
-    draw_search_bar($countries);
+    draw_search_bar();
     draw_messages();
     init_site_content();
 }
@@ -31,7 +30,8 @@ function draw_site_header()
  * if the user is logged in in order to know what to draw
  */
 function draw_header($user_email)
-{ ?>
+{
+    $user_id = get_user_id($user_email); ?>
 
     <!DOCTYPE html>
     <html lang="en-US">
@@ -63,73 +63,82 @@ function draw_header($user_email)
             <?php } else {
                     //todo put the loop to always check for new notifications/messages..
                     $user = get_user_name($user_email); ?>
-                <button id="notification_bell" onclick="toggle_notifications()">
-                    <i class="material-icons">notifications</i>
-                </button>
-                <button id="messages_icon" onclick="window.location.href='../pages/messages_page.php'">
-                    <i class="material-icons">mail</i>
-                </button>
-                <button id="username_tile" onclick="toggle_dropdown_menu()">
-                    <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
-                    <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
-                    <i class="material-icons">arrow_drop_down</i>
-                </button>
+                <div id="user_options">
+                    <span id="notification_bell" onclick="toggle_notifications()">
+                        <i class="material-icons">notifications</i>
+                    </span>
+                    <a id="chat_icon" href="../pages/chat.php">
+                        <i class="material-icons">chat</i>
+                    </a>
+                    <div id="user_menu">
+                        <button id="username_tile" onclick="toggle_dropdown_menu()">
+                            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
+                            <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
+                            <i class="material-icons">arrow_drop_down</i>
+                        </button>
+                        <a class="user_menu_option" href="../pages/profile.php?id=<?= $user_id ?>">My Profile</a>
+                        <a class="user_menu_option" href="../pages/add_place.php">Add Place</a>
+                        <a class="user_menu_option" href="../actions/action_logout.php">Logout</a>
+                    </div>
+                </div>
             <?php } ?>
         </header>
 
-<?php } 
+    <?php }
 
 
-/**
- * 
- */
-function draw_title($title)
-{ ?>
-    <h1><?= $title ?></h1>
-    <hr>
-<?php }
+    /**
+     * 
+     */
+    function draw_title($title)
+    { ?>
+        <h1><?= $title ?></h1>
+        <hr>
+        <?php }
 
 
-/**
- * 
- */
-function draw_messages()
-{
-    if (isset($_SESSION["messages"])) { ?>
+        /**
+         * 
+         */
+        function draw_messages()
+        {
+            if (isset($_SESSION["messages"])) { ?>
 
-        <section id="messages">
-            <?php foreach ($_SESSION["messages"] as $message) { ?>
-                <div class="<?= $message["type"] ?>"><?= $message["content"] ?></div>
-            <?php } ?>
-        </section>
+            <section id="messages">
+                <?php foreach ($_SESSION["messages"] as $message) { ?>
+                    <div class="<?= $message["type"] ?>"><?= $message["content"] ?></div>
+                <?php } ?>
+            </section>
 
         <?php unset($_SESSION["messages"]);
-    }
-}
+            }
+        }
 
 
-/**
- * 
-*/
-function init_site_content()
-{ ?>
-    <main id="site_content">
+        /**
+         * 
+         */
+        function init_site_content()
+        { ?>
+        <main id="site_content">
+        <?php }
+
+
+        /**
+         * Draws the footer for all pages.
+         */
+        function draw_footer()
+        { ?>
+        </main>
+        <footer id="site_footer">Copyright © 2019 LTW FEUP</footer>
+    </body>
+
+    </html>
 <?php }
 
-
-/**
- * Draws the footer for all pages.
-*/
-function draw_footer()
+function draw_notifications($email)
 { ?>
-                </main>
-            <footer id="site_footer">Copyright © 2019 LTW FEUP</footer>
-        </body>
-    </html>
-<?php } 
-
-function draw_notifications($email){?>
     <div id="notifications_box">
         bleh
-    </div>   
-<?php }?>
+    </div>
+<?php } ?>
