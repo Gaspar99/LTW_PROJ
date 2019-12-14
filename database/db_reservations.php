@@ -22,6 +22,8 @@ function add_reservation($reservation)
         $reservation["tourist"],
         $reservation["place_id"]
     ));
+
+    return $db->lastInsertId();
 }
 /**
  * 
@@ -46,6 +48,23 @@ function get_reservations($places){
     }    
     return $reservations; 
 
+}
+/**
+ * 
+ */
+function get_reservation_owner($reservation_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT place.owner_id AS owner_id 
+        FROM place,reservation
+        WHERE reservation.id = ? AND
+            reservation.place_id = place.id"
+    );
+  
+    $stmt->execute(array($reservation_id));
+
+    return $stmt->fetch(); 
 }
 /**
  * 

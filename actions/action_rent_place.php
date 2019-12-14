@@ -1,6 +1,7 @@
 <?php
 include_once("../includes/session.php");
 include_once("../database/db_reservations.php");
+include_once("../database/db_notifications.php");
 include_once("../database/db_places.php");
 
 //Calculate price
@@ -21,8 +22,15 @@ $reservation["tourist"] = $_POST["tourist"];
 $reservation["place_id"] = $_POST["place_id"];
 
 try {
-    add_reservation($reservation);
+    $reservation_id = add_reservation($reservation); 
 } catch (PDOException $e) {
+
+    die($e->getMessage());
+}
+//generate reservation notification 
+try{
+    add_reservation_notification($reservation_id); 
+}catch (PDOException $e) {
 
     die($e->getMessage());
 }

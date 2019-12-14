@@ -238,7 +238,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     text-align: center;
     width: 6em;
     /* Style */
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 #site_header #auth_forms_buttons {
@@ -257,89 +257,80 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     transform: translateX(-50%);
 }
 
-/* User Name */
+/* User Options */
+
+#site_header #user_options {
+    position: absolute;
+    top: 1.5em;
+    right: 2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* User Menu */
+
+#site_header #user_menu {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Username Tile */
 
 #site_header #username_tile {
     display: flex;
     align-items: center;
-    margin: 0 2em;
+    margin: 0;
     width: max-content;
-    border-width: 0;
 }
 
 #site_header #username_tile img {
     width: 2em;
     height: 2em;
-    border-radius: 1em;
+    border-radius: 50%;
     margin: 0 1em 0 0;
     padding: 0;
 }
 
 #site_header #username_tile #username {
     text-align: center;
+    font-size: 1.1em;
 }
 
-/* ------------- NOTIFICATION BELL -------- */
+#site_header #user_menu .user_menu_option {
+    display: none;
+    width: inherit;
+    text-align: center;
+    background-color: white;
+    color: black;
+    padding: 1em;
+    font-size: 1.1em;
+    z-index: 2;
+}
+
+#site_header #user_menu .user_menu_option:hover {
+    background-color: var(--button-color);
+    color: white;
+}
+
+/*  Notification Bell  */
 
 #site_header #notification_bell {
-    display: flex;
-    align-items: center;
-    margin: 0 2em;
-    width: max-content;
-    border-width: 0;
-    background-color: transparent;
-    /* make better improve */
-    position: relative;
-    left: 400px;
+    background: transparent;
+    margin: 1.5em 1em 0 0;
+    padding: 0;
+    cursor: pointer;
 }
 
 #notifications_box {
     display: none;
 }
 
-/* ------------- DROPDOWN MENU  --------- */
+/* Chat Icon Button*/
 
-.dropdown_menu {
-    /* Layout */
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1;
-    width: max-content;
+#site_header #chat_icon {
+    margin: 1.5em 1em 0 0;
     padding: 0;
-    margin: 0;
-    /* Style */
-    background-color: white;
-    box-shadow: 0 0 1em black;
-    border-radius: 0.5em;
-    font-size: 1.2em;
-}
-
-.dropdown_menu>a {
-    width: 7em;
-    padding: 1em;
-    margin: 0em;
-    text-align: center;
-    color: black;
-}
-
-.dropdown_menu>a:hover, .dropdown_menu>a:focus {
-    background-color: var(--button-color);
-    color: white;
-}
-
-.dropdown_menu>a:first-child:hover, .dropdown_menu>a:first-child:focus {
-    border-radius: 0.5em 0.5em 0 0;
-}
-
-.dropdown_menu>a:last-child:hover, .dropdown_menu> :last-child:focus {
-    border-radius: 0 0 0.5em 0.5em;
-}
-
-#user_dropdown_menu.dropdown_menu {
-    position: absolute;
-    right: 3em;
-    top: 5em;
 }
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
@@ -379,6 +370,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 /*suggestions*/
 
 #search_suggestions {
+    z-index: 5 !important;
     background-color: white;
     margin: 0;
     padding: 0;
@@ -389,10 +381,10 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     top: 5em;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    z-index: 5;
 }
 
 #result_suggestions {
+    z-index: 5 !important;
     padding: 0.5em;
     border-bottom: 0.05em solid var(--panel-color);
     cursor: pointer;
@@ -414,8 +406,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     border-bottom-right-radius: 0;
 }
 
-.form_date .check_out input{
-
+.form_date .check_out input {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -1001,9 +992,19 @@ body>#messages .success {
 
 /* ------ Generic Place Gallery ------*/
 
+#place_gallery {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    align-items: center;
+}
+
 #place_gallery #image_container {
     position: relative;
-    width: auto;
+    max-width: max-content;
+    margin: auto;
 }
 
 #place_page #place_body #gallery_rent #place_gallery img {
@@ -1014,7 +1015,8 @@ body>#messages .success {
 
 /* Genneric Place Gallery */
 
-#place_gallery .image_slide {
+#place_gallery .image_slide,
+#place_gallery .fullscreen_slide {
     display: none;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
@@ -1039,7 +1041,22 @@ body>#messages .success {
     background-color: transparent;
     font-size: 2em;
     color: white;
-    text-shadow: 0 0 0.4em black;
+    text-shadow: 0 0 0.5em black;
+}
+
+#place_gallery #image_container .full_screen {
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+#place_gallery #image_container .full_screen i {
+    color: white;
+    text-shadow: 0 0 0.5em black;
+    font-size: 3em;
 }
 
 /* ------ Rent Section ------*/

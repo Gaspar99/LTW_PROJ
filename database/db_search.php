@@ -16,7 +16,7 @@ function search_places($options)
         FROM    
             place
         WHERE 
-            num_guests < ? AND 
+            num_guests <= ? AND 
             price_per_night >= ? AND
             price_per_night <= ?"
     );
