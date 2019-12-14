@@ -107,7 +107,7 @@ function cancel_reservation(id) {
 
     //delete html displaying the reservation
     let reservation_box = document.getElementsByName("reservation_id"+id)[0]
-    
+
     reservation_box.remove(reservation_box.selectedIndex)
     //remove reservation from table 
     let request = new XMLHttpRequest()
@@ -120,7 +120,7 @@ function cancel_reservation(id) {
 
 }
 
-//  Place Gallery - a slider to display multiple images
+//  Place Gallery - a slider to display multiple images˜
 var slideIndex = 1
 showDivs(slideIndex)
 
