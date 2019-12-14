@@ -137,8 +137,9 @@ function cancel_reservation(id) {
 
 }
 
-//  Place Gallery - a slider to display multiple images˜
-var slideIndex = 1
+//  Place Gallery - a slider to display multiple images
+let slideIndex = 1
+let fullscreen = false
 showDivs(slideIndex)
 
 function plusDivs(n) {
@@ -148,6 +149,7 @@ function plusDivs(n) {
 function showDivs(n) {
 
     let images = document.getElementsByClassName("image_slide")
+    let originals = document.getElementsByClassName("fullscreen_slide")
 
     if (n > images.length)
         slideIndex = 1
@@ -155,11 +157,43 @@ function showDivs(n) {
     if (n < 1)
         slideIndex = images.length
 
-    for (let i = 0; i < images.length; i++)
+    for (let i = 0; i < images.length; i++) {
         images[i].style.display = "none"
+        originals[i].style.display = "none"
+    }
 
-    if (images.length)
-        images[slideIndex - 1].style.display = "block"
+    if (images.length) {
+        if (fullscreen) 
+            originals[slideIndex - 1].style.display = "block"
+        else
+            images[slideIndex - 1].style.display = "block"
+    }
+}
+
+function toggle_image_fullscreen() {
+    fullscreen = (!fullscreen)
+
+    let place_gallery = document.getElementById("place_gallery")
+    let fullscreen_icon = place_gallery.querySelector(".material-icons")
+
+    if (fullscreen) {
+        place_gallery.style.position = "fixed"
+        place_gallery.style.left = "0"
+        place_gallery.style.top = "0"
+        place_gallery.style.width = "100%"
+        place_gallery.style.height = "100%"
+
+        fullscreen_icon.innerHTML = "fullscreen_exit"
+    }
+    else {
+        place_gallery.style.position = "static"
+        place_gallery.style.width = "auto"
+        place_gallery.style.height = "auto"
+
+        fullscreen_icon.innerHTML = "fullscreen"
+    }
+
+    showDivs(slideIndex)
 }
 
 /**
