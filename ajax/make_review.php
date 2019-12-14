@@ -1,5 +1,6 @@
 <?php
 include_once("../includes/database.php");
+include_once("../includes/db_notifications.php");
 
 $reservation_id = $_POST["id"];
 $comment_info = $_POST["comment"];
@@ -26,8 +27,4 @@ $stmt->execute(array($rating,$comment_info,$comment_date,$reservation_id));
 
 $ret = $stmt->fetch();
 
-//after updating database generate a notification 
-
-
-
-#todo generate a notification 
+//generate notification 

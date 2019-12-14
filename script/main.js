@@ -51,6 +51,20 @@ function close_notifications() {
     box.style.display = "none"
 }
 
+function remove_notification(id){
+    //delete html displaying the reservation
+    let notification_tile = document.getElementsByName("notification_id"+id)[0]
+    notification_tile.remove(notification_tile.selectedIndex)
+
+    //remove reservation from table 
+    let request = new XMLHttpRequest()
+    request.addEventListener("load", function () {
+        alert('Successufully deleted notification')
+    })
+    request.open("post", "../ajax/delete_notification.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({ id: id}))
+}
 /**
  * 
  */

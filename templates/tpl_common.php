@@ -1,6 +1,7 @@
 <?php
 include_once("../database/db_user.php");
 include_once("../database/db_geography.php");
+include_once("../database/db_notifications.php");
 include_once("../templates/tpl_auth.php");
 include_once("../templates/tpl_search.php");
 
@@ -21,7 +22,8 @@ function draw_site_header()
     }
 
     draw_search_bar();
-    draw_messages();
+    //todo see where i use this 
+    #draw_messages();
     init_site_content();
 }
 
@@ -137,8 +139,18 @@ function draw_header($user_email)
 <?php }
 
 function draw_notifications($email)
-{ ?>
+{   $notifications = get_usr_notifications($email); 
+    ?>
     <div id="notifications_box">
-        bleh
+        <ul><?php
+        foreach($notifications as $notification){?>
+            <li id="" name="notification_id<?=$notification['id']?>"> 
+                <span class="notification"> <?=$notification['place_title']?></span>
+                <span id="notification_bell" onclick="remove_notification(<?=$notification['id']?>)">
+                    <i class="material-icons">delete</i>
+            </li>
+        <?php } ?>
+           
+        </ul>
     </div>
 <?php } ?>

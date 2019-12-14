@@ -22,6 +22,8 @@ function add_reservation($reservation)
         $reservation["tourist"],
         $reservation["place_id"]
     ));
+
+    return $db->lastInsertId();
 }
 /**
  * 
