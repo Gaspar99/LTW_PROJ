@@ -14,7 +14,6 @@ function draw_site_header()
     if (isset($_SESSION["user_email"])) {
         draw_header($_SESSION["user_email"]);
         draw_notifications($_SESSION["user_email"]);
-        draw_dropdrown($_SESSION["user_email"]);
     } else {
         draw_header(null);
         draw_sign_in();
@@ -63,18 +62,23 @@ function draw_header($user_email)
                 </div>
             <?php } else {
                     $user = get_user_name($user_email); ?>
-                <button id="notification_bell" onclick="toggle_notifications()">
-                    <i class="material-icons">notifications</i>
-                </button>
-                <div id="user_menu">
-                    <button id="username_tile" onclick="toggle_dropdown_menu()">
-                        <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
-                        <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
-                        <i class="material-icons">arrow_drop_down</i>
-                    </button>
-                    <a class="user_menu_option" href="../pages/profile.php?id=<?= $user_id ?>">My Profile</a>
-                    <a class="user_menu_option" href="../pages/add_place.php">Add Place</a>
-                    <a class="user_menu_option" href="../actions/action_logout.php">Logout</a>
+                <div id="user_options">
+                    <span id="notification_bell" onclick="toggle_notifications()">
+                        <i class="material-icons">notifications</i>
+                    </span>
+                    <a id="chat_icon" href="../pages/chat.php">
+                        <i class="material-icons">chat</i>
+                    </a>
+                    <div id="user_menu">
+                        <button id="username_tile" onclick="toggle_dropdown_menu()">
+                            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
+                            <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
+                            <i class="material-icons">arrow_drop_down</i>
+                        </button>
+                        <a class="user_menu_option" href="../pages/profile.php?id=<?= $user_id ?>">My Profile</a>
+                        <a class="user_menu_option" href="../pages/add_place.php">Add Place</a>
+                        <a class="user_menu_option" href="../actions/action_logout.php">Logout</a>
+                    </div>
                 </div>
             <?php } ?>
         </header>
