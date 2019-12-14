@@ -100,18 +100,17 @@ function showDivs(n) {
 
     let images = document.getElementsByClassName("image_slide")
 
-    if (n > images.length) {
+    if (n > images.length) 
         slideIndex = 1
-    }
-    if (n < 1) {
+    
+    if (n < 1) 
         slideIndex = images.length
-    }
-
-    for (let i = 0; i < images.length; i++) {
+    
+    for (let i = 0; i < images.length; i++) 
         images[i].style.display = "none"
-    }
-
-    images[slideIndex - 1].style.display = "block"
+    
+    if (images.length)
+        images[slideIndex - 1].style.display = "block"
 }
 
 /**
@@ -273,6 +272,28 @@ if (Array.prototype.indexOf === undefined) {
         }
         return -1;
     };
+}
+
+// PRICE
+
+let min_price = document.getElementById("min_price")
+let max_price = document.getElementById("max_price")
+
+min_price.oninput = update_price
+max_price.oninput = update_price
+
+function update_price() {
+    let min_price_input = parseFloat(min_price.value)
+    let max_price_input = parseFloat(max_price.value)
+
+    if (min_price_input > max_price_input)
+        [min_price_input, max_price_input] = [max_price_input, min_price_input]
+
+    let min_price_value = document.getElementById("min_price_value")
+    let max_price_value = document.getElementById("max_price_value")
+
+    min_price_value.innerHTML = "" + min_price_input + "€"
+    max_price_value.innerHTML = "" + max_price_input + "€"
 }
 
 /**
