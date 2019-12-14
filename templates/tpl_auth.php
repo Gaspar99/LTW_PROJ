@@ -103,10 +103,6 @@ function draw_dropdrown($user_email)
 {
   $id = get_user_id($user_email); ?>
 
-  <div id="user_dropdown_menu" class="dropdown_menu">
-    <a href="../pages/profile.php?id=<?= $id ?>">My Profile</a>
-    <a href="../pages/add_place.php">Add Place</a>
-    <a href="../actions/action_logout.php">Logout</a>
-  </div>
+
 
 <?php } ?>

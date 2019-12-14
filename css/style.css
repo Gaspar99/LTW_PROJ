@@ -238,7 +238,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     text-align: center;
     width: 6em;
     /* Style */
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 #site_header #auth_forms_buttons {
@@ -257,14 +257,22 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     transform: translateX(-50%);
 }
 
-/* User Name */
+/* User Menu */
 
+#site_header #user_menu {
+    position: absolute;
+    top: 1.5em;
+    right: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Username Tile */
 #site_header #username_tile {
     display: flex;
     align-items: center;
-    margin: 0 2em;
+    margin: 0;
     width: max-content;
-    border-width: 0;
 }
 
 #site_header #username_tile img {
@@ -277,6 +285,23 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 #site_header #username_tile #username {
     text-align: center;
+    font-size: 1.1em;
+}
+
+#site_header #user_menu .user_menu_option {
+    display: none;
+    width: inherit;
+    text-align: center;
+    background-color: white;
+    color: black;
+    padding: 1em;
+    font-size: 1.1em;
+    z-index: 2;
+}
+
+#site_header #user_menu .user_menu_option:hover {
+    background-color: var(--button-color);
+    color: white;
 }
 
 /* ------------- NOTIFICATION BELL -------- */
@@ -295,51 +320,6 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 #notifications_box {
     display: none;
-}
-
-/* ------------- DROPDOWN MENU  --------- */
-
-.dropdown_menu {
-    /* Layout */
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1;
-    width: max-content;
-    padding: 0;
-    margin: 0;
-    /* Style */
-    background-color: white;
-    box-shadow: 0 0 1em black;
-    border-radius: 0.5em;
-    font-size: 1.2em;
-}
-
-.dropdown_menu>a {
-    width: 7em;
-    padding: 1em;
-    margin: 0em;
-    text-align: center;
-    color: black;
-}
-
-.dropdown_menu>a:hover, .dropdown_menu>a:focus {
-    background-color: var(--button-color);
-    color: white;
-}
-
-.dropdown_menu>a:first-child:hover, .dropdown_menu>a:first-child:focus {
-    border-radius: 0.5em 0.5em 0 0;
-}
-
-.dropdown_menu>a:last-child:hover, .dropdown_menu> :last-child:focus {
-    border-radius: 0 0 0.5em 0.5em;
-}
-
-#user_dropdown_menu.dropdown_menu {
-    position: absolute;
-    right: 3em;
-    top: 5em;
 }
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
