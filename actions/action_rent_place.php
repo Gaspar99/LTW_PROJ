@@ -29,7 +29,7 @@ try {
 }
 //generate reservation notification 
 try{
-    add_reservation_notification($_POST['tourist'],$reservation_id); 
+    add_reservation_notification($reservation_id); 
 }catch (PDOException $e) {
 
     die($e->getMessage());

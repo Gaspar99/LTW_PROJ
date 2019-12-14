@@ -52,6 +52,23 @@ function get_reservations($places){
 /**
  * 
  */
+function get_reservation_owner($reservation_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT place.owner_id AS owner_id 
+        FROM place,reservation
+        WHERE reservation.id = ? AND
+            reservation.place_id = place.id"
+    );
+  
+    $stmt->execute(array($reservation_id));
+
+    return $stmt->fetch(); 
+}
+/**
+ * 
+ */
 function cancel_reservation($reservation_id){
     $db = Database::instance()->db();
 

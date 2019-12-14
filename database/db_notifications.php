@@ -32,14 +32,15 @@ function get_usr_notifications($email){
 /**
  * Generate notify reservation
  */
-function add_reservation_notification($usr,$reservation){
+function add_reservation_notification($reservation){
     
     $db = Database::instance()->db();
 
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
-
+    $usr = get_reservation_owner($reservation)['owner_id']; 
+    print_r($usr); 
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
             (notification_date, is_read, usr, reservation)
