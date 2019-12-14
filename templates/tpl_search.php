@@ -12,38 +12,37 @@ function draw_search_bar()
         <div class="search_type">
             <label for="search">Location</label>
             <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?" onkeydown="option_navigate(event)">
-            <ul id="search_suggestions"> </ul>
+            <ul id="search_suggestions"></ul>
         </div>
 
         <div class="form_date">
-            <label for="check_in">Check In</label>
-            <input id="litepicker_in" name="check_in" required>
-            <script>
-                let picker_in = new Litepicker({
-                    element: document.getElementById('litepicker_in'),
-                    minDate: new Date().getTime(),
-                    format: "D MMM, YYYY",
-                    numberOfMonths: 1,
-                    numberOfColumns: 1
-                })
-            </script>
-        </div>
+            <div class="check_in">
+                <label for="check_in">Check In</label>
+                <input id="litepicker_in1" name="check_in" required autocomplete="off">
+                <script>
+                    let picker_in1 = new Litepicker({
+                        element: document.getElementById('litepicker_in1'),
+                        minDate: new Date().getTime(),
+                        format: "D MMM, YYYY",
+                        numberOfMonths: 1,
+                        numberOfColumns: 1
+                    })
+                </script>
+            </div>
 
-        <div class="form_date">
-            <label for="check_out">Check Out</label>
-            <!--<input type="date" name="check_out" required>-->
-            <input id="litepicker_out" name="check_out" required>
-            <script>
-                let picker_out = new Litepicker({
-                    element: document.getElementById('litepicker_out'),
-                    minDate: new Date().getTime(),
-                    format: "D MMM, YYYY",
-                    numberOfMonths: 1,
-                    numberOfColumns: 1
-                })
-            </script>
-
-            </input>
+            <div class="check_out">
+                <label for="check_out">Check Out</label>
+                <input id="litepicker_out1" name="check_out" required autocomplete="off">
+                <script>
+                    let picker_out1 = new Litepicker({
+                        element: document.getElementById('litepicker_out1'),
+                        minDate: new Date().getTime(),
+                        format: "D MMM, YYYY",
+                        numberOfMonths: 1,
+                        numberOfColumns: 1
+                    })
+                </script>
+            </div>
         </div>
 
         <div class="num_guests">
