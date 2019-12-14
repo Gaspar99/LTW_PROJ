@@ -106,8 +106,21 @@ function toggle_dropdown_menu() {
  * @param {*} event 
  */
 function cancel_reservation(id) {
-    //todo with ajax
-    alert(id);
+
+
+    //delete html displaying the reservation
+    let reservation_box = document.getElementsByName("reservation_id"+id)[0]
+
+    reservation_box.remove(reservation_box.selectedIndex)
+    //remove reservation from table 
+    let request = new XMLHttpRequest()
+    request.addEventListener("load", function () {
+        alert('Successufully canceled reservation!')
+    })
+    request.open("post", "../ajax/cancel_reservation.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({ id: id}))
+
 }
 
 //  Place Gallery - a slider to display multiple images

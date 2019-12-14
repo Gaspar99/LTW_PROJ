@@ -61,6 +61,7 @@ function draw_header($user_email)
                     <button onclick="open_sign_up_form()">Sign Up</button>
                 </div>
             <?php } else {
+                    //todo put the loop to always check for new notifications/messages..
                     $user = get_user_name($user_email); ?>
                 <div id="user_options">
                     <span id="notification_bell" onclick="toggle_notifications()">
