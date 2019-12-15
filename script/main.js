@@ -523,3 +523,60 @@ function validatePassword(){
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 */
+
+/**
+ * Polling notifications 
+ */
+
+//GLOBALS 
+let last_message_id = -1;
+
+function polling_notification(usr_id){  
+    //todo
+    /* 
+    let msg_request = new XMLHttpRequest()
+    msg_request.open("get", "../ajax/message_polling.php", true)
+    msg_request.send()
+    */
+
+    let notification_request = new XMLHttpRequest() 
+    notification_request.addEventListener("load",notifications_handler)
+    notification_request.open("get", "../ajax/notification_polling.php", true)
+    notification_request.send()
+
+    //let last_notification_id = JSON.parse(this.responseText); 
+    console.log(last_message_id)
+
+    //let countries = JSON.parse(this.responseText)
+}
+
+function notifications_handler(){
+    let last_id = JSON.parse(this.responseText);
+    //console.log(last_id)
+    console.log(last_id)
+    //set the first notification
+    if(last_message_id == -1 )
+        last_message_id = last_id.id
+    
+    if(last_message_id != last_id.id){
+        //todo ver como mudar o inner text
+        //change notification bell
+        //let notification_bell = document.getElementById("notification_bell")
+        let notification_bell = document.querySelector("#notification_bell")
+        notification_bell.innerText = "notifications_active"
+        console.log(notification_bell.innerHTML)
+        //modify.replace(/notifications/gi,"notifications_active")
+        notification_bell
+
+        console.log(notification_bell.innerText)
+   
+        //notification_bell.innerHTML = new_element
+        console.log(notification_bell.innerHTML)
+        //add new notification to the list
+        last_message_id = last_id.id
+    }
+}
+
+function handle_messages(){
+
+}

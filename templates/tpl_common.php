@@ -64,9 +64,11 @@ function draw_header($user_email)
                 </div>
             <?php } else {
                     //todo put the loop to always check for new notifications/messages..
-                    $user = get_user_name($user_email); ?>
+                    $user = get_user_name($user_email); 
+                    $usr_id = get_user_id($user_email)?>
+                <body onload="setInterval(function() {polling_notification(<?=$usr_id['id']?>); },1000);">
                 <div id="user_options">
-                    <span id="notification_bell" onclick="toggle_notifications()">
+                    <span id="notification_bell" onclick="toggle_notifications()" >
                         <i class="material-icons">notifications</i>
                     </span>
                     <a id="chat_icon" href="../pages/chat.php">
