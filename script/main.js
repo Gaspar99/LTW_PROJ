@@ -614,18 +614,19 @@ function polling_notification(usr_id){
 
 function notifications_handler(){  
     let last_id = JSON.parse(this.responseText);
-    //set the first notification
-    if(last_notification_id == -1 )
-        last_notification_id = last_id.id
    
-    if(last_id.id > last_notification_id ){
+    //in case no notifications
+    if(last_notification_id == -1 && last_id.id != null)
+        last_notification_id = last_id.id
+
+    if(last_id.id > last_notification_id){
         console.log("new")
         let notification_bell = document.querySelector("#notification_bell")
-        notification_bell.innerText = "notifications_active"
+        notification_bell.innerText = "notifications"
 
         let new_bell = document.createElement("i")
-        new_bell.setAttribute("class","material_icons")
-        new_bell.innerHTML = "notification_active"
+        new_bell.setAttribute("class","material-icons")
+        new_bell.innerHTML = "notifications_active"
 
         notification_bell.innerHTML= ""
         notification_bell.appendChild(new_bell)
@@ -658,9 +659,11 @@ function notifications_handler(){
 
         //make unseen
         let notification_seen = document.createElement("span")
+        notification_seen.setAttribute("name","button_type"+last_id.id)
         notification_seen.setAttribute("onclick","mark_as_seen("+last_id.id+")")
         let seen_icon = document.createElement("i")
         seen_icon.setAttribute("class","material-icons")
+        seen_icon.setAttribute("name","icon_visibility"+last_id.id)
         seen_icon.innerHTML="visibility"
         notification_seen.appendChild(seen_icon)
         new_notification.appendChild(notification_seen)
@@ -680,7 +683,10 @@ function notifications_handler(){
               
         //update last notification id 
     }
-    last_notification_id = last_id.id
+    if(last_id.id == null)
+        last_notification_id = 0
+    else 
+        last_notification_id = last_id.id
 }
 
 function handle_messages(){
