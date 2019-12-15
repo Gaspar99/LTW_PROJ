@@ -15,7 +15,8 @@ function get_usr_notifications($email){
                 reservation.check_in AS check_in, 
                 reservation.check_out AS check_out, 
                 reservation.num_guests AS num_guests,
-                place.title AS place_title
+                place.title AS place_title,
+                place.id AS place_id
         FROM usr_notification, reservation, place 
         WHERE usr = ? 
             AND usr_notification.reservation = reservation.id 

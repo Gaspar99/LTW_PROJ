@@ -43,6 +43,7 @@ function toggle_notifications() {
     else
         box.style.display = "flex"
 }
+
 /**
  * 
  */
@@ -51,6 +52,46 @@ function close_notifications() {
     box.style.display = "none"
 }
 
+/** 
+ * mark notification as seen  
+ * @param {*} id - notification id
+ */
+function mark_as_seen(id){  
+    //remove reservation from table 
+    let request = new XMLHttpRequest()
+    request.addEventListener("load", function () {
+        console.log('unmarked as seen')
+        //delete html displaying the reservation
+        let notification_tile = document.getElementsByName("notification_id"+id)[0]
+        console.log(notification_tile)
+    })
+    request.open("post", "../ajax/mark_as_seen.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({ id: id}))
+}
+
+/**
+ * unmark notification as seen 
+ * @param {*} id - notification id
+ */
+function unmark_as_seen(id){
+        //remove reservation from table 
+        let request = new XMLHttpRequest()
+        request.addEventListener("load", function () {
+            console.log('marked as seen')
+            //delete html displaying the reservation
+            let notification_tile = document.getElementsByName("notification_id"+id)[0]
+            //console.log(notification_tile.innerHTML)
+        })
+        request.open("post", "../ajax/unmark_as_seen.php", true)
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        request.send(encodeForAjax({ id: id}))
+}
+
+/**
+ * remove notification from the db 
+ * @param {*} id - notification id
+ */
 function remove_notification(id){
     //delete html displaying the reservation
     let notification_tile = document.getElementsByName("notification_id"+id)[0]
@@ -529,7 +570,8 @@ confirm_password.onkeyup = validatePassword;
  */
 
 //GLOBALS 
-let last_message_id = -1;
+let last_message_id = -1
+let last_notification_id = -1 
 
 function polling_notification(usr_id){  
     //todo
@@ -538,42 +580,87 @@ function polling_notification(usr_id){
     msg_request.open("get", "../ajax/message_polling.php", true)
     msg_request.send()
     */
-
     let notification_request = new XMLHttpRequest() 
     notification_request.addEventListener("load",notifications_handler)
-    notification_request.open("get", "../ajax/notification_polling.php", true)
-    notification_request.send()
+    notification_request.open("post", "../ajax/notification_polling.php", true)
+    notification_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    notification_request.send(encodeForAjax({usr_id: usr_id}))
+ 
+    console.log(last_notification_id)
 
-    //let last_notification_id = JSON.parse(this.responseText); 
-    console.log(last_message_id)
-
-    //let countries = JSON.parse(this.responseText)
 }
 
-function notifications_handler(){
+function notifications_handler(){  
     let last_id = JSON.parse(this.responseText);
-    //console.log(last_id)
-    console.log(last_id)
     //set the first notification
-    if(last_message_id == -1 )
-        last_message_id = last_id.id
+    if(last_notification_id == -1 )
+        last_notification_id = last_id.id
+
     
-    if(last_message_id != last_id.id){
-        //todo ver como mudar o inner text
-        //change notification bell
-        //let notification_bell = document.getElementById("notification_bell")
+    
+    if(last_notification_id != last_id.id){
+        
         let notification_bell = document.querySelector("#notification_bell")
         notification_bell.innerText = "notifications_active"
-        console.log(notification_bell.innerHTML)
-        //modify.replace(/notifications/gi,"notifications_active")
-        notification_bell
 
-        console.log(notification_bell.innerText)
-   
-        //notification_bell.innerHTML = new_element
-        console.log(notification_bell.innerHTML)
+        let new_bell = document.createElement("i")
+        new_bell.setAttribute("class","material_icons")
+        new_bell.innerHTML = "notification_active"
+
+        notification_bell.innerHTML= ""
+        notification_bell.appendChild(new_bell)
+        
+        //add notification generated
+    
         //add new notification to the list
-        last_message_id = last_id.id
+        let notifications_list = document.getElementById("notification_list")
+
+        //make li 
+        let new_notification = document.createElement("li") 
+        new_notification.id = "unread_notification"
+        new_notification.setAttribute("name", "notification_id"+last_id.id)
+
+        //make header span 
+        let notification_title = document.createElement("span")
+        notification_title.innerHTML = "Notification type TODO" + " + " + last_id.notification_date
+        new_notification.appendChild(notification_title)
+
+        //make link a
+        let notification_place = document.createElement("a")
+        notification_place.setAttribute("href","../pages/place.php?id="+last_id.place_id)
+        notification_place.innerHTML = last_id.title
+        new_notification.appendChild(notification_place)
+        
+        //make check in check out
+        let notification_check = document.createElement("span")
+        notification_check.setAttribute("class","notification")
+        notification_check.innerHTML = last_id.check_in + " - " + last_id.check_out
+        new_notification.appendChild(notification_check)
+
+        //make unseen
+        let notification_seen = document.createElement("span")
+        notification_seen.setAttribute("onclick","mark_as_seen("+last_id.id+")")
+        let seen_icon = document.createElement("i")
+        seen_icon.setAttribute("class","material-icons")
+        seen_icon.innerHTML="visibility"
+        notification_seen.appendChild(seen_icon)
+        new_notification.appendChild(notification_seen)
+
+        //make rmv button
+        let notification_remove = document.createElement("span")
+        notification_remove.setAttribute("onclick","remove_notification("+last_id.id+")")
+        let rmv_icon = document.createElement("i")
+        rmv_icon.setAttribute("class","material-icons")
+        rmv_icon.innerHTML="delete"
+        notification_remove.appendChild(rmv_icon)
+        new_notification.appendChild(notification_remove)
+
+        console.log(new_notification.innerHTML)
+
+        notifications_list.appendChild(new_notification)
+              
+        //update last notification id 
+        last_notification_id = last_id.id
     }
 }
 
