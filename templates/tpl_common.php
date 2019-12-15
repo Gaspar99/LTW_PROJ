@@ -153,8 +153,8 @@ function draw_notifications($email)
                         <span> Notification type  + <?= $notification['notification_date'] ?></span>
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
                         <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
-                        <span  onclick="unmark_as_seen(<?= $notification['id'] ?>)">
-                            <i class="material-icons">notification_off</i>
+                        <span name="button_type<?= $notification['id'] ?>" onclick="unmark_as_seen(<?= $notification['id'] ?>)">
+                            <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility_off</i>
                         </span>
                         <span  onclick="remove_notification(<?= $notification['id'] ?>)">
                             <i class="material-icons">delete</i>
@@ -165,8 +165,8 @@ function draw_notifications($email)
                         <span> Notification type  + <?= $notification['notification_date'] ?></span>
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
                         <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
-                        <span  onclick="mark_as_seen(<?= $notification['id'] ?>)">
-                            <i class="material-icons">visibility</i>
+                        <span name="button_type<?= $notification['id'] ?>" onclick="mark_as_seen(<?= $notification['id'] ?>)">
+                            <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility</i>
                         </span>
                         <span  onclick="remove_notification(<?= $notification['id'] ?>)">
                             <i class="material-icons">delete</i>

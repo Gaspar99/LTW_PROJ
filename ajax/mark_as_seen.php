@@ -7,9 +7,9 @@ $notification_id = $_POST["id"];
 $db = Database::instance()->db();
 
 $stmt = $db->prepare(
-    "UPDATE FROM usr_notification  
-    WHERE
-        id = ?"
+    "UPDATE usr_notification 
+    SET is_read = 1
+    WHERE id = ?"
 );
 
 $stmt->execute(array($notification_id));

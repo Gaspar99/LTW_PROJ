@@ -38,6 +38,17 @@ function close_sign_up_form() {
 function toggle_notifications() {
     let box = document.getElementById("notifications_box")
 
+    let icon = document.getElementById("notification_bell")
+    if(icon.innerText = "notifications_active"){
+        let new_icon = document.createElement("i")
+        new_icon.setAttribute("class","material-icons")
+        new_icon.innerHTML = "notifications"
+        icon.innerHTML = ""
+        icon.appendChild(new_icon)
+    }
+    console.log(icon);
+    
+
     if (box.style.display == "flex")
         box.style.display = "none"
     else
@@ -63,7 +74,13 @@ function mark_as_seen(id){
         console.log('unmarked as seen')
         //delete html displaying the reservation
         let notification_tile = document.getElementsByName("notification_id"+id)[0]
-        console.log(notification_tile)
+        notification_tile.setAttribute("id","read_notification")
+        let notification_icon = document.getElementsByName("icon_visibility"+id)[0]
+        notification_icon.innerHTML="visibility_off"
+        let notification_button = document.getElementsByName("button_type"+id)[0]
+        notification_button.setAttribute("onclick","unmark_as_seen("+id+")")
+
+        console.log(notification_icon)
     })
     request.open("post", "../ajax/mark_as_seen.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -81,7 +98,12 @@ function unmark_as_seen(id){
             console.log('marked as seen')
             //delete html displaying the reservation
             let notification_tile = document.getElementsByName("notification_id"+id)[0]
-            //console.log(notification_tile.innerHTML)
+            notification_tile.setAttribute("id","unread_notification")
+            let notification_icon = document.getElementsByName("icon_visibility"+id)[0]
+            notification_icon.innerHTML="visibility"
+            let notification_button = document.getElementsByName("button_type"+id)[0]
+            notification_button.setAttribute("onclick","mark_as_seen("+id+")")
+            console.log(notification_icon)
         })
         request.open("post", "../ajax/unmark_as_seen.php", true)
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -595,11 +617,9 @@ function notifications_handler(){
     //set the first notification
     if(last_notification_id == -1 )
         last_notification_id = last_id.id
-
-    
-    
+   
     if(last_notification_id != last_id.id){
-        
+        console.log("new")
         let notification_bell = document.querySelector("#notification_bell")
         notification_bell.innerText = "notifications_active"
 
@@ -660,8 +680,8 @@ function notifications_handler(){
         notifications_list.appendChild(new_notification)
               
         //update last notification id 
-        last_notification_id = last_id.id
     }
+    last_notification_id = last_id.id
 }
 
 function handle_messages(){
