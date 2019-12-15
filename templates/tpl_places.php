@@ -442,10 +442,10 @@ function draw_edit_place($user_id, $place_id)
     {
         $comments = get_place_comments($place_id);
         if ($comments == null) { ?>
-        No comments to display.
+        <h3>No comments to display</h3>
     <?php } else { ?>
         <ul id="place_comments"> <?php
-                                            foreach ($comments as $comment) { ?>
+            foreach ($comments as $comment) { ?>
                 <li id="comment_line">
                     <div class="comment_grid">
                         <div class="comment_item">
@@ -476,7 +476,7 @@ function draw_edit_place($user_id, $place_id)
                             </a>
                         </div>
                     </div>
-                    <?php if ($comment["owner_replay"] != NULL) { ?>
+                    <?php if ($comment["owner_reply"] != NULL) { ?>
                         <div id="comment_reply">
                             Replied <?= $comment['owner_reply_date'] ?>
                             <article id="reply_box">

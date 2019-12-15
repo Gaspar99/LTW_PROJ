@@ -64,28 +64,29 @@ function draw_header($user_email)
                 </div>
             <?php } else {
                     //todo put the loop to always check for new notifications/messages..
-                    $user = get_user_name($user_email); 
-                    $usr_id = get_user_id($user_email)?>
-                <body onload="setInterval(function() {polling_notification(<?=$usr_id['id']?>); },1000);">
-                <div id="user_options">
-                    <span id="notification_bell" onclick="toggle_notifications()" >
-                        <i class="material-icons">notifications</i>
-                    </span>
-                    <a id="chat_icon" href="../pages/chat.php">
-                        <i class="material-icons">chat</i>
-                    </a>
-                    <div id="user_menu">
-                        <button id="username_tile" onclick="toggle_dropdown_menu()">
-                            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
-                            <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
-                            <i class="material-icons">arrow_drop_down</i>
-                        </button>
-                        <a class="user_menu_option" href="../pages/profile.php?id=<?= $user_id ?>">My Profile</a>
-                        <a class="user_menu_option" href="../pages/add_place.php">Add Place</a>
-                        <a class="user_menu_option" href="../actions/action_logout.php">Logout</a>
+                    $user = get_user_name($user_email);
+                    $usr_id = get_user_id($user_email) ?>
+
+                <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
+                    <div id="user_options">
+                        <span id="notification_bell" onclick="toggle_notifications()">
+                            <i class="material-icons">notifications</i>
+                        </span>
+                        <a id="chat_icon" href="../pages/chat.php">
+                            <i class="material-icons">chat</i>
+                        </a>
+                        <div id="user_menu">
+                            <button id="username_tile" onclick="toggle_dropdown_menu()">
+                                <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
+                                <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
+                                <i class="material-icons">arrow_drop_down</i>
+                            </button>
+                            <a class="user_menu_option" href="../pages/profile.php?id=<?= $user_id ?>">My Profile</a>
+                            <a class="user_menu_option" href="../pages/add_place.php">Add Place</a>
+                            <a class="user_menu_option" href="../actions/action_logout.php">Logout</a>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
         </header>
 
     <?php }
@@ -141,18 +142,19 @@ function draw_header($user_email)
 <?php }
 
 function draw_notifications($email)
-{   $notifications = get_usr_notifications($email); 
+{
+    $notifications = get_usr_notifications($email);
     ?>
     <div id="notifications_box">
         <ul><?php
-        foreach($notifications as $notification){?>
-            <li id="" name="notification_id<?=$notification['id']?>"> 
-                <span class="notification"> <?=$notification['place_title']?></span>
-                <span id="notification_bell" onclick="remove_notification(<?=$notification['id']?>)">
-                    <i class="material-icons">delete</i>
-            </li>
-        <?php } ?>
-           
+                foreach ($notifications as $notification) { ?>
+                <li id="" name="notification_id<?= $notification['id'] ?>">
+                    <span class="notification"> <?= $notification['place_title'] ?></span>
+                    <span id="notification_bell" onclick="remove_notification(<?= $notification['id'] ?>)">
+                        <i class="material-icons">delete</i>
+                </li>
+            <?php } ?>
+
         </ul>
     </div>
 <?php } ?>

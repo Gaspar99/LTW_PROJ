@@ -1,6 +1,6 @@
 <?php 
 include_once("../includes/database.php");
-include_once("../includes/db_user.php");
+include_once("../database/db_user.php");
 
 /* ---------- GETTERS ---------- */
 function get_usr_notifications($email){

@@ -370,7 +370,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 /*suggestions*/
 
 #search_suggestions {
-    z-index: 5 !important;
+    z-index: 12;
     background-color: white;
     margin: 0;
     padding: 0;
@@ -384,7 +384,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 #result_suggestions {
-    z-index: 5 !important;
+    z-index: 12;
     padding: 0.5em;
     border-bottom: 0.05em solid var(--panel-color);
     cursor: pointer;
@@ -528,7 +528,7 @@ body>#messages .success {
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 10;
     /* Sit on top */
     left: 0;
     top: 0;
