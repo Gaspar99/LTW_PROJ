@@ -38,17 +38,6 @@ function close_sign_up_form() {
 function toggle_notifications() {
     let box = document.getElementById("notifications_box")
 
-    let icon = document.getElementById("notification_bell")
-    if(icon.innerText = "notifications_active"){
-        let new_icon = document.createElement("i")
-        new_icon.setAttribute("class","material-icons")
-        new_icon.innerHTML = "notifications"
-        icon.innerHTML = ""
-        icon.appendChild(new_icon)
-    }
-    console.log(icon);
-    
-
     if (box.style.display == "flex")
         box.style.display = "none"
     else
@@ -80,6 +69,7 @@ function mark_as_seen(id){
         let notification_button = document.getElementsByName("button_type"+id)[0]
         notification_button.setAttribute("onclick","unmark_as_seen("+id+")")
 
+        check_if_bell_active(id)
         console.log(notification_icon)
     })
     request.open("post", "../ajax/mark_as_seen.php", true)
@@ -103,11 +93,30 @@ function unmark_as_seen(id){
             notification_icon.innerHTML="visibility"
             let notification_button = document.getElementsByName("button_type"+id)[0]
             notification_button.setAttribute("onclick","mark_as_seen("+id+")")
+
+            check_if_bell_active(id)
+
             console.log(notification_icon)
         })
         request.open("post", "../ajax/unmark_as_seen.php", true)
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         request.send(encodeForAjax({ id: id}))
+}
+/**
+ * 
+ */
+function check_if_bell_active(id){
+
+    let request = new XMLHttpRequest()
+    request.addEventListener("load",function(){      
+        let num = JSON.parse(this.responseText)
+        if(num['unseen_num'] == num['notification_num'])
+            change_bell_icon(false)
+        else change_bell_icon(true)
+    })
+    request.open("post", "../ajax/notification_seen.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({id: id}))
 }
 
 /**
@@ -621,15 +630,8 @@ function notifications_handler(){
 
     if(last_id.id > last_notification_id){
         console.log("new")
-        let notification_bell = document.querySelector("#notification_bell")
-        notification_bell.innerText = "notifications"
-
-        let new_bell = document.createElement("i")
-        new_bell.setAttribute("class","material-icons")
-        new_bell.innerHTML = "notifications_active"
-
-        notification_bell.innerHTML= ""
-        notification_bell.appendChild(new_bell)
+        
+        change_bell_icon(true);
         
         //add notification generated
         //add new notification to the list
@@ -692,3 +694,24 @@ function notifications_handler(){
 function handle_messages(){
 
 }
+
+/**
+ * change bell icon 
+ * state true bell active 
+ * stae false bell off
+ */
+
+ function change_bell_icon(state){
+    let notification_bell = document.querySelector("#notification_bell")
+    notification_bell.innerText = "notifications"
+
+    let new_bell = document.createElement("i")
+    new_bell.setAttribute("class","material-icons")
+    if(state)
+        new_bell.innerHTML = "notifications_active"
+    else
+        new_bell.innerHTML = "notifications"
+
+    notification_bell.innerHTML= ""
+    notification_bell.appendChild(new_bell)
+ }

@@ -70,7 +70,12 @@ function draw_header($user_email)
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
-                            <i class="material-icons">notifications</i>
+                           <?php 
+                           if(get_unseen_notification($user_id)['unseen_num'] == 0) { ?>
+                                <i class="material-icons">notifications_active</i>
+                            <?php } else {?>
+                                <i class="material-icons">notifications</i>
+                            <?php } ?>
                         </span>
                         <a id="chat_icon" href="../pages/chat.php">
                             <i class="material-icons">chat</i>
