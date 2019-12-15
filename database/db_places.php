@@ -185,7 +185,7 @@ function add_place_photo($place_id)
     imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
     file_create_from_image($file_type, $small, $small_file_name);
 
-    // Calculate width and height of medium sized image (max width: 400)
+    // Calculate width and height of medium sized image 
     $medium_width = 550;
     $medium_height = 400;
 

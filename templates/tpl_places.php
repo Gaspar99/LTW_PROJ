@@ -467,7 +467,7 @@ function draw_edit_place($user_id, $place_id)
                                 <?= $comment['usr_comment_date'] ?>
                                 <!-- reply -->
                                 <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) {
-                                                if ($comment["owner_replay"] != NULL) { ?>
+                                                if ($comment["owner_reply"] != NULL) { ?>
                                         <button id="reply" onclick="toggle_review_box(<?= $comment['usr_id'] ?>)"> Reply </button>
                                         <?php #todo draw_reply_box($reservation['id']);
                                                             ?>
