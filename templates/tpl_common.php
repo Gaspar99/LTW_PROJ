@@ -146,15 +146,34 @@ function draw_notifications($email)
     $notifications = get_usr_notifications($email);
     ?>
     <div id="notifications_box">
-        <ul><?php
-                foreach ($notifications as $notification) { ?>
-                <li id="" name="notification_id<?= $notification['id'] ?>">
-                    <span class="notification"> <?= $notification['place_title'] ?></span>
-                    <span id="notification_bell" onclick="remove_notification(<?= $notification['id'] ?>)">
-                        <i class="material-icons">delete</i>
-                </li>
-            <?php } ?>
-
+        <ul id="notification_list">
+        <?php foreach ($notifications as $notification) { 
+                if($notification["is_read"]){?>
+                    <li id="read_notification" name="notification_id<?= $notification['id'] ?>">
+                        <span> Notification type  + <?= $notification['notification_date'] ?></span>
+                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
+                        <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        <span  onclick="unmark_as_seen(<?= $notification['id'] ?>)">
+                            <i class="material-icons">notification_off</i>
+                        </span>
+                        <span  onclick="remove_notification(<?= $notification['id'] ?>)">
+                            <i class="material-icons">delete</i>
+                        </span>
+                    </li>
+                <?php } else { ?>
+                    <li id="unread_notification" name="notification_id<?= $notification['id'] ?>">
+                        <span> Notification type  + <?= $notification['notification_date'] ?></span>
+                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
+                        <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        <span  onclick="mark_as_seen(<?= $notification['id'] ?>)">
+                            <i class="material-icons">visibility</i>
+                        </span>
+                        <span  onclick="remove_notification(<?= $notification['id'] ?>)">
+                            <i class="material-icons">delete</i>
+                        </span>
+                    </li>
+            <?php }
+        } ?>
         </ul>
     </div>
 <?php } ?>

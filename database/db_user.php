@@ -206,10 +206,10 @@ function update_profile_pic($user_id)
     $square = min($width, $height);  // size length of the maximum square
 
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(50, 50);
+    $small = imagecreatetruecolor(100, 100);
     imagealphablending($small, false);
     imagesavealpha($small, true);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 50, 50, $square, $square);
+    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 100, 100, $square, $square);
     file_create_from_image($file_type, $small, $small_file_name);
 
 

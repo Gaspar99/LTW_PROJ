@@ -176,7 +176,7 @@ VALUES(
 );
 
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES(
       6, --usr_id
       "Miguel", --usr_first_name
