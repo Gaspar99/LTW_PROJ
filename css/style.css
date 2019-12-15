@@ -1537,3 +1537,9 @@ body>#messages .success {
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* ------- CHAT STUFF ------*/
+#chat_box{
+    color: red;
+
+}
