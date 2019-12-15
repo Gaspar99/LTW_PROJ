@@ -618,7 +618,7 @@ function notifications_handler(){
     if(last_notification_id == -1 )
         last_notification_id = last_id.id
    
-    if(last_notification_id != last_id.id){
+    if(last_id.id > last_notification_id ){
         console.log("new")
         let notification_bell = document.querySelector("#notification_bell")
         notification_bell.innerText = "notifications_active"
@@ -631,7 +631,6 @@ function notifications_handler(){
         notification_bell.appendChild(new_bell)
         
         //add notification generated
-    
         //add new notification to the list
         let notifications_list = document.getElementById("notification_list")
 
