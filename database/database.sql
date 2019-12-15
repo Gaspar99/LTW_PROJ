@@ -31,7 +31,7 @@ CREATE TABLE reservation
    check_out DATE NOT NULL,
    price REAL NOT NULL,
    num_guests INTEGER NOT NULL,
-   usr_rating REAL DEFAULT 0 NOT NULL,
+   usr_rating REAL DEFAULT -1 NOT NULL,
    usr_comment VARCHAR DEFAULT NULL,
    usr_comment_date DATE DEFAULT NULL,
    owner_reply VARCHAR DEFAULT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE usr_message
 
 --INSERTS
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES
    (
       1, --usr_id
@@ -117,11 +117,12 @@ VALUES
       "johndoe@email.com", --usr_email
       "919349157", --usr_phone_number
       "$2y$10$EpKKrCShHulwh5iaUUSbG.DaXPSpf4nIEnXmRp4BwU/kXBaDiSWmm", --usr_password: 123456789
+      "johnDoe.jpg", --profile_picture
       34 --country_id
 );
 
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES
    (
       2, --usr_id
@@ -130,11 +131,12 @@ VALUES
       "janedoe@email.com", --usr_email
       "912345678", --usr_phone_number
       "$2y$10$obkm2f3lNnqIGjmybxt6SuwdvcNjrk4.A.yqFTktL2IN9UJu9xue6", --usr_password: password
+      "janeDoe.jpeg", --profile_picture
       50 --country_id
 );
 
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES
    (
       3, --usr_id
@@ -143,31 +145,34 @@ VALUES
       "fchico@email.com", --usr_email
       "919191919", --usr_phone_number
       "$2y$10$xzf4B.Tij5DnMBm4lx/ENOH.ng0fitnmBo2hr1FO7GxxRSTxEZg7.", --usr_password: jorgepass
+      "jorgeFransisco.jpeg",
       30 --country_id
 );
 
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES(
       4, --usr_id
-      "Antonio", --usr_first_name
-      "manuel", --usr_last_name
+      "Mike", --usr_first_name
+      "Shelby", --usr_last_name
       "antman@email.com", --usr_email
       "986541123", --usr_phone_number
       "$2y$10$EZTbD2U2MqM8gRF.WZ2nwuDEMvQjkpaWSkr/CJFIY4xDRJvTEEUUC", --usr_password: antman123
+      "mikeShelby.jpeg", --profile_picture
       20 --country_id
 );
 
 INSERT INTO usr
-   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+   (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES(
       5, --usr_id
-      "Pedro", --usr_first_name
-      "Torres", --usr_last_name
-      "pemigo@email.com", --usr_email
+      "Kate", --usr_first_name
+      "William", --usr_last_name
+      "kate@email.com", --usr_email
       "967561781", --usr_phone_number
       "$2y$10$vQUO45NWCDO9U2siFdKQCubk.9MRDzEpsXLE3SAUL.TOq9NtsQ.72", --usr_password: migpedro00
-      64 --country_id
+      "kate.jpeg", --profile_picture
+      61 --country_id
 );
 
 INSERT INTO usr
@@ -179,6 +184,7 @@ VALUES(
       "migeida@email.com", --usr_email
       "977456185", --usr_phone_number
       "$2y$10$iAzeY7eOqZcM5a4k0SHy7uIqSwD9cjTsmZZvWE9xEgs0OJjzXtc0e", --usr_password: migueida87
+      "hannahBaker.jpeg", --profile_picture
       53 --country_id
 );
 
@@ -254,6 +260,105 @@ VALUES(
       1411 --city_id: Amsterdam
 );
 
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      1, --id
+      2019-11-13, --check_in
+      2019-11-15, --check_out
+      600, --price
+      2, --num_guests
+      4, --usr_rating
+      "I LOVED IT!! Fantastic House. Will surely come back soon!", --comment
+      2019-11-17, --comment_date
+      "Thank you so much for your review. Come soon, we can't wait!!", --owner_reply
+      2019-11-17, --reply date
+      1, --tourist
+      2 --place
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      2, --id
+      2019-12-13, --check_in
+      2019-12-15,--check_out
+      600,--price
+      2, --num_guests
+      5, --usr_rating
+      "Came back a second and it was event better than the first. Fantastic Placeto stay for a couple like us", --comment
+      2019-12-17, --comment_date
+      "Thank you again for your stay. We hope to see you again in the near future", --owner_reply
+      2019-12-17, --reply date
+      1,
+      2
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      3, --id
+      2020-01-13, --check_in
+      2020-01-15, --check_out
+      600, --price
+      2, --num_guests
+      1, --touris
+      2 --place_id
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      4, --id
+      2020-02-13, --check_in
+      2020-02-15, --check_out
+      360, --price
+      2, --num_guests
+      1, --tourist
+      3 --place_id
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      5, --id
+      2020-03-13, --check_in
+      2020-03-15, --check_out
+      1200, --price
+      2, --num_guests
+      1, --tourist
+      4 --place_id
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      6, --id
+      2019-12-6, --check_in
+      2019-12-10, --check_out
+      1440, --price
+      4, --num_guests
+      2, --usr_rating
+      "Good place, but not great. For the price we paid, the overall quality should be a lot better. Can't say we will come back.", --usr_comment
+      2019-12-12, --usr_comment_date
+      "We are sorry that our place did not match your expectations. The high prices are necessary to mantain this great place.",  --owner_reply
+      2019-12-12, --owner_reply_date
+      2,
+      3 --place_id
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      7, --id
+      2020-06-6, --check_in
+      2019-06-15, --check_out
+      3600, --price
+      4, --num_guests
+      4, --tourist
+      1 --place_id
+);
+
 INSERT INTO owner_photo
 VALUES(
       1, --ID
@@ -317,167 +422,167 @@ VALUES(
 -- INSERT TAGS --
 INSERT INTO tag
 VALUES(
-      1,
-      "kitchen",
-      "Kitchen"
+      1, --id
+      "kitchen", --tag_icon
+      "Kitchen" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      2,
-      "bathtub",
-      "Bathroom"
+      2, --id
+      "bathtub", --tag_icon
+      "Bathroom" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      3,
-      "pool",
-      "Swimming Pool"
+      3, --id
+      "pool", --tag_icon
+      "Swimming Pool" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      4,
-      "fireplace",
-      "Fireplace"
+      4, --id
+      "fireplace", --tag_icon
+      "Fireplace" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      5,
-      "wifi",
-      "Wi-Fi"
+      5, --id
+      "wifi", --tag_icon
+      "Wi-Fi" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      6,
-      "tv",
-      "TV"
+      6, --id
+      "tv", --tag_icon
+      "TV" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      7,
-      "desktop_windows",
-      "Work desk"
+      7, --id
+      "desktop_windows", --tag_icon
+      "Work desk" --tag_name
+);
+
+INSERT INTO tag
+VALUES( 
+      8, --id
+      "beach_access", --tag_icon
+      "By the Beach" --tag_name
 );
 
 INSERT INTO tag
 VALUES(
-      8,
-      "beach_access",
-      "By the Beach"
-);
-
-INSERT INTO tag
-VALUES(
-      9,
-      "ac_unit",
-      "Air conditioning"
+      9, --id
+      "ac_unit", --tag_icon
+      "Air conditioning" --tag_name
 );
 
 INSERT INTO place_tag
 VALUES(
-      1,
-      1
+      1, --place
+      1 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      1,
-      2
+      1, --place
+      2 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      1,
-      7
+      1, --place
+      7 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      1,
-      8
+      1, --place
+      8 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      2,
-      5
+      2, --place
+      5 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      2,
-      6
+      2, --place
+      6 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      2,
-      3
+      2, --place
+      3 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      3,
-      1
+      3, --place
+      1 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      3,
-      4
+      3, --place
+      4 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      3,
-      9
+      3, --place
+      9 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      3,
-      7
+      3, --place
+      7 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      3,
-      3
+      3, --place
+      3 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      4,
-      5
+      4, --place
+      5 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      4,
-      3
+      4, --place
+      3 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      5,
-      1
+      5, --place
+      1 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      5,
-      6
+      5, --place
+      6 --tag
 );
 
 INSERT INTO place_tag
 VALUES(
-      5,
-      8
+      5, --place
+      8 --tag
 );
 
 -- INSERT ALL COUNTRYS --

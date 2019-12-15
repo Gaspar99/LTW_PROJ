@@ -212,19 +212,12 @@ function update_profile_pic($user_id)
     imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 50, 50, $square, $square);
     file_create_from_image($file_type, $small, $small_file_name);
 
-    // Calculate width and height of medium sized image (max width: 400)
-    $medium_width = $width;
-    $medium_height = $height;
-    if ($medium_width > 300) {
-        $medium_width = 300;
-        $medium_height = $medium_height * ($medium_width / $width);
-    }
 
     // Create and save a medium image
-    $medium = imagecreatetruecolor($medium_width, $medium_height);
+    $medium = imagecreatetruecolor(400, 400);
     imagealphablending($medium, false);
     imagesavealpha($medium, true);
-    imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
+    imagecopyresized($medium, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 400, 400, $square, $square);
     file_create_from_image($file_type, $medium, $medium_file_name);
 }
 
