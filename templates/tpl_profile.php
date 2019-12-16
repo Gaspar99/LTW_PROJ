@@ -116,7 +116,10 @@ function draw_edit_profile($user_id)
  * 
  */
 function draw_list_reservations($user_id){
-    $user_reservations = get_user_reservations($user_id); ?>
+    $user_reservations = get_user_reservations($user_id); 
+    if($user_reservations == null ){?>
+        No reservations made
+    <?php }else {?>
     <ul id="reservations_list" > <?php
         foreach($user_reservations as $reservation){
             $place_info = get_place_reserved($reservation['place_id']);?>
@@ -136,7 +139,7 @@ function draw_list_reservations($user_id){
                         <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
                     </a>
                 </div>
-
+                
                 <!-- check if can be reviewed -->
                 <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
 
@@ -146,7 +149,8 @@ function draw_list_reservations($user_id){
                 
                 <?php draw_review_box($reservation['id']);?>              
             </li>
-        <?php } ?>
+        <?php } 
+        } ?>
     </ul>
 <?php }
 /**

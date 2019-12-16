@@ -14,7 +14,6 @@ $num_days = round($time_diff / (86400)); // 86,400 = 60 * 60 * 24
 
 $price = $num_days *  $price_per_night * $_POST["num_guests"];
 
-print_r(date("Y-m-d", strtotime($check_in)));
 $reservation["check_in"] = date("Y-m-d", strtotime($check_in));
 $reservation["check_out"] = date("Y-m-d", strtotime($check_out));
 $reservation["price"] = $price;
