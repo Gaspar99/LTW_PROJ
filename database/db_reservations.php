@@ -122,4 +122,62 @@ function get_place_reserved($place_id){
 
     return $stmt->fetch();
 }
+/**
+ * 
+ */
+function check_if_can_be_cancelled($reservation_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT check_in FROM reservation WHERE id = ?"
+    );
+
+    $stmt->execute(array($reservation_id));
+
+    $check_in = $stmt->fetch(); 
+
+    //compare with current date
+
+    $date = new DateTime();
+    $time_stamp = $date->getTimestamp();
+    $compare_time = date("Y-m-d", strtotime('+24 hours', $time_stamp));
+
+    if($compare_time >= $check_in['check_in']){
+        return false;
+    }
+    else {
+        return true; 
+    }
+
+}
+
+function check_if_can_be_reviewed($reservation_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT check_out FROM reservation WHERE id = ?"
+    );
+
+    $stmt->execute(array($reservation_id));
+
+    $check_out = $stmt->fetch(); 
+
+    //compare with current date
+
+    $date = new DateTime();
+    $time_stamp = $date->getTimestamp();
+    $compare_time = gmdate("Y-m-d", $time_stamp);
+
+    print_r($compare_time);
+
+    //todo - to make css to review box set all to true
+    if($compare_time > $check_out['check_out']){
+        return true;
+    }
+    else {
+        return false; 
+    }
+
+}
+
 ?>

@@ -33,13 +33,20 @@ function get_unseen_notification($id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT COUNT(usr_notification.is_read) AS unseen_num
+        "SELECT COUNT(usr_notification.is_read) AS unseen_num ,
+        (SELECT COUNT(usr_notification.id) 
         FROM usr_notification 
-        WHERE usr_notification.is_read = 1 
-        AND usr_notification.usr = ? "
+        WHERE usr_notification.usr = (SELECT usr_notification.usr AS usr_id
+                                        FROM usr_notification 
+                                        WHERE usr_notification.usr = ?) ) as notification_num
+    FROM usr_notification 
+    WHERE usr_notification.is_read = 1 
+    AND usr_notification.usr = (SELECT usr_notification.usr AS usr_id
+                                FROM usr_notification 
+                                WHERE usr_notification.usr = ?) "
     );
 
-    $stmt->execute(array($id));
+    $stmt->execute(array($id,$id));
 
     return $stmt->fetch(); 
 }

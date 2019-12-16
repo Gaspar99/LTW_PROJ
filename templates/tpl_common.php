@@ -65,7 +65,6 @@ function draw_header($user_email)
                     <button onclick="open_sign_up_form()">Sign Up</button>
                 </div>
             <?php } else {
-                    //todo put the loop to always check for new notifications/messages..
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
 
@@ -73,10 +72,11 @@ function draw_header($user_email)
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
                            <?php 
-                           if(get_unseen_notification($user_id)['unseen_num'] == 0) { ?>
-                                <i class="material-icons">notifications_active</i>
-                            <?php } else {?>
+                            $seen_status = get_unseen_notification($user_id);
+                           if($seen_status['unseen_num'] == $seen_status['notification_num']) { ?>
                                 <i class="material-icons">notifications</i>
+                            <?php } else {?>
+                                <i class="material-icons">notifications_active</i>
                             <?php } ?>
                         </span>
                         <a id="chat_icon" href="../pages/chat.php">
