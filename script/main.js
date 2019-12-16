@@ -491,6 +491,7 @@ function upload_comment(id) {
  * @param {*} price_per_night 
  */
 function calculate_rent_price(price_per_night) {
+
     let check_in = document.getElementById("check_in_value")
     let check_out = document.getElementById("check_out_value")
     let num_guests = document.querySelector("#place_page #num_guests_input input")
@@ -601,8 +602,8 @@ confirm_password.onkeyup = validatePassword;
  */
 
 //GLOBALS 
-let last_message_id = -1
-let last_notification_id = -1 
+var last_message_id = -1
+var last_notification_id = -1 
 
 function polling_notification(usr_id){  
     //todo
@@ -616,9 +617,6 @@ function polling_notification(usr_id){
     notification_request.open("post", "../ajax/notification_polling.php", true)
     notification_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     notification_request.send(encodeForAjax({usr_id: usr_id}))
- 
-    console.log(last_notification_id)
-
 }
 
 function notifications_handler(){  
@@ -715,19 +713,19 @@ function handle_messages(){
     notification_bell.innerHTML= ""
     notification_bell.appendChild(new_bell)
  }
+  /* ---- SELECT DATE ----- */
 
- /* ---- SELECT DATE ----- */
-
- let search_picker = new Litepicker({
-    element: document.getElementById('litepicker_check_in'),
-    elementEnd: document.getElementById('litepicker_check_out'),
+  let search_picker = new Litepicker({
+    element: document.getElementById('search_check_in'),
+    elementEnd: document.getElementById('search_check_out'),
     singleMode: false,
     minDate: new Date().getTime(),
     hotelMode: true,
-    format: "D MMM, YYYY",
-    startDate: litepicker_check_in,
-    endDate: litepicker_check_out,
+    format: "D - MMM - YYYY",
+    startDate: search_check_in,
+    endDate: search_check_out,
     numberOfMonths: 2,
     numberOfColumns: 2,
-    disallowLockDaysInRange: true,
-})    
+    disallowLockDaysInRange: true
+ })
+ 
