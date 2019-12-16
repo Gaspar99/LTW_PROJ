@@ -10,8 +10,13 @@ function get_locked_days(place_id){
         for(let i = 0; i< dates.length; i++){
             let check_in = dates[i].check_in
             let check_out = dates[i].check_out
-            locked_days.push([check_in,check_out])
+            if(check_in != check_out){
+                locked_days.push([check_in,check_out])
+            }else 
+                locked_days.push(check_in)
+           
         }
+        console.log(locked_days);
     })
     request.open("get", "../ajax/get_booked_days.php?place_id="+place_id, true)
     request.send()
