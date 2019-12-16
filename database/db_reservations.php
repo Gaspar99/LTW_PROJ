@@ -28,10 +28,11 @@ function add_reservation($reservation)
 /**
  * 
  */
-function get_place_reservations($places){
+function get_search_reservations($places){
     $db = Database::instance()->db();
 
     $reservations[]=""; 
+    
     foreach($places as $place){
         
         $stmt = $db->prepare(
@@ -46,7 +47,8 @@ function get_place_reservations($places){
 
         array_push($reservations,$stmt->fetchAll()); 
     }    
-    return $reservations; 
+
+    return  $reservations;
 
 }
 /**

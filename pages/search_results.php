@@ -16,8 +16,6 @@ foreach($search_results as $sr){
     array_push($places, get_place_card_info($sr['id'])); 
 }
 $rm = array_shift($places);  //remove empty value 
-
-
 draw_site_header();
 draw_title("Search Results");
 ?> <script src="../script/title.js" onload="update_title('Search Results')" defer></script> <?php
