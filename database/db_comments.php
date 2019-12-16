@@ -1,10 +1,39 @@
 <?php
 include_once("../includes/database.php");
+
 /**
  * 
  */
-function get_place_comments($place_id) {
-    
+function add_review($review)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "UPDATE 
+            reservation
+        SET 
+            usr_rating = ?,
+            usr_comment= ?,
+            usr_comment_date = ?
+        WHERE
+            id = ?"
+    );
+
+    $stmt->execute(array(
+        $review["rating"], 
+        $review["comment"],
+        $review["date"],
+        $review["reservation_id"])
+    );
+}
+
+
+/**
+ * 
+ */
+function get_place_comments($place_id)
+{
+
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -18,15 +47,15 @@ function get_place_comments($place_id) {
             reservation.usr_comment_date AS usr_comment_date,
             reservation.owner_reply AS owner_reply,
             reservation.owner_reply_date AS owner_reply_date
-    FROM  
-        reservation, usr 
-    WHERE 
-        place_id = ? AND  
-        reservation.tourist = usr.usr_id AND
-        reservation.usr_rating != 0 AND 
-        reservation.usr_comment NOT NULL
-    ORDER BY 
-        usr_comment_date"
+        FROM  
+            reservation, usr 
+        WHERE 
+            place_id = ? AND  
+            reservation.tourist = usr.usr_id AND
+            reservation.usr_rating != 0 AND 
+            reservation.usr_comment NOT NULL
+        ORDER BY 
+            usr_comment_date"
     );
 
     $stmt->execute(array($place_id));

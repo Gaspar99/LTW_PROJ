@@ -27,6 +27,7 @@ try {
 
     die($e->getMessage());
 }
+
 //generate reservation notification 
 try{
     add_reservation_notification($reservation_id); 
