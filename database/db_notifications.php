@@ -57,6 +57,7 @@ function get_unseen_notification($id){
 /**
  * Generate notify reservation
  */
+//todo add notification type 
 function add_reservation_notification($reservation){
     
     $db = Database::instance()->db();

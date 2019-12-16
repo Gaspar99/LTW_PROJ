@@ -127,36 +127,40 @@ function draw_place_info($place_id)
                         <i class="material-icons">euro</i>
                     </div>
 
-                    <?php if (isset($_SESSION["user_email"])) { ?>
-                        <script src="../script/reservation.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
-                        <form id="rent_form" action="../actions/action_rent_place.php" method="post">
+                    <?php if (isset($_SESSION["user_email"])) { 
+                        if(is_owner(get_user_id($_SESSION["user_email"]),$place_id)){
+                           draw_reservations_made($place_id);
+                            }else{ ?>
+                            <script src="../script/reservation.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
+                            <form id="rent_form" action="../actions/action_rent_place.php" method="post">
 
-                            <div class="form_date">
-                                <div class="check_in">
-                                    <label for="check_in">Check In</label>
-                                    <input id="reservation_check_in" name="check_in"  required autocomplete="off">
+                                <div class="form_date">
+                                    <div class="check_in">
+                                        <label for="check_in">Check In</label>
+                                        <input id="reservation_check_in" name="check_in"  required autocomplete="off">
+                                    </div>
+
+                                    <div class="check_out">
+                                        <label for="check_out">Check Out</label>
+                                        <input id="reservation_check_out" name="check_out"  required autocomplete="off">
+                                    </div>
+                                </div>
+                                <div id="form_num_guests">
+                                    <label for="num_guests">Number of Guests</label>
+                                    <div id="num_guests_input">
+                                        <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?=$place["price"]?>);">-</span>
+                                        <input readonly type="number" value="1" min="1" max="<?= $place["num_guests"] ?>" step="1" name="num_guests" required>
+                                        <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?= $place["price"] ?>);">+</span>
+                                    </div>
                                 </div>
 
-                                <div class="check_out">
-                                    <label for="check_out">Check Out</label>
-                                    <input id="reservation_check_out" name="check_out"  required autocomplete="off">
-                                </div>
-                            </div>
-                            <div id="form_num_guests">
-                                <label for="num_guests">Number of Guests</label>
-                                <div id="num_guests_input">
-                                    <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?=$place["price"]?>);">-</span>
-                                    <input readonly type="number" value="1" min="1" max="<?= $place["num_guests"] ?>" step="1" name="num_guests" required>
-                                    <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?= $place["price"] ?>);">+</span>
-                                </div>
-                            </div>
+                                <input type="hidden" name="tourist" value="<?= get_user_id($_SESSION["user_email"]) ?>">
+                                <input type="hidden" name="place_id" value="<?= $place_id ?>">
 
-                            <input type="hidden" name="tourist" value="<?= get_user_id($_SESSION["user_email"]) ?>">
-                            <input type="hidden" name="place_id" value="<?= $place_id ?>">
-
-                            <button class="submit_button" type="submit">Rent Place</button>
-                        </form>
-                    <?php } else { ?>
+                                <button class="submit_button" type="submit">Rent Place</button>
+                            </form>
+                        <?php }
+                    } else { ?>
                         <h2>Log In To Rent This Place</h2>
                     <?php } ?>
                 </section>
@@ -526,7 +530,28 @@ function draw_reply_box($comment) {
     </div>
     
 <?php }
-
+/**
+ * 
+ */
+function draw_reservations_made($place_id){
+    $reservations = get_owner_place_reservations($place_id);
+    if($reservations == null ){?>
+        No reservations made
+    <?php }else{
+        foreach($reservations as $reservation){?>
+            <div class="reservation_tile">
+                <div id="tourist">
+                    <?php draw_user_tile($reservation["usr_id"]); ?>
+                </div>
+                <div id="reservation_tile_info">
+                   <span>Reserved Between:</span>  <?= $reservation['check_in'] ?> - <?= $reservation['check_out'] ?> 
+                   <br>
+                    <?= $reservation['num_guests'] ?> Guests - <?= $reservation['price'] ?> €
+                </div>
+            </div>
+        <?php }
+    }
+}
 
 
 
