@@ -139,15 +139,16 @@ function draw_list_reservations($user_id){
                         <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
                     </a>
                 </div>
-                
-                <!-- check if can be reviewed -->
-                <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
 
-                <!-- check if can be canceled -->
-                <button id="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)"> Cancel </button>
-            
-                
-                <?php draw_review_box($reservation['id']);?>              
+                <?php 
+                if(check_if_can_be_reviewed($reservation['id'])){?>
+                    <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
+                    <?php draw_review_box($reservation['id']);  
+                }?> 
+                <?php 
+                if(check_if_can_be_cancelled($reservation['id'])){?>
+                    <button id="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)"> Cancel </button>
+                <?php } ?>                      
             </li>
         <?php } 
         } ?>
