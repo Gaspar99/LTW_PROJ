@@ -1068,35 +1068,6 @@ body>#messages .success {
     text-align: center;
 }
 
-#reservation_line {
-    border-width: 4em;
-    border-radius: 1em;
-    border: solid black;
-    padding: 1em;
-    margin: 1em;
-    margin-left: 0em;
-}
-
-#reservation_line>#title {
-    text-align: left;
-    font-weight: bold;
-}
-
-#reservation_line>#owner_profile, #reservation_line>#owner_profile>* {
-    display: flex;
-    align-items: center;
-    width: 5em;
-    font-size: 0.9em;
-}
-
-#reservation_line>div, #reservation_line>button {
-    float: right;
-}
-
-#reservation_line>#cancel {
-    background-color: red;
-}
-
 /* ------ Price ------*/
 
 #place_page #place_body #gallery_rent #rent_section #price_per_night {
@@ -1151,7 +1122,7 @@ body>#messages .success {
 /* -------- Comment section ------- */
 
 #place_page #place_body #place_info #comments h2 {
-    margin: 0 0 1em 0;
+    padding: 3em;
 }
 
 .comment {
@@ -1295,10 +1266,60 @@ body>#messages .success {
     width: 100%;
 }
 
-/*- Reservations -
-#profile_page #user_places #reservations {
-    
-}*/
+/*- Reservations -*/
+
+#profile_page #reservations_header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+
+    margin-bottom: 1em;
+}
+
+#profile_page #reservations_header > * {
+    text-align: center;
+}
+
+#profile_page #reservations_header #time_label > * {
+    padding: 0 0.5em;
+}
+
+#profile_page #reservations_list {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#profile_page #reservation_line {
+    border: thin solid black;
+    padding: 1em 0;
+    margin-bottom: 1em;
+
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 25% 25% 25% 25%
+}
+
+#profile_page #reservation_line > * {
+    text-align: center;
+}
+
+#profile_page #reservation_line .time > * {
+    padding: 0 0.5em;
+}
+
+#profile_page #reservation_line .options > *{
+    margin-right: 0.5em;
+}
+
+#profile_page #reservation_line .options .review {
+    background-color: green;
+}
+
+#profile_page #reservation_line .options .cancel {
+    background-color: red;
+}
 
 /*----- EDIT PROFILE -------*/
 

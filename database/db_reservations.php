@@ -89,43 +89,24 @@ function get_user_reservations($user_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT * FROM reservation WHERE tourist=?"
+        "SELECT 
+            * 
+        FROM 
+            reservation 
+        WHERE 
+            tourist = ?"
     );
 
     $stmt->execute(array($user_id));
 
     return $stmt->fetchAll();
 }
+
+
 /**
  * 
  */
-function get_place_reserved($place_id){
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "SELECT place.title AS title,
-                country.country_name ,
-                city.city_name, 
-                place.place_address AS address,
-                place.owner_id AS owner_id,
-                usr.usr_first_name AS owner_first_name,
-                usr.usr_last_name AS owner_last_name,
-                usr.usr_profile_picture AS owner_profile_pic
-        FROM place, country, city, usr 
-        WHERE place.id=? 
-            AND place.city_id = city.id 
-            AND city.country_id = country.id 
-            AND place.owner_id = usr.usr_id"
-    );
-
-    $stmt->execute(array($place_id));
-
-    return $stmt->fetch();
-}
-/**
- * 
- */
-function check_if_can_be_cancelled($reservation_id){
+function can_be_cancelled($reservation_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -151,7 +132,7 @@ function check_if_can_be_cancelled($reservation_id){
 
 }
 
-function check_if_can_be_reviewed($reservation_id){
+function can_be_reviewed($reservation_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -167,8 +148,6 @@ function check_if_can_be_reviewed($reservation_id){
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
     $compare_time = gmdate("Y-m-d", $time_stamp);
-
-    print_r($compare_time);
 
     //todo - to make css to review box set all to true
     if($compare_time > $check_out['check_out']){

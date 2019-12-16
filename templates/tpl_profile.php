@@ -112,74 +112,91 @@ function draw_edit_profile($user_id)
 
     </form>
 <?php } 
+
+
 /**
  * 
  */
-function draw_list_reservations($user_id){
+function draw_list_reservations($user_id) 
+{
     $user_reservations = get_user_reservations($user_id); 
-    if($user_reservations == null ){?>
-        No reservations made
-    <?php }else {?>
-    <ul id="reservations_list" > <?php
-        foreach($user_reservations as $reservation){
-            $place_info = get_place_reserved($reservation['place_id']);?>
-            <li id="reservation_line" name="reservation_id<?=$reservation['id']?>"> 
-                <?=$place_info['title']?>
-                <a id="adress">
-                    <?=$place_info['country_name']?> - <?=$place_info['city_name']?> <?=$place_info['address']?> 
-                </a> 
-                <a id="numerical">
-                    Guests: <?=$reservation['num_guests']?>  
-                    <?=$reservation['check_in']?> - <?=$reservation['check_out']?>       
-                    Price: <?=$reservation['price']?>€  
-                </a>
-                <div id="owner_profile">
-                    <a class="button" href="../pages/profile.php?id=<?= $place_info["owner_id"] ?>">
-                        <img src="../images/profiles/thumbs_small/<?= $place_info["owner_profile_pic"] ?>" alt="User Profile Picture">
-                        <div id="username"><?= $place_info["owner_first_name"] ?> <?= $place_info["owner_last_name"] ?></div>
-                    </a>
-                </div>
 
-                <?php 
-                if(check_if_can_be_reviewed($reservation['id'])){?>
-                    <button id="review" onclick="toggle_review_box(<?=$reservation['id']?>)"> Review </button>
-                    <?php draw_review_box($reservation['id']);  
-                }?> 
-                <?php 
-                if(check_if_can_be_cancelled($reservation['id'])){?>
-                    <button id="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)"> Cancel </button>
-                <?php } ?>                      
-            </li>
-        <?php } 
-        } ?>
-    </ul>
+    if ($user_reservations == null ) { ?>
+        <h3>No reservations made<h3>
+
+    <?php } else { 
+        
+        draw_reservations_header(); ?>
+        
+        <ul id="reservations_list" > <?php
+    
+            foreach ($user_reservations as $reservation) { ?>
+
+                <li id="reservation_line" name="reservation_id<?=$reservation['id']?>">
+                    <?php draw_reservation($reservation); ?>
+                </li>
+
+            <?php } ?>
+
+        </ul>
+
+    <?php } 
+}
+
+
+function draw_reservations_header() 
+{ ?>
+
+    <div id="reservations_header">
+
+        <label id="price_label">Price</label>
+
+        <label id="num_guests_label">Guests</label>
+
+        <div id="time_label">
+            <label id="check_in_label"> Check-In</label>
+            <label id="check_out_label">Check-Out</label>
+        </div>
+
+        <label id="options_label">Options</label>
+
+    </div>
+    
 <?php }
+
+
+function draw_reservation($reservation) 
+{ ?>
+
+    <div class="price"><?=$reservation["price"]?>€</div>
+
+    <div class="num_guests"><?=$reservation["num_guests"]?></div>
+
+    <div class="time">
+        <span class="reservation_check_in"><?=$reservation["check_in"]?></span>
+        <span class="reservation_check_out"><?=$reservation["check_in"]?></span>
+    </div>
+
+    <div class="options">
+
+        <a class="view_place button" href="../pages/place.php?id=<?=$reservation["place_id"]?>">View Place</a>
+
+        <?php if (can_be_reviewed($reservation['id'])) { ?>
+            <button class="review" onclick="toggle_review_box(<?=$reservation['id']?>)">Review</button>
+            <?php draw_review_box($reservation['id']);  
+        } 
+
+        if (can_be_cancelled($reservation['id'])) { ?>
+            <button class="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)">Cancel</button>
+        <?php } ?> 
+
+    </div>              
+<?php }
+
 /**
  * 
  */
-function draw_review_box($id){
-    $box_id = "review_box";
-    $box_id .= $id; 
-
-    $comment_holder_id = "comment_holder";
-    $comment_holder_id .= $id; 
-
-    $rating_holder_id = "rating_holder";
-    $rating_holder_id .= $id; 
-    ?>
-
-  <div id=<?=$box_id?> class="modal">
-   
-    <span class="close" onclick="close_review_box(<?=$id?>)" title="Close Form">&times;</span>
-     
-    <div class="container">
-        <label for="comment"></label>
-        <input id=<?=$comment_holder_id?> type="text_area" placeholder="Write your comment" name="comment" required>
-
-        <label for="rating">Rate</label>
-        <input id=<?=$rating_holder_id?> type="number" name="rating" min="1" max="5" required>
-        <button class="submit_button" onclick="upload_comment(<?=$id?>)">Post</button><!-- todo ajax submit-->
-    </div>
-  </div>
-<?php } ?>
+function draw_review_box($id) {
+    
+} ?>
 
