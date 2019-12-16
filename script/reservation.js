@@ -1,3 +1,5 @@
+"use strict"
+
 /* ------ RESERVATION BOOKING -------- */
 
 var locked_days = [ ] //sample

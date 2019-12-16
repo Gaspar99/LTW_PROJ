@@ -1189,8 +1189,17 @@ body>#messages .success {
     margin-left: 4em;
 }
 
+.comment_reply button.reply {
+    margin: 0;
+    padding: 0.5em 1em;
+}
+
+.comment_reply .reply_box {
+    display: none;
+}
+
 #comments hr {
-    margin: 0 2em 1em 2em;
+    margin: 2em;
 }
 
 

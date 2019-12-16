@@ -44,9 +44,10 @@ function draw_header($user_email)
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js" defer></script>
         <script src="../script/main.js" defer></script>
-        <script src="../script/notifications_script.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
+        <script src="../script/comments.js" defer></script>
+        <!-- <script src="../script/reservation.js" defer></script> -->
     </head>
     
     <body id="site_container">

@@ -3,12 +3,13 @@ include_once("../includes/database.php");
 /**
  * 
  */
-function get_place_comments($place_id){
+function get_place_comments($place_id) {
     
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT  
+        "SELECT
+            reservation.id AS reservation_id,  
             usr.usr_id AS usr_id, 
             usr.usr_first_name AS usr_first_name,
             usr.usr_last_name AS usr_last_name,
