@@ -63,7 +63,14 @@ function mark_as_seen(id){
         console.log('unmarked as seen')
         //delete html displaying the reservation
         let notification_tile = document.getElementsByName("notification_id"+id)[0]
-        console.log(notification_tile)
+        notification_tile.setAttribute("id","read_notification")
+        let notification_icon = document.getElementsByName("icon_visibility"+id)[0]
+        notification_icon.innerHTML="visibility_off"
+        let notification_button = document.getElementsByName("button_type"+id)[0]
+        notification_button.setAttribute("onclick","unmark_as_seen("+id+")")
+
+        check_if_bell_active(id)
+        console.log(notification_icon)
     })
     request.open("post", "../ajax/mark_as_seen.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -81,11 +88,35 @@ function unmark_as_seen(id){
             console.log('marked as seen')
             //delete html displaying the reservation
             let notification_tile = document.getElementsByName("notification_id"+id)[0]
-            //console.log(notification_tile.innerHTML)
+            notification_tile.setAttribute("id","unread_notification")
+            let notification_icon = document.getElementsByName("icon_visibility"+id)[0]
+            notification_icon.innerHTML="visibility"
+            let notification_button = document.getElementsByName("button_type"+id)[0]
+            notification_button.setAttribute("onclick","mark_as_seen("+id+")")
+
+            check_if_bell_active(id)
+
+            console.log(notification_icon)
         })
         request.open("post", "../ajax/unmark_as_seen.php", true)
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         request.send(encodeForAjax({ id: id}))
+}
+/**
+ * 
+ */
+function check_if_bell_active(id){
+
+    let request = new XMLHttpRequest()
+    request.addEventListener("load",function(){      
+        let num = JSON.parse(this.responseText)
+        if(num['unseen_num'] == num['notification_num'])
+            change_bell_icon(false)
+        else change_bell_icon(true)
+    })
+    request.open("post", "../ajax/notification_seen.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({id: id}))
 }
 
 /**
@@ -460,6 +491,7 @@ function upload_comment(id) {
  * @param {*} price_per_night 
  */
 function calculate_rent_price(price_per_night) {
+
     let check_in = document.getElementById("check_in_value")
     let check_out = document.getElementById("check_out_value")
     let num_guests = document.querySelector("#place_page #num_guests_input input")
@@ -570,8 +602,8 @@ confirm_password.onkeyup = validatePassword;
  */
 
 //GLOBALS 
-let last_message_id = -1
-let last_notification_id = -1 
+var last_message_id = -1
+var last_notification_id = -1 
 
 function polling_notification(usr_id){  
     //todo
@@ -585,33 +617,21 @@ function polling_notification(usr_id){
     notification_request.open("post", "../ajax/notification_polling.php", true)
     notification_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     notification_request.send(encodeForAjax({usr_id: usr_id}))
- 
-    console.log(last_notification_id)
-
 }
 
 function notifications_handler(){  
     let last_id = JSON.parse(this.responseText);
-    //set the first notification
-    if(last_notification_id == -1 )
+   
+    //in case no notifications
+    if(last_notification_id == -1 && last_id.id != null)
         last_notification_id = last_id.id
 
-    
-    
-    if(last_notification_id != last_id.id){
+    if(last_id.id > last_notification_id){
+        console.log("new")
         
-        let notification_bell = document.querySelector("#notification_bell")
-        notification_bell.innerText = "notifications_active"
-
-        let new_bell = document.createElement("i")
-        new_bell.setAttribute("class","material_icons")
-        new_bell.innerHTML = "notification_active"
-
-        notification_bell.innerHTML= ""
-        notification_bell.appendChild(new_bell)
+        change_bell_icon(true);
         
         //add notification generated
-    
         //add new notification to the list
         let notifications_list = document.getElementById("notification_list")
 
@@ -639,9 +659,11 @@ function notifications_handler(){
 
         //make unseen
         let notification_seen = document.createElement("span")
+        notification_seen.setAttribute("name","button_type"+last_id.id)
         notification_seen.setAttribute("onclick","mark_as_seen("+last_id.id+")")
         let seen_icon = document.createElement("i")
         seen_icon.setAttribute("class","material-icons")
+        seen_icon.setAttribute("name","icon_visibility"+last_id.id)
         seen_icon.innerHTML="visibility"
         notification_seen.appendChild(seen_icon)
         new_notification.appendChild(notification_seen)
@@ -660,10 +682,50 @@ function notifications_handler(){
         notifications_list.appendChild(new_notification)
               
         //update last notification id 
-        last_notification_id = last_id.id
     }
+    if(last_id.id == null)
+        last_notification_id = 0
+    else 
+        last_notification_id = last_id.id
 }
 
 function handle_messages(){
 
 }
+
+/**
+ * change bell icon 
+ * state true bell active 
+ * stae false bell off
+ */
+
+ function change_bell_icon(state){
+    let notification_bell = document.querySelector("#notification_bell")
+    notification_bell.innerText = "notifications"
+
+    let new_bell = document.createElement("i")
+    new_bell.setAttribute("class","material-icons")
+    if(state)
+        new_bell.innerHTML = "notifications_active"
+    else
+        new_bell.innerHTML = "notifications"
+
+    notification_bell.innerHTML= ""
+    notification_bell.appendChild(new_bell)
+ }
+  /* ---- SELECT DATE ----- */
+
+  let search_picker = new Litepicker({
+    element: document.getElementById('search_check_in'),
+    elementEnd: document.getElementById('search_check_out'),
+    singleMode: false,
+    minDate: new Date().getTime(),
+    hotelMode: true,
+    format: "D - MMM - YYYY",
+    startDate: search_check_in,
+    endDate: search_check_out,
+    numberOfMonths: 2,
+    numberOfColumns: 2,
+    disallowLockDaysInRange: true
+ })
+ 

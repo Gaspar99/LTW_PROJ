@@ -1157,7 +1157,7 @@ body>#messages .success {
 .comment {
     display: grid;
     grid-template-rows: auto auto auto;
-    margin: 1em 0;
+    margin: 0;
 }
 
 .comment_header {
@@ -1186,9 +1186,12 @@ body>#messages .success {
     grid-row-start: 3;
     grid-row-end: 4;
 
-    margin-left: 2em;
+    margin-left: 4em;
 }
 
+#comments hr {
+    margin: 0 2em 1em 2em;
+}
 
 
 /*-----USER PROFILE-------*/
@@ -1542,4 +1545,10 @@ body>#messages .success {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* ------- CHAT STUFF ------*/
+#chat_box{
+    color: red;
+
 }

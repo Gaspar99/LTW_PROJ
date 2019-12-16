@@ -47,7 +47,7 @@ function draw_header($user_email)
         <script src="../script/main.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
     </head>
-
+    
     <body id="site_container">
         <header id="site_header">
             <div id="site_logo">
@@ -70,7 +70,12 @@ function draw_header($user_email)
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
-                            <i class="material-icons">notifications</i>
+                           <?php 
+                           if(get_unseen_notification($user_id)['unseen_num'] == 0) { ?>
+                                <i class="material-icons">notifications_active</i>
+                            <?php } else {?>
+                                <i class="material-icons">notifications</i>
+                            <?php } ?>
                         </span>
                         <a id="chat_icon" href="../pages/chat.php">
                             <i class="material-icons">chat</i>
@@ -153,8 +158,8 @@ function draw_notifications($email)
                         <span> Notification type  + <?= $notification['notification_date'] ?></span>
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
                         <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
-                        <span  onclick="unmark_as_seen(<?= $notification['id'] ?>)">
-                            <i class="material-icons">notification_off</i>
+                        <span name="button_type<?= $notification['id'] ?>" onclick="unmark_as_seen(<?= $notification['id'] ?>)">
+                            <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility_off</i>
                         </span>
                         <span  onclick="remove_notification(<?= $notification['id'] ?>)">
                             <i class="material-icons">delete</i>
@@ -165,8 +170,8 @@ function draw_notifications($email)
                         <span> Notification type  + <?= $notification['notification_date'] ?></span>
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
                         <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
-                        <span  onclick="mark_as_seen(<?= $notification['id'] ?>)">
-                            <i class="material-icons">visibility</i>
+                        <span name="button_type<?= $notification['id'] ?>" onclick="mark_as_seen(<?= $notification['id'] ?>)">
+                            <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility</i>
                         </span>
                         <span  onclick="remove_notification(<?= $notification['id'] ?>)">
                             <i class="material-icons">delete</i>

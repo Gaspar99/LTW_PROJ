@@ -28,6 +28,23 @@ function get_usr_notifications($email){
     return $stmt->fetchAll(); 
 }
 
+function get_unseen_notification($id){
+    
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT COUNT(usr_notification.is_read) AS unseen_num
+        FROM usr_notification 
+        WHERE usr_notification.is_read = 1 
+        AND usr_notification.usr = ? "
+    );
+
+    $stmt->execute(array($id));
+
+    return $stmt->fetch(); 
+}
+
+
 /* ---------- INSERTIONS ---------- */
 
 /**
