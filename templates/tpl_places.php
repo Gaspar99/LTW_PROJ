@@ -1,6 +1,8 @@
 <?php
 include_once("../database/db_places.php");
 include_once("../database/db_comments.php");
+include_once("../database/db_user.php");
+
 /**
  * 
  */
@@ -129,7 +131,7 @@ function draw_place_info($place_id)
                     </div>
 
                     <?php if (isset($_SESSION["user_email"])) { ?>
-                        <script src="../script/reservation_script.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
+                        <script src="../script/reservation.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
                         <form id="rent_form" action="../actions/action_rent_place.php" method="post">
 
                             <div class="form_date">
@@ -268,7 +270,7 @@ function draw_add_place($user_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required></textarea>
+                    <textarea name="description" rows="4" placeholder="Enter Place Description" required></textarea>
                 </div>
 
                 <hr>
@@ -416,9 +418,13 @@ function draw_edit_place($user_id, $place_id)
 
 <?php }
 
-function draw_place_comments($place_id, $place_owner)
+/**
+ * 
+ */
+function draw_place_comments($place_id, $place_owner_id)
 {
     $comments = get_place_comments($place_id);
+    $place_owner = get_user_info($place_owner_id);
 
     if ($comments == null) { ?>
     <h3>No comments to display</h3>
@@ -426,16 +432,18 @@ function draw_place_comments($place_id, $place_owner)
     
         foreach ($comments as $comment) { ?>
             <article class="comment"> 
-                <?php draw_comment($comment, $place_owner); ?>
+                <?php draw_comment($comment, $place_owner_id, $place_owner); ?>
             </article>
             <hr>
         <?php }
     }
 }
 
-function draw_comment($comment, $place_owner) 
+/**
+ * 
+ */
+function draw_comment($comment, $place_owner_id, $place_owner) 
 { 
-    
     ?>
 
     <div class="comment_header">
@@ -457,13 +465,13 @@ function draw_comment($comment, $place_owner)
         <?php if ($comment["owner_reply"] == NULL) { 
 
             if (isset($_SESSION["user_email"]) && $place_owner["email"] == $_SESSION["user_email"]) { ?>
-            <button id="reply" onclick="">Reply</button>
-            <?php //todo draw_reply_box($reservation['id']);
+            <button class="reply" onclick="open_reply_box(event)">Reply</button>
+            <?php draw_reply_box($comment);
             }
 
         } else { ?>
             <article class="comment">
-                <?php draw_owner_reply($comment, $place_owner); ?>
+                <?php draw_owner_reply($comment, $place_owner_id); ?>
             </article>
         <?php } ?>
 
@@ -471,6 +479,9 @@ function draw_comment($comment, $place_owner)
 
 <?php }
 
+/**
+ * 
+ */
 function draw_owner_reply($comment, $place_owner) 
 { ?>
 
@@ -502,7 +513,22 @@ function draw_user_tile($user_id)
         </a>
     </div>
 
-<?php } 
+<?php }
+
+/**
+ * 
+ */
+function draw_reply_box($comment) { 
+
+    $reservation_id = $comment["reservation_id"]; ?>
+
+    <div class="reply_box" id="<?=$reservation_id?>">
+        <textarea name="reply" placeholder="Enter a reply comment" rows="3" required></textarea>
+        
+        <button class="submit_button" onclick="upload_reply(event, <?=$reservation_id?>)">Reply</button>
+    </div>
+    
+<?php }
 
 
 

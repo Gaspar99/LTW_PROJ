@@ -6,7 +6,6 @@ include_once("../includes/database.php");
  */
 function add_reservation($reservation)
 {
-    ?><br> <?php print($reservation["check_in"]); die();
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -53,13 +52,16 @@ function get_reservations($places){
 /**
  * 
  */
-function get_reservation_owner($reservation_id){
+function get_reservation_owner($reservation_id) {
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT place.owner_id AS owner_id 
-        FROM place,reservation
-        WHERE reservation.id = ? AND
+        "SELECT 
+            place.owner_id AS owner_id 
+        FROM 
+            place,reservation
+        WHERE 
+            reservation.id = ? AND
             reservation.place_id = place.id"
     );
   
