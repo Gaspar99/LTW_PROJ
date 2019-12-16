@@ -715,3 +715,19 @@ function handle_messages(){
     notification_bell.innerHTML= ""
     notification_bell.appendChild(new_bell)
  }
+
+ /* ---- SELECT DATE ----- */
+
+ let search_picker = new Litepicker({
+    element: document.getElementById('litepicker_check_in'),
+    elementEnd: document.getElementById('litepicker_check_out'),
+    singleMode: false,
+    minDate: new Date().getTime(),
+    hotelMode: true,
+    format: "D MMM, YYYY",
+    startDate: litepicker_check_in,
+    endDate: litepicker_check_out,
+    numberOfMonths: 2,
+    numberOfColumns: 2,
+    disallowLockDaysInRange: true,
+})    
