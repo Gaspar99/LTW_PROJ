@@ -18,7 +18,6 @@ function get_locked_days(place_id){
                 locked_days.push(check_in)
            
         }
-        console.log(locked_days);
     })
     request.open("get", "../ajax/get_booked_days.php?place_id="+place_id, true)
     request.send()
