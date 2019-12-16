@@ -134,41 +134,24 @@ function draw_place_info($place_id)
                     </div>
 
                     <?php if (isset($_SESSION["user_email"])) { ?>
+                        <script src="../script/reservation_script.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
                         <form id="rent_form" action="../actions/action_rent_place.php" method="post">
 
                             <div class="form_date">
                                 <div class="check_in">
                                     <label for="check_in">Check In</label>
-                                    <input id="check_in_value" name="check_in" required autocomplete="off">
-                                    <script>
-                                        let check_in_value = new Litepicker({
-                                            element: document.getElementById('check_in_value'),
-                                            minDate: new Date().getTime(),
-                                            format: "D MMM, YYYY",
-                                            numberOfMonths: 1,
-                                            numberOfColumns: 1
-                                        })
-                                    </script>
+                                    <input id="reservation_check_in" name="check_in"  required autocomplete="off">
                                 </div>
 
                                 <div class="check_out">
                                     <label for="check_out">Check Out</label>
-                                    <input id="check_out_value" name="check_out" required autocomplete="off">
-                                    <script>
-                                        let check_out_value = new Litepicker({
-                                            element: document.getElementById('check_out_value'),
-                                            minDate: new Date().getTime(),
-                                            format: "D MMM, YYYY",
-                                            numberOfMonths: 1,
-                                            numberOfColumns: 1
-                                        })
-                                    </script>
+                                    <input id="reservation_check_out" name="check_out"  required autocomplete="off">
                                 </div>
                             </div>
                             <div id="form_num_guests">
                                 <label for="num_guests">Number of Guests</label>
                                 <div id="num_guests_input">
-                                    <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?= $place["price"] ?>);">-</span>
+                                    <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?=$place["price"]?>);">-</span>
                                     <input readonly type="number" value="1" min="1" max="<?= $place["num_guests"] ?>" step="1" name="num_guests" required>
                                     <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?= $place["price"] ?>);">+</span>
                                 </div>
@@ -469,7 +452,7 @@ function draw_edit_place($user_id, $place_id)
                                 <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) {
                                                 if ($comment["owner_reply"] != NULL) { ?>
                                         <button id="reply" onclick="toggle_review_box(<?= $comment['usr_id'] ?>)"> Reply </button>
-                                        <?php #todo draw_reply_box($reservation['id']);
+                                        <?php //todo draw_reply_box($reservation['id']);
                                                             ?>
                                 <?php }
                                             } ?>

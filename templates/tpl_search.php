@@ -18,12 +18,12 @@ function draw_search_bar()
         <div class="form_date">
             <div class="check_in">
                 <label for="check_in">Check In</label>
-                <input id="litepicker_check_in" name="check_in" required autocomplete="off">
+                <input id="search_check_in" name="check_in" required autocomplete="off">
             </div>
 
             <div class="check_out">
                 <label for="check_out">Check Out</label>
-                <input id="litepicker_check_out" name="check_out" required autocomplete="off">
+                <input id="search_check_out" name="check_out" required autocomplete="off">
             </div>
         </div>
 

@@ -47,7 +47,7 @@ function draw_header($user_email)
         <script src="../script/main.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
     </head>
-
+    
     <body id="site_container">
         <header id="site_header">
             <div id="site_logo">
