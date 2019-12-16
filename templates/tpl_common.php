@@ -47,6 +47,7 @@ function draw_header($user_email)
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js" defer></script>
         <script src="../script/main.js" defer></script>
         <script src="../script/comments.js" defer></script>
+        <script src="../script/notifications.js" defer></script>
         <!-- <script src="../script/reservation.js" defer></script> -->
     </head>
     
