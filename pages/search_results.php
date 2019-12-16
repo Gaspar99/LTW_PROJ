@@ -18,6 +18,7 @@ foreach($search_results as $sr){
 
 draw_site_header();
 draw_title("Search Results");
+?> <script src="../script/title.js" onload="update_title('Search Results')" defer></script> <?php
 //todo function to draw search inputed
 $rm = array_shift($places); 
 draw_places($places); //draw search results

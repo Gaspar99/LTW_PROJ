@@ -26,7 +26,6 @@ function draw_places($places)
  */
 function draw_place($place)
 { ?>
-
     <article class="place">
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
             <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
@@ -62,12 +61,10 @@ function draw_place_info($place_id)
     $image_gallery = get_place_gallery($place_id); #TODO check if the rly works 
     $place_tags = get_place_tags($place_id);
     ?>
-
     <article id="place_page">
-
         <div id="place_header">
             <h1 id="place_title"><?= $place["title"] ?></h1>
-
+           <script src="../script/title.js" onload="update_title(document.getElementById('place_title').innerHTML)" defer></script>
             <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) { ?>
                 <form method="POST" action="../pages/edit_place.php">
                     <input type="hidden" name="place_id" value="<?= $place_id ?>" />
@@ -204,7 +201,7 @@ function draw_place_info($place_id)
 function draw_add_place($user_id)
 {
     $countries = get_countries(); ?>
-
+    <script src="../script/title.js" onload="update_title('Add Place')" defer></script>
     <form id="add_place" action="../actions/action_add_place.php" method="post" enctype="multipart/form-data">
 
         <div id="place_title">
@@ -311,7 +308,7 @@ function draw_edit_place($user_id, $place_id)
     $place_tags = get_place_tags($place_id);
     $image_gallery = get_place_gallery($place_id);
     ?>
-
+    <script src="../script/title.js" onload="update_title('Edit Place')" defer></script>
     <form id="edit_place" action="../actions/action_update_place.php" method="post" enctype="multipart/form-data">
 
         <div id="place_title">
