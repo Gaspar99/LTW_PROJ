@@ -183,21 +183,43 @@ function draw_reservation($reservation)
         <a class="view_place button" href="../pages/place.php?id=<?=$reservation["place_id"]?>">View Place</a>
 
         <?php if (can_be_reviewed($reservation['id'])) { ?>
-            <button class="review" onclick="toggle_review_box(<?=$reservation['id']?>)">Review</button>
-            <?php draw_review_box($reservation['id']);  
+            <button class="review" onclick="open_review_box(event)">Review</button>
+            <?php draw_review_box($reservation['id'], $reservation["place_id"]);  
         } 
 
         if (can_be_cancelled($reservation['id'])) { ?>
             <button class="cancel" onclick="cancel_reservation(<?=$reservation['id']?>)">Cancel</button>
         <?php } ?> 
 
-    </div>              
+    </div>
+    
 <?php }
 
 /**
  * 
  */
-function draw_review_box($id) {
+function draw_review_box($reservation_id, $place_id) { ?>
     
-} ?>
+    <div class="modal">
+        <form class="review_box modal_content animate" action="../actions/action_make_review.php" method="post">
+
+            <span class="close" onclick="close_review_box(event)" title="Close Review Form">&times;</span>
+
+            <div class="review_rating">
+                <label for="rating">Rating</label>
+                <input type="numer" name="rating">
+            </div>
+        
+            <div class="review_comment">
+                <label for="comment">Comment</label>
+                <textarea name="comment" rows="4" placeholder="Write a review comment"></textarea>
+            </div>
+
+            <input type="hidden" name="reservation_id" value="<?=$reservation_id?>">
+            <input type="hidden" name="place_id" value="<?=$place_id?>">
+            <button type="submit" class="submit_button">Post Review</button>
+
+        </form>
+    </div>
+<?php } ?>
 

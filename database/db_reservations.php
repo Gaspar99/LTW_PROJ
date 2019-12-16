@@ -36,9 +36,15 @@ function get_search_reservations($places){
     foreach($places as $place){
         
         $stmt = $db->prepare(
-            "SELECT id,place_id, check_in,check_out 
-            FROM reservation
-            WHERE ? = place_id"
+            "SELECT 
+                id, 
+                place_id, 
+                check_in,
+                check_out 
+            FROM 
+                reservation
+            WHERE 
+                place_id = ?"
         );
 
         $stmt->execute(array(
@@ -78,7 +84,10 @@ function cancel_reservation($reservation_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "DELETE FROM reservation WHERE id=?"
+        "DELETE FROM 
+            reservation 
+        WHERE 
+            id=?"
     );
 
     $stmt->execute(array($reservation_id));
@@ -112,7 +121,12 @@ function can_be_cancelled($reservation_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT check_in FROM reservation WHERE id = ?"
+        "SELECT 
+            check_in 
+        FROM 
+            reservation
+        WHERE 
+            id = ?"
     );
 
     $stmt->execute(array($reservation_id));
@@ -120,45 +134,39 @@ function can_be_cancelled($reservation_id){
     $check_in = $stmt->fetch(); 
 
     //compare with current date
-
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
     $compare_time = date("Y-m-d", strtotime('+24 hours', $time_stamp));
 
-    if($compare_time >= $check_in['check_in']){
-        return false;
-    }
-    else {
-        return true; 
-    }
-
+    return ($compare_time >= $check_in['check_in']);
 }
 
-function can_be_reviewed($reservation_id){
+function can_be_reviewed($reservation_id) {
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT check_out FROM reservation WHERE id = ?"
+        "SELECT 
+            check_out,
+            usr_comment
+        FROM 
+            reservation
+        WHERE 
+            id = ?"
     );
 
     $stmt->execute(array($reservation_id));
 
-    $check_out = $stmt->fetch(); 
+    $reservation = $stmt->fetch();
+    
+    // User has already make a review for this reservation
+    if ($reservation["usr_comment"] != null) return false;
 
     //compare with current date
-
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
-    $compare_time = gmdate("Y-m-d", $time_stamp);
+    $current_time = gmdate("Y-m-d", $time_stamp);
 
-    //todo - to make css to review box set all to true
-    if($compare_time > $check_out['check_out']){
-        return true;
-    }
-    else {
-        return false; 
-    }
-
+    return ($current_time > $reservation["check_out"]);
 }
 
 ?>

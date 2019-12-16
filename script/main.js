@@ -54,19 +54,16 @@ function close_search_form() {
 /**
  * 
  */
-function toggle_review_box(id) { //todo ajax 
-    let box = document.getElementById("review_box" + id)
+function open_review_box(event) {  
+    let box = event.target.nextElementSibling
 
-    if (box.style.display == "flex")
-        box.style.display = "none"
-    else
-        box.style.display = "flex"
+    box.style.display = "flex"
 }
 /**
  * 
  */
-function close_review_box(id) {
-    let box = document.getElementById("review_box" + id)
+function close_review_box(event) {
+    let box = event.target.parentElement.parentElement
     box.style.display = "none"
 }
 /**
@@ -189,7 +186,6 @@ function price_change() {
     let div = document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
 
     div.insertBefore(show_price, div.firstChild)
-
 }
 
 

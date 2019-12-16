@@ -551,7 +551,6 @@ body>#messages .success {
     margin: auto;
     border-radius: 0.5em;
     box-shadow: 0 0 1em black;
-    width: 40em;
     /* Could be more or less, depending on screen size */
     /* Style */
     background-color: white;
@@ -1171,7 +1170,11 @@ body>#messages .success {
 /* -------- Comment section ------- */
 
 #place_page #place_body #place_info #comments h2 {
-    padding: 3em;
+    margin-bottom: 1em;
+}
+
+#place_page #place_body #place_info #comments h3 {
+    padding: 2em;
 }
 
 .comment {
@@ -1320,7 +1323,7 @@ body>#messages .success {
 #profile_page #reservations_header {
     width: 100%;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 20% 15% 40% 25%;
 
     margin-bottom: 1em;
 }
@@ -1341,13 +1344,15 @@ body>#messages .success {
 
 #profile_page #reservation_line {
     border: thin solid black;
+    border-radius: 0;
     padding: 1em 0;
+    margin-top: 0;
     margin-bottom: 1em;
 
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-columns: 25% 25% 25% 25%
+    grid-template-columns: 20% 15% 40% 25%;
 }
 
 #profile_page #reservation_line > * {
@@ -1368,6 +1373,27 @@ body>#messages .success {
 
 #profile_page #reservation_line .options .cancel {
     background-color: red;
+}
+
+#profile_page #reservation_line .options .review_box {
+    position: relative;
+    width: 35em;
+    margin-top: 5%; 
+}
+
+#profile_page #reservation_line .options .review_box .review_rating {
+    margin: 3em 1em 1em 1em;
+}
+
+
+#profile_page #reservation_line .options .review_box .review_comment {
+    margin: 1em;
+}
+
+#profile_page #reservation_line .options .review_box button,
+#profile_page #reservation_line .options .review_box .review_rating *,
+#profile_page #reservation_line .options .review_box .review_comment * {
+    font-size: 1.3em;
 }
 
 /*----- EDIT PROFILE -------*/
