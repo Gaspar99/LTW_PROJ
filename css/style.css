@@ -1060,12 +1060,61 @@ body>#messages .success {
 
 #place_page #place_body #gallery_rent #rent_section {
     border-width: 4em;
-    border-radius: 1em;
-    border: solid black;
+    border-radius: 0em;
+    border: solid var(--button-color);
     padding: 1em;
     margin: 1em 0;
     text-align: center;
 }
+
+#reservation_line {
+    border-width: 4em;
+    border-radius: 1em;
+    border: solid black;
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0em;
+}
+
+#reservation_line>#title {
+    text-align: left;
+    font-weight: bold;
+}
+
+#reservation_line>#owner_profile, #reservation_line>#owner_profile>* {
+    display: flex;
+    align-items: center;
+    width: 5em;
+    font-size: 0.9em;
+}
+
+#reservation_line>div, #reservation_line>button {
+    float: right;
+}
+
+#reservation_line>#cancel {
+    background-color: red;
+}
+/* owned places rent */
+.reservation_tile{
+    display: flex;
+    padding: 0.2em;
+    margin: 0.2em;
+    border-bottom: solid black;
+    border-width: thin;
+}
+.reservation_tile>#tourist{
+    width: 25%;
+} 
+.reservation_tile>#reservation_tile_info{
+    width: auto;
+    padding-left: 1em;
+}
+.reservation_tile>#reservation_tile_info>span{
+   font-weight: bold;
+}
+
+
 
 /* ------ Price ------*/
 

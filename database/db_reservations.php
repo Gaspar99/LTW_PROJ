@@ -28,7 +28,7 @@ function add_reservation($reservation)
 /**
  * 
  */
-function get_reservations($places){
+function get_place_reservations($places){
     $db = Database::instance()->db();
 
     $reservations[]=""; 

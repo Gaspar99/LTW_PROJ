@@ -92,6 +92,47 @@ function get_place_info($place_id)
 
     return $stmt->fetch();
 }
+/**
+ * 
+ */
+function is_owner($usr_id,$place_id){
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT * 
+        FROM place 
+        WHERE place.id = ?
+        AND place.owner_id = ?"
+    );
+
+    $stmt->execute(array($place_id,$usr_id));
+    
+    $ret = $stmt->fetch();
+
+    if($ret == null)
+        return false; 
+    else return true; 
+
+}
+/**
+ * 
+ */
+
+function get_owner_place_reservations($place_id){
+
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT usr.usr_id,reservation.check_in, reservation.check_out, reservation.price ,reservation.num_guests
+        FROM reservation, usr
+        WHERE place_id = ? AND usr.usr_id = reservation.tourist"
+    );
+
+    $stmt->execute(array($place_id));
+    
+    return $stmt->fetchAll();
+
+}
 
 /**
  * 

@@ -7,13 +7,14 @@ include_once("../database/db_reservations.php");
 function draw_profile($user_id)
 {
     $user_info = get_user_info($user_id); ?>
-
+    
     <article id="profile_page">
 
         <section id="user_info">
             <div id="user_bio">
                 <h1 id="user_first_name"><?= $user_info["first_name"] ?></h1>
                 <h1 id="user_last_name"><?= $user_info["last_name"] ?></h1>
+                <script src="../script/title.js" onload="update_title(document.getElementById('user_first_name').innerHTML + ' ' + document.getElementById('user_last_name').innerHTML)" defer></script>
                 <img id="profile_pic" src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile Picture" />
                 <h2 id="phone_number"><?= $user_info["phone_number"] ?></h2>
                 <h2 id="email"><?= $user_info["email"] ?></h2>
@@ -50,7 +51,7 @@ function draw_profile($user_id)
 function draw_edit_profile($user_id)
 {
     $user_info = get_user_info($user_id); ?>
-
+    <script src="../script/title.js" onload="update_title('Edit Profile')" defer></script>
     <form id="edit_profile" action="../actions/action_update_profile.php" method="post" enctype="multipart/form-data">
 
         <section id="profile_info">
