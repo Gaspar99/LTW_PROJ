@@ -221,8 +221,8 @@ function toggle_image_fullscreen() {
         place_gallery.style.position = "fixed"
         place_gallery.style.left = "0"
         place_gallery.style.top = "0"
-        place_gallery.style.width = "100%"
-        place_gallery.style.height = "100%"
+        place_gallery.style.width = "100vw"
+        place_gallery.style.height = "100vh"
 
         fullscreen_icon.innerHTML = "fullscreen_exit"
     }

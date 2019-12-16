@@ -75,14 +75,9 @@ function draw_place_info($place_id)
                     <input type="hidden" name="place_id" value="<?= $place_id ?>" />
                     <button id="remove_place" type="submit">Remove Place</button>
                 </form>
-            <?php } else { ?>
-                <div id="owner_profile">
-                    <a class="button" href="../pages/profile.php?id=<?= $place["place_owner"] ?>">
-                        <img src="../images/profiles/thumbs_small/<?= $owner["profile_pic"] ?>" alt="User Profile Picture">
-                        <div id="username"><?= $owner["first_name"] ?> <?= $owner["last_name"] ?></div>
-                    </a>
-                </div>
-            <?php } ?>
+            <?php } else { 
+                draw_user_tile($place["place_owner"]);    
+            } ?>
         </div>
 
         <ul id="location">
@@ -207,7 +202,7 @@ function draw_place_info($place_id)
 
                 <section id="comments">
                     <h2>Comments</h2>
-                    <?php draw_place_comments($place_id, $owner) ?>
+                    <?php draw_place_comments($place_id, $place["place_owner"]) ?>
                 </section>
 
             </section>
@@ -436,59 +431,97 @@ function draw_edit_place($user_id, $place_id)
         <button class="submit_button" type="submit">Save Changes</button>
     </form>
 
-    <?php }
+<?php }
 
-    function draw_place_comments($place_id, $owner)
-    {
-        $comments = get_place_comments($place_id);
-        if ($comments == null) { ?>
-        <h3>No comments to display</h3>
-    <?php } else { ?>
-        <ul id="place_comments"> <?php
-            foreach ($comments as $comment) { ?>
-                <li id="comment_line">
-                    <div class="comment_grid">
-                        <div class="comment_item">
-                            <div id="comment_owner_profile">
-                                <a class="button" href="../pages/profile.php?id=<?= $comment["usr_id"] ?>">
-                                    <img src="../images/profiles/thumbs_small/<?= $comment["usr_profile_picture"] ?>" alt="User Profile Picture">
-                                    <div id="username"><?= $comment["usr_first_name"] ?> <?= $comment["usr_last_name"] ?></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment_item">
-                            <a id="comment_info">
-                                <?= $comment['usr_comment'] ?>
-                            </a>
-                            <a id="comment_rating">
-                                <?= $comment['usr_rating'] ?>
-                            </a>
-                            <a id="comment_extra">
-                                <?= $comment['usr_comment_date'] ?>
-                                <!-- reply -->
-                                <?php if (isset($_SESSION["user_email"]) && $owner["email"] == $_SESSION["user_email"]) {
-                                                if ($comment["owner_reply"] != NULL) { ?>
-                                        <button id="reply" onclick="toggle_review_box(<?= $comment['usr_id'] ?>)"> Reply </button>
-                                        <?php #todo draw_reply_box($reservation['id']);
-                                                            ?>
-                                <?php }
-                                            } ?>
-                            </a>
-                        </div>
-                    </div>
-                    <?php if ($comment["owner_reply"] != NULL) { ?>
-                        <div id="comment_reply">
-                            Replied <?= $comment['owner_reply_date'] ?>
-                            <article id="reply_box">
-                                <?= $comment['owner_reply'] ?>
-                            </article>
-                        </div>
-                    <?php } ?>
-                </li>
-            <?php } ?>
-        </ul>
-    <?php }
-        ?>
+function draw_place_comments($place_id, $place_owner)
+{
+    $comments = get_place_comments($place_id);
+
+    if ($comments == null) { ?>
+    <h3>No comments to display</h3>
+    <?php } else { 
+    
+        foreach ($comments as $comment) { ?>
+            <article class="comment"> 
+                <?php draw_comment($comment, $place_owner); ?>
+            </article>
+            <hr>
+        <?php }
+    }
+}
+
+function draw_comment($comment, $place_owner) 
+{ ?>
+
+    <div class="comment_header">
+
+        <?php draw_user_tile($comment["usr_id"]); ?>
+
+        <div class="comment_date">
+            <?= $comment['usr_comment_date'] ?>
+        </div>
+
+    </div>
+
+    <div class="comment_body">
+        <p><?= $comment['usr_comment'] ?></p>
+    </div>
+
+    <div class="comment_reply">
+
+        <?php if ($comment["owner_reply"] == NULL) { 
+
+            if (isset($_SESSION["user_email"]) && $place_owner["email"] == $_SESSION["user_email"]) { ?>
+            <button id="reply" onclick="">Reply</button>
+            <?php //todo draw_reply_box($reservation['id']);
+            }
+
+        } else { ?>
+            <article class="comment">
+                <?php draw_owner_reply($comment, $place_owner); ?>
+            </article>
+        <?php } ?>
+
+    </div>
 
 <?php }
-?>
+
+function draw_owner_reply($comment, $place_owner) 
+{ ?>
+
+    <div class="comment_header">
+        <?php draw_user_tile($place_owner); ?>
+
+        <div class="comment_date">
+            <?= $comment['owner_reply_date'] ?>
+        </div>
+    </div>
+
+    <div class="comment_body">
+        <p><?= $comment['owner_reply'] ?></p>
+    </div>
+    
+<?php }
+
+/**
+ * 
+ */
+function draw_user_tile($user_id) 
+{   
+    $user = get_user_info($user_id); ?>
+
+    <div class="user_profile_tile">
+        <a class="button" href="../pages/profile.php?id=<?= $user_id ?>">
+            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture">
+            <span class="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></span>
+        </a>
+    </div>
+
+<?php } 
+
+
+
+
+
+                 
+    

@@ -6,6 +6,7 @@ include_once("../includes/database.php");
  */
 function add_reservation($reservation)
 {
+    ?><br> <?php print($reservation["check_in"]); die();
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(

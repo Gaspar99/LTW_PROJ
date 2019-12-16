@@ -889,32 +889,32 @@ body>#messages .success {
 
 /*--------- Owner Profile ------- */
 
-#place_page #place_header #owner_profile {
+.user_profile_tile {
     display: flex;
     align-items: flex-end;
     width: max-content;
 }
 
-#place_page #place_header #owner_profile::before {
+#place_page #place_header .user_profile_tile::before {
     content: "By:";
     padding: 0 0.2em 0 1em;
 }
 
-#place_page #place_header #owner_profile a {
+.user_profile_tile a {
     display: flex;
     align-items: center;
     width: max-content;
     font-size: 0.9em;
 }
 
-#place_page #place_header #owner_profile img {
+.user_profile_tile img {
     width: 2em;
     height: 2em;
     border-radius: 1em;
     margin: 0 0.5em;
 }
 
-#place_page #place_header #owner_profile #username {
+.user_profile_tile .username {
     padding: 0 0.5em;
 }
 
@@ -996,7 +996,6 @@ body>#messages .success {
     position: relative;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.4);
-
     display: flex;
     align-items: center;
 }
@@ -1015,8 +1014,7 @@ body>#messages .success {
 
 /* Genneric Place Gallery */
 
-#place_gallery .image_slide,
-#place_gallery .fullscreen_slide {
+#place_gallery .image_slide, #place_gallery .fullscreen_slide {
     display: none;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
@@ -1152,38 +1150,46 @@ body>#messages .success {
 
 /* -------- Comment section ------- */
 
-.comment_grid {
+#place_page #place_body #place_info #comments h2 {
+    margin: 0 0 1em 0;
+}
+
+.comment {
     display: grid;
-    grid-template-columns: 1fr 5fr;
-    border: 1px solid black;
-    outline-style: solid;
-    background-color: var(--search-grey);
+    grid-template-rows: auto auto auto;
+    margin: 1em 0;
 }
 
-.comment_item>#comment_info {
-    text-align: center;
-    float: left;
-    padding: 1em;
-}
+.comment_header {
+    grid-row-start: 1;
+    grid-row-end: 2;
 
-#comment_rating {
-    float: right;
-    padding: 1em;
-}
-
-#comment_extra {
-    float: right;
-    padding: 1em;
-}
-
-#comment_owner_profile {
-    border: 1px solid black;
-    outline-style: solid;
     display: flex;
-    text-align: center;
-    width: 100px;
-    height: 100px;
+    justify-content: flex-start;
+    align-items: center;
 }
+
+.comment_header .comment_date {
+    margin-left: 1em;
+}
+
+.comment_body {
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.comment_body p {
+    font-size: 1.2em;
+}
+
+.comment_reply {
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    margin-left: 2em;
+}
+
+
 
 /*-----USER PROFILE-------*/
 

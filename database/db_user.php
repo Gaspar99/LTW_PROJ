@@ -11,9 +11,13 @@ function get_user_name($user_email)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT usr.usr_first_name AS first_name, usr.usr_last_name AS last_name,
-                usr.usr_profile_picture AS profile_pic
-            FROM usr WHERE usr_email = ?"
+        "SELECT 
+            usr.usr_first_name AS first_name, 
+            usr.usr_last_name AS last_name,
+            usr.usr_profile_picture AS profile_pic
+        FROM 
+            usr 
+        WHERE usr_email = ?"
     );
 
     $stmt->execute(array($user_email));
@@ -30,9 +34,12 @@ function check_user_password($email, $password)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT usr.usr_password AS usr_password
-            FROM usr 
-            WHERE usr.usr_email = ?"
+        "SELECT 
+            usr.usr_password AS usr_password
+        FROM 
+            usr 
+        WHERE 
+            usr.usr_email = ?"
     );
 
     $stmt->execute(array($email));

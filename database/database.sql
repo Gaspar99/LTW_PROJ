@@ -1,12 +1,12 @@
 CREATE TABLE usr
 (
    usr_id INTEGER PRIMARY KEY,
-   usr_first_name VARCHAR NOT NULL,
-   usr_last_name VARCHAR NOT NULL,
-   usr_email VARCHAR NOT NULL UNIQUE,
-   usr_phone_number VARCHAR NOT NULL,
-   usr_password VARCHAR NOT NULL,
-   usr_profile_picture VARCHAR DEFAULT "default.png" NOT NULL,
+   usr_first_name TEXT NOT NULL,
+   usr_last_name TEXT NOT NULL,
+   usr_email TEXT NOT NULL UNIQUE,
+   usr_phone_number TEXT NOT NULL,
+   usr_password TEXT NOT NULL,
+   usr_profile_picture TEXT DEFAULT "default.png" NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    country_id INTEGER REFERENCES country NOT NULL
 );
@@ -14,10 +14,10 @@ CREATE TABLE usr
 CREATE TABLE place
 (
    id INTEGER PRIMARY KEY,
-   title VARCHAR NOT NULL,
+   title TEXT NOT NULL,
    price_per_night REAL NOT NULL,
-   place_address VARCHAR NOT NULL,
-   place_description VARCHAR NOT NULL,
+   place_address TEXT NOT NULL,
+   place_description TEXT NOT NULL,
    num_guests INTEGER NOT NULL,
    rating REAL DEFAULT 0 NOT NULL,
    owner_id INTEGER REFERENCES usr NOT NULL,
@@ -27,15 +27,15 @@ CREATE TABLE place
 CREATE TABLE reservation
 (
    id INTEGER PRIMARY KEY,
-   check_in DATE NOT NULL,
-   check_out DATE NOT NULL,
+   check_in TEXT NOT NULL,
+   check_out TEXT NOT NULL,
    price REAL NOT NULL,
    num_guests INTEGER NOT NULL,
    usr_rating REAL DEFAULT -1 NOT NULL,
-   usr_comment VARCHAR DEFAULT NULL,
-   usr_comment_date DATE DEFAULT NULL,
-   owner_reply VARCHAR DEFAULT NULL,
-   owner_reply_date DATE DEFAULT NULL,
+   usr_comment TEXT DEFAULT NULL,
+   usr_comment_date TEXT DEFAULT NULL,
+   owner_reply TEXT DEFAULT NULL,
+   owner_reply_date TEXT DEFAULT NULL,
    tourist INTEGER REFERENCES usr NOT NULL,
    place_id INTEGER REFERENCES place NOT NULL
 );
@@ -43,21 +43,21 @@ CREATE TABLE reservation
 CREATE TABLE country
 (
    id INTEGER PRIMARY KEY,
-   country_name VARCHAR NOT NULL
+   country_name TEXT NOT NULL
 );
 
 CREATE TABLE city
 (
    id INTEGER PRIMARY KEY,
-   city_name VARCHAR NOT NULL,
+   city_name TEXT NOT NULL,
    country_id INTEGER REFERENCES country NOT NULL
 );
 
 CREATE TABLE tag
 (
    id INTEGER PRIMARY KEY,
-   tag_icon VARCHAR NOT NULL,
-   tag_name VARCHAR NOT NULL
+   tag_icon TEXT NOT NULL,
+   tag_name TEXT NOT NULL
 );
 
 CREATE TABLE place_tag
@@ -70,7 +70,7 @@ CREATE TABLE place_tag
 CREATE TABLE owner_photo
 (
    id INTEGER PRIMARY KEY,
-   photo_path VARCHAR NOT NULL
+   photo_path TEXT NOT NULL
 );
 
 CREATE TABLE owner_gallery
@@ -83,7 +83,7 @@ CREATE TABLE owner_gallery
 CREATE TABLE tourist_photo
 (
    id INTEGER PRIMARY KEY,
-   photo_path VARCHAR NOT NULL,
+   photo_path TEXT NOT NULL,
    aprooved INTEGER NOT NULL,
    reservation INTEGER REFERENCES reservation NOT NULL
 );
@@ -91,7 +91,7 @@ CREATE TABLE tourist_photo
 CREATE TABLE usr_notification
 (
    id INTEGER PRIMARY KEY,
-   notification_date DATE NOT NULL,
+   notification_date TEXT NOT NULL,
    is_read INTEGER NOT NULL,
    usr INTEGER REFERENCES usr NOT NULL,
    reservation INTEGER REFERENCES reservation NOT NULL
@@ -100,8 +100,8 @@ CREATE TABLE usr_notification
 CREATE TABLE usr_message
 (
    id INTEGER PRIMARY KEY,
-   message_txt VARCHAR NOT NULL,
-   message_date DATE NOT NULL,
+   message_txt TEXT NOT NULL,
+   message_date TEXT NOT NULL,
    from_usr INTEGER REFERENCES usr NOT NULL,
    to_usr INTEGER REFERENCES usr NOT NULL
 );
@@ -264,15 +264,15 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
 VALUES(
       1, --id
-      2019-11-13, --check_in
-      2019-11-15, --check_out
+      "2019-11-13", --check_in
+      "2019-11-15", --check_out
       600, --price
       2, --num_guests
       4, --usr_rating
       "I LOVED IT!! Fantastic House. Will surely come back soon!", --comment
-      2019-11-17, --comment_date
+      "2019-11-17", --comment_date
       "Thank you so much for your review. Come soon, we can't wait!!", --owner_reply
-      2019-11-17, --reply date
+      "2019-11-17", --reply date
       1, --tourist
       2 --place
 );
@@ -281,25 +281,25 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
 VALUES(
       2, --id
-      2019-12-13, --check_in
-      2019-12-15,--check_out
+      "2019-12-13", --check_in
+      "2019-12-15",--check_out
       600,--price
       2, --num_guests
       5, --usr_rating
-      "Came back a second and it was event better than the first. Fantastic Placeto stay for a couple like us", --comment
-      2019-12-17, --comment_date
+      "Came back a second time and it was even better than the first. Fantastic Place to stay for a couple like us", --comment
+      "2019-12-17", --comment_date
       "Thank you again for your stay. We hope to see you again in the near future", --owner_reply
-      2019-12-17, --reply date
-      1,
-      2
+      "2019-12-17", --reply date
+      1, --tourist
+      2 --place
 );
 
 INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
       3, --id
-      2020-01-13, --check_in
-      2020-01-15, --check_out
+      "2020-01-13", --check_in
+      "2020-01-15", --check_out
       600, --price
       2, --num_guests
       1, --touris
@@ -310,8 +310,8 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
       4, --id
-      2020-02-13, --check_in
-      2020-02-15, --check_out
+      "2020-02-13", --check_in
+      "2020-02-15", --check_out
       360, --price
       2, --num_guests
       1, --tourist
@@ -322,8 +322,8 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
       5, --id
-      2020-03-13, --check_in
-      2020-03-15, --check_out
+      "2020-03-13", --check_in
+      "2020-03-15", --check_out
       1200, --price
       2, --num_guests
       1, --tourist
@@ -334,30 +334,170 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
 VALUES(
       6, --id
-      2019-12-6, --check_in
-      2019-12-10, --check_out
+      "2019-12-6", --check_in
+      "2019-12-10", --check_out
       1440, --price
       4, --num_guests
       2, --usr_rating
       "Good place, but not great. For the price we paid, the overall quality should be a lot better. Can't say we will come back.", --usr_comment
-      2019-12-12, --usr_comment_date
+      "2019-12-12", --usr_comment_date
       "We are sorry that our place did not match your expectations. The high prices are necessary to mantain this great place.",  --owner_reply
-      2019-12-12, --owner_reply_date
-      2,
+      "2019-12-12", --owner_reply_date
+      2, --tourist
       3 --place_id
+);
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      7, --id
+      "2019-06-1", --check_in
+      "2019-06-10", --check_out
+      1800, --price
+      2, --num_guests
+      5, --usr_rating
+      "Fantastics place. Really good for a calm summer vacation", --usr_comment
+      "2019-06-12", --usr_comment_date
+      "Thank you for the 5 star review",  --owner_reply
+      "2019-06-12", --owner_reply_date
+      2, --tourist
+      1 --place_id
 );
 
 INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
-      7, --id
-      2020-06-6, --check_in
-      2019-06-15, --check_out
+      8, --id
+      "2020-06-6", --check_in
+      "2020-06-15", --check_out
       3600, --price
       4, --num_guests
-      4, --tourist
+      2, --tourist
+      4 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      9, --id
+      "2019-08-20", --check_in
+      "2019-08-27", --check_out
+      2400, --price
+      4, --num_guests
+      4, --usr_rating
+      "Good place. Our family had an amazing time here. The kids loved the pool", --usr_comment
+      "2019-08-30", --usr_comment_date
+      "Thanks for the review. We are really proud of our amazing pool", --owner_reply
+      "2019-08-30", --owner_reply_date
+      3, --tourist
       1 --place_id
 );
+
+INSERT INTO reservation
+ (id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      10, --id
+      "2020-09-6", --check_in
+      "2020-09-8", --check_out
+      600, --price
+      2, --num_guests
+      3, --tourist
+      2 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      11, --id
+      "2019-08-20", --check_in
+      "2019-08-27", --check_out
+      10000, --price
+      6, --num_guests
+      5, --usr_rating
+      "We had an awesome time here. The place is expensive, but it also is capabale of holding our big family", --usr_comment
+      "2019-08-30", --usr_comment_date
+      "Thanks you so much for the 5 star review", --owner_reply
+      "2019-08-30", --owner_reply_date
+      3, --tourist
+      4 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      12, --id
+      "2018-08-10", --check_in
+      "2018-08-15", --check_out
+      800, --price
+      2, --num_guests
+      3, --usr_rating
+      "As a couple the bad tub is a really good adition, but the rest could be better", --usr_comment
+      "2019-08-30", --usr_comment_date
+      "Our bad tub is one of the finest. Thanks for the review", --owner_reply
+      "2019-08-30", --owner_reply_date
+      4, --tourist
+      3 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      13, --id
+      "2019-02-10", --check_in
+      "2019-02-15", --check_out
+      1000, --price
+      2, --num_guests
+      5, --usr_rating
+      "Really good place for a couple", --usr_comment
+      "2019-02-30", --usr_comment_date
+      "We like the romance! Come soon", --owner_reply
+      "2019-02-30", --owner_reply_date
+      4, --tourist
+      5 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      14, --id
+      "2020-08-10", --check_in
+      "2020-08-15", --check_out
+      900, --price
+      2, --num_guests
+      4, --tourist
+      5 --place_id
+);
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
+VALUES(
+      15, --id
+      "2019-10-20", --check_in
+      "2019-10-25", --check_out
+      1400, --price
+      2, --num_guests
+      5, --usr_rating
+      "The quality of this place is next place. A 5 star review isn't enough", --usr_comment
+      "2019-10-30", --usr_comment_date
+      "Thank You! That means a lot to me", --owner_reply
+      "2019-10-30", --onwer_reply_date
+      5, --tourist
+      4 --place_id
+);
+
+
+INSERT INTO reservation
+(id, check_in, check_out, price, num_guests, tourist, place_id)
+VALUES(
+      16, --id
+      "2020-08-10", --check_in
+      "2020-08-15", --check_out
+      900, --price
+      2, --num_guests
+      5, --tourist
+      4 --place_id
+);
+
 
 INSERT INTO owner_photo
 VALUES(
@@ -389,6 +529,19 @@ VALUES(
       "modernInterior.jpeg" --photo_path
 );
 
+INSERT INTO owner_photo
+VALUES(
+      6, --ID
+      "luxHouseInterior.jpg" --photo_path
+);
+
+INSERT INTO owner_photo
+VALUES(
+      7, --ID
+      "beachHouse2.jpg" --photo_path
+);
+
+
 INSERT INTO owner_gallery
 VALUES(
       1, --place id
@@ -397,8 +550,20 @@ VALUES(
 
 INSERT INTO owner_gallery
 VALUES(
+      1, --place id
+      6 --owner_photo id
+);
+
+INSERT INTO owner_gallery
+VALUES(
       2, --place id
       2 --owner_photo id
+);
+
+INSERT INTO owner_gallery
+VALUES(
+      2, --place id
+      7 --owner_photo id
 );
 
 INSERT INTO owner_gallery

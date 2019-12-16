@@ -14,7 +14,6 @@ function get_place_comments($place_id){
             usr.usr_last_name AS usr_last_name,
             usr.usr_profile_picture AS usr_profile_picture,
             reservation.usr_comment AS usr_comment,
-            reservation.usr_rating AS usr_rating,
             reservation.usr_comment_date AS usr_comment_date,
             reservation.owner_reply AS owner_reply,
             reservation.owner_reply_date AS owner_reply_date
