@@ -38,12 +38,12 @@ function get_unseen_notification($id){
         FROM usr_notification 
         WHERE usr_notification.usr = (SELECT usr_notification.usr AS usr_id
                                         FROM usr_notification 
-                                        WHERE usr_notification.id = ?) ) as notification_num
+                                        WHERE usr_notification.usr = ?) ) as notification_num
     FROM usr_notification 
     WHERE usr_notification.is_read = 1 
     AND usr_notification.usr = (SELECT usr_notification.usr AS usr_id
                                 FROM usr_notification 
-                                WHERE usr_notification.id = ?) "
+                                WHERE usr_notification.usr = ?) "
     );
 
     $stmt->execute(array($id,$id));

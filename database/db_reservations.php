@@ -176,5 +176,5 @@ function check_if_can_be_reviewed($reservation_id){
     }
 
 }
-//git commit -m "date checker all done - cancel only appear 24 hours before and review after checkout" 
+
 ?>
