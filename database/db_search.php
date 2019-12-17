@@ -4,9 +4,8 @@ include_once("../includes/database.php");
 function search_places($options)
 {
     //open db connection 
-    $db = Database::instance()->db();~
+    $db = Database::instance()->db();
 
-    printf($options);
     //todo geography stuff
 
     //execute querry 
@@ -29,6 +28,29 @@ function search_places($options)
 
     //return search 
     return $stmt->fetchAll();
+}
+/**
+ * 
+ */
+function check_if_is_element($elem,$search_results){
+    foreach($search_results as $e){
+        if($e['id'] == $elem)
+            return true;
+    }
+    return false;
+}
+/**
+ * 
+ */
+function delete_elem($elem,$search_results){
+    foreach($search_results as $e){
+        if($e['id'] == $elem){
+           $key = array_search ($e, $search_results);
+           print_r($key);
+           unset($search_results[$key]);
+           return $search_results;
+        }
+    }
 }
 /**
  * 

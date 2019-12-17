@@ -14,9 +14,11 @@ function draw_sign_in()
         <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
 
-      <div class="container">
-        <label for="email">Email</label>
-        <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
+      <div class="container_sign_in">
+        <div class="grid_email">
+          <label for="email">Email</label>
+          <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
+        </div>
 
         <div class="grid_password">
           <label for="password">Password</b></label>

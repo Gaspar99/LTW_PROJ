@@ -81,7 +81,7 @@ function draw_header($user_email)
                             <?php } ?>
                         </span>
                         <a id="chat_icon" href="../pages/chat.php">
-                            <i class="material-icons">chat</i>
+                            <i class="material-icons">mail_outline</i>
                         </a>
                         <div id="user_menu">
                             <button id="username_tile" onclick="toggle_dropdown_menu()">
