@@ -1551,8 +1551,8 @@ body>#messages .success {
     margin: 1em auto;
     text-align: center;
     padding: 1em 1.4em;
-    width: max-content;
-    z-index: 1;
+    width: 100%;
+    z-index: 2;
     position: relative;
 }
 
@@ -1570,7 +1570,7 @@ body>#messages .success {
     padding: 0;
 }
 
-.upload_button input[type="file"]:hover, .upload_button:hover {
+.upload_button:hover {
     cursor: pointer;
 }
 
@@ -1578,7 +1578,7 @@ body>#messages .success {
 
 #add_place #body #details, #edit_place #body #details {
     grid-column-start: 2;
-    grid-column-end: span end;
+    grid-column-end: end;
     margin: 1em;
 }
 

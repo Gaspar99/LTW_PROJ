@@ -136,7 +136,7 @@ function can_be_cancelled($reservation_id){
     $time_stamp = $date->getTimestamp();
     $compare_time = date("Y-m-d", strtotime('+24 hours', $time_stamp));
 
-    return ($compare_time >= $check_in['check_in']);
+    return ($compare_time < $check_in['check_in']);
 }
 
 function can_be_reviewed($reservation_id) {

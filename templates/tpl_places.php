@@ -364,24 +364,28 @@ function draw_edit_place($user_id, $place_id)
         <article id="body">
 
             <div id="upload">
+        
                 <section id="place_gallery">
-
                     <div id="image_container">
                         <?php foreach ($image_gallery as $image) { ?>
-                            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" alt="Image Place">
+                            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image["img_name"] ?>" width="550" height="400" alt="Image Place">
+                            <img class="fullscreen_slide" src="../images/places/originals/<?= $image['img_name'] ?>" alt="Image Place">
                         <?php }
-
                             if (sizeof($image_gallery) > 1) {  ?>
                             <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
                         <?php } ?>
-                    </div>
 
-                    <div class="button upload_button">
-                        Upload Photo
-                        <input type="file" name="image">
+                        <button class="full_screen" onclick="toggle_image_fullscreen()">
+                            <i class="material-icons">fullscreen</i>
+                        </button>
                     </div>
                 </section>
+
+                <span class="button upload_button">
+                        Upload Photo
+                        <input type="file" name="image">
+                    </span>
             </div>
 
             <section id="details">
