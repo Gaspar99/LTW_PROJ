@@ -165,15 +165,21 @@ function toggle_image_fullscreen() {
  * 
  * @param {*} event 
  */
-function option_navigate(event) {
+function option_navigate(e) {
     let options = document.getElementById("search_suggestions")
     console.log(options);
+    //switch n funcionou n sei pq...
     if (e.keyCode == '38') {
         console.log('up')
     }
-    else if (e.keyCode == '40') {
+    if (e.keyCode == '40') {
         console.log('down')
     }
+    if (e.keyCode == '27') { //clear
+        options.innerHTML=""
+        document.getElementById("search_input").value=""
+    }
+
 }
 
 function price_change() {
