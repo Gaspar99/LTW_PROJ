@@ -174,11 +174,11 @@ function draw_place_info($place_id)
 
                 <hr>
 
-                <div id="place_tags">
+                <div id="tags">
                     <?php foreach ($place_tags as $tag) { ?>
                         <div class="tag">
                             <i class="material-icons"><?= $tag["tag_icon"] ?></i>
-                            <div id="tag"><?= $tag["tag_name"] ?></div>
+                            <div class="tag_name"><?= $tag["tag_name"] ?></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -261,8 +261,7 @@ function draw_add_place($user_id)
 
             <div id="upload">
                 <img src="../images/site/default_place.jpeg" width="400" height="300">
-                <div class="button upload_button">
-                    Upload Photo
+                <div class="button upload_button">Upload Photo
                     <input type="file" name="image" required>
                 </div>
             </div>
@@ -351,7 +350,7 @@ function draw_edit_place($user_id, $place_id)
             <div id="price">
                 <label for="price">Price per Night</label>
                 <div class="price_input">
-                    <input type="number" value="<?= $place['price'] ?>" min="0" name="price" required>
+                    <input type="number" value="<?= $place['price'] ?>" min="1" name="price" required>
                     <i class="material-icons">euro</i>
                 </div>
             </div>
@@ -365,7 +364,8 @@ function draw_edit_place($user_id, $place_id)
             <div id="upload">
         
                <?php draw_image_gallery($image_gallery); ?>
-                <span class="button upload_button">Upload Photo
+                <span class="button upload_button">
+                    <label>Upload Photo</label>
                     <input type="file" name="image">
                 </span>
             </div>
@@ -373,7 +373,7 @@ function draw_edit_place($user_id, $place_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" cols="50" placeholder="Enter Place Description" required><?= $place["place_description"] ?></textarea>
+                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" required><?= $place["place_description"] ?></textarea>
                 </div>
 
                 <hr>
@@ -384,6 +384,7 @@ function draw_edit_place($user_id, $place_id)
                     <div id="tags">
                         <?php foreach ($tags as $tag) { ?>
                             <div class="tag">
+                                <i class="material-icons"><?= $tag["tag_icon"] ?></i>
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
                                     <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)" <?= in_array($tag, $place_tags) ? "checked" : null ?>>

@@ -5,7 +5,7 @@ body {
     --search-grey: rgb(242, 242, 242);
     --background-color: rgb(230, 230, 230);
     --form-input-color: rgb(195, 195, 195);
-    --rating-star-color: rgb(242, 255, 0);
+    --rating-star-color: rgb(223, 195, 37);
     --roboto-font: "Roboto", sans-serif;
 }
 
@@ -1171,11 +1171,13 @@ body>#messages .success {
     display: flex;
     align-items: center;
     width: max-content;
+    margin-right: 1.5em;
 }
 
 #place_page #place_details>*>* {
     padding: 0 0.1em;
     font-weight: bold;
+    width: max-content;
 }
 
 #place_page #place_details .rating::before {
@@ -1763,7 +1765,7 @@ body>#messages .success {
     display: grid;
     width: 100%;
     margin: 0;
-    grid-template-columns: max-content auto;
+    grid-template-columns: min-content auto;
 }
 
 /* Upload */
@@ -1772,23 +1774,25 @@ body>#messages .success {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
-    width: max-content;
+    width: min-content;
 }
 
 /* Upload button */
 
-.upload_button {
-    margin: 1em auto;
+#upload .upload_button {
+    margin: 1em 0;
+    padding: 1em 0;
     text-align: center;
-    padding: 1em 1.4em;
     width: 100%;
-    z-index: 2;
+    z-index: 0;
+    cursor: pointer;
     position: relative;
 }
 
 /* Removing original button */
 
-.upload_button input[type="file"] {
+#upload .upload_button input[type="file"] {
+    z-index: 1;
     position: absolute;
     top: 0;
     left: 0;
@@ -1800,7 +1804,7 @@ body>#messages .success {
     padding: 0;
 }
 
-.upload_button:hover {
+#upload .upload_button input[type="file"]:hover {
     cursor: pointer;
 }
 
@@ -1822,20 +1826,22 @@ body>#messages .success {
 
 /* Tags */
 
-#add_place #body #details #tags, #edit_place #body #details #tags {
+#tags, #edit_place #body #details #tags {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-#add_place #body #details #tags .tag, #edit_place #body #details #tags .tag {
+ #tags .tag, #edit_place #body #details #tags .tag {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin: 1em;
+    justify-content: center;
+    margin: 1em 0;
+    width: 25%;
 }
 
-#add_place #body #details #tags .tag .checkbox_container, #edit_place #body #details #tags .tag .checkbox_container {
+ #tags .tag .checkbox_container {
     position: relative;
     margin: 0 0.6em;
     -webkit-user-select: none;
