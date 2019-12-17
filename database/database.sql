@@ -346,7 +346,7 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
 VALUES(
       7, --id
-      "2019-12-6", --check_in
+      "2019-12-06", --check_in
       "2019-12-10", --check_out
       1440, --price
       4, --num_guests
@@ -363,7 +363,7 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, usr_rating, usr_comment, usr_comment_date, owner_reply, owner_reply_date, tourist, place_id)
 VALUES(
       8, --id
-      "2019-06-1", --check_in
+      "2019-06-01", --check_in
       "2019-06-10", --check_out
       1800, --price
       2, --num_guests
@@ -380,7 +380,7 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
       9, --id
-      "2020-06-6", --check_in
+      "2020-06-06", --check_in
       "2020-06-15", --check_out
       3600, --price
       4, --num_guests
@@ -407,8 +407,8 @@ INSERT INTO reservation
  (id, check_in, check_out, price, num_guests, tourist, place_id)
 VALUES(
       11, --id
-      "2020-09-6", --check_in
-      "2020-09-8", --check_out
+      "2020-09-06", --check_in
+      "2020-09-08", --check_out
       600, --price
       2, --num_guests
       3, --tourist

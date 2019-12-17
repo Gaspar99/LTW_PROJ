@@ -1305,52 +1305,62 @@ body>#messages .success {
     text-align: center;
 }
 
-#reservation_line {
-    border-width: 4em;
-    border-radius: 1em;
-    border: solid black;
-    padding: 1em;
-    margin: 1em;
-    margin-left: 0em;
+#place_page #place_body #gallery_rent #rent_section #price_per_night  {
+    width: max-content;
+    height: min-content;
+    margin: 0 auto;
 }
 
-#reservation_line>#title {
-    text-align: left;
+#place_page #place_body #gallery_rent #rent_section h3 {
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .tourist {
+    width: max-content;
+    margin: auto 0;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .date {
+    width: max-content;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .date > * {
+    margin: 1em 0;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .numbers {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em 0;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .numbers > * {
+    display: flex;
+    align-items: center;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .numbers span {
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+#place_page #place_body #gallery_rent #rent_section .reservation_tile > .numbers .reservation_price::after {
+    content: "€";
     font-weight: bold;
 }
 
-#reservation_line>#owner_profile, #reservation_line>#owner_profile>* {
-    display: flex;
-    align-items: center;
-    width: 5em;
-    font-size: 0.9em;
-}
-
-#reservation_line>div, #reservation_line>button {
-    float: right;
-}
-
-#reservation_line>#cancel {
-    background-color: red;
-}
-/* owned places rent */
-.reservation_tile{
-    display: flex;
-    padding: 0.2em;
-    margin: 0.2em;
-    border-bottom: solid black;
-    border-width: thin;
-}
-.reservation_tile>#tourist{
-    width: 25%;
-} 
-.reservation_tile>#reservation_tile_info{
-    width: auto;
-    padding-left: 1em;
-}
-.reservation_tile>#reservation_tile_info>span{
-   font-weight: bold;
-}
 
 
 

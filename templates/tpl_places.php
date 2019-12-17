@@ -128,9 +128,9 @@ function draw_place_info($place_id)
                     </div>
 
                     <?php if (isset($_SESSION["user_email"])) { 
-                        if(is_owner(get_user_id($_SESSION["user_email"]),$place_id)){
+                        if (is_owner(get_user_id($_SESSION["user_email"]),$place_id)){
                            draw_reservations_made($place_id);
-                            }else{ ?>
+                        } else { ?>
                             <script src="../script/reservation.js" onload="get_locked_days(<?=$place_id?>)" defer></script>
                             <form id="rent_form" action="../actions/action_rent_place.php" method="post">
 
@@ -421,20 +421,44 @@ function draw_edit_place($user_id, $place_id)
 function draw_reservations_made($place_id) 
 {
     $reservations = get_owner_place_reservations($place_id);
-    if($reservations == null ){?>
-        No reservations made
-    <?php }else{
-        foreach($reservations as $reservation){?>
+
+    if ($reservations == null ) { ?>
+        <h3>No reservations made<h3>
+    <?php } else { ?>
+        <h3>Reservations</h3>
+        <?php foreach($reservations as $reservation){?>
+
             <div class="reservation_tile">
-                <div id="tourist">
+                <div class="tourist">
                     <?php draw_user_tile($reservation["usr_id"]); ?>
                 </div>
-                <div id="reservation_tile_info">
-                   <span>Reserved Between:</span>  <?= $reservation['check_in'] ?> - <?= $reservation['check_out'] ?> 
-                   <br>
-                    <?= $reservation['num_guests'] ?> Guests - <?= $reservation['price'] ?> €
+
+                <div class="date">
+                    <div class="reservation_check_in">
+                        <label>Check In:</label>
+                        <span><?= $reservation['check_in'] ?></span>
+                    </div>
+
+                    <div class="reservation_check_out">
+                        <label>Check Out:</label>
+                        <span><?= $reservation['check_out'] ?></span>
+                    </div>
                 </div>
+
+                <div class="numbers">
+                    <div class="reservation_num_guests">
+                        <label>Guests:</label>
+                        <span ><?= $reservation['num_guests'] ?></span>
+                        <i class="material-icons">people</i>
+                    </div>
+                    <div class="reservation_price">
+                        <label>Price:</label>
+                        <span><?=$reservation['price'] ?></span>
+                    </div>
+                </div>
+
             </div>
+            <hr>
         <?php }
     }
 }
