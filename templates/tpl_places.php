@@ -382,13 +382,20 @@ function draw_edit_place($user_id, $place_id)
                     <?php $tags = get_tags(); ?>
                     <label for="tags">Tags</label>
                     <div id="tags">
-                        <?php foreach ($tags as $tag) { ?>
+                        <?php foreach ($tags as $tag) { 
+                            $active = "inactive"; ?>
+            
                             <div class="tag">
                                 <i class="material-icons"><?= $tag["tag_icon"] ?></i>
                                 <div class="tag_name"><?= $tag["tag_name"] ?></div>
                                 <div class="checkbox_container">
-                                    <input type="checkbox" name="tags[]" value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)" <?= in_array($tag, $place_tags) ? "checked" : null ?>>
-                                    <i class="material-icons">check</i>
+                                    <input type="checkbox" name="tags[]"
+                                        <?php if (in_array($tag, $place_tags)) { 
+                                            $active = "active" ?>
+                                            checked="checked" 
+                                        <?php } ?>
+                                        value="<?= $tag["id"] ?>" oninput="toggle_checkbox(event)"> 
+                                    <i class="material-icons <?=$active?>">check</i>
                                 </div>
                             </div>
                         <?php } ?>

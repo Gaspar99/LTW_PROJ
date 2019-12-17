@@ -1826,19 +1826,19 @@ body>#messages .success {
 
 /* Tags */
 
-#tags, #edit_place #body #details #tags {
+#tags {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
- #tags .tag, #edit_place #body #details #tags .tag {
+ #tags .tag {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1em 0;
-    width: 25%;
+    margin: 1em 0 1em 1em;
+    width: max-content;
 }
 
  #tags .tag .checkbox_container {
@@ -1856,7 +1856,7 @@ body>#messages .success {
 
 /* Hiding default checkbox to crete our own */
 
-#add_place #body #details #tags .tag .checkbox_container input, #edit_place #body #details #tags .tag .checkbox_container input {
+#tags .tag .checkbox_container input {
     position: absolute;
     left: 0;
     top: -0.5em;
@@ -1867,12 +1867,26 @@ body>#messages .success {
     cursor: pointer;
 }
 
-#add_place #body #details #tags .tag .checkbox_container:hover, #edit_place #body #details #tags .tag .checkbox_container:hover {
+#tags .tag .checkbox_container:hover {
     opacity: 0.6;
 }
 
-#add_place #body #details #tags .tag .checkbox_container i, #edit_place #body #details #tags .tag .checkbox_container i {
-    display: none;
+#tags .tag .checkbox_container i {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tags .tag .checkbox_container i.active {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tags .tag .checkbox_container i.inactive {
+    visibility: hidden;
     position: absolute;
     left: 0;
     top: 0;

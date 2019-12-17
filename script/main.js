@@ -432,17 +432,31 @@ function update_guests(event, number) {
         num_guests.value = num_guests.max
 }
 
+/* TAGS */
+
+/* tags_checkboxes = document.querySelectorAll(".tag input")
+
+tags_checkboxes.forEach(checkbox => {
+    checkbox.onclick = (event) => toggle_checkbox(event)
+}); */
+
 /**
  * 
  * @param {*} event 
  */
 function toggle_checkbox(event) {
+    let checkbox = event.target
     let checkmark = event.target.nextElementSibling
 
-    if (checkmark.style.display == "block")
-        checkmark.style.display = "none"
-    else
-        checkmark.style.display = "block"
+    console.log(checkbox.checked)
+    
+    if (checkbox.checked) {
+        checkmark.style.visibility = "visible"
+    } 
+    else {
+        checkmark.style.visibility = "hidden"
+    }
+        
 }
 /**
  * password validation

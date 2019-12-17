@@ -5,13 +5,18 @@ include_once("../database/db_places.php");
 
 $user_id = get_user_id($_SESSION["user_email"]);
 $place_id = $_POST["id"];
-$tags = $_POST["tags"];
 
+$tags = [];
+
+if(array_key_exists("tags", $_POST)) {
+    $tags = $_POST["tags"];
+}
+    
 update_place_info($_POST);
-add_place_tags($place_id, $tags); 
+update_place_tags($place_id, $tags); 
 
 if ($_FILES["image"]["name"] != "") {
     add_place_photo($place_id);  
 }
 
-header("Location: ../pages/profile.php?id=$user_id");
+header("Location: ../pages/place.php?id=$place_id");
