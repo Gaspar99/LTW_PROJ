@@ -2,6 +2,9 @@
 include_once("../includes/database.php");
 include_once("../util/upload.php");
 
+
+/*========================= GETS ============================== */
+
 /**
  * Goes through the database and gets the user name with the email passed
  * as argument
@@ -26,30 +29,6 @@ function get_user_name($user_email)
 }
 
 /**
- * Verifies if a certain email and password combination
- * exists in the database. Use the sha1 hashing function.
- */
-function check_user_password($email, $password)
-{
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "SELECT 
-            usr.usr_password AS usr_password
-        FROM 
-            usr 
-        WHERE 
-            usr.usr_email = ?"
-    );
-
-    $stmt->execute(array($email));
-
-    $user = $stmt->fetch();
-
-    return $user !== false && password_verify($password, $user["usr_password"]);
-}
-
-/**
  * Goes through the database and returns the id of the user
  * with the email passed as argument
  */
@@ -68,31 +47,6 @@ function get_user_id($email)
     $user = $stmt->fetch();
 
     return $user["id"];
-}
-
-/**
- * Adds a new user to the database
- */
-function add_user($user)
-{
-    $db = Database::instance()->db();
-
-    $options = ["cost" => 12];
-
-    $stmt = $db->prepare(
-        "INSERT INTO usr
-            (usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
-            VALUES(?, ?, ?, ?, ?, ?)"
-    );
-
-    $stmt->execute(array(
-        $user["first_name"],
-        $user["last_name"],
-        $user["email"],
-        $user["phone_num"],
-        password_hash($user["password"], PASSWORD_DEFAULT, $options),
-        $user["country_id"]
-    ));
 }
 
 /**
@@ -120,112 +74,6 @@ function get_user_info($user_id)
     $stmt->execute(array($user_id));
 
     return $stmt->fetch();
-}
-
-/**
- * 
- */
-function update_profile($user)
-{
-    $db = Database::instance()->db();
-
-    if ($user["password"] == null) {
-
-        $stmt = $db->prepare(
-            "UPDATE 
-                    usr 
-                SET 
-                    usr_first_name = ?, 
-                    usr_last_name = ?, 
-                    usr_email = ?, 
-                    usr_phone_number = ?
-                WHERE usr_id = ?"
-        );
-
-        $stmt->execute(array(
-            $user["first_name"],
-            $user["last_name"],
-            $user["email"],
-            $user["phone_number"],
-            $user["id"]
-        ));
-    } else {
-
-        $stmt = $db->prepare(
-            "UPDATE 
-                    usr 
-                SET 
-                    usr_first_name = ?, 
-                    usr_last_name = ?, 
-                    usr_email = ?, 
-                    usr_phone_number = ?, 
-                    usr_password = ?
-                WHERE usr_id = ?"
-        );
-
-        $stmt->execute(array(
-            $user["first_name"],
-            $user["last_name"],
-            $user["email"],
-            $user["phone_number"],
-            password_hash($user["password"], PASSWORD_DEFAULT),
-            $user["id"]
-        ));
-    }
-}
-
-/**
- * 
- */
-function update_profile_pic($user_id)
-{
-    //Hash image name based on user email and current time
-    $string_to_hash = $user_id + time();
-    $file_type = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $img_name = hash("sha256", $string_to_hash) . "." . $file_type;
-
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "UPDATE usr 
-        SET usr_profile_picture = ?
-        WHERE usr_id = ?"
-    );
-
-    $stmt->execute(array(
-        $img_name,
-        $user_id
-    ));
-
-    // Generate filenames for original, medium and small sizes 
-    $original_file_name = "../images/profiles/originals/$img_name";
-    $medium_file_name = "../images/profiles/thumbs_medium/$img_name";
-    $small_file_name = "../images/profiles/thumbs_small/$img_name";
-
-    move_uploaded_file($_FILES["image"]["tmp_name"], $original_file_name);
-
-    //Create an image representation of the original image
-    $original = image_create_from_file($file_type, $original_file_name);
-    imagealphablending($original, true);
-
-    $width = imagesx($original);     // width of the original image
-    $height = imagesy($original);    // height of the original image
-    $square = min($width, $height);  // size length of the maximum square
-
-    // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(100, 100);
-    imagealphablending($small, false);
-    imagesavealpha($small, true);
-    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 100, 100, $square, $square);
-    file_create_from_image($file_type, $small, $small_file_name);
-
-
-    // Create and save a medium image
-    $medium = imagecreatetruecolor(400, 400);
-    imagealphablending($medium, false);
-    imagesavealpha($medium, true);
-    imagecopyresized($medium, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 400, 400, $square, $square);
-    file_create_from_image($file_type, $medium, $medium_file_name);
 }
 
 /**
@@ -266,10 +114,183 @@ function get_id_by_email($user_email)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT usr_id AS id FROM usr WHERE usr_email=?"
+        "SELECT 
+            usr_id AS id 
+        FROM 
+            usr 
+        WHERE usr_email=?"
     );
 
     $stmt->execute(array($user_email));
 
     return $stmt->fetch();
 }
+
+
+/*========================= ADDS ============================== */
+
+/**
+ * Adds a new user to the database
+ */
+function add_user($user)
+{
+    $db = Database::instance()->db();
+
+    $options = ["cost" => 12];
+
+    $stmt = $db->prepare(
+        "INSERT INTO usr
+            (usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, country_id)
+            VALUES(?, ?, ?, ?, ?, ?)"
+    );
+
+    $stmt->execute(array(
+        $user["first_name"],
+        $user["last_name"],
+        $user["email"],
+        $user["phone_num"],
+        password_hash($user["password"], PASSWORD_DEFAULT, $options),
+        $user["country_id"]
+    ));
+}
+
+/*========================= UPDATES ============================== */
+
+/**
+ * 
+ */
+function update_profile($user)
+{
+    $db = Database::instance()->db();
+
+    if ($user["password"] == null) {
+
+        $stmt = $db->prepare(
+            "UPDATE 
+                usr 
+            SET 
+                usr_first_name = ?, 
+                usr_last_name = ?, 
+                usr_email = ?, 
+                usr_phone_number = ?
+            WHERE 
+                usr_id = ?"
+        );
+
+        $stmt->execute(array(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["phone_number"],
+            $user["id"]
+        ));
+    } else {
+
+        $stmt = $db->prepare(
+            "UPDATE 
+                usr 
+            SET 
+                usr_first_name = ?, 
+                usr_last_name = ?, 
+                usr_email = ?, 
+                usr_phone_number = ?, 
+                usr_password = ?
+            WHERE 
+                usr_id = ?"
+        );
+
+        $stmt->execute(array(
+            $user["first_name"],
+            $user["last_name"],
+            $user["email"],
+            $user["phone_number"],
+            password_hash($user["password"], PASSWORD_DEFAULT),
+            $user["id"]
+        ));
+    }
+}
+
+/**
+ * 
+ */
+function update_profile_pic($user_id)
+{
+    //Hash image name based on user email and current time
+    $string_to_hash = $user_id + time();
+    $file_type = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+    $img_name = hash("sha256", $string_to_hash) . "." . $file_type;
+
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "UPDATE 
+            usr 
+        SET 
+            usr_profile_picture = ?
+        WHERE 
+            usr_id = ?"
+    );
+
+    $stmt->execute(array(
+        $img_name,
+        $user_id
+    ));
+
+    // Generate filenames for original, medium and small sizes 
+    $original_file_name = "../images/profiles/originals/$img_name";
+    $medium_file_name = "../images/profiles/thumbs_medium/$img_name";
+    $small_file_name = "../images/profiles/thumbs_small/$img_name";
+
+    move_uploaded_file($_FILES["image"]["tmp_name"], $original_file_name);
+
+    //Create an image representation of the original image
+    $original = image_create_from_file($file_type, $original_file_name);
+    imagealphablending($original, true);
+
+    $width = imagesx($original);     // width of the original image
+    $height = imagesy($original);    // height of the original image
+    $square = min($width, $height);  // size length of the maximum square
+
+    // Create and save a small square thumbnail
+    $small = imagecreatetruecolor(100, 100);
+    imagealphablending($small, false);
+    imagesavealpha($small, true);
+    imagecopyresized($small, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 100, 100, $square, $square);
+    file_create_from_image($file_type, $small, $small_file_name);
+
+
+    // Create and save a medium image
+    $medium = imagecreatetruecolor(400, 400);
+    imagealphablending($medium, false);
+    imagesavealpha($medium, true);
+    imagecopyresized($medium, $original, 0, 0, ($width > $square) ? ($width - $square) / 2 : 0, ($height > $square) ? ($height - $square) / 2 : 0, 400, 400, $square, $square);
+    file_create_from_image($file_type, $medium, $medium_file_name);
+}
+
+
+/*========================= VERIFICATIONS ============================== */
+
+/**
+ * Verifies if a certain email and password combination
+ * exists in the database. Use the sha1 hashing function.
+ */
+function check_user_password($email, $password)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT 
+            usr.usr_password AS usr_password
+        FROM 
+            usr 
+        WHERE 
+            usr.usr_email = ?"
+    );
+
+    $stmt->execute(array($email));
+
+    $user = $stmt->fetch();
+
+    return $user !== false && password_verify($password, $user["usr_password"]);
+}
+

@@ -131,7 +131,7 @@ function search_places($options)
 /**
  * 
  */
-function check_if_is_element($elem,$search_results){
+function is_element($elem, $search_results){
     foreach($search_results as $e){
         if($e['id'] == $elem)
             return true;
@@ -141,7 +141,7 @@ function check_if_is_element($elem,$search_results){
 /**
  * 
  */
-function delete_elem($elem,$search_results){
+function delete_elem($elem, $search_results){
     foreach($search_results as $e){
         if($e['id'] == $elem){
            $key = array_search ($e, $search_results);
@@ -151,6 +151,7 @@ function delete_elem($elem,$search_results){
         }
     }
 }
+
 /**
  * 
  */

@@ -2,6 +2,8 @@
 include_once("../includes/database.php");
 include_once("../util/upload.php");
 
+/*========================= GETS ============================== */
+
 /**
  * 
  */
@@ -92,47 +94,60 @@ function get_place_info($place_id)
 
     return $stmt->fetch();
 }
-/**
- * 
- */
-function is_owner($usr_id,$place_id){
-    $db = Database::instance()->db();
 
-    $stmt = $db->prepare(
-        "SELECT * 
-        FROM place 
-        WHERE place.id = ?
-        AND place.owner_id = ?"
-    );
-
-    $stmt->execute(array($place_id,$usr_id));
-    
-    $ret = $stmt->fetch();
-
-    if($ret == null)
-        return false; 
-    else return true; 
-
-}
 /**
  * 
  */
 
-function get_owner_place_reservations($place_id){
+function get_owner_place_reservations($place_id)
+{
 
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT usr.usr_id,reservation.check_in, reservation.check_out, reservation.price ,reservation.num_guests
-        FROM reservation, usr
-        WHERE place_id = ? AND usr.usr_id = reservation.tourist"
+        "SELECT 
+            usr.usr_id,reservation.check_in, 
+            reservation.check_out, 
+            reservation.price,
+            reservation.num_guests
+        FROM 
+            reservation, usr
+        WHERE 
+            place_id = ? AND 
+            usr.usr_id = reservation.tourist"
     );
 
     $stmt->execute(array($place_id));
-    
-    return $stmt->fetchAll();
 
+    return $stmt->fetchAll();
 }
+
+/**
+ * 
+ */
+function get_place_gallery($place_id)
+{
+    $db = Database::instance()->db();
+
+    // Get photos uploaded by owner
+    $stmt = $db->prepare(
+        "SELECT 
+            owner_photo.photo_path AS img_name
+        FROM 
+            owner_gallery,
+            owner_photo
+        WHERE 
+            owner_gallery.place = ? AND 
+            owner_gallery.photo = owner_photo.id"
+    );
+
+    $stmt->execute(array($place_id));
+
+    return $stmt->fetchAll();
+}
+
+
+/*========================= ADDS ============================== */
 
 /**
  * 
@@ -222,7 +237,7 @@ function add_place_photo($place_id)
 
     $small = imagecreatetruecolor($small_width, $small_height);
     imagealphablending($small, false);
-    imagesavealpha($small, true);  
+    imagesavealpha($small, true);
     imagecopyresized($small, $original, 0, 0, 0, 0, $small_width, $small_height, $width, $height);
     file_create_from_image($file_type, $small, $small_file_name);
 
@@ -238,10 +253,48 @@ function add_place_photo($place_id)
     // Create and save a medium image
     $medium = imagecreatetruecolor($medium_width, $medium_height);
     imagealphablending($medium, false);
-    imagesavealpha($medium, true); 
+    imagesavealpha($medium, true);
     imagecopyresized($medium, $original, 0, 0, 0, 0, $medium_width, $medium_height, $width, $height);
     file_create_from_image($file_type, $medium, $medium_file_name);
 }
+
+/*========================= REMOVES ============================== */
+
+/**
+ * 
+ */
+function remove_place($place_id)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            place 
+        WHERE 
+            id = ?"
+    );
+
+    $stmt->execute(array($place_id));
+}
+
+/**
+ * 
+ */
+function remove_place_photos($place_id)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            owner_gallery 
+        WHERE 
+            place = ?"
+    );
+
+    $stmt->execute(array($place_id));
+}
+
+/*========================= UPDATES ============================== */
 
 /**
  * 
@@ -270,135 +323,29 @@ function update_place_info($place)
     ));
 }
 
+/*========================= VERIFICATIONS ============================== */
+
 /**
  * 
  */
-function remove_place($place_id)
-{ 
+function is_owner($usr_id, $place_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "DELETE FROM 
+        "SELECT 
+            * 
+        FROM 
             place 
-        WHERE id = ?"
-    );
-
-    $stmt->execute(array($place_id));
-}
-
-/**
- * 
- */
-function remove_place_photos($place_id) 
-{
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "DELETE FROM 
-            owner_gallery 
-        WHERE place = ?"
-    );
-
-    $stmt->execute(array($place_id));
-}
-
-/**
- * 
- */
-function remove_place_tags($place_id)
-{
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "DELETE FROM 
-            place_tag 
-        WHERE place = ?"
-    );
-
-    $stmt->execute(array($place_id));
-}
-
-/**
- * 
- */
-function get_place_gallery($place_id)
-{
-    $db = Database::instance()->db();
-
-    // Get photos uploaded by owner
-    $stmt = $db->prepare(
-        "SELECT 
-            owner_photo.photo_path AS img_name
-        FROM 
-            owner_gallery,
-            owner_photo
         WHERE 
-            owner_gallery.place = ? AND 
-            owner_gallery.photo = owner_photo.id"
+            place.id = ? AND 
+            place.owner_id = ?"
     );
 
-    $stmt->execute(array($place_id));
+    $stmt->execute(array($place_id, $usr_id));
 
-    return $stmt->fetchAll();
+    $ret = $stmt->fetch();
+
+    return ($ret != null);
 }
 
-/**
- * 
- */
-function get_place_tags($place_id)
-{
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "SELECT 
-            tag.tag_name AS tag_name,
-            tag.tag_icon AS tag_icon
-        FROM 
-            place_tag, tag
-        WHERE 
-            place_tag.place = ? AND 
-            tag.id = place_tag.tag"
-    );
-
-    $stmt->execute(array($place_id));
-
-    return $stmt->fetchAll();
-}
-
-/**
- * 
- */
-function get_tags()
-{
-    $db = Database::instance()->db();
-
-    $stmt = $db->prepare(
-        "SELECT 
-            id, tag_icon, tag_name 
-        FROM 
-            tag"
-    );
-
-    $stmt->execute();
-
-    return $stmt->fetchAll();
-}
-
-/**
- * 
- */
-function add_place_tags($place_id, $tags)
-{
-    $db = Database::instance()->db();
-
-    foreach ($tags as $tag) {
-        
-        $stmt = $db->prepare(
-            "INSERT INTO place_tag
-            (place, tag) 
-            VALUES (?, ?)" 
-        );
-    
-        $stmt->execute(array($place_id, $tag));
-    }
-}
