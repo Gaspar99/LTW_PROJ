@@ -2,6 +2,7 @@
 include_once("../database/db_places.php");
 include_once("../database/db_comments.php");
 include_once("../database/db_user.php");
+include_once("../database/db_tags.php");
 include_once("../templates/tpl_comments.php");
 
 /**
@@ -417,7 +418,8 @@ function draw_edit_place($user_id, $place_id)
 /**
  * 
  */
-function draw_reservations_made($place_id){
+function draw_reservations_made($place_id) 
+{
     $reservations = get_owner_place_reservations($place_id);
     if($reservations == null ){?>
         No reservations made

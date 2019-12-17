@@ -2,6 +2,7 @@
 include_once("../includes/session.php");
 include_once("../database/db_user.php");
 include_once("../database/db_places.php");
+include_once("../database/db_tags.php");
 
 $user_id = get_user_id($_SESSION["user_email"]);
 $place_id = $_POST["id"];
