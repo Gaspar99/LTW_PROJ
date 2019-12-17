@@ -104,7 +104,26 @@ function search_places($options)
             return $stmt->fetchAll();
         } 
     }else{
-        //todo
+        $stmt = $db->prepare(
+            "SELECT place.id
+            FROM place,country,city
+            WHERE place.num_guests <= ? AND 
+                place.price_per_night >= ? AND
+                place.price_per_night <= ? AND
+                (country.country_name LIKE upper(?) OR  city.city_name LIKE upper(?))AND
+                place.city_id = city.id AND city.country_id = country.id" 
+        );
+        //todo add country city stuff
+        $str =  $options["country%"];
+        $stmt->execute(array(
+            $options["num_guests"],
+            $options["min_price"],
+            $options["max_price"],
+            "$str%",
+            "$str%"
+        ));
+
+        return $stmt->fetchAll();
     }
   
     //return search 
@@ -325,9 +344,7 @@ function process_string($search_str)
         if($city_state != false){
             return $geo = ["", $search_str,1];
         }
-
-        //todo check integrity
-
+        
         return $geo = [$search_str, $search_str,0];
     }
 }
