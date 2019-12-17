@@ -1,30 +1,49 @@
 <?php
 include_once("../includes/database.php");
 
+/*========================= GETS ============================== */
+
 /**
  * 
  */
-function add_reservation($reservation)
-{
+function get_user_reservations($user_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "INSERT INTO reservation
-            (check_in, check_out, price, num_guests, tourist, place_id)
-            VALUES(?, ?, ?, ?, ?, ?)"
+        "SELECT 
+            * 
+        FROM 
+            reservation 
+        WHERE 
+            tourist = ?"
     );
 
-    $stmt->execute(array(
-        $reservation["check_in"],
-        $reservation["check_out"],
-        $reservation["price"],
-        $reservation["num_guests"],
-        $reservation["tourist"],
-        $reservation["place_id"]
-    ));
+    $stmt->execute(array($user_id));
 
-    return $db->lastInsertId();
+    return $stmt->fetchAll();
 }
+
+/**
+ * 
+ */
+function get_reservation_owner($reservation_id) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT 
+            place.owner_id AS owner_id 
+        FROM 
+            place,reservation
+        WHERE 
+            reservation.id = ? AND
+            reservation.place_id = place.id"
+    );
+  
+    $stmt->execute(array($reservation_id));
+
+    return $stmt->fetch(); 
+}
+
 /**
  * 
  */
@@ -55,32 +74,57 @@ function get_search_reservations($places){
     }    
 
     return  $reservations;
-
 }
+
+/*========================= ADDS ============================== */
+
 /**
  * 
  */
-function get_reservation_owner($reservation_id) {
+function add_reservation($reservation)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT 
-            place.owner_id AS owner_id 
-        FROM 
-            place,reservation
-        WHERE 
-            reservation.id = ? AND
-            reservation.place_id = place.id"
+        "INSERT INTO reservation
+            (check_in, check_out, price, num_guests, tourist, place_id)
+            VALUES(?, ?, ?, ?, ?, ?)"
     );
-  
-    $stmt->execute(array($reservation_id));
 
-    return $stmt->fetch(); 
+    $stmt->execute(array(
+        $reservation["check_in"],
+        $reservation["check_out"],
+        $reservation["price"],
+        $reservation["num_guests"],
+        $reservation["tourist"],
+        $reservation["place_id"]
+    ));
+
+    return $db->lastInsertId();
 }
+
+/*========================= REMOVES ============================== */
+
 /**
  * 
  */
-function cancel_reservation($reservation_id){
+function remove_place_reservations($place_id) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "DELETE FROM 
+            reservation 
+        WHERE 
+            place_id = ?"
+    );
+
+    $stmt->execute(array($place_id));
+}
+
+/**
+ * 
+ */
+function remove_reservation($reservation_id){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -93,26 +137,8 @@ function cancel_reservation($reservation_id){
     $stmt->execute(array($reservation_id));
     $stmt->fetch();
 }
-/**
- * 
- */
-function get_user_reservations($user_id){
-    $db = Database::instance()->db();
 
-    $stmt = $db->prepare(
-        "SELECT 
-            * 
-        FROM 
-            reservation 
-        WHERE 
-            tourist = ?"
-    );
-
-    $stmt->execute(array($user_id));
-
-    return $stmt->fetchAll();
-}
-
+/*========================= VERIFICATIONS ============================== */
 
 /**
  * 
@@ -141,6 +167,9 @@ function can_be_cancelled($reservation_id){
     return ($compare_time < $check_in['check_in']);
 }
 
+/**
+ * 
+ */
 function can_be_reviewed($reservation_id) {
     $db = Database::instance()->db();
 
