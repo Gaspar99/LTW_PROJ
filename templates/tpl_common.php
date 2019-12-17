@@ -1,6 +1,6 @@
 <?php
 include_once("../database/db_user.php");
-include_once("../database/db_geography.php");
+include_once("../database/db_location.php");
 include_once("../database/db_notifications.php");
 include_once("../templates/tpl_auth.php");
 include_once("../templates/tpl_search.php");

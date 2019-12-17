@@ -2,7 +2,11 @@
 include_once("../includes/database.php");
 include_once("../database/db_user.php");
 
-/* ---------- GETTERS ---------- */
+/*========================= GETS ============================== */
+
+/**
+ * 
+ */
 function get_usr_notifications($email){
     $usr_id = get_user_id($email); 
 
@@ -28,6 +32,9 @@ function get_usr_notifications($email){
     return $stmt->fetchAll(); 
 }
 
+/**
+ * 
+ */
 function get_unseen_notification($id){
     
     $db = Database::instance()->db();
@@ -52,7 +59,7 @@ function get_unseen_notification($id){
 }
 
 
-/* ---------- INSERTIONS ---------- */
+/*========================= ADDS ============================== */
 
 /**
  * Generate notify reservation

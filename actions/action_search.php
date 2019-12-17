@@ -29,7 +29,7 @@ foreach($reservations as $place_reservations){
          if(($reservation['check_in'] >= $check_in && $reservation['check_in'] <= $check_out ) && 
          ($reservation['check_out'] >= $check_in && $reservation['check_out'] <= $check_out ) ){
              print_r($reservation['place_id']);
-            if(check_if_is_element($reservation['place_id'],$search_results)){
+            if(is_element($reservation['place_id'],$search_results)){
                $search_results = delete_elem($reservation['place_id'],$search_results);
             }
         }

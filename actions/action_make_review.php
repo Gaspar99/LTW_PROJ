@@ -19,7 +19,7 @@ $review = array(
 );
 
 try {
-    add_review($review);
+    add_comment($review);
     //update place rating 
 } catch (PDOException $e) {
     die($e->getMessage());
