@@ -324,6 +324,13 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 #notifications_box {
     display: none;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 20em;
+    height: 30em;
+    top: 7em;
+    left: 75em;
+    z-index: 2;
 }
 
 /* Chat Icon Button*/
@@ -580,6 +587,14 @@ body>#messages .success {
     background-color: white;
 }
 
+#sign_in_form {
+    padding-top: 10%;
+}
+
+#sign_up_form {
+    padding-top: 7%;
+}
+
 .container_sign_up {
     /* Layout */
     padding-right: 4em;
@@ -597,7 +612,7 @@ body>#messages .success {
     padding-left: 4em;
     padding-top: 4em;
     padding-bottom: 1em;
-    display: block;
+    display: grid;
 }
 
 /* ---- Sign Up Grid --- */
