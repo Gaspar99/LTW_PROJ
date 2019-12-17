@@ -1233,7 +1233,7 @@ body>#messages .success {
 #place_page #place_body #gallery_rent #place_gallery img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.5em;
+    border-radius: 0;
 }
 
 /* Genneric Place Gallery */
@@ -1250,8 +1250,10 @@ body>#messages .success {
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
+    margin: 0 0.5em;
+    cursor: pointer;
     font-size: 2em;
-    color: white;
+    color: lightgray;
     text-shadow: 0 0 0.4em black;
 }
 
@@ -1261,8 +1263,10 @@ body>#messages .success {
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
+    margin: 0 0.5em;
+    cursor: pointer;
     font-size: 2em;
-    color: white;
+    color: lightgray;
     text-shadow: 0 0 0.5em black;
 }
 
@@ -1270,15 +1274,22 @@ body>#messages .success {
     position: absolute;
     right: 0.6em;
     top: 0.6em;
+    cursor: pointer;
     padding: 0;
     margin: 0;
     background-color: transparent;
 }
 
 #place_gallery #image_container .full_screen i {
-    color: white;
+    color: lightgray;
     text-shadow: 0 0 0.5em black;
     font-size: 3em;
+}
+
+#place_gallery #image_container .display_left:hover,
+#place_gallery #image_container .display_right:hover,
+#place_gallery #image_container .full_screen i:hover {
+    color: white;
 }
 
 /* ------ Rent Section ------*/
@@ -1762,12 +1773,6 @@ body>#messages .success {
     grid-column-end: 2;
     margin: 1em;
     width: max-content;
-}
-
-#add_place #body #upload img, #edit_place #body #upload img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5em;
 }
 
 /* Upload button */

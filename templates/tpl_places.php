@@ -2,6 +2,7 @@
 include_once("../database/db_places.php");
 include_once("../database/db_comments.php");
 include_once("../database/db_user.php");
+include_once("../templates/tpl_comments.php");
 
 /**
  * 
@@ -28,13 +29,21 @@ function draw_place($place)
 { ?>
     <article class="place">
         <a href="../pages/place.php?id=<?= $place["place_id"] ?>">
-            <h2 class="place_city_country"><?= $place["city"] ?> - <?= $place["country"] ?></h2>
+
+            <h2 class="place_city_country"><?= $place["city"] ?>-<?= $place["country"] ?></h2>
+            
             <img class="place_image" src="../images/places/thumbs_small/<?= $place["image_name"] ?>" alt="Place Image" width="400" height="250" />
+            
             <h1 class="place_title"><?= $place["title"] ?></h1>
+
             <ul class="place_footer">
                 <li class="place_rating">
                     <i class="material-icons">star</i>
+                    <?php if ($place["rating"] == -1) { ?>
+                    <div class="rating_value">NYR</div>
+                    <?php } else { ?>
                     <div class="rating_value"><?= $place["rating"] ?></div>
+                    <?php } ?>
                 </li>
                 <li class="place_price">
                     <div class="price_value"><?= $place["price_per_night"] ?></div>
@@ -88,7 +97,11 @@ function draw_place_info($place_id)
         <div id="place_details">
             <div class="rating">
                 <i class="material-icons">star</i>
+                <?php if ($place["rating"] == -1) { ?>
+                <div class="rating_value">Not Yet Rated</div>
+                <?php } else { ?>
                 <div class="rating_value"><?= $place["rating"] ?></div>
+                <?php } ?>
             </div>
 
             <div id="num_guests">
@@ -104,21 +117,7 @@ function draw_place_info($place_id)
 
             <section id="gallery_rent">
 
-                <section id="place_gallery">
-                    <div id="image_container">
-                        <?php foreach ($image_gallery as $image) { ?>
-                            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" width="550" height="400" alt="Image Place">
-                            <img class="fullscreen_slide" src="../images/places/originals/<?= $image['img_name'] ?>" alt="Image Place">
-                        <?php }
-                            if (sizeof($image_gallery) > 1) {  ?>
-                            <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
-                            <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
-                        <?php } ?>
-                        <button class="full_screen" onclick="toggle_image_fullscreen()">
-                            <i class="material-icons">fullscreen</i>
-                        </button>
-                    </div>
-                </section>
+                <?php draw_image_gallery($image_gallery); ?>
 
                 <section id="rent_section">
 
@@ -365,27 +364,10 @@ function draw_edit_place($user_id, $place_id)
 
             <div id="upload">
         
-                <section id="place_gallery">
-                    <div id="image_container">
-                        <?php foreach ($image_gallery as $image) { ?>
-                            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image["img_name"] ?>" width="550" height="400" alt="Image Place">
-                            <img class="fullscreen_slide" src="../images/places/originals/<?= $image['img_name'] ?>" alt="Image Place">
-                        <?php }
-                            if (sizeof($image_gallery) > 1) {  ?>
-                            <button class="display_left" onclick="plusDivs(-1)">&#10094;</button>
-                            <button class="display_right" onclick="plusDivs(+1)">&#10095;</button>
-                        <?php } ?>
-
-                        <button class="full_screen" onclick="toggle_image_fullscreen()">
-                            <i class="material-icons">fullscreen</i>
-                        </button>
-                    </div>
-                </section>
-
-                <span class="button upload_button">
-                        Upload Photo
-                        <input type="file" name="image">
-                    </span>
+               <?php draw_image_gallery($image_gallery); ?>
+                <span class="button upload_button">Upload Photo
+                    <input type="file" name="image">
+                </span>
             </div>
 
             <section id="details">
@@ -423,117 +405,7 @@ function draw_edit_place($user_id, $place_id)
 
 <?php }
 
-/**
- * 
- */
-function draw_place_comments($place_id, $place_owner_id)
-{
-    $comments = get_place_comments($place_id);
-    $place_owner = get_user_info($place_owner_id);
 
-    if ($comments == null) { ?>
-    <h3>No comments to display</h3>
-    <?php } else { 
-    
-        foreach ($comments as $comment) { ?>
-            <article class="comment"> 
-                <?php draw_comment($comment, $place_owner_id, $place_owner); ?>
-            </article>
-            <hr>
-        <?php }
-    }
-}
-
-/**
- * 
- */
-function draw_comment($comment, $place_owner_id, $place_owner) 
-{ 
-    ?>
-
-    <div class="comment_header">
-
-        <?php draw_user_tile($comment["usr_id"]); ?>
-
-        <div class="comment_date">
-            <?= $comment['usr_comment_date'] ?>
-        </div>
-
-    </div>
-
-    <div class="comment_body">
-        <p><?= $comment['usr_comment'] ?></p>
-    </div>
-
-    <div class="comment_reply">
-
-        <?php if ($comment["owner_reply"] == NULL) { 
-
-            if (isset($_SESSION["user_email"]) && $place_owner["email"] == $_SESSION["user_email"]) { ?>
-            <button class="reply" onclick="open_reply_box(event)">Reply</button>
-            <?php draw_reply_box($comment);
-            }
-
-        } else { ?>
-            <article class="comment">
-                <?php draw_owner_reply($comment, $place_owner_id); ?>
-            </article>
-        <?php } ?>
-
-    </div>
-
-<?php }
-
-/**
- * 
- */
-function draw_owner_reply($comment, $place_owner) 
-{ ?>
-
-    <div class="comment_header">
-        <?php draw_user_tile($place_owner); ?>
-
-        <div class="comment_date">
-            <?= $comment['owner_reply_date'] ?>
-        </div>
-    </div>
-
-    <div class="comment_body">
-        <p><?= $comment['owner_reply'] ?></p>
-    </div>
-    
-<?php }
-
-/**
- * 
- */
-function draw_user_tile($user_id) 
-{   
-    $user = get_user_info($user_id); ?>
-
-    <div class="user_profile_tile">
-        <a class="button" href="../pages/profile.php?id=<?= $user_id ?>">
-            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture">
-            <span class="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></span>
-        </a>
-    </div>
-
-<?php }
-
-/**
- * 
- */
-function draw_reply_box($comment) { 
-
-    $reservation_id = $comment["reservation_id"]; ?>
-
-    <div class="reply_box" id="<?=$reservation_id?>">
-        <textarea name="reply" placeholder="Enter a reply comment" rows="3" required></textarea>
-        
-        <button class="submit_button" onclick="upload_reply(event, <?=$reservation_id?>)">Reply</button>
-    </div>
-    
-<?php }
 /**
  * 
  */
@@ -556,6 +428,48 @@ function draw_reservations_made($place_id){
         <?php }
     }
 }
+
+/**
+ * 
+ */
+function draw_user_tile($user_id) 
+{   
+    $user = get_user_info($user_id); ?>
+
+    <div class="user_profile_tile">
+        <a class="button" href="../pages/profile.php?id=<?= $user_id ?>">
+            <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture">
+            <span class="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></span>
+        </a>
+    </div>
+
+<?php }
+
+/**
+ * 
+ */
+function draw_image_gallery($image_gallery)
+{ ?>
+    <section id="place_gallery">
+
+        <div id="image_container">
+            <?php foreach ($image_gallery as $image) { ?>
+            <img class="image_slide" src="../images/places/thumbs_medium/<?= $image['img_name'] ?>" width="550" height="400" alt="Image Place">
+            <img class="fullscreen_slide" src="../images/places/originals/<?= $image['img_name'] ?>" alt="Image Place">
+            <?php }
+
+            if (sizeof($image_gallery) > 1) {  ?>
+            <span class="display_left" onclick="plusDivs(-1)">&#10094;</span>
+            <span class="display_right" onclick="plusDivs(+1)">&#10095;</span>
+            <?php } ?>
+
+            <span class="full_screen" onclick="toggle_image_fullscreen()">
+                <i class="material-icons">fullscreen</i>
+            </span>
+                    
+        </div>
+    </section>
+<?php }
 
 
 
