@@ -213,7 +213,7 @@ function draw_add_place($user_id)
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="Enter Title" required>
+            <input type="text" name="title" placeholder="Enter Title" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
         </div>
 
         <section id="location">
@@ -234,7 +234,7 @@ function draw_add_place($user_id)
 
             <div class="address">
                 <label for="address">Address</label>
-                <input type="text" name="address" placeholder="Enter Place Address" required>
+                <input type="text" name="address" placeholder="Enter Place Address" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
             </div>
 
         </section>
@@ -273,7 +273,7 @@ function draw_add_place($user_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" placeholder="Enter Place Description" required></textarea>
+                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required></textarea>
                 </div>
 
                 <hr>
@@ -320,7 +320,7 @@ function draw_edit_place($user_id, $place_id)
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" value="<?= $place["title"] ?>" placeholder="Enter Title" required>
+            <input type="text" name="title" value="<?= $place["title"] ?>" placeholder="Enter Title" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
         </div>
 
         <section id="location">
@@ -378,7 +378,9 @@ function draw_edit_place($user_id, $place_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" required><?= $place["place_description"] ?></textarea>
+                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/"required>
+                        <?= $place["place_description"] ?>
+                    </textarea>
                 </div>
 
                 <hr>

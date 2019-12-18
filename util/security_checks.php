@@ -63,7 +63,7 @@ function verify_password($password)
 function verify_phone_number($phone_num)
 {
     // Don't allow certain characters
-    if (!preg_match("/9\d{8}/", $phone_num)) {
+    if (!preg_match("/^(9\d{8})$/", $phone_num)) {
         $_SESSION["messages"][] = array("type" => "error", "content" => "Invalid phone number!");
         die(header("Location: ../pages/home.php"));
     }
@@ -75,7 +75,7 @@ function verify_phone_number($phone_num)
 function verify_date($date, $input_name)
 {
     // Don't allow certain characters
-    if (!preg_match("/\d{1,2} - [A-Z][a-z]{2} - \d{4}/", $date)) {
+    if (!preg_match("/^(\d{1,2} - [A-Z][a-z]{2} - \d{4})$/", $date)) {
         $_SESSION["messages"][] = array("type" => "error", "content" => "Invalid $input_name!");
         die(header("Location: ../pages/home.php"));
     }

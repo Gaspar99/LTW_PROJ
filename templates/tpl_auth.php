@@ -22,7 +22,7 @@ function draw_sign_in()
 
         <div class="password">
           <label for="password">Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" required>
+          <input type="password" placeholder="Enter Password" name="password" patthern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
         </div>
       </div>
 
@@ -49,12 +49,12 @@ function draw_sign_up($countries)
       <div class="form_container">
         <div class="first_name">
           <label for="first_name">First Name</label>
-          <input type="text" placeholder="Enter First Name" name="first_name" required>
+          <input type="text" placeholder="Enter First Name" name="first_name" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
         </div>
 
         <div class="last_name">
           <label for="last_name">Last Name</label>
-          <input type="text" placeholder="Enter Last Name" name="last_name" required>
+          <input type="text" placeholder="Enter Last Name" name="last_name" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
         </div>
 
         <div class="email">
@@ -74,7 +74,7 @@ function draw_sign_up($countries)
 
         <div class="phone_num">
           <label for="phone_num">Phone Number</label>
-          <input type="text" placeholder="Enter Phone Number" name="phone_num" pattern="(9([0-9]{8}))" title="Phone Number should start with a 9 have 9 character length" required>
+          <input type="text" placeholder="Enter Phone Number" name="phone_num" pattern="^(9([0-9]{8}))$" title="Phone Number should start with a 9 have 9 character length" required>
         </div>
 
         <div class="country_id">

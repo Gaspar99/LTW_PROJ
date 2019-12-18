@@ -1,12 +1,20 @@
 <?php 
 
+/**
+ * 
+ */
 function draw_chat(){?>
-    <article class="my_messages"><?php
-        draw_users_to_message();
-        draw_chat_box();
-    ?></article>
+    <article class="my_messages">
+
+    <?php draw_users_to_message();
+    draw_chat_box(); ?>
+
+    </article>
 <?php } 
 
+/**
+ * 
+ */
 function draw_chat_box(){?>
     <div class="chat_box">
         <div id=traded_messages>
@@ -17,6 +25,9 @@ function draw_chat_box(){?>
     </div>
 <?php }
 
+/**
+ * 
+ */
 function draw_users_to_message(){?>
     <div class="users_to_message">
        <div class="users_messages">
@@ -25,5 +36,5 @@ function draw_users_to_message(){?>
     </div>
 <?php }
 
-?>
+
 
