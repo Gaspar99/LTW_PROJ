@@ -1221,7 +1221,7 @@ body>#messages .success {
 #place_gallery {
     position: relative;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: transparent;
     display: flex;
     align-items: center;
 }
@@ -1233,7 +1233,7 @@ body>#messages .success {
 }
 
 #place_page #place_body #gallery_rent #place_gallery img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 0;
 }
@@ -1257,6 +1257,7 @@ body>#messages .success {
     font-size: 2em;
     color: lightgray;
     text-shadow: 0 0 0.4em black;
+    opacity: 0.7;
 }
 
 #place_gallery #image_container .display_right {
@@ -1270,6 +1271,7 @@ body>#messages .success {
     font-size: 2em;
     color: lightgray;
     text-shadow: 0 0 0.5em black;
+    opacity: 0.7;
 }
 
 #place_gallery #image_container .full_screen {
@@ -1286,12 +1288,14 @@ body>#messages .success {
     color: lightgray;
     text-shadow: 0 0 0.5em black;
     font-size: 3em;
+    opacity: 0.7;
 }
 
 #place_gallery #image_container .display_left:hover,
 #place_gallery #image_container .display_right:hover,
 #place_gallery #image_container .full_screen i:hover {
     color: white;
+    opacity: 1;
 }
 
 /* ------ Rent Section ------*/

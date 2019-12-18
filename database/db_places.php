@@ -311,7 +311,8 @@ function update_place_info($place)
             price_per_night = ?, 
             place_description = ?,
             num_guests = ?
-        WHERE id = ?"
+        WHERE
+            id = ?"
     );
 
     $stmt->execute(array(
@@ -321,6 +322,33 @@ function update_place_info($place)
         $place["num_guests"],
         $place["id"]
     ));
+}
+
+/**
+ * 
+ */
+function update_place_rating($place_id)
+{
+    $db = Database::instance()->db();
+ 
+    $stmt = $db->prepare(
+        "UPDATE 
+            place
+        SET 
+            rating = (
+                SELECT 
+                    AVG(usr_rating)
+                FROM 
+                    reservation
+                WHERE 
+                    place_id = ? AND
+                    usr_comment <> ''
+            )
+        WHERE 
+            id = ?"
+    );   
+
+    $stmt->execute(array($place_id, $place_id)); 
 }
 
 /*========================= VERIFICATIONS ============================== */

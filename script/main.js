@@ -139,6 +139,7 @@ function toggle_image_fullscreen() {
     fullscreen = (!fullscreen)
 
     let place_gallery = document.getElementById("place_gallery")
+    //let image_container = document.getElementById("image_container")
     let fullscreen_icon = place_gallery.querySelector(".material-icons")
 
     if (fullscreen) {
@@ -147,6 +148,10 @@ function toggle_image_fullscreen() {
         place_gallery.style.top = "0"
         place_gallery.style.width = "100vw"
         place_gallery.style.height = "100vh"
+        place_gallery.style.backgroundColor = "rgba(0, 0, 0, 0.4)"
+        
+        image_container.style.maxWidth = "80%"
+        image_container.style.maxHeight = "50vw"
 
         fullscreen_icon.innerHTML = "fullscreen_exit"
     }
@@ -154,6 +159,10 @@ function toggle_image_fullscreen() {
         place_gallery.style.position = "static"
         place_gallery.style.width = "auto"
         place_gallery.style.height = "auto"
+        place_gallery.style.backgroundColor = "transparent"
+
+        image_container.style.maxWidth = "max-content"
+        image_container.style.maxHeight = "max-content" 
 
         fullscreen_icon.innerHTML = "fullscreen"
     }

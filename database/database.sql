@@ -189,7 +189,7 @@ VALUES(
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       1, --id
       "Fantastic Modern Style House with an Incredible Pool", --title
@@ -200,12 +200,13 @@ VALUES(
       Free Wifi is available on all areas of the apartment.
       Towels and bed Linen are provided for your stay.", --place_description
       4, --num_guests
+      4.5, --rating (Based on current reservation reviews)
       1, --owner_id: John Doe
       1867 --city_id: Porto
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       2, --id
       "Champs-Élysées Golden triangle flat with mezzanine", --title
@@ -215,12 +216,13 @@ VALUES(
       Located in the center of Paris, surrounded by Avenue Champs Élysées, Avenue George V and Avenue Montaigne, called the Golden Triangle area.
       Arc de Triomphe, LV flagship store, Lido nightclub, Ladurée and Subway station are all within a 1-5 minute walk.", --place_description
       4, --num_guests
+      4.5, --rating (Based on current reservation reviews)
       2, --owner_id: John Doe
       6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       3, --id
       "Sweet & cosy room next to Canal Saint Martin", --title
@@ -229,12 +231,13 @@ VALUES(
       "A superb luxury detached lodge with private sauna and hot tub in the exclusive Astbury Falls site, a gated complex, close to a man-made waterfall, in a dedicated area of outstanding natural beauty, just 1.8 miles from the picturesque town of Bridgnorth.
       Please contact us if you would like a special event organised or a special welcome pack, we will do our very best to accomadate your request.", --place_description
       5, --num_guests
+      2.5, --rating (Based on current reservation reviews)
       3, --owner_id: Jorge
       6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       4, --id
       "Incredible cozy apartment in the Heart of NYC", --title
@@ -243,12 +246,13 @@ VALUES(
       "The house is located right in the heart of la République area, in the 10th district of Paris. It’s close to lively streets, transportation and shops, making your stay in Paris easy and enjoyable.
       The room is bright, quiet and comfy, which makes it the perfect place to rest after your long and exciting days exploring the capital city.", --place_description
       7, --num_guests
+      5, --rating (Based on current reservation reviews)
       4, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       5, --id
       "The Salt House", --title
@@ -256,6 +260,7 @@ VALUES(
       "Street number 37", --place_address
       "This property is a beautifully renovated former salt house, situated in an idyllic rural landscape. The house has a wood burning stove for cosy nights and a self enclosed garden should you wish to bring a well-behaved pet. Come and explore Yorkshire!", --place_description
       2, --num_guests
+      4, --rating (Based on current reservation reviews)
       5, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
@@ -457,7 +462,7 @@ VALUES(
       "2019-02-15", --check_out
       1000, --price
       2, --num_guests
-      5, --usr_rating
+      4, --usr_rating
       "Really good place for a couple", --usr_comment
       "2019-02-30", --usr_comment_date
       "We like the romance! Come soon", --owner_reply
