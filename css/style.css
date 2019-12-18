@@ -21,8 +21,22 @@ body {
 
 #site_content {
     flex: 1;
-    width: 80em;
-    margin: 2em auto;
+    /* width: 80em; */
+    /* margin: 2em auto; */
+}
+
+#main_title {
+    background-color: white;
+    position: relative;
+    padding-left: 20%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-style: solid;
+    border-top-color: var(--button-color);
+    border-top-width: 5px;
+    /* text-align: center; */
+    left: 0em;
+    
 }
 
 /* --------------- Generics --------------- */
@@ -111,6 +125,7 @@ button:hover:before, button:hover:before {
 *:focus {
     outline: 0;
 }
+
 
 /* Full-width input fields */
 

@@ -105,7 +105,7 @@ function draw_header($user_email)
      */
     function draw_title($title)
     { ?>
-        <h1><?= $title ?></h1>
+        <h1 id="main_title"><?= $title ?></h1>
         <hr>
         <?php }
 
