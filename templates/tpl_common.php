@@ -22,8 +22,7 @@ function draw_site_header()
     }
 
     draw_search_bar();
-    //todo see where i use this 
-    #draw_messages();
+    draw_messages();
     init_site_content();
 }
 
@@ -68,7 +67,6 @@ function draw_header($user_email)
             <?php } else {
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
-
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
@@ -105,8 +103,7 @@ function draw_header($user_email)
      */
     function draw_title($title)
     { ?>
-        <h1><?= $title ?></h1>
-        <hr>
+        <h1 id="main_title"><?= $title ?></h1>
         <?php }
 
 

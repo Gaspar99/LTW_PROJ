@@ -6,12 +6,15 @@ include_once("../database/db_search.php");
 
 $geo = process_string($_POST['search']);
 
+print_r($geo);
+
 $check_in = date("Y-m-d", strtotime($_POST['check_in']));
 $check_out = date("Y-m-d", strtotime($_POST['check_out']));
 
 $search_form = array(
     "country"   => $geo[0],
     "city"      => $geo[1],
+    "geo_type"  => $geo[2],
     "num_guests"=> $_POST["num_guests"],
     "min_price"     => $_POST["min"],
     "max_price"     => $_POST["max"]
@@ -35,7 +38,7 @@ foreach($reservations as $place_reservations){
         }
     }
 } 
-
+print_r($search_results);
 $_SESSION["search_results"] = $search_results;
 header("Location: ../pages/search_results.php");
 ?>

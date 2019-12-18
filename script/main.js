@@ -39,10 +39,12 @@ function close_sign_up_form() {
 function toggle_search_form() {
     let form = document.getElementById("search_form")
 
-    if (form.style.display == "flex")
+    if (form.style.display == "flex"){
         form.style.display = "none"
-    else
+    }
+    else{
         form.style.display = "flex"
+    }
 }
 /**
  * 

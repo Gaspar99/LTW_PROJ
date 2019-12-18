@@ -21,8 +21,22 @@ body {
 
 #site_content {
     flex: 1;
-    width: 80em;
-    margin: 2em auto;
+    /* width: 80em; */
+    /* margin: 2em auto; */
+}
+
+#main_title {
+    background-color: white;
+    position: relative;
+    padding-left: 6.7%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-style: solid;
+    border-top-color: var(--button-color);
+    border-top-width: 5px;
+    /* text-align: center; */
+    left: 0em;
+    
 }
 
 /* --------------- Generics --------------- */
@@ -111,6 +125,7 @@ button:hover:before, button:hover:before {
 *:focus {
     outline: 0;
 }
+
 
 /* Full-width input fields */
 
@@ -278,11 +293,11 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 #site_header #auth_forms_buttons {
-    margin: 0 2em;
+    margin: 0 1em;
 }
 
 #site_header #auth_forms_buttons>button {
-    margin: 0 0.5em;
+    margin: 0 0em;
 }
 
 /* Search Button */
@@ -552,6 +567,8 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
 
+
+
 #search_form {
     /* Layout */
     position: relative;
@@ -559,15 +576,16 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     justify-content: center;
     vertical-align: middle;
     text-align: center;
-    margin: 0;
     padding: 0;
-    z-index: 0;
     width: 100%;
+    height: max-content;
+
     /* Style */
     color: black;
     background-color: white;
     text-decoration: none;
 }
+
 
 #search_form>.search_type {
     max-width: 16em;
@@ -957,8 +975,8 @@ body>#messages .success {
 /* Add Zoom Animation */
 
 .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
+    -webkit-animation: animatezoom 0.4s;
+    animation: animatezoom 0.4s
 }
 
 @-webkit-keyframes animatezoom {
@@ -1094,6 +1112,8 @@ body>#messages .success {
 #place_page #place_header {
     display: flex;
     align-items: flex-end;
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 #place_page #place_header h1 {
