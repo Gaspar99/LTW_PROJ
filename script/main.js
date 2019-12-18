@@ -193,19 +193,6 @@ function option_navigate(e) {
 
 }
 
-function price_change() {
-    //get price selected
-    let price = document.getElementById("price_input")
-    let show_price = document.getElementById("show_price")
-
-    show_price.textContent = 'Price: ' + price.value + '€'
-    //create new element to display price
-    let div = document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
-
-    div.insertBefore(show_price, div.firstChild)
-}
-
-
 //::::: AJAX STUFF ::::::://
 
 function encodeForAjax(data) {
@@ -345,8 +332,8 @@ if (Array.prototype.indexOf === undefined) {
 
 // PRICE
 
-let min_price = document.getElementById("min_price")
-let max_price = document.getElementById("max_price")
+let min_price = document.getElementById("min_price_input")
+let max_price = document.getElementById("max_price_input")
 
 min_price.oninput = update_price
 max_price.oninput = update_price
@@ -354,9 +341,6 @@ max_price.oninput = update_price
 function update_price() {
     let min_price_input = parseFloat(min_price.value)
     let max_price_input = parseFloat(max_price.value)
-
-    if (min_price_input > max_price_input)
-        [min_price_input, max_price_input] = [max_price_input, min_price_input]
 
     let min_price_value = document.getElementById("min_price_value")
     let max_price_value = document.getElementById("max_price_value")
