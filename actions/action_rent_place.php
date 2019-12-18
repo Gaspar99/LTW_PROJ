@@ -4,6 +4,16 @@ include_once("../database/db_reservations.php");
 include_once("../database/db_notifications.php");
 include_once("../database/db_places.php");
 
+// Verify if user is logged in
+if (!isset($_SESSION["user_email"]))
+    die(header('Location: ../pages/home.php'));
+
+// Verifies CSRF token
+if ($_SESSION["csrf"] != $_POST["csrf"]) {
+    $_SESSION["messages"][] = array("type" => "error", "content" => "Invalid request!");
+    die(header("Location: ../pages/home.php"));
+}
+
 //Calculate price
 $price_per_night = get_place_info($_POST["place_id"])["price"];
 $check_in = $_POST["check_in"];

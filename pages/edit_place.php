@@ -6,7 +6,11 @@ include_once("../database/db_user.php");
 
 include_once("../templates/tpl_places.php");
 
+// Verify if user is logged in
+if (!isset($_SESSION["user_email"]))
+    die(header('Location: ../pages/home.php'));
 
+    
 $place_id = $_POST["place_id"];
 $user_id = get_user_id($_SESSION["user_email"]);
 

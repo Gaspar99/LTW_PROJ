@@ -82,6 +82,8 @@ function draw_place_info($place_id)
                 </form>
                 <form method="POST" action="../actions/action_remove_place.php">
                     <input type="hidden" name="place_id" value="<?= $place_id ?>" />
+                    <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
+
                     <button id="remove_place" type="submit">Remove Place</button>
                 </form>
             <?php } else { 
@@ -156,6 +158,7 @@ function draw_place_info($place_id)
 
                                 <input type="hidden" name="tourist" value="<?= get_user_id($_SESSION["user_email"]) ?>">
                                 <input type="hidden" name="place_id" value="<?= $place_id ?>">
+                                <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
                                 <button class="submit_button" type="submit">Rent Place</button>
                             </form>
@@ -408,6 +411,7 @@ function draw_edit_place($user_id, $place_id)
 
         <input type="hidden" name="owner" value="<?= $user_id ?>">
         <input type="hidden" name="id" value="<?= $place_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit">Save Changes</button>
     </form>

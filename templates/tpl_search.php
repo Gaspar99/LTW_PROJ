@@ -7,7 +7,7 @@ include_once("tpl_countries.php");
 function draw_search_bar()
 { ?>
     <form id="search_form" action="../actions/action_search.php" method="post">
-        
+        <span class="close" onclick="close_search_form()" title="Close Form">&times;</span>
 
         <div class="search_type">
             <label for="search">Location</label>

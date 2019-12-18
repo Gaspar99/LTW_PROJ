@@ -108,6 +108,7 @@ function draw_edit_profile($user_id)
         </section>
 
         <input type="hidden" name="id" value="<?= $user_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit" value="Upload">Save</button>
 
@@ -217,6 +218,8 @@ function draw_review_box($reservation_id, $place_id) { ?>
 
             <input type="hidden" name="reservation_id" value="<?=$reservation_id?>">
             <input type="hidden" name="place_id" value="<?=$place_id?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
+
             <button type="submit" class="submit_button">Post Review</button>
 
         </form>
