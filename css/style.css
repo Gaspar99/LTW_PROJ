@@ -28,7 +28,7 @@ body {
 #main_title {
     background-color: white;
     position: relative;
-    padding-left: 20%;
+    padding-left: 6.7%;
     padding-top: 15px;
     padding-bottom: 15px;
     border-top-style: solid;
@@ -293,18 +293,24 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 }
 
 #site_header #auth_forms_buttons {
-    margin: 0 2em;
+    margin: 0 1em;
 }
 
 #site_header #auth_forms_buttons>button {
-    margin: 0 0.5em;
+    margin: 0 0em;
 }
 
 /* Search Button */
 
 #site_header #search_button {
     position: absolute;
-    left: 50%;
+    left: 83%;
+    transform: translateX(-50%);
+}
+
+#site_header #search_button2 {
+    position: absolute;
+    left: 79%;
     transform: translateX(-50%);
 }
 
@@ -567,22 +573,28 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 /* ------------- HOME PAGE: SEARCH BAR ------------*/
 
+
+
 #search_form {
     /* Layout */
-    position: relative;
+    position: absolute;
     display: none;
     justify-content: center;
     vertical-align: middle;
     text-align: center;
-    margin: 0;
     padding: 0;
-    z-index: 0;
-    width: 100%;
+    z-index: 4;
+    width: 66%;
+    height: 6em;
+    top: 0.5em;
+    left: 15em;
     /* Style */
     color: black;
     background-color: white;
     text-decoration: none;
+    border-radius: 5px;
 }
+
 
 #search_form>.search_type {
     max-width: 16em;
@@ -972,8 +984,8 @@ body>#messages .success {
 /* Add Zoom Animation */
 
 .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
+    -webkit-animation: animatezoom 0.4s;
+    animation: animatezoom 0.4s
 }
 
 @-webkit-keyframes animatezoom {

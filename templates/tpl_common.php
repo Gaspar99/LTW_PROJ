@@ -59,8 +59,8 @@ function draw_header($user_email)
                     <div id="site_name">Rental Eye</div>
                 </a>
             </div>
-            <button id="search_button" onclick="toggle_search_form()">Search</button>
             <?php if ($user_email == null) { ?>
+                <button id="search_button" onclick="toggle_search_form()">Search</button>
                 <div id="auth_forms_buttons">
                     <button onclick="open_sign_in_form()">Log In</button>
                     <button onclick="open_sign_up_form()">Sign Up</button>
@@ -68,7 +68,7 @@ function draw_header($user_email)
             <?php } else {
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
-
+                <button id="search_button2" onclick="toggle_search_form()">Search</button>
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
@@ -106,7 +106,6 @@ function draw_header($user_email)
     function draw_title($title)
     { ?>
         <h1 id="main_title"><?= $title ?></h1>
-        <hr>
         <?php }
 
 
