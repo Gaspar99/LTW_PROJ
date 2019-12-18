@@ -60,12 +60,12 @@ function draw_edit_profile($user_id)
 
                 <div id="user_first_name">
                     <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" value="<?= $user_info["first_name"] ?>" pattern="/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+                    <input type="text" name="first_name" value="<?= $user_info["first_name"] ?>" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                 </div>
 
                 <div id="user_last_name">
                     <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" value="<?= $user_info["last_name"] ?>" pattern="/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+                    <input type="text" name="last_name" value="<?= $user_info["last_name"] ?>" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                 </div>
 
             </div>
@@ -84,7 +84,7 @@ function draw_edit_profile($user_id)
 
             <div id="phone_number">
                 <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="/^(9\d{8})$" 
+                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="^(9\d{8})$" 
                 title ="Phone Number should start with a 9 and have 9 characters of length">
             </div>
 

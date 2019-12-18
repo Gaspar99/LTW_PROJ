@@ -23,4 +23,3 @@ draw_title("Search Results");
 draw_places($places); //draw search results
 draw_footer();
 
-?>
