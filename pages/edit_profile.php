@@ -6,6 +6,7 @@ include_once("../database/db_location.php");
 include_once("../database/db_user.php");
 
 include_once("../templates/tpl_places.php");
+include_once("../templates/tpl_profile.php");
 
 $user_id = get_user_id($_SESSION["user_email"]);
 

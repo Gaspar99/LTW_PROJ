@@ -3,29 +3,55 @@ include_once("../includes/session.php");
 include_once("../database/db_places.php");
 include_once("../database/db_user.php");
 include_once("../database/db_tags.php");
+include_once("../util/security_checks.php");
 
 // Verify if user is logged in
 if (!isset($_SESSION["user_email"]))
     die(header('Location: ../pages/home.php'));
 
-$user_id = get_user_id($_SESSION["user_email"]);
+// Verifies CSRF token
+if ($_SESSION["csrf"] != $_POST["csrf"]) {
+    $_SESSION["messages"][] = array("type" => "error", "content" => "Invalid request!");
+    die(header("Location: ../pages/home.php"));
+}
 
-$place["title"] = $_POST["title"];
-$place["price"] = $_POST["price"];
-$place["address"] = $_POST["address"];
-$place["description"] = $_POST["description"];
-$place["num_guests"] = $_POST["num_guests"];
-$place["owner"] = $_POST["owner"];
-$place["city"] = $_POST["city"];
+// Security checks
+verify_text($_POST["title"], "Title");
+verify_number($_POST["price"], "Price");
+verify_text($_POST["address"], "Address");
+verify_text($_POST["description"], "Description");
+verify_number($_POST["num_guests"], "Num. Guests");
+verify_number($_POST["owner"], "Owner");
+verify_number($_POST["city"], "City");
+if (array_key_exists("tags", $_POST)) {
+    foreach ($_POST["tags"] as $tag) {
+        verify_number($tag, "Tag");
+    }
+}
 
-$tags = $_POST["tags"];
+// Create place array
+$place = array(
+    "title" => $_POST["title"],
+    "price" => $_POST["price"],
+    "address" => $_POST["address"],
+    "description" => $_POST["description"],
+    "num_guests" => $_POST["num_guests"],
+    "owner" => $_POST["owner"],
+    "city" => $_POST["city"]
+);
 
 try {
     $place_id = add_place($place);
     add_place_photo($place_id);
-    add_place_tags($place_id, $tags);
+
+    if (array_key_exists("tags", $_POST)) {
+        add_place_tags($place_id, $_POST["tags"]);
+    }
+
 } catch (PDOException $e) {
+
     die($e->getMessage());
 }
 
+$user_id = get_user_id($_SESSION["user_email"]);
 header("Location: ../pages/profile.php?id=$user_id");

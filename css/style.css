@@ -728,6 +728,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 body>#messages div {
     position: fixed;
+    z-index: 10;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
@@ -735,9 +736,9 @@ body>#messages div {
     padding: 1em;
     text-align: center;
     box-shadow: 0 0 1em black;
-    border: 0.05em solid;
+    border: 0.2em solid;
     border-radius: 0.5em;
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: black;
     background-color: white;
     font-family: var(--roboto-font);

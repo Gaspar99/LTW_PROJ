@@ -65,8 +65,7 @@ function get_user_info($user_id)
                 usr_phone_number AS phone_number,
                 usr_profile_picture AS profile_pic,
                 rating AS rating, 
-                country_id AS country,
-                usr_password AS password 
+                country_id AS country
             FROM usr 
             WHERE usr_id = ?"
     );

@@ -74,7 +74,7 @@ function draw_edit_profile($user_id)
                 <img src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile_pic" />
                 <div class="button upload_button">
                     Update Profile Picture
-                    <input type="file" name="image" required>
+                    <input type="file" name="image">
                 </div>
             </div>
 
@@ -84,8 +84,8 @@ function draw_edit_profile($user_id)
 
             <div id="phone_number">
                 <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="(9([0-9]{8}))" 
-                title ="Phone Number should start with a 9 and have 9 characters length">
+                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="9\d{8}" 
+                title ="Phone Number should start with a 9 and have 9 characters of length">
             </div>
 
             <div id="email">

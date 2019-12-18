@@ -356,7 +356,7 @@ function update_place_rating($place_id)
 /**
  * 
  */
-function is_owner($usr_id, $place_id)
+function is_owner($user_id, $place_id)
 {
     $db = Database::instance()->db();
 
@@ -370,7 +370,7 @@ function is_owner($usr_id, $place_id)
             place.owner_id = ?"
     );
 
-    $stmt->execute(array($place_id, $usr_id));
+    $stmt->execute(array($place_id, $user_id));
 
     $ret = $stmt->fetch();
 

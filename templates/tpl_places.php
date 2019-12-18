@@ -299,6 +299,7 @@ function draw_add_place($user_id)
 
 
         <input type="hidden" name="owner" value="<?= $user_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit">Create New Place</button>
     </form>

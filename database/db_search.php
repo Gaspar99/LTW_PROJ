@@ -162,7 +162,7 @@ function process_string($search_str)
 
     if(strlen($search_str) == 0){
         echo 'vazia';
-        return $geo = [$country, $city,1];
+        return [$country, $city, 1];
     }
 
     if(strpos($search_str, ',')){
