@@ -1,0 +1,271 @@
+#site_container {
+    /* Layout */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Style */
+    background-color: var(--background-color);
+}
+
+#site_content {
+    flex: 1;
+}
+
+#main_title {
+    background-color: white;
+    position: relative;
+    padding-left: 6.7%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-style: solid;
+    border-top-color: var(--button-color);
+    border-top-width: 5px;
+    left: 0em;
+}
+
+/* The Close Button (x) */
+
+.close {
+    /* Layout */
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.4em;
+    /* Style */
+    color: black;
+    font-size: 2em;
+    font-weight: bold;
+    border-width: 0;
+    width: auto;
+}
+
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+.modal img.site_logo {
+    width: 20%;
+}
+
+.submit_button {
+    /* Layout */
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 0.5em 0;
+    padding: 0.7em;
+    /* Style */
+    font-size: 1.2em;
+    color: white;
+    background-color: var(--button-color);
+}
+
+/* User Tile*/
+
+.user_profile_tile {
+    display: flex;
+    align-items: flex-end;
+    width: max-content;
+}
+
+.user_profile_tile a {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    font-size: 0.9em;
+}
+
+.user_profile_tile img {
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    margin: 0 0.5em;
+}
+
+.user_profile_tile .username {
+    padding: 0 0.5em;
+}
+
+/* ------ Generic Place Gallery ------*/
+
+#place_gallery {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+#place_gallery #image_container {
+    position: relative;
+    max-width: max-content;
+    margin: auto;
+}
+
+#place_gallery .image_slide, #place_gallery .fullscreen_slide {
+    display: none;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+#place_gallery #image_container .display_left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    margin: 0 0.5em;
+    cursor: pointer;
+    font-size: 2em;
+    color: lightgray;
+    text-shadow: 0 0 0.4em black;
+    opacity: 0.7;
+}
+
+#place_gallery #image_container .display_right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    margin: 0 0.5em;
+    cursor: pointer;
+    font-size: 2em;
+    color: lightgray;
+    text-shadow: 0 0 0.5em black;
+    opacity: 0.7;
+}
+
+#place_gallery #image_container .full_screen {
+    position: absolute;
+    right: 0.6em;
+    top: 0.6em;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+#place_gallery #image_container .full_screen i {
+    color: lightgray;
+    text-shadow: 0 0 0.5em black;
+    font-size: 3em;
+    opacity: 0.7;
+}
+
+#place_gallery #image_container .display_left:hover,
+#place_gallery #image_container .display_right:hover,
+#place_gallery #image_container .full_screen i:hover {
+    color: white;
+    opacity: 1;
+}
+
+/* Tags */
+
+#tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+ #tags .tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0 1em 1em;
+    width: max-content;
+}
+
+ #tags .tag .checkbox_container {
+    position: relative;
+    margin: 0 0.6em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 1.2em;
+    height: 1.2em;
+    border: 0.08em solid var(--panel-color);
+    border-radius: 30%;
+}
+
+/* Hiding default checkbox to crete our own */
+
+#tags .tag .checkbox_container input {
+    position: absolute;
+    left: 0;
+    top: -0.5em;
+    z-index: 1;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+#tags .tag .checkbox_container:hover {
+    opacity: 0.6;
+}
+
+#tags .tag .checkbox_container i {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tags .tag .checkbox_container i.active {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#tags .tag .checkbox_container i.inactive {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Upload */
+
+#upload {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin: 1em;
+    width: min-content;
+}
+
+/* Upload button */
+
+#upload .upload_button {
+    margin: 1em 0;
+    padding: 1em 0;
+    text-align: center;
+    width: 100%;
+    z-index: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Removing original button */
+
+#upload .upload_button input[type="file"] {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+#upload .upload_button input[type="file"]:hover {
+    cursor: pointer;
+}

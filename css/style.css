@@ -760,22 +760,14 @@ body>#messages .success {
 .modal {
     /* Layout */
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
-    z-index: 10;
-    /* Sit on top */
+    z-index: 5;
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     /* Style */
-    background-color: black;
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -783,138 +775,105 @@ body>#messages .success {
 .modal_content {
     /* Layout */
     display: block;
-    margin: auto;
+    margin: 5% auto auto auto;
     border-radius: 0.5em;
     box-shadow: 0 0 1em black;
+    width: max-content;
     /* Could be more or less, depending on screen size */
     /* Style */
     background-color: white;
 }
 
-.modal_content_sign_up {
+.form_container {
     /* Layout */
-    display: block;
-    margin: auto;
-    border-radius: 0.5em;
-    box-shadow: 0 0 1em black;
-    width: 40em;
-    /* Could be more or less, depending on screen size */
-    /* Style */
-    background-color: white;
-}
-
-.modal_content_sign_in {
-    /* Layout */
-    display: block;
-    margin: auto;
-    border-radius: 0.5em;
-    box-shadow: 0 0 1em black;
-    width: 30em;
-    /* Could be more or less, depending on screen size */
-    /* Style */
-    background-color: white;
-}
-
-#sign_in_form {
-    padding-top: 10%;
-}
-
-#sign_up_form {
-    padding-top: 7%;
-}
-
-.container_sign_up {
-    /* Layout */
-    padding-right: 4em;
-    padding-left: 4em;
-    padding-top: 4em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 2em;
     padding-bottom: 1em;
+}
+
+#sign_up_form .form_container {
     display: grid;
     grid-template-columns: 15em 2em 15em;
     grid-template-rows: auto auto auto auto;
 }
 
-.container_sign_in {
-    /* Layout */
-    padding-right: 4em;
-    padding-left: 4em;
-    padding-top: 4em;
+/* ---- Sign In Grid --- */
+
+#sign_in_form .modal_content {
+    width: 30%;
+}
+
+#sign_in_form .email {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#sign_in_form .password {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#sign_in_form .submit_button {
     padding-bottom: 1em;
-    display: grid;
 }
 
 /* ---- Sign Up Grid --- */
 
-.gridd_first_name {
+#sign_up_form .first_name {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
 }
 
-.gridd_last_name {
+#sign_up_form .last_name {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
 }
 
-.gridd_email {
+#sign_up_form .email {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
 }
 
-.gridd_password {
+#sign_up_form .password {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 4;
 }
 
-.gridd_confirm_password {
+#sign_up_form .confirm_password {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 3;
     grid-row-end: 4;
 }
 
-.gridd_country_id {
+#sign_up_form .country_id {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 4;
     grid-row-end: 5;
 }
 
-.gridd_phone_num {
+#sign_up_form .phone_num {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 4;
     grid-row-end: 5;
 }
 
-.gridd_submit_button {
-    padding-bottom: 1em;
-}
-
-/* ---- Sign In Grid --- */
-
-.grid_email {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 1;
-    grid-row-end: 2;
-}
-
-.grid_password {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-.grid_submit_button {
+#sign_up_form .submit_button {
     padding-bottom: 1em;
 }
 
@@ -923,13 +882,18 @@ body>#messages .success {
 .img_container {
     /* Layout */
     width: 100%;
-    height: 5%;
+    height: auto;
     position: relative;
     text-align: center;
 }
 
 .img_container img {
-    padding: 1em 0 0 0;
+    padding-top: 1em;
+}
+
+#sign_in_form .img_container img {
+    width: 6em;
+    height: auto;
 }
 
 /* The Close Button (x) */
@@ -1017,7 +981,7 @@ body>#messages .success {
 
 /* ------------- HOME PAGE: PLACES ------------*/
 
-#site_content .places {
+.places {
     /* Layout */
     display: flex;
     align-items: center;
@@ -1025,12 +989,12 @@ body>#messages .success {
     flex-wrap: wrap;
 }
 
-#site_content .places #no_place {
+.places #no_place {
     font-size: 1.2em;
     padding: 0.5em 4em;
 }
 
-#site_content .places .place {
+.places .place {
     /* Layout */
     text-align: left;
     max-width: 20em;
@@ -1040,11 +1004,11 @@ body>#messages .success {
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-#site_content .places .place:hover {
+.places .place:hover {
     box-shadow: 0 0 1em rgb(128, 128, 128);
 }
 
-#site_content .places .place a .place_city_country {
+.places .place a .place_city_country {
     /* Layout */
     margin: 0;
     padding: 1em;
@@ -1053,21 +1017,21 @@ body>#messages .success {
     font-weight: normal;
 }
 
-#site_content .places .place a .place_title {
+.places .place a .place_title {
     /* Style */
     font-size: 1.2em;
     margin: 1em 0;
     padding: 0 1em;
 }
 
-#site_content .places .place a .place_image {
+.places .place a .place_image {
     /* Layout */
     width: 100%;
     height: 100%;
     margin: 0;
 }
 
-#site_content .places .place a .place_footer {
+.places .place a .place_footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1080,23 +1044,23 @@ body>#messages .success {
     border-bottom-right-radius: 0em;
 }
 
-#site_content .places .place a .place_footer>* {
+.places .place a .place_footer>* {
     display: flex;
     align-items: center;
     font-weight: bold;
     margin: 1em;
 }
 
-#site_content .places .place a .place_footer>*>* {
+.places .place a .place_footer>*>* {
     padding: 0 0.1em;
 }
 
-#site_content .places .place a .place_footer .place_rating i {
+.places .place a .place_footer .place_rating i {
     color: var(--rating-star-color);
     font-size: 1.3em;
 }
 
-#site_content .places .place a .place_footer .place_price * {
+.places .place a .place_footer .place_price * {
     font-size: 1.4em;
 }
 
@@ -1804,7 +1768,7 @@ body>#messages .success {
 
 /* Upload */
 
-#add_place #body #upload, #edit_place #body #upload {
+#upload {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
