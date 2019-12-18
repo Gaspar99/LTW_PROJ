@@ -158,9 +158,10 @@ function draw_notifications($email)
         <?php foreach ($notifications as $notification) { 
                 if($notification["is_read"]){?>
                     <li id="read_notification" name="notification_id<?= $notification['id'] ?>">
-                        <span> Notification type  + <?= $notification['notification_date'] ?></span>
-                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
-                        <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"?>
+                            <span> <?=$notification['notification_content']?> <?= $notification['notification_date'] ?></span>
+                            <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        </a>
                         <span name="button_type<?= $notification['id'] ?>" onclick="unmark_as_seen(<?= $notification['id'] ?>)">
                             <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility_off</i>
                         </span>
@@ -170,9 +171,10 @@ function draw_notifications($email)
                     </li>
                 <?php } else { ?>
                     <li id="unread_notification" name="notification_id<?= $notification['id'] ?>">
-                        <span> Notification type  + <?= $notification['notification_date'] ?></span>
-                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"><?= $notification['place_title'] ?></a>
-                        <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        <a href="../pages/place.php?id=<?=$notification['place_id']?>"?>
+                            <span> <?=$notification['notification_content']?> <?= $notification['notification_date'] ?></span>
+                            <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                        </a>
                         <span name="button_type<?= $notification['id'] ?>" onclick="mark_as_seen(<?= $notification['id'] ?>)">
                             <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility</i>
                         </span>

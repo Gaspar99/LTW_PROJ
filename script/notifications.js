@@ -148,22 +148,23 @@ function notifications_handler(){
         new_notification.id = "unread_notification"
         new_notification.setAttribute("name", "notification_id"+last_id.id)
 
-        //make header span 
-        let notification_title = document.createElement("span")
-        notification_title.innerHTML = "Notification type TODO" + " + " + last_id.notification_date
-        new_notification.appendChild(notification_title)
-
         //make link a
         let notification_place = document.createElement("a")
         notification_place.setAttribute("href","../pages/place.php?id="+last_id.place_id)
-        notification_place.innerHTML = last_id.title
-        new_notification.appendChild(notification_place)
-        
+       
+        //todo
+        //make header span 
+        let notification_content = document.createElement("span")
+        notification_content.innerHTML = last_id.notification_content + " " + last_id.notification_date
+        notification_place.appendChild(notification_content)
+      
         //make check in check out
         let notification_check = document.createElement("span")
         notification_check.setAttribute("class","notification")
         notification_check.innerHTML = last_id.check_in + " - " + last_id.check_out
-        new_notification.appendChild(notification_check)
+        notification_place.appendChild(notification_check)
+
+        new_notification.appendChild(notification_place)
 
         //make unseen
         let notification_seen = document.createElement("span")
@@ -195,10 +196,6 @@ function notifications_handler(){
         last_notification_id = 0
     else 
         last_notification_id = last_id.id
-}
-
-function handle_messages(){
-
 }
 
 /**

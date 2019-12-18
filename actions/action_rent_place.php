@@ -30,7 +30,7 @@ try {
 
 //generate reservation notification 
 try{
-    add_reservation_notification($reservation_id); 
+    add_notification_reservation($reservation_id); 
 }catch (PDOException $e) {
 
     die($e->getMessage());

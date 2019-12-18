@@ -504,9 +504,3 @@ function draw_image_gallery($image_gallery)
         </div>
     </section>
 <?php }
-
-
-
-
-                 
-    

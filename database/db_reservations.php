@@ -27,6 +27,7 @@ function get_user_reservations($user_id){
  * 
  */
 function get_reservation_owner($reservation_id) {
+    
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -38,7 +39,43 @@ function get_reservation_owner($reservation_id) {
             reservation.id = ? AND
             reservation.place_id = place.id"
     );
-  
+
+    $stmt->execute(array($reservation_id));
+
+    return $stmt->fetch(); 
+}
+
+function get_reservation_tourist($reservation_id){
+    
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT 
+            tourist 
+        FROM 
+            reservation
+        WHERE 
+            reservation.id = ? "
+    );
+
+    $stmt->execute(array($reservation_id));
+
+    return $stmt->fetch(); 
+}
+
+function get_reservation_place_id($reservation_id){
+    
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT 
+            place_id 
+        FROM 
+            reservation
+        WHERE 
+            reservation.id = ? "
+    );
+
     $stmt->execute(array($reservation_id));
 
     return $stmt->fetch(); 

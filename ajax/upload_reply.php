@@ -2,6 +2,7 @@
 include_once("../includes/database.php");
 include_once("../database/db_reservations.php");
 include_once("../templates/tpl_places.php");
+include_once("../database/db_notifications.php");
 
 $reservation_id = $_POST["id"];
 $reply_content = $_POST["reply"];
@@ -23,6 +24,15 @@ $stmt = $db->prepare(
 );
 
 $stmt->execute(array($reply_content, $reply_date, $reservation_id));
+
+//generate reservation notification 
+try{
+    add_notification_reply($reservation_id); 
+}catch (PDOException $e) {
+
+    die($e->getMessage());
+}
+
 
 $owner = get_reservation_owner($reservation_id);
 $comment["owner_reply_date"] = $reply_date;

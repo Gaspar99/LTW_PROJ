@@ -495,8 +495,8 @@ confirm_password.onkeyup = validatePassword;
     format: "D - MMM - YYYY",
     startDate: search_check_in,
     endDate: search_check_out,
-    numberOfMonths: 2,
-    numberOfColumns: 2,
+    numberOfMonths: 1,
+    numberOfColumns: 1,
     disallowLockDaysInRange: true
  })
  

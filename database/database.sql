@@ -91,6 +91,7 @@ CREATE TABLE tourist_photo
 CREATE TABLE usr_notification
 (
    id INTEGER PRIMARY KEY,
+   notification_content TEXT NOT NULL,
    notification_date TEXT NOT NULL,
    is_read INTEGER NOT NULL,
    usr INTEGER REFERENCES usr NOT NULL,

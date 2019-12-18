@@ -1,6 +1,8 @@
 <?php 
 include_once("../includes/database.php");
 include_once("../database/db_user.php");
+include_once("../database/db_reservations.php");
+
 
 /*========================= GETS ============================== */
 
@@ -13,18 +15,18 @@ function get_usr_notifications($email){
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT usr_notification.id AS id, 
-                usr_notification.notification_date AS notification_date, 
-                usr_notification.is_read AS is_read, 
-                reservation.check_in AS check_in, 
-                reservation.check_out AS check_out, 
-                reservation.num_guests AS num_guests,
-                place.title AS place_title,
-                place.id AS place_id
-        FROM usr_notification, reservation, place 
-        WHERE usr = ? 
-            AND usr_notification.reservation = reservation.id 
-            AND reservation.place_id = place.id "
+        "SELECT usr_notification.id AS id, usr_notification.reservation as R_ID,
+        usr_notification.notification_content AS notification_content,
+        usr_notification.notification_date AS notification_date, 
+        usr_notification.is_read AS is_read, 
+        reservation.check_in AS check_in, 
+        reservation.check_out AS check_out, 
+        reservation.num_guests AS num_guests,
+        place.title AS place_title,
+        place.id AS place_id
+    FROM usr_notification  JOIN reservation, place 
+    WHERE usr = ?
+    AND  usr_notification.reservation = reservation.id AND reservation.place_id = place.id"
     );
 
     $stmt->execute(array($usr_id));
@@ -65,50 +67,88 @@ function get_unseen_notification($id){
  * Generate notify reservation
  */
 //todo add notification type 
-function add_reservation_notification($reservation){
+function add_notification_reservation($reservation){
     
     $db = Database::instance()->db();
-
+ 
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
+
     $usr = get_reservation_owner($reservation)['owner_id']; 
-    print_r($usr); 
+    echo $usr;
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
-            (notification_date, is_read, usr, reservation)
-            VALUES (?, ?, ?, ?)"
+            (notification_content,notification_date, is_read, usr, reservation)
+            VALUES (?,?, ?, ?, ?)"
     );
 
-    $stmt->execute(array($notification_time,0,$usr,$reservation));
-
+    $stmt->execute(array("New Reservation",$notification_time,0,$usr,$reservation));
 }
 
-/**
- * Generate comment notification
- */
-function add_comment_notification($usr,$reservation){
+function add_notification_review($reservation){
     
     $db = Database::instance()->db();
-
+ 
     $date = new DateTime();
     $time_stamp = $date->getTimestamp();
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
 
+    $usr = get_reservation_owner($reservation)['owner_id']; 
+    echo $usr;
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
-            (notification_date, is_read, usr, reservation)
-            VALUES (?, ?, ?, ?)"
+            (notification_content,notification_date, is_read, usr, reservation)
+            VALUES (?,?, ?, ?, ?)"
     );
 
-    $stmt->execute(array($notification_time,0,$usr,$reservation));
-
-    return $db->lastInsertId();
+    $stmt->execute(array("New Review",$notification_time,0,$usr,$reservation));
 }
+
+function add_notification_reply($reservation){
+    $db = Database::instance()->db();
+ 
+    $date = new DateTime();
+    $time_stamp = $date->getTimestamp();
+    $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
+
+    $usr = get_reservation_tourist($reservation)['tourist'];
+    print_r($usr);
+    $stmt = $db->prepare(
+        "INSERT INTO usr_notification
+            (notification_content,notification_date, is_read, usr, reservation)
+            VALUES (?,?, ?, ?, ?)"
+    );
+
+    $stmt->execute(array("New Reply",$notification_time,0,$usr,$reservation));
+}
+
+function add_notification_cancel($reservation){
+    
+    $db = Database::instance()->db();
+ 
+    $date = new DateTime();
+    $time_stamp = $date->getTimestamp();
+    $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
+    
+    $usr = get_reservation_owner($reservation)['owner_id']; 
+
+    echo $usr;
+    $stmt = $db->prepare(
+        "INSERT INTO usr_notification
+            (notification_content,notification_date, is_read, usr, reservation)
+            VALUES (?,?, ?, ?, ?)"
+    );
+
+    $stmt->execute(array("Reservation Cancelled",$notification_time,0,$usr,$reservation));
+}
+
+
+
 /**
  *  Generate message notification 
  */
-function add_message_notitfication($content,$from,$to){
+function add_message_notification($content,$from,$to){
     $db = Database::instance()->db();
 
     $date = new DateTime();

@@ -32,8 +32,8 @@ let reservation_picker = new Litepicker({
     format: "D - MMM - YYYY",
     startDate: reservation_check_in,
     endDate: reservation_check_out,
-    numberOfMonths: 2,
-    numberOfColumns: 2,
+    numberOfMonths: 1,
+    numberOfColumns: 1,
     disallowLockDaysInRange: true,
     onShow: function() { this.setLockDays(locked_days) }
 })   

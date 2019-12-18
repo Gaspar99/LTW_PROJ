@@ -1,6 +1,7 @@
 <?php
 include_once("../includes/session.php");
 include_once("../database/db_comments.php");
+include_once("../database/db_notifications.php");
 
 $reservation_id = $_POST["reservation_id"];
 $comment = $_POST["comment"];
@@ -22,6 +23,13 @@ try {
     add_comment($review);
     //update place rating 
 } catch (PDOException $e) {
+    die($e->getMessage());
+}
+//todo test
+try{
+    add_notification_review($reservation_id); 
+}catch (PDOException $e) {
+
     die($e->getMessage());
 }
 
