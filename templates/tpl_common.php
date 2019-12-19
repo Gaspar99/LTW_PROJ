@@ -48,6 +48,7 @@ function draw_header($user_email)
         <script src="../script/comments.js" defer></script>
         <script src="../script/notifications.js" defer></script>
         <script src="../script/reservation.js" defer></script>
+        <script src="../script/place_utils.js" defer></script>
         <script src="../script/close_tabs.js" defer></script>
     </head>
     

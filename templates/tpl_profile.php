@@ -26,7 +26,7 @@ function draw_profile($user_id)
                     <a class="button" href="../pages/edit_profile.php">Edit Profile</a>
                 </div>
             <?php } else {?>
-                <a class="button" href="../pages/chat.php?id=<?=$user_id?>">Send a Message</a>
+                <a id="send_message" class="button" href="../pages/chat.php?id=<?=$user_id?>">Send a Message</a>
            <?php }?>
         </section>
 

@@ -762,6 +762,11 @@ body>#messages .success {
     border-color: green;
 }
 
+#send_message{
+    margin-top: 0.5em;
+    margin-left: 8.3em;
+}
+
 /* ----------------- Model Forms ---------------- */
 
 /* The Modal (background) */
