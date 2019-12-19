@@ -1943,7 +1943,7 @@ body>#messages .success {
     user-select: none;
     width: 1.2em;
     height: 1.2em;
-    border: 0.08em solid var(--panel-color);
+    border: 0.08em solid black;
     border-radius: 30%;
 }
 
@@ -2065,7 +2065,7 @@ body>#messages .success {
         width: 100%;
     }
 
-    #tags {
+    #place_info #tags {
         width: 570px;
     }
 
