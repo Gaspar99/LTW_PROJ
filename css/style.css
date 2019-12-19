@@ -766,6 +766,12 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     font-size: 1em;
     font-weight: bold;
 }
+
+#send_message{
+    margin-top: 0.5em;
+    margin-left: 8.3em;
+}
+
 /* ----------------- Model Forms ---------------- */
 
 /* The Modal (background) */
