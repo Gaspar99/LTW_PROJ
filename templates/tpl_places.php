@@ -114,7 +114,6 @@ function draw_place_info($place_id)
         </div>
 
         </div>
-        <hr>
 
         <section id="place_body">
 
@@ -176,7 +175,7 @@ function draw_place_info($place_id)
                     <p><?= $place["place_description"] ?></p>
                 </section>
 
-                <hr>
+
 
                 <div id="tags">
                     <?php foreach ($place_tags as $tag) { ?>
@@ -187,7 +186,6 @@ function draw_place_info($place_id)
                     <?php } ?>
                 </div>
 
-                <hr>
 
                 <section id="comments">
                     <h2>Comments</h2>
@@ -259,7 +257,6 @@ function draw_add_place($user_id)
 
         </section>
 
-        <hr>
 
         <article id="body">
 
@@ -276,7 +273,6 @@ function draw_add_place($user_id)
                     <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required></textarea>
                 </div>
 
-                <hr>
 
                 <section id="tags_section">
                     <?php $tags = get_tags(); ?>
@@ -362,7 +358,6 @@ function draw_edit_place($user_id, $place_id)
 
         </section>
 
-        <hr>
 
         <article id="body">
 
@@ -383,7 +378,6 @@ function draw_edit_place($user_id, $place_id)
                     </textarea>
                 </div>
 
-                <hr>
 
                 <section id="tags_section">
                     <?php $tags = get_tags(); ?>
@@ -465,7 +459,6 @@ function draw_reservations_made($place_id)
                 </div>
 
             </div>
-            <hr>
         <?php }
     }
 }
