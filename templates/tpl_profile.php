@@ -52,7 +52,7 @@ function draw_edit_profile($user_id)
 {
     $user_info = get_user_info($user_id); ?>
     <script src="../script/title.js" onload="update_title('Edit Profile')" defer></script>
-    <form id="edit_profile" action="../actions/action_update_profile.php" method="post" enctype="multipart/form-data">
+    <form id="edit_profile" onclick="password_require()" action="../actions/action_update_profile.php" method="post" enctype="multipart/form-data">
 
         <section id="profile_info">
 
@@ -98,11 +98,10 @@ function draw_edit_profile($user_id)
                 <input id="password" type="password" name="password" value="" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                 title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
-                <!-- todo only required if passord above has smth in value, a script basically -->
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" type="password" placeholder="Repeat Password" name="confirm_password" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
-                title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" required>
+                title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter">
             </div>
 
         </section>

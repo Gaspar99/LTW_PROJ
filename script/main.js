@@ -81,7 +81,19 @@ function toggle_dropdown_menu() {
             menu[i].style.display = "block"
     }
 }
+/**
+ * 
+ */
+function password_require(){
+    
+    let input_pass = document.getElementById("password")
+    let confirm = document.getElementById("confirm_password")
+    console.log(input_pass.value)
+    if(input_pass.value.length != ""){
+        confirm.required =true
+    }else confirm.required =false
 
+}
 /**
  * 
  * @param {*} event 
