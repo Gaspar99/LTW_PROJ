@@ -2,28 +2,20 @@
 var last_message_id = -1
 var last_notification_id = -1 
 
+//vars 
+notification_bell = document.getElementById("notification_bell")
 /* ---- HEADER ----- */
-
-/**
- * 
- */
-function toggle_notifications() {
-    let box = document.getElementById("notifications_box")
-
-    if (box.style.display == "flex")
-        box.style.display = "none"
-    else
-        box.style.display = "flex"
+if(notification_bell != null){
+    notification_bell.onclick = function(e) {
+    
+        let box = document.getElementById("notifications_box")
+    
+        if (box.style.display == "flex")
+            box.style.display = "none"
+        else
+            box.style.display = "flex"
+        }
 }
-
-/**
- * 
- */
-function close_notifications() {
-    let box = document.getElementById("notifications_box")
-    box.style.display = "none"
-}
-
 /** 
  * mark notification as seen  
  * @param {*} id - notification id
@@ -162,7 +154,7 @@ function notifications_handler(){
         let time = new Date(last_id.notification_date)
         let formatted_date = convert_month(time.getMonth()) + "-" + time.getDate() +" "+ time.getHours() + ":" + time.getMinutes()
         notification_time.innerHTML = formatted_date; 
-        notification_place.appendChild(formatted_date)
+        notification_place.appendChild(notification_time)
 
         new_notification.appendChild(notification_place)
 

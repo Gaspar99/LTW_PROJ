@@ -25,7 +25,9 @@ function draw_profile($user_id)
                     <a class="button" href="../pages/add_place.php">Add Place</a>
                     <a class="button" href="../pages/edit_profile.php">Edit Profile</a>
                 </div>
-            <?php } ?>
+            <?php } else {?>
+                <a class="button" href="../pages/chat.php?id=<?=$user_id?>">Send a Message</a>
+           <?php }?>
         </section>
 
         <section id="user_places">
@@ -52,7 +54,7 @@ function draw_edit_profile($user_id)
 {
     $user_info = get_user_info($user_id); ?>
     <script src="../script/title.js" onload="update_title('Edit Profile')" defer></script>
-    <form id="edit_profile" onclick="password_require()" action="../actions/action_update_profile.php" method="post" enctype="multipart/form-data">
+    <form id="edit_profile" action="../actions/action_update_profile.php" method="post" enctype="multipart/form-data">
 
         <section id="profile_info">
 
@@ -109,7 +111,7 @@ function draw_edit_profile($user_id)
         <input type="hidden" name="id" value="<?= $user_id ?>">
         <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
-        <button class="submit_button" type="submit" value="Upload">Save</button>
+        <button id="edit_profile_submit_button" class="submit_button" type="submit" value="Upload">Save</button>
 
     </form>
 <?php } 
@@ -183,7 +185,7 @@ function draw_reservation($reservation)
         <a class="view_place button" href="../pages/place.php?id=<?=$reservation["place_id"]?>">View Place</a>
 
         <?php if (can_be_reviewed($reservation['id'])) { ?>
-            <button class="review" onclick="open_review_box(event)">Review</button>
+            <button class="review" id="open_review_box">Review</button>
             <?php draw_review_box($reservation['id'], $reservation["place_id"]);  
         } 
 
@@ -203,7 +205,7 @@ function draw_review_box($reservation_id, $place_id) { ?>
     <div class="modal">
         <form class="review_box modal_content animate" action="../actions/action_make_review.php" method="post">
 
-            <span class="close" onclick="close_review_box(event)" title="Close Review Form">&times;</span>
+            <span class="close" id="close_review_box" title="Close Review Form">&times;</span>
 
             <div class="review_rating">
                 <label for="rating">Rating</label>

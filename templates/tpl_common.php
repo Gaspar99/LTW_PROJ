@@ -47,8 +47,8 @@ function draw_header($user_email)
         <script src="../script/main.js" defer></script>
         <script src="../script/comments.js" defer></script>
         <script src="../script/notifications.js" defer></script>
+        <script src="../script/reservation.js" defer></script>
         <script src="../script/close_tabs.js" defer></script>
-        <!-- <script src="../script/reservation.js" defer></script> -->
     </head>
     
     <body id="site_container">
@@ -59,18 +59,18 @@ function draw_header($user_email)
                     <div id="site_name">Rental Eye</div>
                 </a>
             </div>
-            <button id="search_button" onclick="toggle_search_form()">Search</button>
+            <button id="search_button" >Search</button>
             <?php if ($user_email == null) { ?>
                 <div id="auth_forms_buttons">
-                    <button onclick="open_sign_in_form()">Log In</button>
-                    <button onclick="open_sign_up_form()">Sign Up</button>
+                    <button id="sign_in_form_button" >Log In</button>
+                    <button id="sign_up_form_button" >Sign Up</button>
                 </div>
             <?php } else {
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
-                        <span id="notification_bell" onclick="toggle_notifications()">
+                        <span id="notification_bell">
                            <?php 
                             $seen_status = get_unseen_notification($user_id);
                            if($seen_status['unseen_num'] == $seen_status['notification_num']) { ?>
@@ -83,7 +83,7 @@ function draw_header($user_email)
                             <i class="material-icons">mail_outline</i>
                         </a>
                         <div id="user_menu">
-                            <button id="username_tile" onclick="toggle_dropdown_menu()">
+                            <button id="username_tile">
                                 <img src="../images/profiles/thumbs_small/<?= $user["profile_pic"] ?>" alt="User Profile Picture" width="50" height="50">
                                 <div id="username"><?= $user["first_name"] ?> <?= $user["last_name"] ?></div>
                                 <i class="material-icons">arrow_drop_down</i>

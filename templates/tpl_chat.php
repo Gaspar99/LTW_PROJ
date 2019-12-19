@@ -3,11 +3,13 @@
 /**
  * 
  */
-function draw_chat(){?>
+function draw_chat($id){?>
+    <link rel="stylesheet" href="../css/style_chat.css">
     <article class="my_messages">
-
-    <?php draw_users_to_message();
-    draw_chat_box(); ?>
+    <?php 
+    draw_users_to_message($id);
+    draw_chat_box($id); 
+    ?>
 
     </article>
 <?php } 
@@ -15,7 +17,7 @@ function draw_chat(){?>
 /**
  * 
  */
-function draw_chat_box(){?>
+function draw_chat_box($id){?>
     <div class="chat_box">
         <div id=traded_messages>
             //todo
@@ -28,7 +30,7 @@ function draw_chat_box(){?>
 /**
  * 
  */
-function draw_users_to_message(){?>
+function draw_users_to_message($id){?>
     <div class="users_to_message">
        <div class="users_messages">
            //todo
