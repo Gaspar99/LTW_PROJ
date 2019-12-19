@@ -331,6 +331,7 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 #site_header #user_options {
     position: relative;
+    top: 10px;
     text-align: center;
     display: flex;
     
