@@ -1,18 +1,11 @@
 <?php
 include_once("../includes/database.php");
+include_once("../database/db_location.php");
+include_once("../util/security_checks.php");
 
-$country_id = $_GET["country_id"];
+verify_number($_GET["country_id"], "Country id");
 
-$db = Database::instance()->db();
-$stmt = $db->prepare(
-    "SELECT id AS city_id, city.city_name AS city_name 
-        FROM city WHERE country_id = ? 
-        ORDER BY city_name"
-);
-
-$stmt->execute(array($country_id));
-
-$cities = $stmt->fetchAll();
+$cities = get_cities($_GET["country_id"]);
 
 // JSON encode them
 echo json_encode($cities);

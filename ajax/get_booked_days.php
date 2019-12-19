@@ -1,17 +1,11 @@
 <?php
-    include_once("../includes/database.php");
+include_once("../includes/database.php");
+include_once("../database/db_reservations.php");
+include_once("../util/security_checks.php");
 
-    $db = Database::instance()->db();
+// Security check
+verify_number($_GET["place_id"], "Place id");
 
-    $stmt = $db->prepare(
-        "SELECT check_in,check_out 
-        FROM reservation 
-        WHERE place_id = ?"
-    );
+$dates = get_dates($_GET["place_id"]);
 
-    $stmt->execute(array($_GET['place_id']));
-
-    $ret = $stmt->fetchAll();
-
-    echo json_encode($ret)
-?>
+echo json_encode($dates);

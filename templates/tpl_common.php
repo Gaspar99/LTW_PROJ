@@ -43,6 +43,7 @@ function draw_header($user_email)
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="icon" href="../images/site/logo.jpeg">
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js" defer></script>
         <script src="../script/main.js" defer></script>
         <script src="../script/comments.js" defer></script>
@@ -149,7 +150,9 @@ function draw_header($user_email)
 
 function draw_notifications($email)
 {
-    $notifications = get_usr_notifications($email);
+    $usr_id = get_user_id($email);
+    $notifications = get_all_usr_notifications($usr_id);
+    
     ?>
     <div id="notifications_box">
         <ul id="notification_list">

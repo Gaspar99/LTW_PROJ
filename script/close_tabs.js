@@ -7,7 +7,7 @@ document.getElementById("site_container").onclick = function(e) {
     //search suggestions 
         if(e.target.id != "result_suggestions" && e.target.id != "search_input" ) {
             options.innerHTML=""
-            document.getElementById("search_input").value=""   
+            //document.getElementById("search_input").value=""   
         }
         
     //notifications
@@ -15,7 +15,7 @@ document.getElementById("site_container").onclick = function(e) {
         if(e.target != document.getElementById("notifications_box")) {
             document.getElementById("notifications_box").style.display = "none";
         }
-        if(e.target.className == "material-icons"){
+        if(e.target.className == "material-icons") {
             document.getElementById("notifications_box").style.display = "flex";
         }
     }

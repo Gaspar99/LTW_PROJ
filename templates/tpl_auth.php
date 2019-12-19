@@ -22,7 +22,7 @@ function draw_sign_in()
 
         <div class="password">
           <label for="password">Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" patthern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+          <input type="password" placeholder="Enter Password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
         </div>
       </div>
 

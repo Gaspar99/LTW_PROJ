@@ -734,12 +734,25 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 /* MESSAGES */
 
-body>#messages div {
+#messages {
     position: fixed;
+    display: block;
     z-index: 10;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
+}
+
+#messages > div.error {
+    border-color: red;
+}
+
+#messages div.success {
+    border-color: green;
+}
+
+#messages > div {
     margin: 0 auto;
     padding: 1em;
     text-align: center;
@@ -753,15 +766,6 @@ body>#messages div {
     font-size: 1em;
     font-weight: bold;
 }
-
-body>#messages .error {
-    border-color: red;
-}
-
-body>#messages .success {
-    border-color: green;
-}
-
 /* ----------------- Model Forms ---------------- */
 
 /* The Modal (background) */

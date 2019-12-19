@@ -95,7 +95,7 @@ function check_if_bell_active(id){
  * remove notification from the db 
  * @param {*} id - notification id
  */
-function remove_notification(id){
+function remove_notification(id) {
     //delete html displaying the reservation
     let notification_tile = document.getElementsByName("notification_id"+id)[0]
     notification_tile.remove(notification_tile.selectedIndex)

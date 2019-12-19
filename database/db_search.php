@@ -193,7 +193,7 @@ function process_string($search_str)
 
             $country_state = $stmt->fetch();
             
-            if($country_state == false){
+            if($country_state == false) {
             
                 $stmt = $db->prepare(
                     "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"

@@ -1,34 +1,15 @@
 <?php
-  include_once("../includes/database.php");
+include_once("../includes/database.php");
+include_once("../database/db_location.php");
+include_once("../util/security_checks.php");
 
-  $name = $_GET['name'];
-  
-  $db = Database::instance()->db();
-  // Get the countries that start with $name
-  $stmt = $db->prepare(
-      'SELECT id AS country_id, country_name
-        FROM country
-        WHERE country_name
-            LIKE upper(?) 
-            ORDER BY country_name ASC
-            LIMIT 2'
-  );
-  $stmt->execute(array("$name%"));
-  $countries_search = $stmt->fetchAll();
+// Security check
+verify_text($_GET["name"], "Country name");
 
-  $stmt = $db->prepare(
-    'SELECT DISTINCT country.id AS country_id, city.id AS city_id, country_name, city_name
-      FROM country,city 
-      WHERE city_name 
-            LIKE upper(?) 
-            AND city.country_id = country.id
-            ORDER BY city_name ASC
-            LIMIT 8'
-  );
-  $stmt->execute(array("$name%"));
-  $countries_cities_search = $stmt->fetchAll();
+$countries_search = get_countries_by_name($_GET["name"]);
+$countries_cities_search = get_countries_by_city($_GET["name"]);
 
-  $search = array_merge($countries_search,$countries_cities_search);
-  
-  // JSON encode them
-  echo json_encode($search);
+$search = array_merge($countries_search, $countries_cities_search);
+
+// JSON encode them
+echo json_encode($search);

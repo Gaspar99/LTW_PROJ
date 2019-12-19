@@ -6,7 +6,8 @@ include_once("../includes/database.php");
 /**
  * 
  */
-function get_user_reservations($user_id){
+function get_user_reservations($user_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -26,8 +27,9 @@ function get_user_reservations($user_id){
 /**
  * 
  */
-function get_reservation_owner($reservation_id) {
-    
+function get_reservation_owner($reservation_id)
+{
+
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -42,11 +44,12 @@ function get_reservation_owner($reservation_id) {
 
     $stmt->execute(array($reservation_id));
 
-    return $stmt->fetch(); 
+    return $stmt->fetch();
 }
 
-function get_reservation_tourist($reservation_id){
-    
+function get_reservation_tourist($reservation_id)
+{
+
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -60,11 +63,12 @@ function get_reservation_tourist($reservation_id){
 
     $stmt->execute(array($reservation_id));
 
-    return $stmt->fetch(); 
+    return $stmt->fetch();
 }
 
-function get_reservation_place_id($reservation_id){
-    
+function get_reservation_place_id($reservation_id)
+{
+
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -78,19 +82,20 @@ function get_reservation_place_id($reservation_id){
 
     $stmt->execute(array($reservation_id));
 
-    return $stmt->fetch(); 
+    return $stmt->fetch();
 }
 
 /**
  * 
  */
-function get_search_reservations($places){
+function get_search_reservations($places)
+{
     $db = Database::instance()->db();
 
-    $reservations[]=""; 
-    
-    foreach($places as $place){
-        
+    $reservations[] = "";
+
+    foreach ($places as $place) {
+
         $stmt = $db->prepare(
             "SELECT 
                 id, 
@@ -104,13 +109,32 @@ function get_search_reservations($places){
         );
 
         $stmt->execute(array(
-            $place["id"]      
+            $place["id"]
         ));
 
-        array_push($reservations,$stmt->fetchAll()); 
-    }    
+        array_push($reservations, $stmt->fetchAll());
+    }
 
     return  $reservations;
+}
+
+function get_dates($place_id)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "SELECT 
+            check_in, 
+            check_out 
+        FROM 
+            reservation 
+        WHERE 
+            place_id = ?"
+    );
+
+    $stmt->execute(array($place_id));
+
+    return $stmt->fetchAll();
 }
 
 /*========================= ADDS ============================== */
@@ -145,7 +169,8 @@ function add_reservation($reservation)
 /**
  * 
  */
-function remove_place_reservations($place_id) {
+function remove_place_reservations($place_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -161,18 +186,45 @@ function remove_place_reservations($place_id) {
 /**
  * 
  */
-function remove_reservation($reservation_id){
+function remove_reservation($reservation_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
         "DELETE FROM 
             reservation 
         WHERE 
-            id=?"
+            id = ?"
     );
 
     $stmt->execute(array($reservation_id));
     $stmt->fetch();
+}
+
+/*========================= UPDATES ============================== */
+
+/**
+ * 
+ */
+function update_reservation_comment($comment_info)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        "UPDATE 
+            reservation
+        SET 
+            owner_reply = ?,
+            owner_reply_date = ?
+        WHERE
+            id = ?"
+    );
+
+    $stmt->execute(array(
+        $comment_info["content"], 
+        $comment_info["date"], 
+        $comment_info["reservation_id"])
+    );
 }
 
 /*========================= VERIFICATIONS ============================== */
@@ -180,7 +232,8 @@ function remove_reservation($reservation_id){
 /**
  * 
  */
-function can_be_cancelled($reservation_id){
+function can_be_cancelled($reservation_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -194,7 +247,7 @@ function can_be_cancelled($reservation_id){
 
     $stmt->execute(array($reservation_id));
 
-    $check_in = $stmt->fetch(); 
+    $check_in = $stmt->fetch();
 
     //compare with current date
     $date = new DateTime();
@@ -207,7 +260,8 @@ function can_be_cancelled($reservation_id){
 /**
  * 
  */
-function can_be_reviewed($reservation_id) {
+function can_be_reviewed($reservation_id)
+{
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -223,7 +277,7 @@ function can_be_reviewed($reservation_id) {
     $stmt->execute(array($reservation_id));
 
     $reservation = $stmt->fetch();
-    
+
     // User has already make a review for this reservation
     if ($reservation["usr_comment"] != null) return false;
 
@@ -234,5 +288,3 @@ function can_be_reviewed($reservation_id) {
 
     return ($current_time > $reservation["check_out"]);
 }
-
-?>

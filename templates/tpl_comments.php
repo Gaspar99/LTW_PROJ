@@ -92,7 +92,7 @@ function draw_reply_box($comment) {
     $reservation_id = $comment["reservation_id"]; ?>
 
     <div class="reply_box" id="<?=$reservation_id?>">
-        <textarea name="reply" placeholder="Enter a reply comment" rows="3" required></textarea>
+        <textarea name="reply" placeholder="Enter a reply comment" rows="3" pattern="" required></textarea>
         
         <button class="submit_button" onclick="upload_reply(event, <?=$reservation_id?>)">Reply</button>
     </div>

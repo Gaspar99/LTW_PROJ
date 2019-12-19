@@ -100,16 +100,27 @@ function password_require(){
  */
 function cancel_reservation(id) {
 
-
     //delete html displaying the reservation
     let reservation_box = document.getElementsByName("reservation_id"+id)[0]
 
     reservation_box.remove(reservation_box.selectedIndex)
+
     //remove reservation from table 
     let request = new XMLHttpRequest()
-    request.addEventListener("load", function () {
-        alert('Successufully canceled reservation!')
-    })
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState === 4) {
+            
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(request.responseText, "text/xml");
+
+            let message = xmlDoc.getElementById("messages")
+            
+            document.body.appendChild(message)
+        }
+    }
+
     request.open("post", "../ajax/cancel_reservation.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     request.send(encodeForAjax({ id: id}))
