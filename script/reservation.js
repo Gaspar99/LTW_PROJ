@@ -20,13 +20,13 @@ function cancel_reservation(id) {
         if (request.readyState === 4) {
 
             let parser =  new DOMParser()
-            let response = parser.parseFromString(request.responseText)
+            let response = parser.parseFromString(request.responseText, "text/xml")
+
             let message = response.getElementById("messages")
 
             document.body.appendChild(message)
         }
     }
-
 
     request.open("post", "../ajax/cancel_reservation.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
