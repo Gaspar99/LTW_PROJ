@@ -82,6 +82,8 @@ function draw_place_info($place_id)
                 </form>
                 <form method="POST" action="../actions/action_remove_place.php">
                     <input type="hidden" name="place_id" value="<?= $place_id ?>" />
+                    <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
+
                     <button id="remove_place" type="submit">Remove Place</button>
                 </form>
             <?php } else { 
@@ -156,6 +158,7 @@ function draw_place_info($place_id)
 
                                 <input type="hidden" name="tourist" value="<?= get_user_id($_SESSION["user_email"]) ?>">
                                 <input type="hidden" name="place_id" value="<?= $place_id ?>">
+                                <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
                                 <button class="submit_button" type="submit">Rent Place</button>
                             </form>
@@ -210,7 +213,7 @@ function draw_add_place($user_id)
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="Enter Title" required>
+            <input type="text" name="title" placeholder="Enter Title" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
         </div>
 
         <section id="location">
@@ -231,7 +234,7 @@ function draw_add_place($user_id)
 
             <div class="address">
                 <label for="address">Address</label>
-                <input type="text" name="address" placeholder="Enter Place Address" required>
+                <input type="text" name="address" placeholder="Enter Place Address" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
             </div>
 
         </section>
@@ -270,7 +273,7 @@ function draw_add_place($user_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" placeholder="Enter Place Description" required></textarea>
+                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required></textarea>
                 </div>
 
                 <hr>
@@ -296,6 +299,7 @@ function draw_add_place($user_id)
 
 
         <input type="hidden" name="owner" value="<?= $user_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit">Create New Place</button>
     </form>
@@ -316,7 +320,7 @@ function draw_edit_place($user_id, $place_id)
 
         <div id="place_title">
             <label for="title">Title</label>
-            <input type="text" name="title" value="<?= $place["title"] ?>" placeholder="Enter Title" required>
+            <input type="text" name="title" value="<?= $place["title"] ?>" placeholder="Enter Title" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required>
         </div>
 
         <section id="location">
@@ -374,7 +378,9 @@ function draw_edit_place($user_id, $place_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" required><?= $place["place_description"] ?></textarea>
+                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/"required>
+                        <?= $place["place_description"] ?>
+                    </textarea>
                 </div>
 
                 <hr>
@@ -408,6 +414,7 @@ function draw_edit_place($user_id, $place_id)
 
         <input type="hidden" name="owner" value="<?= $user_id ?>">
         <input type="hidden" name="id" value="<?= $place_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit">Save Changes</button>
     </form>

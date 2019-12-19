@@ -60,12 +60,12 @@ function draw_edit_profile($user_id)
 
                 <div id="user_first_name">
                     <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" value="<?= $user_info["first_name"] ?>">
+                    <input type="text" name="first_name" value="<?= $user_info["first_name"] ?>" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                 </div>
 
                 <div id="user_last_name">
                     <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" value="<?= $user_info["last_name"] ?>">
+                    <input type="text" name="last_name" value="<?= $user_info["last_name"] ?>" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
                 </div>
 
             </div>
@@ -74,7 +74,7 @@ function draw_edit_profile($user_id)
                 <img src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile_pic" />
                 <div class="button upload_button">
                     Update Profile Picture
-                    <input type="file" name="image" required>
+                    <input type="file" name="image">
                 </div>
             </div>
 
@@ -84,8 +84,8 @@ function draw_edit_profile($user_id)
 
             <div id="phone_number">
                 <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="(9([0-9]{8}))" 
-                title ="Phone Number should start with a 9 and have 9 characters length">
+                <input type="text" name="phone_number" value="<?= $user_info["phone_number"] ?>" pattern="^(9\d{8})$" 
+                title ="Phone Number should start with a 9 and have 9 characters of length">
             </div>
 
             <div id="email">
@@ -108,6 +108,7 @@ function draw_edit_profile($user_id)
         </section>
 
         <input type="hidden" name="id" value="<?= $user_id ?>">
+        <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
         <button class="submit_button" type="submit" value="Upload">Save</button>
 
@@ -212,11 +213,14 @@ function draw_review_box($reservation_id, $place_id) { ?>
         
             <div class="review_comment">
                 <label for="comment">Comment</label>
-                <textarea name="comment" rows="4" placeholder="Write a review comment"></textarea>
+                <textarea name="comment" rows="4" placeholder="Write a review comment" pattern="^[a-z A-Z0-9\\/\\\\.'\"]+$">
+                </textarea>
             </div>
 
             <input type="hidden" name="reservation_id" value="<?=$reservation_id?>">
             <input type="hidden" name="place_id" value="<?=$place_id?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
+
             <button type="submit" class="submit_button">Post Review</button>
 
         </form>

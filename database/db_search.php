@@ -3,7 +3,6 @@ include_once("../includes/database.php");
 
 function search_places($options)
 {
-    print_r($options); 
     //open db connection 
     $db = Database::instance()->db();
     //todo geography stuff
@@ -48,8 +47,6 @@ function search_places($options)
                 $options["max_price"],
                 $options["city"]
             ));
-        
-            print_r($stmt->fetchAll());
           
             return $stmt->fetchAll();
         }
@@ -145,7 +142,6 @@ function delete_elem($elem, $search_results){
     foreach($search_results as $e){
         if($e['id'] == $elem){
            $key = array_search ($e, $search_results);
-           print_r($key);
            unset($search_results[$key]);
            return $search_results;
         }
@@ -161,8 +157,7 @@ function process_string($search_str)
     $city = "";
 
     if(strlen($search_str) == 0){
-        echo 'vazia';
-        return $geo = [$country, $city,1];
+        return [$country, $city, 1];
     }
 
     if(strpos($search_str, ',')){
@@ -189,7 +184,6 @@ function process_string($search_str)
         $city_state = $stmt->fetch();
 
         if($city_state == false){
-            echo('funciona');
             //check if order is changed 
             $stmt = $db->prepare(
                 "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
@@ -243,7 +237,6 @@ function process_string($search_str)
     }
 
     if(strpos($search_str, " ") > 1){
-        echo 'com espaço';
         $search_str = explode(" ",$search_str);
 
         $piece1 = $search_str[0]; 
@@ -267,7 +260,6 @@ function process_string($search_str)
         $city_state = $stmt->fetch();
 
         if($city_state == false){
-            echo('funciona');
             //check if order is changed 
             $stmt = $db->prepare(
                 "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"

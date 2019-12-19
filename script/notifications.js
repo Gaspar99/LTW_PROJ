@@ -155,14 +155,14 @@ function notifications_handler(){
         //todo
         //make header span 
         let notification_content = document.createElement("span")
-        notification_content.innerHTML = last_id.notification_content + " " + last_id.notification_date
+        notification_content.innerHTML = last_id.notification_content
         notification_place.appendChild(notification_content)
       
-        //make check in check out
-        let notification_check = document.createElement("span")
-        notification_check.setAttribute("class","notification")
-        notification_check.innerHTML = last_id.check_in + " - " + last_id.check_out
-        notification_place.appendChild(notification_check)
+        let notification_time = document.createElement("span")
+        let time = new Date(last_id.notification_date)
+        let formatted_date = convert_month(time.getMonth()) + "-" + time.getDate() +" "+ time.getHours() + ":" + time.getMinutes()
+        notification_time.innerHTML = formatted_date; 
+        notification_place.appendChild(formatted_date)
 
         new_notification.appendChild(notification_place)
 
@@ -217,4 +217,33 @@ function change_bell_icon(state){
 
     notification_bell.innerHTML= ""
     notification_bell.appendChild(new_bell)
+ }
+
+ function convert_month(month){
+     switch(month){
+        case 0:
+            return 'Jan'
+        case 1:
+            return 'Fev'
+        case 2:
+            return 'Mar'    
+        case 3:
+            return 'Apr'
+        case 4:
+            return 'May'
+        case 5:
+            return 'Jun'
+        case 6:
+            return 'Jul'
+        case 7:
+            return 'Aug'
+        case 8:
+            return 'Sep'
+        case 9:
+            return 'Oct'
+        case 10:
+            return 'Nov'
+        case 11:    
+            return 'Dec'        
+    }
  }

@@ -76,7 +76,7 @@ function add_notification_reservation($reservation){
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
 
     $usr = get_reservation_owner($reservation)['owner_id']; 
-    echo $usr;
+
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
             (notification_content,notification_date, is_read, usr, reservation)
@@ -95,7 +95,6 @@ function add_notification_review($reservation){
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
 
     $usr = get_reservation_owner($reservation)['owner_id']; 
-    echo $usr;
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
             (notification_content,notification_date, is_read, usr, reservation)
@@ -113,7 +112,6 @@ function add_notification_reply($reservation){
     $notification_time = gmdate("Y/m/j H:i:s", $time_stamp);
 
     $usr = get_reservation_tourist($reservation)['tourist'];
-    print_r($usr);
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
             (notification_content,notification_date, is_read, usr, reservation)
@@ -133,7 +131,6 @@ function add_notification_cancel($reservation){
     
     $usr = get_reservation_owner($reservation)['owner_id']; 
 
-    echo $usr;
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
             (notification_content,notification_date, is_read, usr, reservation)

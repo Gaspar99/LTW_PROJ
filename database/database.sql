@@ -15,7 +15,7 @@ CREATE TABLE place
 (
    id INTEGER PRIMARY KEY,
    title TEXT NOT NULL,
-   price_per_night REAL NOT NULL,
+   price_per_night INTEGER NOT NULL,
    place_address TEXT NOT NULL,
    place_description TEXT NOT NULL,
    num_guests INTEGER NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE reservation
    id INTEGER PRIMARY KEY,
    check_in TEXT NOT NULL,
    check_out TEXT NOT NULL,
-   price REAL NOT NULL,
+   price INTEGER NOT NULL,
    num_guests INTEGER NOT NULL,
    usr_rating REAL DEFAULT -1 NOT NULL,
    usr_comment TEXT DEFAULT NULL,
@@ -117,8 +117,8 @@ VALUES
       "Doe", --usr_last_name
       "johndoe@email.com", --usr_email
       "919349157", --usr_phone_number
-      "$2y$10$EpKKrCShHulwh5iaUUSbG.DaXPSpf4nIEnXmRp4BwU/kXBaDiSWmm", --usr_password: 123456789
-      "johnDoe.jpg", --profile_picture
+      "$2y$10$BFaplMLe8X3hD8.PMRQiTu4nDU6s1zdKbuU9ckVYsQK3t/fzy2o16", --usr_password: JohnDoe12$
+      "15fa30784cef874f754ecab692f07781d9e52efd60b2f4188fc61003d628add5.jpg", --profile_picture
       34 --country_id
 );
 
@@ -131,8 +131,8 @@ VALUES
       "Doe", --usr_last_name
       "janedoe@email.com", --usr_email
       "912345678", --usr_phone_number
-      "$2y$10$obkm2f3lNnqIGjmybxt6SuwdvcNjrk4.A.yqFTktL2IN9UJu9xue6", --usr_password: password
-      "janeDoe.jpeg", --profile_picture
+      "$2y$10$ARM6w6xd.jjCiKtASu/ObOTUfho51f6wcQTkMlopZsyQ2BZCTxfqa", --usr_password: JaneDoe12$
+      "9e2a6af78121ca29a3fb4218f51ae76994e3c14c6f926398c4a9246b95212288.jpeg", --profile_picture
       50 --country_id
 );
 
@@ -142,11 +142,11 @@ VALUES
    (
       3, --usr_id
       "Jorge", --usr_first_name
-      "Fransisco", --usr_last_name
+      "Francisco", --usr_last_name
       "fchico@email.com", --usr_email
       "919191919", --usr_phone_number
-      "$2y$10$xzf4B.Tij5DnMBm4lx/ENOH.ng0fitnmBo2hr1FO7GxxRSTxEZg7.", --usr_password: jorgepass
-      "jorgeFransisco.jpeg",
+      "$2y$10$wRcxJ1yrM68NV4P3JeX0a.H1z2s50p.BdzlKGI7e9eg.mGNWqpp36", --usr_password: JorgeFrancisco12$
+      "b9e6fd7296eec73775dee4f1c74d4fa9347244691f0e291eac81338c9ef68db4.jpeg",
       30 --country_id
 );
 
@@ -156,10 +156,10 @@ VALUES(
       4, --usr_id
       "Mike", --usr_first_name
       "Shelby", --usr_last_name
-      "antman@email.com", --usr_email
+      "mikeshelby@email.com", --usr_email
       "986541123", --usr_phone_number
-      "$2y$10$EZTbD2U2MqM8gRF.WZ2nwuDEMvQjkpaWSkr/CJFIY4xDRJvTEEUUC", --usr_password: antman123
-      "mikeShelby.jpeg", --profile_picture
+      "$2y$10$ueXkKJlUN/ZZ4H7J8IBX4.XM4nW1d42hQCjmctOoW63jMXAROg8N.", --usr_password: MikeShelby12$
+      "2bd1aac8a9056cf80f0ab44fa4cb3246f1cb9e7651acb5de57528a2e82feef4f.jpeg", --profile_picture
       20 --country_id
 );
 
@@ -171,8 +171,8 @@ VALUES(
       "William", --usr_last_name
       "kate@email.com", --usr_email
       "967561781", --usr_phone_number
-      "$2y$10$vQUO45NWCDO9U2siFdKQCubk.9MRDzEpsXLE3SAUL.TOq9NtsQ.72", --usr_password: migpedro00
-      "kate.jpeg", --profile_picture
+      "$2y$10$2OrtpSYVlaKqwDcfUzfahu47rl.g1rBAAPF0lq2cHHqSXggnnTxwa", --usr_password: KateWilliam12$
+      "19fec88b315ddc24299ca5ae7b57f37a4c69a19fba75d0d494931100649d23b4.jpeg", --profile_picture
       61 --country_id
 );
 
@@ -180,17 +180,17 @@ INSERT INTO usr
    (usr_id, usr_first_name, usr_last_name, usr_email, usr_phone_number, usr_password, usr_profile_picture, country_id)
 VALUES(
       6, --usr_id
-      "Miguel", --usr_first_name
-      "Almeida", --usr_last_name
-      "migeida@email.com", --usr_email
+      "Hannah", --usr_first_name
+      "Baker", --usr_last_name
+      "hannah@email.com", --usr_email
       "977456185", --usr_phone_number
-      "$2y$10$iAzeY7eOqZcM5a4k0SHy7uIqSwD9cjTsmZZvWE9xEgs0OJjzXtc0e", --usr_password: migueida87
-      "hannahBaker.jpeg", --profile_picture
+      "$2y$10$EsYi7QBRCIp/lz9N50ZBeuB1wU.ndnc0F1u3a/yIJjfmp.nOlU30u", --usr_password: HannahBaker12$
+      "2b11d234634ea27418130fb347d7833896739fdb0d1fb8eefd81bf7d4a249276.jpeg", --profile_picture
       53 --country_id
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       1, --id
       "Fantastic Modern Style House with an Incredible Pool", --title
@@ -201,12 +201,13 @@ VALUES(
       Free Wifi is available on all areas of the apartment.
       Towels and bed Linen are provided for your stay.", --place_description
       4, --num_guests
+      4.5, --rating (Based on current reservation reviews)
       1, --owner_id: John Doe
       1867 --city_id: Porto
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       2, --id
       "Champs-Élysées Golden triangle flat with mezzanine", --title
@@ -216,12 +217,13 @@ VALUES(
       Located in the center of Paris, surrounded by Avenue Champs Élysées, Avenue George V and Avenue Montaigne, called the Golden Triangle area.
       Arc de Triomphe, LV flagship store, Lido nightclub, Ladurée and Subway station are all within a 1-5 minute walk.", --place_description
       4, --num_guests
+      4.5, --rating (Based on current reservation reviews)
       2, --owner_id: John Doe
       6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       3, --id
       "Sweet & cosy room next to Canal Saint Martin", --title
@@ -230,12 +232,13 @@ VALUES(
       "A superb luxury detached lodge with private sauna and hot tub in the exclusive Astbury Falls site, a gated complex, close to a man-made waterfall, in a dedicated area of outstanding natural beauty, just 1.8 miles from the picturesque town of Bridgnorth.
       Please contact us if you would like a special event organised or a special welcome pack, we will do our very best to accomadate your request.", --place_description
       5, --num_guests
+      2.5, --rating (Based on current reservation reviews)
       3, --owner_id: Jorge
       6736 --city_id: Paris
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       4, --id
       "Incredible cozy apartment in the Heart of NYC", --title
@@ -244,12 +247,13 @@ VALUES(
       "The house is located right in the heart of la République area, in the 10th district of Paris. It’s close to lively streets, transportation and shops, making your stay in Paris easy and enjoyable.
       The room is bright, quiet and comfy, which makes it the perfect place to rest after your long and exciting days exploring the capital city.", --place_description
       7, --num_guests
+      5, --rating (Based on current reservation reviews)
       4, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
 
 INSERT INTO place
-   (id, title, price_per_night, place_address, place_description, num_guests, owner_id, city_id)
+   (id, title, price_per_night, place_address, place_description, num_guests, rating, owner_id, city_id)
 VALUES(
       5, --id
       "The Salt House", --title
@@ -257,6 +261,7 @@ VALUES(
       "Street number 37", --place_address
       "This property is a beautifully renovated former salt house, situated in an idyllic rural landscape. The house has a wood burning stove for cosy nights and a self enclosed garden should you wish to bring a well-behaved pet. Come and explore Yorkshire!", --place_description
       2, --num_guests
+      4, --rating (Based on current reservation reviews)
       5, --owner_id: Jorge
       1411 --city_id: Amsterdam
 );
@@ -458,7 +463,7 @@ VALUES(
       "2019-02-15", --check_out
       1000, --price
       2, --num_guests
-      5, --usr_rating
+      4, --usr_rating
       "Really good place for a couple", --usr_comment
       "2019-02-30", --usr_comment_date
       "We like the romance! Come soon", --owner_reply
@@ -513,43 +518,43 @@ VALUES(
 INSERT INTO owner_photo
 VALUES(
       1, --ID
-      "poolHouse.jpeg" --photo_path
+      "b820cac32cf535d1a1f1943d4cacc3bd798a122375a0cb4665d879cfbff8cab6.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       2, --ID
-      "beachHouse.jpeg" --photo_path
+      "55f759f9bcfd3464273b5e7c7b79918d7fc1e3bb244a06ed1773c2a0d1a80c8d.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       3, --ID
-      "lakeHouse.jpeg" --photo_path
+      "be1675ccf3be856b1bcccdb19e38852f53e3b69c9c7f8f77c201bedadf9bf32c.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       4, --ID
-      "nycApartment.jpeg" --photo_path
+      "f4846bdc9b0bc180bea787b560bd982950c368370fd2f9015a7c37b6098b6bd7.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       5, --ID
-      "modernInterior.jpeg" --photo_path
+      "1f1354335c75b7fb6c29860b5d1505235187119ac0aa568f14ebfddf0f8b40cb.jpeg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       6, --ID
-      "luxHouseInterior.jpg" --photo_path
+      "7896e2ab784542dbcf86e41490b8acb05a649667644f8e550e312a72577d6ebc.jpg" --photo_path
 );
 
 INSERT INTO owner_photo
 VALUES(
       7, --ID
-      "beachHouse2.jpg" --photo_path
+      "7f5ad38344b5495c75903b52bd2513232c5b7642ccffcb403d14af2f6ae1f740.jpg" --photo_path
 );
 
 

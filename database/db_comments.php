@@ -52,7 +52,7 @@ function add_comment($review)
             reservation
         SET 
             usr_rating = ?,
-            usr_comment= ?,
+            usr_comment = ?,
             usr_comment_date = ?
         WHERE
             id = ?"

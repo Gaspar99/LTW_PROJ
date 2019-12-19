@@ -1,0 +1,169 @@
+/*-----USER PROFILE-------*/
+
+#profile_page {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+/*-- User Info --*/
+
+#profile_page #user_info {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin: 1em;
+}
+
+/*-- User Name --*/
+
+#profile_page #user_info #user_first_name {
+    margin: 0 0 0.2em 0;
+    font-size: 2.5em;
+}
+
+#profile_page #user_info #user_last_name {
+    margin: 0 0 0.5em 0;
+    font-size: 2em;
+}
+
+/*- User Bio Section -*/
+
+#profile_page #user_info #user_bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile_page #user_info #user_bio #profile_pic {
+    width: 100%;
+    height: auto;
+}
+
+#profile_page #user_info #user_bio #phone_number {
+    padding: 1em;
+    font-size: 1.4em;
+}
+
+#profile_page #user_info #user_bio #email {
+    padding: 0;
+    max-width: fit-content;
+    font-size: auto;
+}
+
+/*- User Options -*/
+
+#profile_page #user_info #user_options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+}
+
+#profile_page #user_info #user_options .button {
+    padding: 1em;
+    margin: 0.5em;
+    width: 40%;
+    text-align: center;
+}
+
+/*-- User Places --*/
+
+#profile_page #user_places {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin: 1em;
+}
+
+/*- Placs for Rental -*/
+
+#profile_page #user_places #for_rental, #profile_page #user_places #reservations {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#profile_page #user_places h3 {
+    font-size: 1.5em;
+    margin: 1em;
+    text-align: left;
+    width: 100%;
+}
+
+/*- Reservations -*/
+
+#profile_page #reservations_header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 15% 40% 25%;
+
+    margin-bottom: 1em;
+}
+
+#profile_page #reservations_header > * {
+    text-align: center;
+}
+
+#profile_page #reservations_header #time_label > * {
+    padding: 0 0.5em;
+}
+
+#profile_page #reservations_list {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#profile_page #reservation_line {
+    border: thin solid black;
+    border-radius: 0;
+    padding: 1em 0;
+    margin-top: 0;
+    margin-bottom: 1em;
+
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20% 15% 40% 25%;
+}
+
+#profile_page #reservation_line > * {
+    text-align: center;
+}
+
+#profile_page #reservation_line .time > * {
+    padding: 0 0.5em;
+}
+
+#profile_page #reservation_line .options > *{
+    margin-right: 0.5em;
+}
+
+#profile_page #reservation_line .options .review {
+    background-color: green;
+}
+
+#profile_page #reservation_line .options .cancel {
+    background-color: red;
+}
+
+#profile_page #reservation_line .options .review_box {
+    position: relative;
+    width: 35em;
+    margin-top: 5%; 
+}
+
+#profile_page #reservation_line .options .review_box .review_rating {
+    margin: 3em 1em 1em 1em;
+}
+
+
+#profile_page #reservation_line .options .review_box .review_comment {
+    margin: 1em;
+}
+
+#profile_page #reservation_line .options .review_box button,
+#profile_page #reservation_line .options .review_box .review_rating *,
+#profile_page #reservation_line .options .review_box .review_comment * {
+    font-size: 1.3em;
+}

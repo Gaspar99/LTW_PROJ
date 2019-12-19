@@ -1,0 +1,200 @@
+body {
+    /* Definition of variables */
+    --panel-color: rgb(25, 195, 255);
+    --button-color: rgb(5, 139, 187);
+    --search-grey: rgb(242, 242, 242);
+    --background-color: rgb(230, 230, 230);
+    --form-input-color: rgb(195, 195, 195);
+    --rating-star-color: rgb(223, 195, 37);
+    
+    --roboto-font: "Roboto", sans-serif;
+}
+
+/* --------------- Generics --------------- */
+
+a, p, input, li, button, label, div, textarea {
+    font-family: var(--roboto-font);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--roboto-font);
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    list-style-type: none;
+}
+
+textarea {
+    resize: none;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* Set a style for all buttons */
+
+button, .button {
+    color: white;
+    background-color: var(--button-color);
+    padding: 0.5em;
+    font-family: var(--roboto-font);
+    font-size: 1em;
+    border-width: 0;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+button:before, .button:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(255, 255, 255);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+button:hover, .button:hover {
+    color: var(--panel-color);
+    cursor: pointer;
+}
+
+button:hover:before, button:hover:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+*:focus {
+    outline: 0;
+}
+
+input, select, textarea {
+    /* Layout */
+    display: inline-block;
+    width: 100%;
+    margin: 0.5em 0 1em 0;
+    padding: 1em;
+    /* Style */
+    border: 0.08em solid grey;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 0.08em solid var(--panel-color);
+    outline: 0;
+}
+
+/* Customizing input of type number */
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outter-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number]:invalid, input[type=number]:out-of-range {
+    border-color: red;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.3em;
+    cursor: pointer;
+    background: var(--panel-color);
+    border: none;
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    position: relative;
+    z-index: 2;
+    border: thin solid #1da1f2;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    background: #a1d0ff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    pointer-events: auto;
+    margin-top: -0.5em;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 0.3em;
+    cursor: pointer;
+    background: #1da1f2;
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+}
+
+input[type=range]::-moz-range-thumb {
+    border: thin solid #1da1f2;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    background: #a1d0ff;
+    cursor: pointer;
+    -moz-appearance: none;
+    pointer-events: auto;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 0.3em;
+    cursor: pointer;
+    background: #1da1f2;
+    border: none;
+}
+
+input[type=range]::-ms-thumb {
+    z-index: 2;
+    position: relative;
+    border: thin solid #1da1f2;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    background: #a1d0ff;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
+    background: var(--panel-color);
+}

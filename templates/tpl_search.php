@@ -11,7 +11,8 @@ function draw_search_bar()
 
         <div class="search_type">
             <label for="search">Location</label>
-            <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?" onkeydown="option_navigate(event)">
+            <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?" onkeydown="option_navigate(event)"
+                pattern="^[a-z A-Z0-9\\/\\\\.'\"]+$">
             <ul id="search_suggestions"></ul>
         </div>
 
@@ -36,15 +37,18 @@ function draw_search_bar()
             </div>
         </div>
 
-        <div id="price" class="price">
-            <label id="show_price" for="price">Price</label>
-            <div class="price_slider">
-                <input name="min" id="min_price" type="range" value="50" min="0" max="1000" step="10" />
-                <input name="max" id="max_price" type="range" value="500" min="0" max="1000" step="10" />
-            </div>
+        <div id="min_price">
+            <label for="price">Min Price</label>
+            <input name="min" id="min_price_input" type="range" value="50" min="0" max="500" step="10" />
             <span id="min_price_value">50 €</span>
-            <span id="max_price_value">500 €</span>
         </div>
+
+        <div id="max_price">
+            <label for="price">Max Price</label>
+            <input name="max" id="max_price_input" type="range" value="150" min="0" max="500" step="10" />
+            <span id="max_price_value">150 €</span>
+        </div>
+
 
         <button class="submit_button" type="submit"><img src="../images/site/loupe.jpeg"></button>
     </form>

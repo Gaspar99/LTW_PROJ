@@ -22,8 +22,7 @@ function draw_site_header()
     }
 
     draw_search_bar();
-    //todo see where i use this 
-    #draw_messages();
+    draw_messages();
     init_site_content();
 }
 
@@ -48,6 +47,7 @@ function draw_header($user_email)
         <script src="../script/main.js" defer></script>
         <script src="../script/comments.js" defer></script>
         <script src="../script/notifications.js" defer></script>
+        <script src="../script/close_tabs.js" defer></script>
         <!-- <script src="../script/reservation.js" defer></script> -->
     </head>
     
@@ -68,7 +68,6 @@ function draw_header($user_email)
             <?php } else {
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
-
                 <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
                     <div id="user_options">
                         <span id="notification_bell" onclick="toggle_notifications()">
@@ -105,8 +104,7 @@ function draw_header($user_email)
      */
     function draw_title($title)
     { ?>
-        <h1><?= $title ?></h1>
-        <hr>
+        <h1 id="main_title"><?= $title ?></h1>
         <?php }
 
 
@@ -159,8 +157,8 @@ function draw_notifications($email)
                 if($notification["is_read"]){?>
                     <li id="read_notification" name="notification_id<?= $notification['id'] ?>">
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"?>
-                            <span> <?=$notification['notification_content']?> <?= $notification['notification_date'] ?></span>
-                            <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                            <span> <?=$notification['notification_content']?> </span>
+                            <span><?= date("M-d H:i",strtotime($notification['notification_date'])) ?></span>
                         </a>
                         <span name="button_type<?= $notification['id'] ?>" onclick="unmark_as_seen(<?= $notification['id'] ?>)">
                             <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility_off</i>
@@ -172,8 +170,8 @@ function draw_notifications($email)
                 <?php } else { ?>
                     <li id="unread_notification" name="notification_id<?= $notification['id'] ?>">
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"?>
-                            <span> <?=$notification['notification_content']?> <?= $notification['notification_date'] ?></span>
-                            <span class="notification"> <?= $notification['check_in']?> - <?= $notification['check_out']?></span>
+                            <span> <?=$notification['notification_content']?> </span>
+                            <span><?= date("M-d H:i",strtotime($notification['notification_date'])) ?></span>
                         </a>
                         <span name="button_type<?= $notification['id'] ?>" onclick="mark_as_seen(<?= $notification['id'] ?>)">
                             <i name="icon_visibility<?= $notification['id'] ?>" class="material-icons">visibility</i>

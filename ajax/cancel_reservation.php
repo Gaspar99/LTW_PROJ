@@ -12,7 +12,6 @@ try{
     die($e->getMessage());
 }
 */
-echo 'deleting';
 $db = Database::instance()->db();
 
 //turn off foreign keys constraint 
@@ -28,6 +27,16 @@ $stmt = $db->prepare(
     "DELETE FROM reservation    
     WHERE
         id = ?"
+);
+
+$stmt->execute(array($reservation_id));
+
+$stmt->fetch();
+
+$stmt = $db->prepare(
+    "DELETE FROM usr_notification   
+    WHERE
+        reservation = ?"
 );
 
 $stmt->execute(array($reservation_id));

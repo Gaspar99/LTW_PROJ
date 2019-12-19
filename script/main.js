@@ -39,10 +39,12 @@ function close_sign_up_form() {
 function toggle_search_form() {
     let form = document.getElementById("search_form")
 
-    if (form.style.display == "flex")
+    if (form.style.display == "flex"){
         form.style.display = "none"
-    else
+    }
+    else{
         form.style.display = "flex"
+    }
 }
 /**
  * 
@@ -139,6 +141,7 @@ function toggle_image_fullscreen() {
     fullscreen = (!fullscreen)
 
     let place_gallery = document.getElementById("place_gallery")
+    //let image_container = document.getElementById("image_container")
     let fullscreen_icon = place_gallery.querySelector(".material-icons")
 
     if (fullscreen) {
@@ -147,6 +150,10 @@ function toggle_image_fullscreen() {
         place_gallery.style.top = "0"
         place_gallery.style.width = "100vw"
         place_gallery.style.height = "100vh"
+        place_gallery.style.backgroundColor = "rgba(0, 0, 0, 0.4)"
+        
+        image_container.style.maxWidth = "80%"
+        image_container.style.maxHeight = "50vw"
 
         fullscreen_icon.innerHTML = "fullscreen_exit"
     }
@@ -154,6 +161,10 @@ function toggle_image_fullscreen() {
         place_gallery.style.position = "static"
         place_gallery.style.width = "auto"
         place_gallery.style.height = "auto"
+        place_gallery.style.backgroundColor = "transparent"
+
+        image_container.style.maxWidth = "max-content"
+        image_container.style.maxHeight = "max-content" 
 
         fullscreen_icon.innerHTML = "fullscreen"
     }
@@ -168,6 +179,7 @@ function toggle_image_fullscreen() {
 function option_navigate(e) {
     let options = document.getElementById("search_suggestions")
     console.log(options);
+  
     //switch n funcionou n sei pq...
     if (e.keyCode == '38') {
         console.log('up')
@@ -181,19 +193,6 @@ function option_navigate(e) {
     }
 
 }
-
-function price_change() {
-    //get price selected
-    let price = document.getElementById("price_input")
-    let show_price = document.getElementById("show_price")
-
-    show_price.textContent = 'Price: ' + price.value + '€'
-    //create new element to display price
-    let div = document.getElementById("price")//.innerHTML += "<label>"+price+"</label>"
-
-    div.insertBefore(show_price, div.firstChild)
-}
-
 
 //::::: AJAX STUFF ::::::://
 
@@ -334,8 +333,8 @@ if (Array.prototype.indexOf === undefined) {
 
 // PRICE
 
-let min_price = document.getElementById("min_price")
-let max_price = document.getElementById("max_price")
+let min_price = document.getElementById("min_price_input")
+let max_price = document.getElementById("max_price_input")
 
 min_price.oninput = update_price
 max_price.oninput = update_price
@@ -343,9 +342,6 @@ max_price.oninput = update_price
 function update_price() {
     let min_price_input = parseFloat(min_price.value)
     let max_price_input = parseFloat(max_price.value)
-
-    if (min_price_input > max_price_input)
-        [min_price_input, max_price_input] = [max_price_input, min_price_input]
 
     let min_price_value = document.getElementById("min_price_value")
     let max_price_value = document.getElementById("max_price_value")
@@ -479,10 +475,6 @@ function validatePassword(){
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 */
-
-/**
- * Polling notifications 
- */
 
   /* ---- SELECT DATE ----- */
 

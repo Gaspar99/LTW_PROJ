@@ -9,7 +9,6 @@ function draw_country_options($countries)
         draw_country($country);
 }
 
-
 /**
  * 
  */

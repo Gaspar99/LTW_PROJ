@@ -1,0 +1,103 @@
+#sign_up_form .form_container {
+    display: grid;
+    grid-template-columns: 15em 2em 15em;
+    grid-template-rows: auto auto auto auto;
+}
+
+/* ---- Sign In Grid --- */
+
+#sign_in_form .modal_content {
+    width: 30%;
+}
+
+#sign_in_form .email {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#sign_in_form .password {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#sign_in_form .submit_button {
+    padding-bottom: 1em;
+}
+
+/* ---- Sign Up Grid --- */
+
+#sign_up_form .first_name {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#sign_up_form .last_name {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#sign_up_form .email {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#sign_up_form .password {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#sign_up_form .confirm_password {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#sign_up_form .country_id {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+#sign_up_form .phone_num {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+#sign_up_form .submit_button {
+    padding-bottom: 1em;
+}
+
+/* Center the image */
+
+.img_container {
+    /* Layout */
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+}
+
+.img_container img {
+    padding-top: 1em;
+}
+
+#sign_in_form .img_container img {
+    width: 6em;
+    height: auto;
+}

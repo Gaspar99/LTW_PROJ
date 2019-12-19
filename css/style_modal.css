@@ -1,0 +1,38 @@
+/* ----------------- Model Forms ---------------- */
+
+/* The Modal (background) */
+
+.modal {
+    /* Layout */
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Style */
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+
+.modal_content {
+    /* Layout */
+    display: block;
+    margin: 5% auto auto auto;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em black;
+    width: max-content;
+    /* Could be more or less, depending on screen size */
+    /* Style */
+    background-color: white;
+}
+
+.form_container {
+    /* Layout */
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
