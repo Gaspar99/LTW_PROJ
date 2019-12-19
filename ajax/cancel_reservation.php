@@ -1,52 +1,22 @@
 <?php
 include_once("../includes/database.php");
+include_once("../templates/tpl_common.php");
 include_once("../database/db_notifications.php");
+include_once("../database/db_reservations.php");
+include_once("../database/db_notifications.php");
+include_once("../util/security_checks.php");
 
-$reservation_id = $_POST["id"];
+// Security check
+verify_number($_POST["id"], "Reservation");
 
-/* //todo problems bc it loses the reservation db reference
-try{
-    add_notification_cancel($reservation_id); 
-}catch (PDOException $e) {
+// Remove notification
+remove_reservation_notification($_POST["id"]);
 
-    die($e->getMessage());
-}
-*/
-$db = Database::instance()->db();
+//Remove reservation
+remove_reservation($_POST["id"]);
 
-//turn off foreign keys constraint 
-$stmt = $db->prepare(
-    "PRAGMA foreign_keys = 0"
-);
+$_SESSION["messages"][] = array("type" => "success", "content" => "Reservation canceled!");
 
-$stmt->execute(); 
-$stmt->fetch();
+draw_messages();
 
-//delete the row 
-$stmt = $db->prepare(
-    "DELETE FROM reservation    
-    WHERE
-        id = ?"
-);
 
-$stmt->execute(array($reservation_id));
-
-$stmt->fetch();
-
-$stmt = $db->prepare(
-    "DELETE FROM usr_notification   
-    WHERE
-        reservation = ?"
-);
-
-$stmt->execute(array($reservation_id));
-
-$stmt->fetch();
-
-//turn on foreign keys again
-$stmt = $db->prepare(
-    "PRAGMA foreign_keys = 0"
-);
-
-$stmt->execute(); 
-$stmt->fetch();

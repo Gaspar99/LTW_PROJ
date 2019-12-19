@@ -797,12 +797,25 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 /* MESSAGES */
 
-body>#messages div {
+#messages {
     position: fixed;
+    display: block;
     z-index: 10;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
+}
+
+#messages > div.error {
+    border-color: red;
+}
+
+#messages div.success {
+    border-color: green;
+}
+
+#messages > div {
     margin: 0 auto;
     padding: 1em;
     text-align: center;
@@ -817,12 +830,9 @@ body>#messages div {
     font-weight: bold;
 }
 
-body>#messages .error {
-    border-color: red;
-}
-
-body>#messages .success {
-    border-color: green;
+#send_message{
+    margin-top: 0.5em;
+    margin-left: 8.3em;
 }
 
 /* ----------------- Model Forms ---------------- */

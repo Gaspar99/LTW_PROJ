@@ -218,7 +218,7 @@ function draw_add_place($user_id)
 
             <div class="form_country">
                 <label for="country">Country</label>
-                <select name="country" class="country_select" oninput="get_city_by_country(event)" required>
+                <select name="country" class="country_select" id="get_city_by_country" required>
                     <?= draw_country_options($countries); ?>
                 </select>
             </div>
@@ -270,7 +270,7 @@ function draw_add_place($user_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required></textarea>
+                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$" required></textarea>
                 </div>
 
 
@@ -373,9 +373,7 @@ function draw_edit_place($user_id, $place_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="6" cols="50" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/"required>
-                        <?= $place["place_description"] ?>
-                    </textarea>
+                    <textarea name="description" rows="6" placeholder="Enter Place Description" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$" required><?= $place["place_description"] ?></textarea>
                 </div>
 
 
@@ -497,7 +495,7 @@ function draw_image_gallery($image_gallery)
             <span class="display_right" onclick="plusDivs(+1)">&#10095;</span>
             <?php } ?>
 
-            <span class="full_screen" onclick="toggle_image_fullscreen()">
+            <span class="full_screen" id="toggle_image_fullscreen">
                 <i class="material-icons">fullscreen</i>
             </span>
                     

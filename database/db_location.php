@@ -22,6 +22,61 @@ function get_countries()
 }
 
 /**
+ *  Get the countries that start with $name
+ */
+function get_countries_by_name($name)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        'SELECT 
+            id AS country_id, 
+            country_name
+        FROM 
+            country
+        WHERE 
+            country_name
+        LIKE 
+            upper(?) 
+        ORDER BY 
+            country_name ASC
+        LIMIT 2'
+    );
+
+    $stmt->execute(array("$name%"));
+
+    return $stmt->fetchAll();
+}
+
+/**
+ * 
+ */
+function get_countries_by_city($name)
+{
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare(
+        'SELECT DISTINCT 
+            country.id AS country_id, 
+            city.id AS city_id, 
+            country_name, 
+            city_name
+        FROM 
+            country, city 
+        WHERE 
+            city_name LIKE upper(?) AND 
+            city.country_id = country.id
+        ORDER BY city_name ASC
+        LIMIT 8'
+      );
+
+    $stmt->execute(array("$name%"));
+
+    return $stmt->fetchAll();
+}
+
+
+/**
  * 
  */
 function get_cities($country_id)

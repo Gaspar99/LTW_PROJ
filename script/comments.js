@@ -1,5 +1,6 @@
 "use strict"
 
+let open_reply_box = document.getElementById("reply_box")
 /** reviews  */
 /**
  * 
@@ -16,13 +17,6 @@ function upload_comment(id) {
 
     let request = new XMLHttpRequest()
 
-    request.addEventListener("update", function () {
-        alert('Comment submitted')
-    })
-    request.addEventListener("error", function () {
-        alert('Failed to upload comment')
-    })
-
     request.open("post", "../ajax/make_review.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     request.send(encodeForAjax({ id: id, comment: comment, rating: rating }))
@@ -32,16 +26,18 @@ function upload_comment(id) {
  * 
  * @param {*} event 
  */
-function open_reply_box(event) {
+if(open_reply_box != null){
+    open_reply_box.onclick = function(event) {
 
-    //Hiding reply button
-    let reply_button = event.target
-    reply_button.style.display = "none"
-
-    // Displaying reply box
-    let reply_box = reply_button.nextElementSibling
-
-    reply_box.style.display = "block"
+        //Hiding reply button
+        let reply_button = event.target
+        reply_button.style.display = "none"
+    
+        // Displaying reply box
+        let reply_box = reply_button.nextElementSibling
+    
+        reply_box.style.display = "block"
+    }
 }
 
 /**

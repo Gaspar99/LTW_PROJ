@@ -10,19 +10,19 @@ function draw_sign_in()
     <form class="modal_content scale_animate" action="../actions/action_signin.php" method="post">
 
       <div class="img_container">
-        <span class="close" onclick="close_sign_in_form()" title="Close Form">&times;</span>
+        <span class="close" id="close_sign_in_form" title="Close Form">&times;</span>
         <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
 
       <div class="form_container">
-        <div class="grid_email">
+        <div class="email">
           <label for="email">Email</label>
           <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
         </div>
 
         <div class="password">
           <label for="password">Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" patthern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+          <input type="password" placeholder="Enter Password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ function draw_sign_up($countries)
   <div id="sign_up_form" class="modal">
     <form class="modal_content scale_animate" action="../actions/action_signup.php" method="post">
       <div class="img_container">
-        <span class="close" onclick="close_sign_up_form()" title="Close Form">&times;</span>
+        <span class="close" id="close_sign_up_form" title="Close Form">&times;</span>
         <a href="../pages/home.php"><img class="site_logo" src="../images/site/logo.jpeg" alt="Web site Logo"></a>
       </div>
       <div class="form_container">

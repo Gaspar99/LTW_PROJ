@@ -1,19 +1,9 @@
 <?php
-
 include_once("../includes/database.php");
+include_once("../includes/db_notifications.php");
+include_once("../util/security_checks.php");
 
-$notification_id = $_POST["id"];
+//Security check
+verify_number($_POST["id"], "Notification");
 
-$db = Database::instance()->db();
-
-$stmt = $db->prepare(
-    "UPDATE usr_notification 
-    SET is_read = 0
-    WHERE id = ?"
-);
-
-$stmt->execute(array($notification_id));
-
-$ret = $stmt->fetch();
-
-//todo generate a notification canceling????
+update_to_unread($_POST["id"]);

@@ -11,8 +11,8 @@ function draw_search_bar()
 
         <div class="search_type">
             <label for="search">Location</label>
-            <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?" onkeydown="option_navigate(event)"
-                pattern="^[a-z A-Z0-9\\/\\\\.'\"]+$">
+            <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?"
+                pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$">
             <ul id="search_suggestions"></ul>
         </div>
 

@@ -50,7 +50,7 @@ function draw_comment($comment, $place_owner_id, $place_owner)
         <?php if ($comment["owner_reply"] == NULL) { 
 
             if (isset($_SESSION["user_email"]) && $place_owner["email"] == $_SESSION["user_email"]) { ?>
-            <button class="reply" onclick="open_reply_box(event)">Reply</button>
+            <button class="reply" id="reply_box">Reply</button>
             <?php draw_reply_box($comment);
             }
 
@@ -92,7 +92,7 @@ function draw_reply_box($comment) {
     $reservation_id = $comment["reservation_id"]; ?>
 
     <div class="reply_box" id="<?=$reservation_id?>">
-        <textarea name="reply" placeholder="Enter a reply comment" rows="3" required></textarea>
+        <textarea name="reply" placeholder="Enter a reply comment" rows="3" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$" required></textarea>
         
         <button class="submit_button" onclick="upload_reply(event, <?=$reservation_id?>)">Reply</button>
     </div>

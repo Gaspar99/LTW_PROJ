@@ -31,7 +31,6 @@ $search_form = array(
 );
 
 $search_results = search_places($search_form);
-
 $reservations = get_search_reservations($search_results); //todo test with reservations maded 
 
 //get those available during time 

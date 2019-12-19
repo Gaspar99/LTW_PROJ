@@ -25,7 +25,9 @@ function draw_profile($user_id)
                     <a class="button" href="../pages/add_place.php">Add Place</a>
                     <a class="button" href="../pages/edit_profile.php">Edit Profile</a>
                 </div>
-            <?php } ?>
+            <?php } else {?>
+                <a id="send_message" class="button" href="../pages/chat.php?id=<?=$user_id?>">Send a Message</a>
+           <?php }?>
         </section>
 
         <section id="user_places">
@@ -98,11 +100,10 @@ function draw_edit_profile($user_id)
                 <input id="password" type="password" name="password" value="" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                 title ="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" >
-                <!-- todo only required if passord above has smth in value, a script basically -->
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" type="password" placeholder="Repeat Password" name="confirm_password" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
-                title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter" required>
+                title="Password needs to be 8 characters length and have at least 1 number - 1 special character - 1 capital letter">
             </div>
 
         </section>
@@ -110,7 +111,7 @@ function draw_edit_profile($user_id)
         <input type="hidden" name="id" value="<?= $user_id ?>">
         <input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">
 
-        <button class="submit_button" type="submit" value="Upload">Save</button>
+        <button id="edit_profile_submit_button" class="submit_button" type="submit" value="Upload">Save</button>
 
     </form>
 <?php } 
@@ -184,7 +185,7 @@ function draw_reservation($reservation)
         <a class="view_place button" href="../pages/place.php?id=<?=$reservation["place_id"]?>">View Place</a>
 
         <?php if (can_be_reviewed($reservation['id'])) { ?>
-            <button class="review" onclick="open_review_box(event)">Review</button>
+            <button class="review" id="open_review_box">Review</button>
             <?php draw_review_box($reservation['id'], $reservation["place_id"]);  
         } 
 
@@ -204,17 +205,16 @@ function draw_review_box($reservation_id, $place_id) { ?>
     <div class="modal">
         <form class="review_box modal_content animate" action="../actions/action_make_review.php" method="post">
 
-            <span class="close" onclick="close_review_box(event)" title="Close Review Form">&times;</span>
+            <span class="close" id="close_review_box" title="Close Review Form">&times;</span>
 
             <div class="review_rating">
                 <label for="rating">Rating</label>
-                <input type="numer" name="rating">
+                <input type="number" name="rating">
             </div>
         
             <div class="review_comment">
                 <label for="comment">Comment</label>
-                <textarea name="comment" rows="4" placeholder="Write a review comment" pattern="^[a-z A-Z0-9\\/\\\\.'\"]+$">
-                </textarea>
+                <textarea name="comment" rows="4" placeholder="Write a review comment" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$"></textarea>
             </div>
 
             <input type="hidden" name="reservation_id" value="<?=$reservation_id?>">

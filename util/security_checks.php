@@ -18,7 +18,7 @@ function verify_number($number, $input_name)
 function verify_text($text, $input_name)
 {
     // Don't allow certain characters
-    if (!preg_match("/^[a-z A-Z0-9\\/\\\\.'\"]+$/", $text)) {
+    if (!preg_match("/^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$/", $text)) {
         $_SESSION["messages"][] = array("type" => "error", "content" => "$input_name can only contain letters, numbers and a few special characters!");
         die(header("Location: ../pages/home.php"));
     }
