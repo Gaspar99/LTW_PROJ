@@ -273,7 +273,7 @@ function draw_add_place($user_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="/^[a-z A-Z0-9\\/\\\\.'\"]+$/" required></textarea>
+                    <textarea name="description" rows="4" placeholder="Enter Place Description" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$" required></textarea>
                 </div>
 
                 <hr>
@@ -378,7 +378,7 @@ function draw_edit_place($user_id, $place_id)
             <section id="details">
                 <div id="description">
                     <label for="description">Description</label>
-                    <textarea name="description" rows="6" placeholder="Enter Place Description" pattern="^[ \w\s.,;\/()!?\"']+$" required><?= $place["place_description"] ?></textarea>
+                    <textarea name="description" rows="6" placeholder="Enter Place Description" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$" required><?= $place["place_description"] ?></textarea>
                 </div>
 
                 <hr>

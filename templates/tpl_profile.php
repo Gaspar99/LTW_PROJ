@@ -214,7 +214,7 @@ function draw_review_box($reservation_id, $place_id) { ?>
         
             <div class="review_comment">
                 <label for="comment">Comment</label>
-                <textarea name="comment" rows="4" placeholder="Write a review comment" pattern="^[ a-zA-Z0-9.,;\/()'\"]+$"></textarea>
+                <textarea name="comment" rows="4" placeholder="Write a review comment" pattern="^[ \w\s.,;\/()!?\$#@%&{}<>\"']+$"></textarea>
             </div>
 
             <input type="hidden" name="reservation_id" value="<?=$reservation_id?>">

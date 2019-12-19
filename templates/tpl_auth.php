@@ -15,7 +15,7 @@ function draw_sign_in()
       </div>
 
       <div class="form_container">
-        <div class="grid_email">
+        <div class="email">
           <label for="email">Email</label>
           <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="off" required>
         </div>
