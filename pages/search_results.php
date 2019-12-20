@@ -25,14 +25,27 @@ $styles = array(
     "style_places_cards.css"
 );
 
+$scripts = array(
+    "close_tabs.js",
+    "common.js",
+    "search.js",
+);
+
 // Verify if user is not logged in
 if (!isset($_SESSION["user_email"])) {
     $styles[] = "style_animation.css";
     $styles[] = "style_auth.css";
     $styles[] = "style_modal.css";
+
+    $scripts[] = "auth.js";
+    $scripts[] = "confirm_password.js";
+}
+else {
+    $scripts[] = "user_dropdown.js";
+    $scripts[] = "notifications.js";
 }
 
-draw_site_header($styles);
+draw_site_header($styles, $scripts);
 draw_title("Search Results");
 ?> <script src="../script/title.js" onload="update_title('Search Results')" defer></script> <?php
 draw_places($places); //draw search results

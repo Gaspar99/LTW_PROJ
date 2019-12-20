@@ -33,7 +33,7 @@ $search_form = array(
 );
 
 $search_results = search_places($search_form);
-$reservations = get_search_reservations($search_results); //todo test with reservations maded 
+$reservations = get_search_reservations($search_results);
 
 //get those available during time 
 //loop over reservations and remove from search_results those ocupied during that the time inputed 

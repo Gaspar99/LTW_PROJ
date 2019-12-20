@@ -20,7 +20,16 @@ $styles = array(
     "style_chat.css"
 );
 
-draw_site_header($styles);
+$scripts = array(
+    "close_tabs.js",
+    "common.js",
+    "notifications.js",
+    "search.js",
+    "send_message.js",
+    "user_dropdown.js"
+);
+
+draw_site_header($styles, $scripts);
 draw_title("My messages");
 draw_chat($new_msg);
 draw_footer();

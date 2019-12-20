@@ -7,8 +7,8 @@ include_once("tpl_countries.php");
 function draw_search_bar()
 { ?>
     <form id="search_form" action="../actions/action_search.php" method="post">
+        <span class="close" id="close_search_form" title="Close Form">&times;</span>
         
-
         <div class="search_type">
             <label for="search">Location</label>
             <input id="search_input" type="text" name="search" autocomplete="off" placeholder="Where to go?"
@@ -31,9 +31,9 @@ function draw_search_bar()
         <div class="num_guests">
             <label for="num_guests">Max. Guests</label>
             <div id="num_guests_input">
-                <span class="button" onclick="update_guests(event, -1)">-</span>
-                <input onkeydown="return false" onmousedown="return false" type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
-                <span class="button" onclick="update_guests(event, +1)">+</span>
+                <span class="button dec_button">-</span>
+                <input type="number" value="1" min="1" max="10" step="1" name="num_guests" required readonly>
+                <span class="button inc_button">+</span>
             </div>
         </div>
 

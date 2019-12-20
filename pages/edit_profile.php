@@ -20,6 +20,15 @@ $styles = array(
     "style_edit_profile.css"
 );
 
-draw_site_header($styles);
+$scripts = array(
+    "close_tabs.js",
+    "common.js",
+    "notifications.js",
+    "search.js",
+    "confirm_password.js",
+    "user_dropdown.js"
+);
+
+draw_site_header($styles, $scripts);
 draw_edit_profile($user_id);
 draw_footer();

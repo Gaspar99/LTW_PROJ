@@ -1,42 +1,10 @@
 "use strict"
 
-/* ------ RESERVATION BOOKING -------- */
-
-/**
- * 
- * @param {*} event 
- */
-function cancel_reservation(id) {
-
-    //delete html displaying the reservation
-    let reservation_box = document.getElementsByName("reservation_id"+id)[0]
-
-    reservation_box.remove(reservation_box.selectedIndex)
-    //remove reservation from table 
-    let request = new XMLHttpRequest()
-
-    request.onreadystatechange = function () {
-
-        if (request.readyState === 4) {
-
-            let parser =  new DOMParser()
-            let response = parser.parseFromString(request.responseText, "text/xml")
-
-            let message = response.getElementById("messages")
-
-            document.body.appendChild(message)
-        }
-    }
-
-    request.open("post", "../ajax/cancel_reservation.php", true)
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    request.send(encodeForAjax({ id: id}))
-
-}
 
 var locked_days = [ ] //sample
 
-function get_locked_days(place_id){
+function get_locked_days(place_id)
+{
     let request = new XMLHttpRequest()
     request.addEventListener("load", function(){
         let dates = JSON.parse(this.responseText)
@@ -51,9 +19,11 @@ function get_locked_days(place_id){
            
         }
     })
+    
     request.open("get", "../ajax/get_booked_days.php?place_id="+place_id, true)
     request.send()
 }
+
 if(typeof reservation_check_in != 'undefined'){
     let reservation_picker = new Litepicker({
         element: document.getElementById('reservation_check_in'),

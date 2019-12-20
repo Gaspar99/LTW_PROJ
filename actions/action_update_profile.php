@@ -16,23 +16,16 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 $user_id = get_user_id($_SESSION["user_email"]);
 
 // Security checks
-if($_POST["password"] == null){
-    if (
-        !verify_number($_POST["id"], "Id") ||
-        !verify_person_name($_POST["first_name"], "First Name") ||
-        !verify_person_name($_POST["last_name"], "Last Name") ||
-        !verify_email($_POST["email"]) ||
-        !verify_phone_number($_POST["phone_number"])
-    ) die(header('Location: ../pages/home.php'));
-}else {
-    if (
-        !verify_number($_POST["id"], "Id") ||
-        !verify_person_name($_POST["first_name"], "First Name") ||
-        !verify_person_name($_POST["last_name"], "Last Name") ||
-        !verify_email($_POST["email"]) ||
-        !verify_phone_number($_POST["phone_number"]) ||
-        !verify_password($_POST["password"])
-    ) die(header('Location: ../pages/home.php'));
+if (
+    !verify_number($_POST["id"], "Id") ||
+    !verify_person_name($_POST["first_name"], "First Name") ||
+    !verify_person_name($_POST["last_name"], "Last Name") ||
+    !verify_email($_POST["email"]) ||
+    !verify_phone_number($_POST["phone_number"])
+) die(header('Location: ../pages/home.php'));
+
+if($_POST["password"] != null && !verify_password($_POST["password"])) {
+    die(header('Location: ../pages/home.php'));
 }
 
 if ($user_id != $_POST["id"]) {

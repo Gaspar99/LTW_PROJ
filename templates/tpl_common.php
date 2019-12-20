@@ -8,15 +8,15 @@ include_once("../templates/tpl_search.php");
 /**
  * 
  */
-function draw_site_header($styles)
+function draw_site_header($styles, $scripts)
 {
     $countries = get_countries();
 
     if (isset($_SESSION["user_email"])) {
-        draw_header($_SESSION["user_email"], $styles);
+        draw_header($_SESSION["user_email"], $styles, $scripts);
         draw_notifications($_SESSION["user_email"]);
     } else {
-        draw_header(null, $styles);
+        draw_header(null, $styles, $scripts);
         draw_sign_in();
         draw_sign_up($countries);
     }
@@ -30,7 +30,7 @@ function draw_site_header($styles)
  * Draws the html header for all pages. Receives an user id 
  * if the user is logged in in order to know what to draw
  */
-function draw_header($user_email, $styles)
+function draw_header($user_email, $styles, $scripts)
 {
     $user_id = get_user_id($user_email); ?>
 
@@ -40,17 +40,12 @@ function draw_header($user_email, $styles)
     <head>
         <title>Rental Eye</title>
         <meta charset="utf-8">
-        <?php draw_styles($styles); ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="../images/site/logo.jpeg">
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js" defer></script>
-        <script src="../script/main.js" defer></script>
-        <script src="../script/comments.js" defer></script>
-        <script src="../script/notifications.js" defer></script>
-        <script src="../script/reservation.js" defer></script>
-        <script src="../script/place_utils.js" defer></script>
-        <script src="../script/close_tabs.js" defer></script>
+        <?php draw_styles($styles); 
+        draw_scripts($scripts); ?>
     </head>
     
     <body id="site_container">
@@ -101,48 +96,48 @@ function draw_header($user_email, $styles)
     <?php }
 
 
-    /**
-     * 
-     */
-    function draw_title($title)
-    { ?>
-        <h1 id="main_title"><?= $title ?></h1>
-        <?php }
+/**
+* 
+*/
+function draw_title($title)
+{ ?>
+    <h1 id="main_title"><?= $title ?></h1>
+<?php }
 
 
-        /**
-         * 
-         */
-        function draw_messages()
-        {
-            if (isset($_SESSION["messages"])) { ?>
+/**
+* 
+*/
+function draw_messages()
+{
+    if (isset($_SESSION["messages"])) { ?>
 
-            <section id="messages">
-                <?php foreach ($_SESSION["messages"] as $message) { ?>
-                    <div class="<?= $message["type"] ?>"><?= $message["content"] ?></div>
-                <?php } ?>
-            </section>
+        <section id="messages">
+            <?php foreach ($_SESSION["messages"] as $message) { ?>
+                <div class="<?= $message["type"] ?>"><?= $message["content"] ?></div>
+            <?php } ?>
+        </section>
 
         <?php unset($_SESSION["messages"]);
-            }
-        }
+    }
+}
 
 
-        /**
-         * 
-         */
-        function init_site_content()
-        { ?>
-        <main id="site_content">
-        <?php }
+/**
+* 
+*/
+function init_site_content()
+{ ?>
+<main id="site_content">
+<?php }
 
 
-        /**
-         * Draws the footer for all pages.
-         */
-        function draw_footer()
-        { ?>
-        </main>
+/**
+* Draws the footer for all pages.
+ */
+function draw_footer()
+{ ?>
+            </main>
         <footer id="site_footer">Copyright © 2019 LTW FEUP</footer>
     </body>
 
@@ -197,4 +192,13 @@ function draw_styles($styles) {
     foreach ($styles as $style) { ?>
     <link rel="stylesheet" href="../css/<?=$style?>">
     <?php } 
+}
+
+/**
+ * 
+ */
+function draw_scripts($scripts) {
+    foreach ($scripts as $script) { ?>
+    <script src="../script/<?=$script?>" defer></script>
+    <?php }
 }

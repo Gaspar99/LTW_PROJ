@@ -25,6 +25,15 @@ $styles = array(
     "style_add_&_edit_place.css"
 );
 
-draw_site_header($styles);
+$scripts = array(
+    "close_tabs.js",
+    "common.js",
+    "notifications.js",
+    "search.js",
+    "location.js",
+    "user_dropdown.js"
+);
+
+draw_site_header($styles, $scripts);
 draw_add_place($user_id);
 draw_footer();

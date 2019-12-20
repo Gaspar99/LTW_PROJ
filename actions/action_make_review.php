@@ -42,7 +42,7 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
-//todo test
+
 try{
     add_notification_review($_POST["reservation_id"]); 
 }catch (PDOException $e) {

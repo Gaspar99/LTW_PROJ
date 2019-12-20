@@ -138,20 +138,20 @@ function draw_place_info($place_id)
                                 <div class="form_date">
                                     <div class="check_in">
                                         <label for="check_in">Check In</label>
-                                        <input id="reservation_check_in" name="check_in"  required autocomplete="off">
+                                        <input id="reservation_check_in" name="check_in" oninput="calculate_rent_price(<?= $place['price'] ?>)" required autocomplete="off">
                                     </div>
 
                                     <div class="check_out">
                                         <label for="check_out">Check Out</label>
-                                        <input id="reservation_check_out" name="check_out"  required autocomplete="off">
+                                        <input id="reservation_check_out" name="check_out" oninput="calculate_rent_price(<?= $place['price'] ?>)" required autocomplete="off">
                                     </div>
                                 </div>
                                 <div id="form_num_guests">
                                     <label for="num_guests">Number of Guests</label>
                                     <div id="num_guests_input">
-                                        <span class="button" onclick="update_guests(event, -1);calculate_rent_price(<?=$place["price"]?>);">-</span>
+                                        <span class="button dec_button" onclick="calculate_rent_price(<?=$place['price']?>)">-</span>
                                         <input readonly type="number" value="1" min="1" max="<?= $place["num_guests"] ?>" step="1" name="num_guests" required>
-                                        <span class="button" onclick="update_guests(event, +1);calculate_rent_price(<?= $place["price"] ?>);">+</span>
+                                        <span class="button inc_button" onclick="calculate_rent_price(<?= $place['price'] ?>)">+</span>
                                     </div>
                                 </div>
 
@@ -218,14 +218,14 @@ function draw_add_place($user_id)
 
             <div class="form_country">
                 <label for="country">Country</label>
-                <select name="country" class="country_select" id="get_city_by_country" required>
+                <select name="country" id="country_select" required>
                     <?= draw_country_options($countries); ?>
                 </select>
             </div>
 
             <div class="form_city">
                 <label for="city">City</label>
-                <select name="city" class="city_select" required>
+                <select name="city" id="city_select" required>
                     <option disabled selected>Select City</option>
                 </select>
             </div>
@@ -241,9 +241,9 @@ function draw_add_place($user_id)
             <div class="num_guests">
                 <label for="num_guests">Max. Guests</label>
                 <div id="num_guests_input">
-                    <span class="button" onclick="update_guests(event, -1)">-</span>
+                    <span class="button dec_button">-</span>
                     <input readonly type="number" value="1" min="1" max="10" step="1" name="num_guests" required>
-                    <span class="button" onclick="update_guests(event, +1)">+</span>
+                    <span class="button inc_button">+</span>
                 </div>
             </div>
 
@@ -342,9 +342,9 @@ function draw_edit_place($user_id, $place_id)
             <div class="num_guests">
                 <label for="num_guests">Max. Guests</label>
                 <div id="num_guests_input">
-                    <span class="button" onclick="update_guests(event, -1)">-</span>
+                    <span class="button dec_button">-</span>
                     <input readonly type="number" value="<?= $place["num_guests"] ?>" min="1" max="10" step="1" name="num_guests" required>
-                    <span class="button" onclick="update_guests(event, +1)">+</span>
+                    <span class="button inc_button">+</span>
                 </div>
             </div>
 
@@ -491,11 +491,11 @@ function draw_image_gallery($image_gallery)
             <?php }
 
             if (sizeof($image_gallery) > 1) {  ?>
-            <span class="display_left" onclick="plusDivs(-1)">&#10094;</span>
-            <span class="display_right" onclick="plusDivs(+1)">&#10095;</span>
+            <span id="display_left">&#10094;</span>
+            <span id="display_right">&#10095;</span>
             <?php } ?>
 
-            <span class="full_screen" id="toggle_image_fullscreen">
+            <span id="full_screen">
                 <i class="material-icons">fullscreen</i>
             </span>
                     

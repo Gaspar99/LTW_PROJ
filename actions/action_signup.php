@@ -23,10 +23,10 @@ $user = array(
   "country_id" => $_POST["country_id"]
 );
 
-//todo adicionar mensager por no sitio certo 
-if(get_id_by_email($_POST["email"]) != false){
-  echo 'email existe';
-   die(header("Location: ../pages/home.php"));
+// email already exists
+if (get_id_by_email($_POST["email"]) != false){
+  $_SESSION["messages"][] = array("type" => "error", "content" => "Email already exists!");
+  die(header("Location: ../pages/home.php"));
 }
 
 try {

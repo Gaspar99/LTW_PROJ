@@ -50,7 +50,7 @@ function draw_comment($comment, $place_owner_id, $place_owner)
         <?php if ($comment["owner_reply"] == NULL) { 
 
             if (isset($_SESSION["user_email"]) && $place_owner["email"] == $_SESSION["user_email"]) { ?>
-            <button class="reply" onclick="open_reply_box(event)">Reply</button>
+            <button class="reply">Reply</button>
             <?php draw_reply_box($comment);
             }
 

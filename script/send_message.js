@@ -1,8 +1,8 @@
 "use strict"
 
-let input = document.getElementById("message_input")
+let message_input = document.getElementById("message_input")
 
-input.addEventListener("keyup", function(event){
+message_input.addEventListener("keyup", function(event){
     if (event.keyCode === 13) {
         // Cancel the default action, if needed
         event.preventDefault();
@@ -11,6 +11,6 @@ input.addEventListener("keyup", function(event){
         //todo send message 
 
         //clear value
-        input.value = "";
+        message_input.value = "";
     }
 })

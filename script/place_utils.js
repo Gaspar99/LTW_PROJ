@@ -1,104 +1,74 @@
-//vars 
-let toggle_image_fullscreen = document.getElementById("toggle_image_fullscreen")
+"use strict"
 
-//  Place Gallery - a slider to display multiple images
-let slideIndex = 1
-let fullscreen = false
-showDivs(slideIndex)
+// Get target elements
+let open_review_box= document.getElementById("open_review_box")
+let close_review_box = document.getElementById("close_review_box")
 
-function plusDivs(n) {
-    showDivs(slideIndex += n)
-}
-
-function showDivs(n) {
-
-    let images = document.getElementsByClassName("image_slide")
-    let originals = document.getElementsByClassName("fullscreen_slide")
-
-    if (n > images.length)
-        slideIndex = 1
-
-    if (n < 1)
-        slideIndex = images.length
-
-    for (let i = 0; i < images.length; i++) {
-        images[i].style.display = "none"
-        originals[i].style.display = "none"
-    }
-
-    if (images.length) {
-        if (fullscreen) 
-            originals[slideIndex - 1].style.display = "block"
-        else
-            images[slideIndex - 1].style.display = "block"
+/**
+ * 
+ */
+if(open_review_box != null){
+    open_review_box.onclick = function(event){  
+        let box = event.target.nextElementSibling
+    
+        box.style.display = "flex"
     }
 }
-if(toggle_image_fullscreen != null){
-    toggle_image_fullscreen.onclick =  function(event){
-        fullscreen = (!fullscreen)
-    
-        let place_gallery = document.getElementById("place_gallery")
-        //let image_container = document.getElementById("image_container")
-        let fullscreen_icon = place_gallery.querySelector(".material-icons")
-    
-        if (fullscreen) {
-            place_gallery.style.position = "fixed"
-            place_gallery.style.left = "0"
-            place_gallery.style.top = "0"
-            place_gallery.style.width = "100vw"
-            place_gallery.style.height = "100vh"
-            place_gallery.style.backgroundColor = "rgba(0, 0, 0, 0.4)"
-            
-            image_container.style.maxWidth = "80%"
-            image_container.style.maxHeight = "50vw"
-    
-            fullscreen_icon.innerHTML = "fullscreen_exit"
+
+/**
+ * 
+ */
+if(close_review_box != null){
+    close_review_box.onclick = function(event) {
+        let box = event.target.parentElement.parentElement
+        box.style.display = "none"
+    }
+}
+
+/**
+ * 
+ * @param {*} event 
+ */
+function cancel_reservation(id) {
+
+    //delete html displaying the reservation
+    let reservation_box = document.getElementsByName("reservation_id"+id)[0]
+
+    reservation_box.remove(reservation_box.selectedIndex)
+    //remove reservation from table 
+    let request = new XMLHttpRequest()
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState === 4) {
+
+            let parser =  new DOMParser()
+            let response = parser.parseFromString(request.responseText, "text/xml")
+
+            let message = response.getElementById("messages")
+
+            document.body.appendChild(message)
         }
-        else {
-            place_gallery.style.position = "static"
-            place_gallery.style.width = "auto"
-            place_gallery.style.height = "auto"
-            place_gallery.style.backgroundColor = "transparent"
-    
-            image_container.style.maxWidth = "max-content"
-            image_container.style.maxHeight = "max-content" 
-    
-            fullscreen_icon.innerHTML = "fullscreen"
-        }
-    
-        showDivs(slideIndex)
     }
-}
 
-// PRICE
-
-let min_price = document.getElementById("min_price_input")
-let max_price = document.getElementById("max_price_input")
-
-min_price.oninput = update_price
-max_price.oninput = update_price
-
-function update_price() {
-    let min_price_input = parseFloat(min_price.value)
-    let max_price_input = parseFloat(max_price.value)
-
-    let min_price_value = document.getElementById("min_price_value")
-    let max_price_value = document.getElementById("max_price_value")
-
-    min_price_value.innerHTML = "" + min_price_input + "€"
-    max_price_value.innerHTML = "" + max_price_input + "€"
-
+    request.open("post", "../ajax/cancel_reservation.php", true)
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    request.send(encodeForAjax({ id: id}))
 }
 
 /**
  * 
  * @param {*} price_per_night 
  */
-function calculate_rent_price(price_per_night) {
-
-    let check_in = document.getElementById("check_in_value")
-    let check_out = document.getElementById("check_out_value")
+function calculate_rent_price(price_per_night) 
+{
+    let check_in = document.getElementById("reservation_check_in")
+    let check_out = document.getElementById("reservation_check_out")
     let num_guests = document.querySelector("#place_page #num_guests_input input")
+
+    console.log(check_in.value)
+    console.log(check_out.value)
+    console.log(num_guests.value)
 
     //One of the inputs required was not defined yet
     if (check_in.value.length == 0 || check_out.value.length == 0 || num_guests.value.length == 0) {
@@ -146,48 +116,8 @@ function calculate_rent_price(price_per_night) {
     }
 }
 
-/**
- * 
- * @param {*} event 
- * @param {*} number 
- */
-function update_guests(event, number) {
-    let num_guests
-
-    if (number < 0)
-        num_guests = event.target.nextElementSibling
-    else
-        num_guests = event.target.previousElementSibling
-
-    num_guests.value = +num_guests.value + number
-
-    if (+num_guests.value < +num_guests.min)
-        num_guests.value = num_guests.min
-    else if (+num_guests.value > +num_guests.max)
-        num_guests.value = num_guests.max
+function encodeForAjax(data) {
+    return Object.keys(data).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&')
 }
-/**
- * 
- * @param {*} event 
- */
-function toggle_checkbox(event) {
-    let checkbox = event.target
-    let checkmark = event.target.nextElementSibling
-
-    
-    if (checkbox.checked) {
-        checkmark.style.visibility = "visible"
-    } 
-    else {
-        checkmark.style.visibility = "hidden"
-    }
-        
-}
-
-/* TAGS */
-
-/* tags_checkboxes = document.querySelectorAll(".tag input")
-
-tags_checkboxes.forEach(checkbox => {
-    checkbox.onclick = (event) => toggle_checkbox(event)
-}); */
