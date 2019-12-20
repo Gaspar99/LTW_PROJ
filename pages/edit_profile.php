@@ -12,6 +12,14 @@ $user_id = get_user_id($_SESSION["user_email"]);
 
 $countries = get_countries();
 
-draw_site_header();
+$styles = array(
+    "style_generic.css",
+    "style_common.css",
+    "style_header.css",
+    "style_search.css",
+    "style_edit_profile.css"
+);
+
+draw_site_header($styles);
 draw_edit_profile($user_id);
 draw_footer();

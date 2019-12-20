@@ -36,6 +36,8 @@ remove_place_tags($place_id);
 remove_place_reservations($place_id); 
 remove_place($place_id);
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Place removed!");
+
 $user_id = get_user_id($_SESSION["user_email"]);
 header("Location: ../pages/profile.php?id=$user_id");
 

@@ -8,15 +8,15 @@ include_once("../templates/tpl_search.php");
 /**
  * 
  */
-function draw_site_header()
+function draw_site_header($styles)
 {
     $countries = get_countries();
 
     if (isset($_SESSION["user_email"])) {
-        draw_header($_SESSION["user_email"]);
+        draw_header($_SESSION["user_email"], $styles);
         draw_notifications($_SESSION["user_email"]);
     } else {
-        draw_header(null);
+        draw_header(null, $styles);
         draw_sign_in();
         draw_sign_up($countries);
     }
@@ -30,7 +30,7 @@ function draw_site_header()
  * Draws the html header for all pages. Receives an user id 
  * if the user is logged in in order to know what to draw
  */
-function draw_header($user_email)
+function draw_header($user_email, $styles)
 {
     $user_id = get_user_id($user_email); ?>
 
@@ -40,7 +40,7 @@ function draw_header($user_email)
     <head>
         <title>Rental Eye</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/style.css">
+        <?php draw_styles($styles); ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="../images/site/logo.jpeg">
@@ -188,4 +188,13 @@ function draw_notifications($email)
         } ?>
         </ul>
     </div>
-<?php } ?>
+<?php } 
+
+/**
+ * 
+ */
+function draw_styles($styles) {
+    foreach ($styles as $style) { ?>
+    <link rel="stylesheet" href="../css/<?=$style?>">
+    <?php } 
+}

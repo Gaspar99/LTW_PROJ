@@ -19,7 +19,7 @@
 
 .modal_content {
     /* Layout */
-    display: block;
+    display: grid;
     margin: 5% auto auto auto;
     border-radius: 0.5em;
     box-shadow: 0 0 1em black;
@@ -35,4 +35,8 @@
     padding-left: 2em;
     padding-top: 2em;
     padding-bottom: 1em;
+}
+
+.modal img.site_logo {
+    width: 20%;
 }

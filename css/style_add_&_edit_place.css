@@ -1,0 +1,149 @@
+/*----- ADD PLACE & EDIT PLACE-------*/
+
+#add_place, #site_content>#edit_place {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 1em;
+    background: white;
+    padding-top: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
+    min-width: 666px;
+    margin-top: 1em;
+}
+
+/*-- Place title --*/
+
+#add_place #place_title, #edit_place #place_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em 3em 1.2em 0;
+}
+
+#add_place #place_title label, #edit_place #place_title label {
+    padding: 0 0.5em 0 0;
+    font-size: 2.4em;
+}
+
+#add_place #place_title input, #edit_place #place_title input {
+    margin: 0;
+    padding: 0.6em 1em;
+    font-size: 1.2em;
+}
+
+/*-- Place location --*/
+
+#add_place #location, #edit_place #location {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+#edit_place #location>* {
+    margin: 1em;
+}
+
+#add_place #location .form_country, #add_place #location .form_city {
+    margin: 0 1em 0 0;
+    width: 10em;
+}
+
+#add_place #location #address {
+    flex-grow: 5;
+}
+
+/*-- Place numbers - price & num guests --*/
+
+#add_place #numbers, #edit_place #numbers {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1.8em 0 0.5em 0;
+}
+
+#add_place #numbers>*, #edit_place #numbers>* {
+    display: flex;
+    align-items: center;
+    margin: 0 2em 0 0;
+    min-width: max-content;
+}
+
+#add_place #numbers>* label, #edit_place #numbers>* label {
+    margin: 0 0.6em 0 0;
+    font-size: 1.3em;
+    min-width: max-content;
+}
+
+/* Price */
+
+#add_place #numbers #price label, #edit_place #numbers #price label {
+    min-width: max-content;
+}
+
+#add_place #numbers #price .price_input, #edit_place #numbers #price .price_input {
+    position: relative;
+}
+
+#add_place #numbers #price .price_input input, #edit_place #numbers #price .price_input input {
+    max-width: 10em;
+    min-width: 5em;
+    font-size: 1.5em;
+    padding: 0.2em 0.7em;
+    margin: 0;
+}
+
+#add_place #numbers #price .price_input i, #edit_place #numbers #price .price_input i {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    padding: 0.3em 0.5em;
+}
+
+#add_place #body, #edit_place #body {
+    display: grid;
+    width: 100%;
+    margin: 0;
+    grid-template-columns: min-content auto;
+}
+
+/* Details */
+
+#add_place #body #details, #edit_place #body #details {
+    grid-column-start: 2;
+    grid-column-end: end;
+    margin: 1em;
+}
+
+#add_place #body #details label, #edit_place #body #details label {
+    font-size: 1.4em;
+}
+
+#add_place #body #details #description textarea, #edit_place #body #details #description textarea {
+    font-size: 1.2em;
+}
+
+#add_place .submit_button, #edit_place .submit_button{
+    min-width: 7em;
+}
+
+#details #description {
+    margin-bottom: 1.9em;
+}
+
+#place_info #tags {
+    background:var(--panel-color);
+}
+
+/* Sumbit button */
+
+#add_place .submit_button, #edit_place .submit_button {
+    width: 15%;
+    margin: 2em 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

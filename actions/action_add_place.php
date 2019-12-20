@@ -60,5 +60,7 @@ try {
     die($e->getMessage());
 }
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Place added");
+
 $user_id = get_user_id($_SESSION["user_email"]);
 header("Location: ../pages/profile.php?id=$user_id");

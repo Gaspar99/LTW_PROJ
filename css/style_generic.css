@@ -6,8 +6,37 @@ body {
     --background-color: rgb(230, 230, 230);
     --form-input-color: rgb(195, 195, 195);
     --rating-star-color: rgb(223, 195, 37);
-    
     --roboto-font: "Roboto", sans-serif;
+}
+
+#site_container {
+    /* Layout */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Style */
+    background-color: var(--background-color);
+}
+
+#site_content {
+    flex: 1;
+    width: 70%;
+    margin: 0em auto;
+}
+
+#main_title {
+    background-color: white;
+    position: relative;
+    padding-left: 0px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-style: solid;
+    border-top-color: var(--button-color);
+    border-top-width: 5px;
+    /* text-align: center; */
+    width: 100%;
 }
 
 /* --------------- Generics --------------- */
@@ -62,7 +91,7 @@ button, .button {
     transition-duration: 0.3s;
 }
 
-button:before, .button:before{
+button:before, .button:before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -96,6 +125,8 @@ button:hover:before, button:hover:before {
 *:focus {
     outline: 0;
 }
+
+/* Full-width input fields */
 
 input, select, textarea {
     /* Layout */

@@ -5,12 +5,26 @@
     grid-template-columns: 30% 70%;
 }
 
+/*-----USER PROFILE-------*/
+
+#profile_page {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
 /*-- User Info --*/
 
 #profile_page #user_info {
     grid-column-start: 1;
     grid-column-end: 2;
-    margin: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    background: white;
+    border-right-style: solid;
+    border-right-color: var(--button-color);
+    border-right-width: 0.5em;
+    min-width: 200px;
 }
 
 /*-- User Name --*/
@@ -70,7 +84,8 @@
 #profile_page #user_places {
     grid-column-start: 2;
     grid-column-end: 3;
-    margin: 1em;
+    margin-top: 1em;
+    min-width: 400px;
 }
 
 /*- Placs for Rental -*/
@@ -83,11 +98,40 @@
     flex-wrap: wrap;
 }
 
+#for_rental h3{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#for_rental>.places{
+    margin: 1em;
+}
+
+#reservations h3{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#reservations h2{
+    margin-top: 1em;
+    margin-left: 4.8em;
+    font-size: 1.2em;
+}
+
+#reservations #reservations_header{
+    margin-top:2em;
+}
+
 #profile_page #user_places h3 {
     font-size: 1.5em;
-    margin: 1em;
+    padding-left: 2em;
+    margin: 0em;
     text-align: left;
     width: 100%;
+    background: white;
+    border-bottom-color: var(--button-color);
+    border-bottom-style: solid;
+    border-bottom-width: 0.3em;
 }
 
 /*- Reservations -*/
@@ -166,4 +210,18 @@
 #profile_page #reservation_line .options .review_box .review_rating *,
 #profile_page #reservation_line .options .review_box .review_comment * {
     font-size: 1.3em;
+}
+
+#send_message {
+   margin: 1em auto;
+}
+
+@media (max-width: 1220px){
+    #profile_page #user_info{
+        margin-top: 0em;
+    }
+
+    #profile_page #user_places{
+        margin-top: 0em;
+    }
 }

@@ -44,5 +44,6 @@ if ($_FILES["image"]["name"] != "") {
     update_profile_pic($user_id);  
 }
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Profile Updated!");
 
 header("Location: ../pages/profile.php?id=$user_id");

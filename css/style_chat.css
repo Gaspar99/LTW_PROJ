@@ -1,21 +1,23 @@
 /* ------- CHAT STUFF ------*/
-#chat_box{
+
+#chat_box {
     color: red;
 }
 
-.my_messages{
+.my_messages {
     display: flex;
     margin-top: 1em;
 }
-.users_to_message{
+
+.users_to_message {
     margin-right: 0.5em;
-    margin-left: 1em;
-    width: 15%;
+    width: 20%;
     float: left;
     border: solid black;
     border-width: thin;
 }
-.chat_box{
+
+.chat_box {
     height: 25em;
     border: solid black;
     border-width: thin;
@@ -24,10 +26,16 @@
     background-color: white;
     width: 80%;
 }
-.chat_box>#traded_messages{
+
+.chat_box>#traded_messages {
     height: 21.8em;
 }
-.chat_box>input{
+
+.chat_box>input {
     background: var(--search-grey);
     border-color: black;
+}
+
+.js-is-hidden {
+    display: none;
 }

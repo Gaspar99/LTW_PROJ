@@ -50,5 +50,7 @@ try{
     die($e->getMessage());
 }
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Review posted!");
+
 $place_id = $_POST["place_id"];
 header("Location: ../pages/place.php?id=$place_id");

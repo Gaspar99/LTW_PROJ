@@ -56,4 +56,6 @@ if ($_FILES["image"]["name"] != "") {
     add_place_photo($place_id);
 }
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Place updated!");
+
 header("Location: ../pages/place.php?id=$place_id");

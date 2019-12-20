@@ -14,6 +14,14 @@ if (!isset($_SESSION["user_email"]))
 $place_id = $_POST["place_id"];
 $user_id = get_user_id($_SESSION["user_email"]);
 
-draw_site_header();
+$styles = array(
+    "style_generic.css",
+    "style_common.css",
+    "style_header.css",
+    "style_search.css",
+    "style_add_&_edit_place.css"
+);
+
+draw_site_header($styles);
 draw_edit_place($user_id, $place_id);
 draw_footer();

@@ -8,11 +8,19 @@ include_once("../templates/tpl_chat.php");
 if (!isset($_SESSION["user_email"]))
     die(header('Location: ../pages/home.php'));
 
-$new_msg = $_GET['id'];
+$new_msg = [];
 
 #get_messages 
 
-draw_site_header();
+$styles = array(
+    "style_generic.css",
+    "style_common.css",
+    "style_header.css",
+    "style_search.css",
+    "style_chat.css"
+);
+
+draw_site_header($styles);
 draw_title("My messages");
 draw_chat($new_msg);
 draw_footer();

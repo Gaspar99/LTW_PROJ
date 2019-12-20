@@ -59,4 +59,6 @@ try{
     die($e->getMessage());
 }
 
+$_SESSION["messages"][] = array("type" => "success", "content" => "Place rented!");
+
 header("Location: ../pages/home.php");

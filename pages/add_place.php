@@ -8,15 +8,23 @@ include_once("../database/db_location.php");
 include_once("../templates/tpl_places.php");
 
 // Verify if user is logged in
-if (!isset($_SESSION["user_email"]))
+if (!isset($_SESSION["user_email"])) {
     die(header('Location: ../pages/home.php'));
+}
     
-
 $user_id = get_user_id($_SESSION["user_email"]);
 
 $places = get_places();
 $countries = get_countries();
 
-draw_site_header();
+$styles = array(
+    "style_generic.css",
+    "style_common.css",
+    "style_header.css",
+    "style_search.css",
+    "style_add_&_edit_place.css"
+);
+
+draw_site_header($styles);
 draw_add_place($user_id);
 draw_footer();
