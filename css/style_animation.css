@@ -2,7 +2,7 @@
 
 /* Add Zoom Animation */
 
-.animate {
+.scale_animate {
     -webkit-animation: animatezoom 0.4s;
     animation: animatezoom 0.4s
 }

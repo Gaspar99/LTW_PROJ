@@ -40,6 +40,7 @@ function toggle_image_fullscreen() {
 
         image_container.style.maxWidth = "80%"
         image_container.style.maxHeight = "50vw"
+        image_container.style.zIndex = "20"
 
         fullscreen_icon.innerHTML = "fullscreen_exit"
     }
@@ -51,6 +52,7 @@ function toggle_image_fullscreen() {
 
         image_container.style.maxWidth = "max-content"
         image_container.style.maxHeight = "max-content"
+        image_container.style.zIndex = "0"
 
         fullscreen_icon.innerHTML = "fullscreen"
     }

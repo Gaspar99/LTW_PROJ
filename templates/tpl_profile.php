@@ -72,7 +72,7 @@ function draw_edit_profile($user_id)
 
             </div>
 
-            <div id="profile_pic_update">
+            <div id="upload">
                 <img src="../images/profiles/thumbs_medium/<?= $user_info["profile_pic"] ?>" alt="Profile_pic" />
                 <div class="button upload_button">
                     Update Profile Picture

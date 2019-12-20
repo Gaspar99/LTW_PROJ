@@ -198,7 +198,7 @@
     cursor: pointer;
 }
 
-#site_header #notification_bell:hover, #site_header #notification_bell:focus, #site_header #notification_bell:active {
+#site_header #notification_bell i:hover, #site_header #notification_bell i:focus, #site_header #notification_bell i:active {
     -webkit-animation-name: hvr-buzz-out;
     animation-name: hvr-buzz-out;
     -webkit-animation-duration: 0.75s;
@@ -210,6 +210,8 @@
 }
 
 #site_header #notification_bell {
+    z-index: 2;
+    position: relative;
     background: transparent;
     margin: 1.5em 1em 0 0;
     padding: 0;
@@ -219,18 +221,32 @@
 #notifications_box {
     display: none;
     position: absolute;
-    background-color: rgb(255, 255, 255);
-    width: 12em;
-    height: auto;
-    top: 6em;
-    left: 76em;
-    z-index: 200;
+    color: black;
+    background-color: white;
+    width: max-content;
+    height: 10em;
+    box-shadow: 0 0 0.5em black;
+    padding: 0;
+    margin-right: 2em;
+}
+
+#notifications_box h3 {
+    width: min-content;
+    margin: auto;
 }
 
 #notification_list {
-    padding: 0.2em;
-    margin: 0em;
-    box-shadow: 0px 10px 10px grey;
+    padding: 0em;
+    margin: 1em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#notification_list li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
 }
 
 #notification_list>*>a>span:first-child {

@@ -14,7 +14,6 @@ function draw_site_header($styles, $scripts)
 
     if (isset($_SESSION["user_email"])) {
         draw_header($_SESSION["user_email"], $styles, $scripts);
-        draw_notifications($_SESSION["user_email"]);
     } else {
         draw_header(null, $styles, $scripts);
         draw_sign_in();
@@ -74,7 +73,8 @@ function draw_header($user_email, $styles, $scripts)
                                 <i class="material-icons">notifications</i>
                             <?php } else {?>
                                 <i class="material-icons">notifications_active</i>
-                            <?php } ?>
+                            <?php } 
+                            draw_notifications($_SESSION["user_email"]); ?>
                         </span>
                         <a id="chat_icon" href="../pages/chat.php">
                             <i class="material-icons">mail_outline</i>
@@ -153,9 +153,13 @@ function draw_notifications($email)
     $notifications = get_all_usr_notifications($usr_id);
     
     ?>
-    <div id="notifications_box">
+    <div id="notifications_box"> 
         <ul id="notification_list">
-        <?php foreach ($notifications as $notification) { 
+
+            <?php if (sizeof($notifications) == 0) { ?>
+            <h3>No Notifications</h3>
+            <?php } else { 
+            foreach ($notifications as $notification) { 
                 if($notification["is_read"]){?>
                     <li id="read_notification" name="notification_id<?= $notification['id'] ?>">
                         <a href="../pages/place.php?id=<?=$notification['place_id']?>"?>
@@ -185,11 +189,12 @@ function draw_notifications($email)
             <?php }
         } ?>
         </ul>
+    <?php } ?>
     </div>
 <?php } 
 
 /**
- * 
+ * Draws the links to the css files included
  */
 function draw_styles($styles) {
     foreach ($styles as $style) { ?>
@@ -198,7 +203,7 @@ function draw_styles($styles) {
 }
 
 /**
- * 
+ * Draws the links to the javascript files included
  */
 function draw_scripts($scripts) {
     foreach ($scripts as $script) { ?>

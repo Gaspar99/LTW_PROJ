@@ -88,9 +88,15 @@ function get_cities($country_id)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT id AS city_id, city.city_name AS city_name 
-            FROM city WHERE country_id = ? 
-            ORDER BY city_name"
+        "SELECT 
+            id AS city_id, 
+            city.city_name AS city_name 
+        FROM 
+            city 
+        WHERE 
+            country_id = ? 
+        ORDER BY 
+            city_name"
     );
 
     $stmt->execute(array($country_id));
