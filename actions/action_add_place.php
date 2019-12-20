@@ -15,8 +15,6 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
     die(header("Location: ../pages/home.php"));
 }
 
-print($_POST["city"]); die();
-
 // Security checks
 if (
     !verify_text($_POST["title"], "Title") ||

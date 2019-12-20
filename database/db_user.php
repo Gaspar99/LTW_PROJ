@@ -27,7 +27,6 @@ function get_user_name($user_email)
 
     return $stmt->fetch();
 }
-
 /**
  * Goes through the database and returns the id of the user
  * with the email passed as argument
@@ -124,7 +123,6 @@ function get_id_by_email($user_email)
 
     return $stmt->fetch();
 }
-
 
 /*========================= ADDS ============================== */
 

@@ -8,7 +8,6 @@ input.addEventListener("keyup", function(event){
         event.preventDefault();
         // Trigger the button element with a click
         //document.getElementById("myBtn").click();
-        console.log(input.value);
         //todo send message 
 
         //clear value

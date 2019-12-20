@@ -5,7 +5,6 @@ function search_places($options)
 {
     //open db connection 
     $db = Database::instance()->db();
-    //todo geography stuff
     if($options["geo_type"]){
         if($options["country"] == "" && $options["city"] == ""){
             //execute querry 
@@ -40,7 +39,6 @@ function search_places($options)
                 city.city_name  = ? COLLATE NOCASE" 
             );
             
-            //todo add country city stuff
             $stmt->execute(array(
                 $options["num_guests"],
                 $options["min_price"],
@@ -64,7 +62,6 @@ function search_places($options)
                     place.city_id  = city.id AND
                     city.country_id = country.id " 
             );
-            //todo add country city stuff
             $stmt->execute(array(
                 $options["num_guests"],
                 $options["min_price"],
@@ -89,7 +86,6 @@ function search_places($options)
                 city.country_id = country.id AND
                 ? = city.city_name COLLATE NOCASE" 
             );
-            //todo add country city stuff
             $stmt->execute(array(
                 $options["num_guests"],
                 $options["min_price"],
@@ -110,7 +106,6 @@ function search_places($options)
                 (country.country_name LIKE upper(?) OR  city.city_name LIKE upper(?))AND
                 place.city_id = city.id AND city.country_id = country.id" 
         );
-        //todo add country city stuff
         $str =  $options["country%"];
         $stmt->execute(array(
             $options["num_guests"],
@@ -172,13 +167,11 @@ function process_string($search_str)
         $country = $piece1; 
         $city= $piece2;
 
-        //todo check integrity 
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
             "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
         $stmt->execute(array($city));
         
         $city_state = $stmt->fetch();
@@ -188,7 +181,6 @@ function process_string($search_str)
             $stmt = $db->prepare(
                 "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
             );
-            //todo add country city stuff
             $stmt->execute(array($city));
 
             $country_state = $stmt->fetch();
@@ -198,7 +190,6 @@ function process_string($search_str)
                 $stmt = $db->prepare(
                     "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"
                 );
-                //todo add country city stuff
                 $stmt->execute(array($country));
                 
                 $city_state = $stmt->fetch();
@@ -225,7 +216,6 @@ function process_string($search_str)
         $stmt = $db->prepare(
             "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
         $stmt->execute(array($country));
         
         $country_state = $stmt->fetch();
@@ -248,13 +238,11 @@ function process_string($search_str)
         $country = $piece1; 
         $city= $piece2;
 
-        //todo check integrity 
         $db = Database::instance()->db();
 
         $stmt = $db->prepare(
             "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
         $stmt->execute(array($city));
         
         $city_state = $stmt->fetch();
@@ -264,7 +252,7 @@ function process_string($search_str)
             $stmt = $db->prepare(
                 "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
             );
-            //todo add country city stuff
+
             $stmt->execute(array($city));
 
             $country_state = $stmt->fetch();
@@ -274,7 +262,7 @@ function process_string($search_str)
                 $stmt = $db->prepare(
                     "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"
                 );
-                //todo add country city stuff
+
                 $stmt->execute(array($country));
                 
                 $city_state = $stmt->fetch();
@@ -301,7 +289,7 @@ function process_string($search_str)
         $stmt = $db->prepare(
             "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
+
         $stmt->execute(array($country));
         
         $country_state = $stmt->fetch();
@@ -319,7 +307,7 @@ function process_string($search_str)
         $stmt = $db->prepare(
             "SELECT * FROM country WHERE country.country_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
+
         $stmt->execute(array($search_str));
         
         $country_state = $stmt->fetch();
@@ -330,7 +318,7 @@ function process_string($search_str)
         $stmt = $db->prepare(
             "SELECT * FROM city WHERE city.city_name = ? COLLATE NOCASE"
         );
-        //todo add country city stuff
+
         $stmt->execute(array($search_str));
         
         $city_state = $stmt->fetch();

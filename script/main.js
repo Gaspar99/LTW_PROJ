@@ -125,7 +125,6 @@ if(username_tile != null){
     }
 }
 
-
 /**
  *
  */
@@ -151,15 +150,14 @@ if(edit_profile_submit_button != null){
 if(submit_sign_up != null){
     submit_sign_up.onclick = function(e){
         let input_pass = document.getElementById("password")
-        let confirm = document.getElementById("confirm_password")
-        console.log(input_pass.value + ' '+confirm.value)    
+        let confirm = document.getElementById("confirm_password")   
 
         if(input_pass.value != confirm.value){
             //todo mostrar uma mensagem de erro
             alert('Passwords must match')
             return false
         }
-        return false
+        return true
     }
 }
 /*------ Search Bar ----*/
@@ -171,14 +169,11 @@ if(submit_sign_up != null){
 if(search_button != null){
     search_input.onkeyup = function(e) {
         let options = document.getElementById("search_suggestions")
-        console.log(options);
       
         //switch n funcionou n sei pq...
         if (e.keyCode == '38') {
-            console.log('up')
         }
         if (e.keyCode == '40') {
-            console.log('down')
         }
         if (e.keyCode == '27') { //clear
             options.innerHTML=""
@@ -273,7 +268,6 @@ function countries_received() {
     list.innerHTML = ""; // Clean current countries
     // Add new suggestions
     for (let country in countries) {
-        //console.log(country)
         if (countries[country].city_name == null) {
             let item = document.createElement("li")
             item.id = "result_suggestions" //css 

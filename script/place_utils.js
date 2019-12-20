@@ -174,7 +174,6 @@ function toggle_checkbox(event) {
     let checkbox = event.target
     let checkmark = event.target.nextElementSibling
 
-    console.log(checkbox.checked)
     
     if (checkbox.checked) {
         checkmark.style.visibility = "visible"
