@@ -1681,6 +1681,10 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     font-size: 1.2em;
 }
 
+#reservations #reservations_header{
+    margin-top:2em;
+}
+
 #profile_page #user_places h3 {
     font-size: 1.5em;
     padding-left: 2em;
@@ -1778,15 +1782,23 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
 
 #edit_profile {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
+    justify-content: center;
 }
 
 /* Profile info */
+#site_content>#edit_profile {
+    margin-top: 1em;
+    padding-top: 2em;
+    background: white;
+}
 
 #edit_profile #profile_info {
     grid-column-start: 1;
     grid-column-end: 2;
     margin: 1em;
+    max-width: 25em;
+    min-width:10em;
 }
 
 #edit_profile #profile_info #profile_pic_update img {
@@ -1800,6 +1812,16 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     grid-column-start: 2;
     grid-column-end: end;
     margin: 1em;
+    max-width: 30em;
+    min-width:15em;
+}
+
+#edit_profile_submit_button{
+    grid-column-start: 1;
+    grid-column-end: end;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 100%;
 }
 
 /*----- ADD PLACE & EDIT PLACE-------*/
@@ -1809,9 +1831,9 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     flex-wrap: wrap;
     margin: 0 1em;
     background: white;
-    padding-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-top: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
     min-width: 666px;
     margin-top: 1em;
 }
