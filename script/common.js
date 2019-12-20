@@ -15,9 +15,7 @@ for(let button of dec_buttons) {
 }
 
 /**
- * 
- * @param {*} event 
- * @param {*} number 
+ * Updates an input of type number
  */
 function update_number(event, number) {
     let final_number
@@ -36,8 +34,7 @@ function update_number(event, number) {
 }
 
 /**
- * 
- * @param {*} event 
+ * Toggles the checkbox that was clicked on making a checkmark visible
  */
 function toggle_checkbox(event) {
     let checkbox = event.target

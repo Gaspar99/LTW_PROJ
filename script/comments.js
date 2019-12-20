@@ -41,8 +41,7 @@ function upload_comment(id) {
 }
 
 /**
- * @param event
- * @param id 
+ * Uploads a new reply to the server and draws it on the right place
  */
 function upload_reply(event, id) {
 
@@ -75,6 +74,7 @@ function upload_reply(event, id) {
     request.send(encodeForAjax({ id: id, reply: reply_content }))
 }
 
+// Aux funtion necessary to send data to server with the post method
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

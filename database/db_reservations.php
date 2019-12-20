@@ -4,7 +4,7 @@ include_once("../includes/database.php");
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets all reservations made by an user
  */
 function get_user_reservations($user_id)
 {
@@ -25,7 +25,7 @@ function get_user_reservations($user_id)
 }
 
 /**
- * 
+ * Gets the owner of the place of a reservation
  */
 function get_reservation_owner($reservation_id)
 {
@@ -47,6 +47,9 @@ function get_reservation_owner($reservation_id)
     return $stmt->fetch();
 }
 
+/**
+ * Returns the id of the tourist that made the reservation
+ */
 function get_reservation_tourist($reservation_id)
 {
 
@@ -66,6 +69,9 @@ function get_reservation_tourist($reservation_id)
     return $stmt->fetch();
 }
 
+/**
+ * Gets the id of the place of a reservation
+ */
 function get_reservation_place_id($reservation_id)
 {
 
@@ -86,7 +92,7 @@ function get_reservation_place_id($reservation_id)
 }
 
 /**
- * 
+ * Gets all the reservations for the places in the parameter
  */
 function get_search_reservations($places)
 {
@@ -118,6 +124,9 @@ function get_search_reservations($places)
     return  $reservations;
 }
 
+/**
+ * Gets the check in and check out dates of the reservations booked for a place
+ */
 function get_dates($place_id)
 {
     $db = Database::instance()->db();
@@ -140,7 +149,7 @@ function get_dates($place_id)
 /*========================= ADDS ============================== */
 
 /**
- * 
+ * Inserts a new reservations into the database
  */
 function add_reservation($reservation)
 {
@@ -167,7 +176,7 @@ function add_reservation($reservation)
 /*========================= REMOVES ============================== */
 
 /**
- * 
+ * Deleted all the reservation of a place
  */
 function remove_place_reservations($place_id)
 {
@@ -184,7 +193,8 @@ function remove_place_reservations($place_id)
 }
 
 /**
- * 
+ * Deletes the reservation with id equal to the one given in the parameter
+ * from the database
  */
 function remove_reservation($reservation_id)
 {
@@ -204,7 +214,7 @@ function remove_reservation($reservation_id)
 /*========================= UPDATES ============================== */
 
 /**
- * 
+ * Updates a reservation to insert a comment by the user during a review
  */
 function update_reservation_comment($comment_info)
 {
@@ -230,7 +240,8 @@ function update_reservation_comment($comment_info)
 /*========================= VERIFICATIONS ============================== */
 
 /**
- * 
+ * Verifies if a reservation can be cancelled. This is, there is more than 24 hours left until
+ * the check in
  */
 function can_be_cancelled($reservation_id)
 {
@@ -258,7 +269,8 @@ function can_be_cancelled($reservation_id)
 }
 
 /**
- * 
+ * Verifies if a reservation can be reviewd. This is, if the checkout has already been done and
+ * a review has not been made yet about the place
  */
 function can_be_reviewed($reservation_id)
 {

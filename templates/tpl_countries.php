@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * Displays all the country options to be selected
  */
 function draw_country_options($countries)
 {
@@ -10,7 +10,7 @@ function draw_country_options($countries)
 }
 
 /**
- * 
+ * Displays a single country option to be selected
  */
 function draw_country($country)
 { ?>

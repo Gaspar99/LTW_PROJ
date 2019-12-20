@@ -7,8 +7,7 @@ let get_city_by_country_button = document.getElementById("country_select")
 get_city_by_country_button.onclick = get_city_by_country
 
 /**
- * 
- * @param {*} event 
+ * Gets a list of cities located in a certain country to be draw as options of a select input
  */
 function get_city_by_country(event) {
     let country_id_selected = event.target
@@ -21,9 +20,7 @@ function get_city_by_country(event) {
 }
 
 /**
- * 
- * @param {*} country_select_element 
- * @param {*} obj 
+ * Callback funtion to be called when the servers respondes with the list of cities
  */
 function cities_received() {
     let cities = JSON.parse(this.responseText)

@@ -6,7 +6,7 @@ include_once("../database/db_tags.php");
 include_once("../templates/tpl_comments.php");
 
 /**
- * 
+ * Displays some info of all the places the paramter
  */
 function draw_places($places)
 { ?>
@@ -24,7 +24,7 @@ function draw_places($places)
 
 
 /**
- * 
+ * Displays a single place
  */
 function draw_place($place)
 { ?>
@@ -62,7 +62,7 @@ function draw_place($place)
 
 
 /**
- * 
+ * Displays the majority of the place page
  */
 function draw_place_info($place_id)
 {
@@ -201,7 +201,7 @@ function draw_place_info($place_id)
 <?php }
 
 /**
- * 
+ * Displayd the page to add a new place
  */
 function draw_add_place($user_id)
 {
@@ -303,7 +303,7 @@ function draw_add_place($user_id)
 <?php }
 
 /*
- * 
+ * Displays the page responsible for editing a place
  */
 function draw_edit_place($user_id, $place_id)
 {
@@ -415,7 +415,7 @@ function draw_edit_place($user_id, $place_id)
 
 
 /**
- * 
+ * Displays all the reservations made for a place
  */
 function draw_reservations_made($place_id) 
 {
@@ -462,7 +462,7 @@ function draw_reservations_made($place_id)
 }
 
 /**
- * 
+ * Displays a user tile that leads to the user's profile
  */
 function draw_user_tile($user_id) 
 {   
@@ -478,7 +478,7 @@ function draw_user_tile($user_id)
 <?php }
 
 /**
- * 
+ * Displays a gallery of pictures
  */
 function draw_image_gallery($image_gallery)
 { ?>

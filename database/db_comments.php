@@ -4,11 +4,11 @@ include_once("../includes/database.php");
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets all the comments on the place with the id given
+ * @param $place_id   id of the place to look for comments
  */
 function get_place_comments($place_id)
 {
-
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -41,7 +41,8 @@ function get_place_comments($place_id)
 /*========================= ADDS ============================== */
 
 /**
- * 
+ * Adds a new comment to a reservation
+ * @param $review Array with the information about the comment
  */
 function add_comment($review)
 {

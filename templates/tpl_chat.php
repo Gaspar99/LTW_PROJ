@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * 
+ * Draws the html needded for the char
  */
 function draw_chat($id){?>
     <link rel="stylesheet" href="../css/style_chat.css">
@@ -15,7 +15,7 @@ function draw_chat($id){?>
 <?php } 
 
 /**
- * 
+ * Draws a chat box to send messages
  */
 function draw_chat_box($id){?>
     <div class="chat_box">
@@ -28,7 +28,7 @@ function draw_chat_box($id){?>
 <?php }
 
 /**
- * 
+ * Draws messages
  */
 function draw_users_to_message($id){?>
     <div class="users_to_message">

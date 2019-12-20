@@ -3,6 +3,9 @@
 
 var locked_days = [ ] //sample
 
+/**
+ * Function that asked the server of the days locked for a certain place
+ */
 function get_locked_days(place_id)
 {
     let request = new XMLHttpRequest()

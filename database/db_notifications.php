@@ -7,7 +7,7 @@ include_once("../database/db_reservations.php");
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets all notifications from the user with id equal to the parameter
  */
 function get_all_usr_notifications($usr_id)
 {
@@ -38,7 +38,7 @@ function get_all_usr_notifications($usr_id)
 }
 
 /**
- * 
+ * Gets the newest notification from the user with id equal to the parmeter
  */
 function get_new_usr_notifications($usr_id)
 {
@@ -75,7 +75,7 @@ function get_new_usr_notifications($usr_id)
 }
 
 /**
- * 
+ * Gets all the notifications not seed by the user
  */
 function get_unseen_notification($id)
 {
@@ -83,17 +83,31 @@ function get_unseen_notification($id)
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT COUNT(usr_notification.is_read) AS unseen_num,
-        (SELECT COUNT(usr_notification.id) 
-        FROM usr_notification 
-        WHERE usr_notification.usr = (SELECT usr_notification.usr AS usr_id
-                                        FROM usr_notification 
-                                        WHERE usr_notification.usr = ?) ) as notification_num
-    FROM usr_notification 
-    WHERE usr_notification.is_read = 1 
-    AND usr_notification.usr = (SELECT usr_notification.usr AS usr_id
-                                FROM usr_notification 
-                                WHERE usr_notification.usr = ?) "
+        "SELECT 
+            COUNT(usr_notification.is_read) AS unseen_num,
+            (SELECT 
+                COUNT(usr_notification.id) 
+            FROM 
+                usr_notification 
+            WHERE 
+                usr_notification.usr = (SELECT 
+                                            usr_notification.usr AS usr_id
+                                        FROM 
+                                            usr_notification 
+                                        WHERE 
+                                            usr_notification.usr = ?
+                                        ) 
+            ) as notification_num
+        FROM 
+            usr_notification 
+        WHERE 
+            usr_notification.is_read = 1 AND 
+            usr_notification.usr = (SELECT 
+                                        usr_notification.usr AS usr_id
+                                        FROM 
+                                            usr_notification 
+                                        WHERE 
+                                            usr_notification.usr = ?) "
     );
 
     $stmt->execute(array($id, $id));
@@ -102,24 +116,38 @@ function get_unseen_notification($id)
 }
 
 /**
- * 
+ * Gets the number of notifications read with the id equal to the parameter
  */
 function get_read_notification_num($notification_id)
 {
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT COUNT(usr_notification.is_read) AS unseen_num,
-        (SELECT COUNT(usr_notification.id) 
-        FROM usr_notification 
-        WHERE usr_notification.usr = (SELECT usr_notification.usr AS usr_id
-                                        FROM usr_notification 
-                                        WHERE usr_notification.id = ?) ) as notification_num
-    FROM usr_notification 
-    WHERE usr_notification.is_read = 1 
-    AND usr_notification.usr = (SELECT usr_notification.usr AS usr_id
-                                FROM usr_notification 
-                                WHERE usr_notification.id = ?)"
+        "SELECT 
+            COUNT(usr_notification.is_read) AS unseen_num,
+            (SELECT 
+                COUNT(usr_notification.id) 
+            FROM 
+                usr_notification 
+            WHERE 
+                usr_notification.usr = ( SELECT 
+                                            usr_notification.usr AS usr_id
+                                        FROM 
+                                            usr_notification 
+                                        WHERE 
+                                            usr_notification.id = ?
+                                        ) 
+            ) as notification_num
+        FROM 
+            usr_notification 
+        WHERE 
+            usr_notification.is_read = 1 AND 
+            usr_notification.usr = (SELECT 
+                                        usr_notification.usr AS usr_id
+                                    FROM 
+                                        usr_notification 
+                                    WHERE 
+                                        usr_notification.id = ?)"
     );
 
     $stmt->execute(array($notification_id, $notification_id));
@@ -153,9 +181,11 @@ function add_notification_reservation($reservation)
     $stmt->execute(array("New Reservation", $notification_time, 0, $usr, $reservation));
 }
 
+/**
+ * Adds a mew notification of a new review that was made
+ */
 function add_notification_review($reservation)
 {
-
     $db = Database::instance()->db();
 
     $date = new DateTime();
@@ -165,13 +195,16 @@ function add_notification_review($reservation)
     $usr = get_reservation_owner($reservation)['owner_id'];
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
-            (notification_content,notification_date, is_read, usr, reservation)
-            VALUES (?,?, ?, ?, ?)"
+        (notification_content,notification_date, is_read, usr, reservation)
+        VALUES (?,?, ?, ?, ?)"
     );
 
     $stmt->execute(array("New Review", $notification_time, 0, $usr, $reservation));
 }
 
+/**
+ * Adds a new notification that an owner replyid to a comment
+ */
 function add_notification_reply($reservation)
 {
     $db = Database::instance()->db();
@@ -183,13 +216,16 @@ function add_notification_reply($reservation)
     $usr = get_reservation_tourist($reservation)['tourist'];
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
-            (notification_content,notification_date, is_read, usr, reservation)
-            VALUES (?,?, ?, ?, ?)"
+        (notification_content,notification_date, is_read, usr, reservation)
+        VALUES (?,?, ?, ?, ?)"
     );
 
     $stmt->execute(array("New Reply", $notification_time, 0, $usr, $reservation));
 }
 
+/**
+ * Adds a new notification indicating that a reservation was cancelled
+ */
 function add_notification_cancel($reservation)
 {
 
@@ -203,8 +239,8 @@ function add_notification_cancel($reservation)
 
     $stmt = $db->prepare(
         "INSERT INTO usr_notification
-            (notification_content,notification_date, is_read, usr, reservation)
-            VALUES (?,?, ?, ?, ?)"
+        (notification_content,notification_date, is_read, usr, reservation)
+        VALUES (?,?, ?, ?, ?)"
     );
 
     $stmt->execute(array("Reservation Cancelled", $notification_time, 0, $usr, $reservation));
@@ -235,6 +271,9 @@ function add_message_notification($content, $from, $to)
 
 /*========================= UPDATES ============================== */
 
+/**
+ * Marks a notification as read
+ */
 function update_to_read($notification_id)
 {
     $db = Database::instance()->db();
@@ -251,6 +290,9 @@ function update_to_read($notification_id)
     $stmt->execute(array($notification_id));
 }
 
+/**
+ * Marks a notification as unread
+ */
 function update_to_unread($notification_id)
 {
     $db = Database::instance()->db();
@@ -269,6 +311,9 @@ function update_to_unread($notification_id)
 
 /*========================= REMOVE ============================== */
 
+/**
+ * Deleted a notification from the database
+ */
 function remove_notification($notification_id)
 {
 
@@ -282,6 +327,9 @@ function remove_notification($notification_id)
     $stmt->execute(array($notification_id));
 }
 
+/**
+ * Deleted a notification based on reservation id
+ */
 function remove_reservation_notification($reservation_id)
 {
 

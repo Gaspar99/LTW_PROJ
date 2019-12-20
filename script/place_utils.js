@@ -26,8 +26,7 @@ if(close_review_box != null){
 }
 
 /**
- * 
- * @param {*} event 
+ * Cancels a reservation and prints a message informing the user
  */
 function cancel_reservation(id) {
 
@@ -57,8 +56,7 @@ function cancel_reservation(id) {
 }
 
 /**
- * 
- * @param {*} price_per_night 
+ * Calculates the total price of a rent when the user inputs data for a new reservation
  */
 function calculate_rent_price(price_per_night) 
 {
@@ -116,6 +114,9 @@ function calculate_rent_price(price_per_night)
     }
 }
 
+/**
+ * Aux funtion to encode data to be sent to the server via post method
+ */
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

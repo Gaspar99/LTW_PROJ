@@ -9,7 +9,7 @@ username_tile.onclick = toggle_user_menu
 // Event handler
 
 /**
- * 
+ * Toggles the drop down menu of the user
  */
 function toggle_user_menu() 
 {

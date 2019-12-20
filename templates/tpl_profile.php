@@ -2,7 +2,7 @@
 include_once("../database/db_reservations.php");
 
 /**
- * 
+ * Displays the majority of the profile page
  */
 function draw_profile($user_id)
 {
@@ -25,7 +25,7 @@ function draw_profile($user_id)
                     <a class="button" href="../pages/add_place.php">Add Place</a>
                     <a class="button" href="../pages/edit_profile.php">Edit Profile</a>
                 </div>
-            <?php } else {?>
+            <?php } else if (isset($_SESSION["user_email"])) {?>
                 <a id="send_message" class="button" href="../pages/chat.php?id=<?=$user_id?>">Send a Message</a>
            <?php }?>
         </section>
@@ -48,7 +48,7 @@ function draw_profile($user_id)
 <?php }
 
 /**
- * 
+ * Displays the edit profile page
  */
 function draw_edit_profile($user_id)
 {
@@ -118,7 +118,7 @@ function draw_edit_profile($user_id)
 
 
 /**
- * 
+ * Displays the reservations made by an user
  */
 function draw_list_reservations($user_id) 
 {
@@ -146,7 +146,9 @@ function draw_list_reservations($user_id)
     <?php } 
 }
 
-
+/**
+ * Displays the label row of the reservations table
+ */
 function draw_reservations_header() 
 { ?>
 
@@ -167,7 +169,10 @@ function draw_reservations_header()
     
 <?php }
 
-
+/**
+ *  Displays a single resrvation
+ * 
+ */
 function draw_reservation($reservation) 
 { ?>
 
@@ -198,7 +203,7 @@ function draw_reservation($reservation)
 <?php }
 
 /**
- * 
+ * Displays a review box for the user to give a review
  */
 function draw_review_box($reservation_id, $place_id) { ?>
     

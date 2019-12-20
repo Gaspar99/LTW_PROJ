@@ -4,16 +4,20 @@ include_once("../includes/database.php");
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets the id and name of all countries in the database
  */
 function get_countries()
 {
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
-        "SELECT country.id AS id, country.country_name AS country_name 
-            FROM country 
-            ORDER BY country_name"
+        "SELECT 
+            country.id AS id, 
+            country.country_name AS country_name 
+        FROM 
+            country 
+        ORDER BY 
+            country_name"
     );
 
     $stmt->execute();
@@ -49,7 +53,7 @@ function get_countries_by_name($name)
 }
 
 /**
- * 
+ * Gets all the countries that have a city that starts with $name
  */
 function get_countries_by_city($name)
 {
@@ -77,7 +81,7 @@ function get_countries_by_city($name)
 
 
 /**
- * 
+ * Gets all the cities from the country with id equal to the parameter
  */
 function get_cities($country_id)
 {

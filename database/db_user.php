@@ -75,7 +75,7 @@ function get_user_info($user_id)
 }
 
 /**
- * 
+ * Gets all the places owned by a user
  */
 function get_user_places($user_id)
 {
@@ -107,6 +107,9 @@ function get_user_places($user_id)
     return $stmt->fetchAll();
 }
 
+/**
+ * Gets the id of user with the email given
+ */
 function get_id_by_email($user_email)
 {
     $db = Database::instance()->db();
@@ -154,7 +157,7 @@ function add_user($user)
 /*========================= UPDATES ============================== */
 
 /**
- * 
+ * Updated the profile info of a user
  */
 function update_profile($user)
 {
@@ -208,7 +211,7 @@ function update_profile($user)
 }
 
 /**
- * 
+ * Updates the profile picture of a user
  */
 function update_profile_pic($user_id)
 {

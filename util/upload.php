@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * Creates an image resource representation that supporsts various types of files
  */
 function image_create_from_file($file_type, $file)
 {
@@ -30,7 +30,7 @@ function image_create_from_file($file_type, $file)
 }
 
 /**
- * 
+ * Copys to a file destination the image resource created
  */
 function file_create_from_image($file_type, $image_resource, $file_destination)
 {

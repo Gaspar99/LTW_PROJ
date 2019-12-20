@@ -1,10 +1,13 @@
 <?php
 include_once("../includes/database.php");
 
+/**
+ * Searches for places in the database with the corresponding options
+ */
 function search_places($options)
-{
-    //open db connection 
+{ 
     $db = Database::instance()->db();
+
     if($options["geo_type"]){
         if($options["country"] == "" && $options["city"] == ""){
             //execute querry 
@@ -121,7 +124,7 @@ function search_places($options)
     //return search 
 }
 /**
- * 
+ * Aux function to verify if a certain element is in the search results array
  */
 function is_element($elem, $search_results){
     foreach($search_results as $e){
@@ -131,7 +134,7 @@ function is_element($elem, $search_results){
     return false;
 }
 /**
- * 
+ * Removes an element from the search results
  */
 function delete_elem($elem, $search_results){
     foreach($search_results as $e){
@@ -144,7 +147,7 @@ function delete_elem($elem, $search_results){
 }
 
 /**
- * 
+ * Processes the string input by the user to get places
  */
 function process_string($search_str)
 {    

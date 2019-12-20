@@ -1,7 +1,8 @@
 <?php
 
 /**
- * 
+ * Verifies if the first argument is really a number with no harmful intentions.
+ * In case of error displays an appropriate message
  */
 function verify_number($number, $input_name)
 {
@@ -14,7 +15,8 @@ function verify_number($number, $input_name)
 }
 
 /**
- * 
+ * Verifies if the first argument is really text with no harmful intentions. 
+ * In case of error displays an appropriate message
  */
 function verify_text($text, $input_name)
 {
@@ -27,7 +29,8 @@ function verify_text($text, $input_name)
 }
 
 /**
- * 
+ * Verifies if the first argument is really something that could be the name of a person. 
+ * In case of error displays an appropriate message
  */
 function verify_person_name($person_name, $input_name)
 {
@@ -39,6 +42,10 @@ function verify_person_name($person_name, $input_name)
     return true;
 }
 
+/**
+ * Verifies if the first argument is really in an email format. 
+ * In case of error displays an appropriate message
+ */
 function verify_email($email) 
 {
     if (!preg_match("/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/", $email)) {
@@ -50,7 +57,8 @@ function verify_email($email)
 }
 
 /**
- * 
+ * Verifies if the first argument is really a password that matches our requirements 
+ * In case of error displays an appropriate message
  */
 function verify_password($password) 
 {
@@ -63,7 +71,8 @@ function verify_password($password)
 }
 
 /**
- * 
+ * Verifies if the first argument is really a phone number
+ * In case of error displays an appropriate message
  */
 function verify_phone_number($phone_num)
 {
@@ -76,7 +85,8 @@ function verify_phone_number($phone_num)
 }
 
 /**
- * 
+ * Verifies if the first argument is really a date in the requested format with no harmful intentions. 
+ * In case of error displays an appropriate message
  */
 function verify_date($date, $input_name)
 {

@@ -4,7 +4,7 @@
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets all the tags from a place
  */
 function get_place_tags($place_id)
 {
@@ -28,7 +28,7 @@ function get_place_tags($place_id)
 }
 
 /**
- * 
+ * Gets all types of tags stores
  */
 function get_tags()
 {
@@ -49,7 +49,7 @@ function get_tags()
 /*========================= ADDS ============================== */
 
 /**
- * 
+ * Adds tags to a place
  */
 function add_place_tags($place_id, $tags) 
 {
@@ -70,7 +70,7 @@ function add_place_tags($place_id, $tags)
 /*========================= UPDATES ============================== */
 
 /**
- * 
+ * Updates the tags of a place, reming old ones and inserting new ones
  */
 function update_place_tags($place_id, $tags)
 {
@@ -108,7 +108,8 @@ function update_place_tags($place_id, $tags)
 /*========================= REMOVES ============================== */
 
 /**
- * 
+ * Removes the rows that made the correspondecy between a place and tags. 
+ * Necessary when removing a place
  */
 function remove_place_tags($place_id)
 {

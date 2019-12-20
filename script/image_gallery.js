@@ -22,7 +22,7 @@ if (next_image_button != null)
 // Event listeners
 
 /**
- * 
+ * Toggles the fullscreen mode of the place images
  */
 function toggle_image_fullscreen() {
     fullscreen = (!fullscreen)
@@ -59,7 +59,7 @@ function toggle_image_fullscreen() {
 }
 
 /**
- * 
+ * Updates the slide index so that the gallery moves to the next photo
  */
 function next_image()
 {
@@ -68,7 +68,7 @@ function next_image()
 }
 
 /**
- * 
+ * Updates the slide index so that the gallery goes back to the previous photo
  */
 function previous_image() 
 {
@@ -78,7 +78,7 @@ function previous_image()
 
 /**
  * 
- * @param {*} next_image Index of the next image to display
+ * Displays the current slide image
  */
 function display_image(next_image) 
 {

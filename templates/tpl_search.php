@@ -2,7 +2,7 @@
 include_once("tpl_countries.php");
 
 /**
- * 
+ * Displays the search bar form
  */
 function draw_search_bar()
 { ?>

@@ -5,7 +5,7 @@ include_once("../util/upload.php");
 /*========================= GETS ============================== */
 
 /**
- * 
+ * Gets all places from the database with all their info
  */
 function get_places()
 {
@@ -36,6 +36,9 @@ function get_places()
     return $stmt->fetchAll();
 }
 
+/**
+ * Gets all places from the database and only retrieves the necessary info for the place cards
+ */
 function get_place_card_info($place_id)
 {
     $db = Database::instance()->db();
@@ -66,7 +69,7 @@ function get_place_card_info($place_id)
 }
 
 /**
- * 
+ * Gets all the info from a place with the id equal to the on in the parameter
  */
 function get_place_info($place_id)
 {
@@ -96,12 +99,11 @@ function get_place_info($place_id)
 }
 
 /**
- * 
+ *  Gets all the reservations booked by the user that is the owner of the place with an id
+ * equal to the one given in the parameters
  */
-
 function get_owner_place_reservations($place_id)
 {
-
     $db = Database::instance()->db();
 
     $stmt = $db->prepare(
@@ -123,7 +125,7 @@ function get_owner_place_reservations($place_id)
 }
 
 /**
- * 
+ * Returns the info about the photos of a place
  */
 function get_place_gallery($place_id)
 {
@@ -150,7 +152,7 @@ function get_place_gallery($place_id)
 /*========================= ADDS ============================== */
 
 /**
- * 
+ * Inserts a new place into the database
  */
 function add_place($place)
 {
@@ -176,7 +178,7 @@ function add_place($place)
 }
 
 /**
- * 
+ * Adds a new photo to a place
  */
 function add_place_photo($place_id)
 {
@@ -261,7 +263,7 @@ function add_place_photo($place_id)
 /*========================= REMOVES ============================== */
 
 /**
- * 
+ * Deletes a place from the database
  */
 function remove_place($place_id)
 {
@@ -278,7 +280,7 @@ function remove_place($place_id)
 }
 
 /**
- * 
+ * Deletes all the photos of a place from the database
  */
 function remove_place_photos($place_id)
 {
@@ -297,7 +299,7 @@ function remove_place_photos($place_id)
 /*========================= UPDATES ============================== */
 
 /**
- * 
+ * Updates the info of a place
  */
 function update_place_info($place)
 {
@@ -325,7 +327,7 @@ function update_place_info($place)
 }
 
 /**
- * 
+ * Updates the rating of place to the average of the its reviews
  */
 function update_place_rating($place_id)
 {
@@ -354,7 +356,8 @@ function update_place_rating($place_id)
 /*========================= VERIFICATIONS ============================== */
 
 /**
- * 
+ * Checks the user with the id equal to $user_id is the owner of the place with the id equal
+ * to $place_id
  */
 function is_owner($user_id, $place_id)
 {

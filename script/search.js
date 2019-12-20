@@ -54,7 +54,7 @@ function close_search_form() {
 }
 
 /**
- * 
+ * Updates the min and max price on the search bar
  */
 function update_price() {
     let min_price_input = parseFloat(min_price.value)
@@ -67,27 +67,8 @@ function update_price() {
     max_price_value.innerHTML = "" + max_price_input + "€"
 }
 
-
 /**
- * 
- * @param {*} event 
- */
-function calc_search_suggestions() {
-    let options = document.getElementById("search_suggestions")
-
-    if (e.keyCode == '38') {
-    }
-    if (e.keyCode == '40') {
-    }
-    if (e.keyCode == '27') { //clear
-        options.innerHTML = ""
-        document.getElementById("search_input").value = ""
-    }
-}
-
-/**
- * 
- * @param {*} event 
+ * Responsible to get new suggestions when the user inputs text in the search bar
  */
 function country_city_changed(event) {
 

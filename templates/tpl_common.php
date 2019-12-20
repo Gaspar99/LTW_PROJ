@@ -6,7 +6,7 @@ include_once("../templates/tpl_auth.php");
 include_once("../templates/tpl_search.php");
 
 /**
- * 
+ * Function resposible to draw the header of the site considering the state of the user
  */
 function draw_site_header($styles, $scripts)
 {
@@ -97,7 +97,7 @@ function draw_header($user_email, $styles, $scripts)
 
 
 /**
-* 
+* Draws a title on the top of the web page
 */
 function draw_title($title)
 { ?>
@@ -106,7 +106,7 @@ function draw_title($title)
 
 
 /**
-* 
+* Draws error and sucess messages
 */
 function draw_messages()
 {
@@ -124,7 +124,7 @@ function draw_messages()
 
 
 /**
-* 
+* Initiates the main site content
 */
 function init_site_content()
 { ?>
@@ -144,6 +144,9 @@ function draw_footer()
     </html>
 <?php }
 
+/**
+ * Displays all the notificaitons of the user
+ */
 function draw_notifications($email)
 {
     $usr_id = get_user_id($email);

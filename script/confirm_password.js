@@ -39,7 +39,7 @@ function check_equal_passwords() {
 }
 
 /**
- * 
+ * Draws an error message informing the user that both passwords need to match
  */
 function draw_error_message() {
 

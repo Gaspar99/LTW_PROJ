@@ -4,7 +4,7 @@ include_once("../database/db_comments.php");
 include_once("../database/db_user.php");
 
 /**
- * 
+ * Displays all the comments of a place
  */
 function draw_place_comments($place_id, $place_owner_id)
 {
@@ -25,7 +25,7 @@ function draw_place_comments($place_id, $place_owner_id)
 }
 
 /**
- * 
+ * Displays a single comment of a place
  */
 function draw_comment($comment, $place_owner_id, $place_owner) 
 { 
@@ -65,7 +65,7 @@ function draw_comment($comment, $place_owner_id, $place_owner)
 <?php }
 
 /**
- * 
+ * Displays the reply of the owner of a place
  */
 function draw_owner_reply($comment, $place_owner) 
 { ?>
@@ -85,7 +85,7 @@ function draw_owner_reply($comment, $place_owner)
 <?php }
 
 /**
- * 
+ * Draws the reply box so that the user can reply 
  */
 function draw_reply_box($comment) { 
 

@@ -108,6 +108,9 @@ function remove_notification(id) {
 
 /* ---- POLLING ---- */
 
+/**
+ * Responsible for doing the polling of notifications to the server
+ */
 function polling_notification(usr_id) {
     let notification_request = new XMLHttpRequest()
     notification_request.addEventListener("load", notifications_handler)
@@ -116,6 +119,9 @@ function polling_notification(usr_id) {
     notification_request.send(encodeForAjax({ usr_id: usr_id }))
 }
 
+/**
+ * Callback function to be called when the servers respondes with new notifications
+ */
 function notifications_handler() {
     let last_id = JSON.parse(this.responseText);
 
@@ -204,6 +210,9 @@ function change_bell_icon(state) {
     notification_bell.appendChild(new_bell)
 }
 
+/**
+ * Converts a month, given as a number, to a string
+ */
 function convert_month(month) {
     switch (month) {
         case 0:
@@ -234,8 +243,7 @@ function convert_month(month) {
 }
 
 /**
- * 
- * @param {*} data 
+ * Aux funtion to encode data to be sent to the server via post method
  */
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {

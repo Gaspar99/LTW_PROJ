@@ -10,7 +10,7 @@ site_container.onclick = stop_notifications
 
 /**
  * 
- * @param {*} event 
+ * Stops the polling of notifications on the site
  */
 function stop_notifications(event) {
     event.stopPropagation()
