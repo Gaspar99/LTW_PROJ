@@ -1,6 +1,6 @@
 <?php
 include_once("../includes/database.php");
-include_once("../includes/db_notifications.php");
+include_once("../database/db_notifications.php");
 include_once("../util/security_checks.php");
 
 //Security check
