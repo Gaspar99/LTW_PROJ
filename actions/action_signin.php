@@ -4,8 +4,10 @@ include_once("../database/db_user.php");
 include_once("../util/security_checks.php");
 
 // Security checks
-verify_email($_POST["email"]);
-verify_password($_POST["password"]);
+if (
+  !verify_email($_POST["email"]) ||
+  !verify_password($_POST["password"])
+) die(header("Location: ../pages/home.php"));
 
 // Set up of input data
 $email = $_POST["email"];

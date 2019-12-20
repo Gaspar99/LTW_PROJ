@@ -1,10 +1,12 @@
 <?php
 include_once("../includes/database.php");
-include_once("../databse/db_notifications.php");
+include_once("../database/db_notifications.php");
 include_once("../util/security_checks.php");
 
 //Security check
-verify_number($_POST["usr_id"], "Notification");
+if (!verify_number($_POST["usr_id"], "Notification")) {
+    die(header("Location: ../pages/home.php"));
+}
 
 $notification = get_new_usr_notifications($_POST["usr_id"]);
 

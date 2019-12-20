@@ -6,8 +6,10 @@ include_once("../database/db_notifications.php");
 include_once("../util/security_checks.php");
 
 // Security checks
-verify_number($_POST["id"], "Reservation");
-verify_text($_POST["reply"], "Reply");
+if (
+    !verify_number($_POST["id"], "Reservation") ||
+    !verify_text($_POST["reply"], "Reply")
+) die(header("Location: ../pages/home.php"));
 
 $reservation_id = $_POST["id"];
 $reply_content = $_POST["reply"];

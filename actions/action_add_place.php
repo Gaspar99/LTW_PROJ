@@ -15,17 +15,24 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
     die(header("Location: ../pages/home.php"));
 }
 
+print($_POST["city"]); die();
+
 // Security checks
-verify_text($_POST["title"], "Title");
-verify_number($_POST["price"], "Price");
-verify_text($_POST["address"], "Address");
-verify_text($_POST["description"], "Description");
-verify_number($_POST["num_guests"], "Num. Guests");
-verify_number($_POST["owner"], "Owner");
-verify_number($_POST["city"], "City");
+if (
+    !verify_text($_POST["title"], "Title") ||
+    !verify_number($_POST["price"], "Price") ||
+    !verify_text($_POST["address"], "Address") ||
+    !verify_text($_POST["description"], "Description") ||
+    !verify_number($_POST["num_guests"], "Num. Guests") ||
+    !verify_number($_POST["owner"], "Owner") ||
+    !verify_number($_POST["city"], "City")
+) die(header("Location: ../pages/home.php"));
+
 if (array_key_exists("tags", $_POST)) {
     foreach ($_POST["tags"] as $tag) {
-        verify_number($tag, "Tag");
+        if (!verify_number($tag, "Tag")) {
+            die(header("Location: ../pages/home.php")); 
+        }
     }
 }
 

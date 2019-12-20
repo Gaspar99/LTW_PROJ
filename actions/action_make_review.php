@@ -16,10 +16,12 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 }
 
 // Security checks
-verify_number($_POST["reservation_id"], "Reservation");
-verify_text($_POST["comment"], "Comment");
-verify_number($_POST["rating"], "Rating");
-verify_number($_POST["place_id"], "Place");
+if (
+    !verify_number($_POST["reservation_id"], "Reservation") ||
+    !verify_text($_POST["comment"], "Comment") ||
+    !verify_number($_POST["rating"], "Rating") ||
+    !verify_number($_POST["place_id"], "Place")
+) die(header("Location: ../pages/home.php"));
 
 // Get current date
 $date = new DateTime();

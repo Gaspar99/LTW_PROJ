@@ -4,7 +4,9 @@ include_once("../database/db_reservations.php");
 include_once("../util/security_checks.php");
 
 // Security check
-verify_number($_GET["place_id"], "Place id");
+if (!verify_number($_GET["place_id"], "Place id")) {
+    die(header("Location: ../pages/home.php"));
+}
 
 $dates = get_dates($_GET["place_id"]);
 

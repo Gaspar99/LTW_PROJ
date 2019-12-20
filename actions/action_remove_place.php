@@ -19,7 +19,10 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 $user_id = get_user_id($_SESSION["user_email"]);
 
 // Security check
-verify_number($_POST["place_id"], "Place");
+if (!verify_number($_POST["place_id"], "Place")) {
+    die(header('Location: ../pages/home.php'));
+}
+
 if (!is_owner($user_id, $_POST["place_id"])) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Can\'t delete this place!');
     die(header('Location: ../pages/home.php'));

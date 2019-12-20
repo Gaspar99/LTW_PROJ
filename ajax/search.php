@@ -4,7 +4,9 @@ include_once("../database/db_location.php");
 include_once("../util/security_checks.php");
 
 // Security check
-verify_text($_GET["name"], "Country name");
+if (!verify_text($_GET["name"], "Country name")) {
+    die(header("Location: ../pages/home.php"));
+}
 
 $countries_search = get_countries_by_name($_GET["name"]);
 $countries_cities_search = get_countries_by_city($_GET["name"]);

@@ -16,14 +16,19 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 }
 
 // Security checks
-verify_number($_POST["id"], "Id");
-verify_text($_POST["title"], "Title");
-verify_number($_POST["price"], "Price");
-verify_text($_POST["description"], "Description");
-verify_number($_POST["num_guests"], "Num. Guests");
+if (
+    !verify_number($_POST["id"], "Id") ||
+    !verify_text($_POST["title"], "Title") ||
+    !verify_number($_POST["price"], "Price") ||
+    !verify_text($_POST["description"], "Description") ||
+    !verify_number($_POST["num_guests"], "Num. Guests")
+) die(header("Location: ../pages/home.php"));
+
 if (array_key_exists("tags", $_POST)) {
     foreach ($_POST["tags"] as $tag) {
-        verify_number($tag, "Tag");
+        if (!verify_number($tag, "Tag")) {
+            die(header("Location: ../pages/home.php")); 
+        }
     }
 }
 if (!is_owner(get_user_id($_SESSION["user_email"]), $_POST["id"])) {

@@ -4,12 +4,14 @@ include_once("../database/db_user.php");
 include_once("../util/security_checks.php");
 
 // Security checks
-verify_person_name($_POST["first_name"], "First Name");
-verify_person_name($_POST["last_name"], "Last Name");
-verify_email($_POST["email"]);
-verify_phone_number($_POST["phone_num"]);
-verify_password($_POST["password"]);
-verify_number($_POST["country_id"], "Country");
+if ( 
+  !verify_person_name($_POST["first_name"], "First Name") ||
+  !verify_person_name($_POST["last_name"], "Last Name") ||
+  !verify_email($_POST["email"]) ||
+  !verify_phone_number($_POST["phone_num"]) ||
+  !verify_password($_POST["password"]) ||
+  !verify_number($_POST["country_id"], "Country")
+) die(header("Location: ../pages/home.php"));
 
 // Set up of user array with input data
 $user = array(

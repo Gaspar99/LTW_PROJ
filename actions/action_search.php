@@ -8,12 +8,14 @@ include_once("../util/security_checks.php");
 // Not checking if user is logged in. Anyone can perfom a places search
 
 // Security checks
-verify_text($_POST["search"], "Location");
-verify_date($_POST["check_in"], "Check In");
-verify_date($_POST["check_out"], "Check Out");
-verify_number($_POST["num_guests"], "Num. Guests");
-verify_number($_POST["min"], "Min");
-verify_number($_POST["max"], "Max");
+if (
+    !verify_text($_POST["search"], "Location") ||
+    !verify_date($_POST["check_in"], "Check In") ||
+    !verify_date($_POST["check_out"], "Check Out") ||
+    !verify_number($_POST["num_guests"], "Num. Guests") ||
+    !verify_number($_POST["min"], "Min") ||
+    !verify_number($_POST["max"], "Max")
+) die(header("Location: ../pages/home.php"));
 
 // Process input data
 $geo = process_string($_POST["search"]);
