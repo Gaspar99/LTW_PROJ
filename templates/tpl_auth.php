@@ -83,7 +83,7 @@ function draw_sign_up($countries)
         </div>
       </div>
      
-      <button class="submit_button" type="submit">Create Account</button>
+      <button id="submit_sign_up" class="submit_button" type="submit">Create Account</button>
   
     </form>
   </div>

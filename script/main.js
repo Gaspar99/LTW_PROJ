@@ -15,12 +15,14 @@ let sign_up_form_button = document.getElementById("sign_up_form_button")
 let close_sign_up_form = document.getElementById("close_sign_up_form")
 let search_button = document.getElementById("search_button")
 let close_search_form = document.getElementById("close_search_form")
-let edit_profile_submit_button = document.getElementById("edit_profile_submit_button")
 let open_review_box= document.getElementById("open_review_box")
 let close_review_box = document.getElementById("close_review_box")
 let username_tile = document.getElementById("username_tile")
 let search_input = document.getElementById("search_input")
 let get_city_by_country = document.getElementById("get_city_by_country")
+let edit_profile_submit_button = document.getElementById("edit_profile_submit_button")
+let submit_sign_up = document.getElementById("submit_sign_up")
+
 
 /* --------- MENU UTILS ------------ */
 /**
@@ -110,31 +112,54 @@ if(close_review_box != null){
 /**
  * 
  */
-username_tile.onclick = function(e) {
-    let menu = document.getElementsByClassName("user_menu_option")
-
-    for (let i = 0; i < menu.length; i++) {
-        if (menu[i].style.display == "block")
-            menu[i].style.display = "none"
-        else
-            menu[i].style.display = "block"
+if(username_tile != null){
+    username_tile.onclick = function(e) {
+        let menu = document.getElementsByClassName("user_menu_option")
+    
+        for (let i = 0; i < menu.length; i++) {
+            if (menu[i].style.display == "block")
+                menu[i].style.display = "none"
+            else
+                menu[i].style.display = "block"
+        }
     }
 }
 
+
 /**
- * 
+ *
  */
-if (edit_profile_submit_button != null){
+if(edit_profile_submit_button != null){
     edit_profile_submit_button.onclick = function(e){
         let input_pass = document.getElementById("password")
         let confirm = document.getElementById("confirm_password")
         if(input_pass.value.length != ""){
             confirm.required =true
         }else confirm.required =false
-        
+       
         if(input_pass.value != confirm.value){
-            alert('dont match')
+            //todo mostrar uma mensagem de erro
+            alert('Passwords must match')
+            return false
         }
+        return true;
+    }
+}
+/**
+ * sign up password confrmation script
+ */
+if(submit_sign_up != null){
+    submit_sign_up.onclick = function(e){
+        let input_pass = document.getElementById("password")
+        let confirm = document.getElementById("confirm_password")
+        console.log(input_pass.value + ' '+confirm.value)    
+
+        if(input_pass.value != confirm.value){
+            //todo mostrar uma mensagem de erro
+            alert('Passwords must match')
+            return false
+        }
+        return false
     }
 }
 /*------ Search Bar ----*/
