@@ -125,7 +125,7 @@ function draw_list_reservations($user_id)
     $user_reservations = get_user_reservations($user_id); 
 
     if ($user_reservations == null ) { ?>
-        <h3>No reservations made<h3>
+        <h2>No reservations made<h2>
 
     <?php } else { 
         
