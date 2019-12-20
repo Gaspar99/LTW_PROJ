@@ -8,7 +8,6 @@
     padding-top: 3em;
     padding-left: 3em;
     padding-right: 3em;
-    min-width: 666px;
     margin-top: 1em;
 }
 
@@ -63,11 +62,16 @@
     margin: 1.8em 0 0.5em 0;
 }
 
+#add_place #numbers .num_guests, #edit_place #numbers .num_guests {
+    margin-right: 5em;
+}
+
+
 #add_place #numbers>*, #edit_place #numbers>* {
     display: flex;
     align-items: center;
     margin: 0 2em 0 0;
-    min-width: max-content;
+    
 }
 
 #add_place #numbers>* label, #edit_place #numbers>* label {
@@ -107,7 +111,7 @@
     display: grid;
     width: 100%;
     margin: 0;
-    grid-template-columns: min-content auto;
+    grid-template-columns: auto auto;
 }
 
 /* Details */
@@ -146,4 +150,36 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+
+@media (max-width: 870px){
+
+    #add_place, #site_content>#edit_place {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 1em;
+        background: white;
+        padding-top: 3em;
+        padding-left: 3em;
+        padding-right: 3em;
+        margin-top: 1em;
+        min-width: 550px;
+    }
+
+    #add_place #body, #edit_place #body {
+        display: grid;
+        width: 100%;
+        margin: 0;
+        grid-template-columns: auto;
+    }
+    
+    /* Details */
+    
+    #add_place #body #details, #edit_place #body #details {
+        grid-column-start: 1;
+        grid-column-end: end;
+        grid-row-start: 2;
+        grid-row-end: end;
+        margin: 1em;
+    }
 }
