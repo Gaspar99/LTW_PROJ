@@ -16,14 +16,17 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 $user_id = get_user_id($_SESSION["user_email"]);
 
 // Security checks
-verify_number($_POST["id"], "Id");
-verify_person_name($_POST["first_name"], "First Name");
-verify_person_name($_POST["last_name"], "Last Name");
-verify_email($_POST["email"]);
-verify_phone_number($_POST["phone_number"]);
+if (
+    !verify_number($_POST["id"], "Id") ||
+    !verify_person_name($_POST["first_name"], "First Name") ||
+    !verify_person_name($_POST["last_name"], "Last Name") ||
+    !verify_email($_POST["email"]) ||
+    !verify_phone_number($_POST["phone_number"])
+) die(header('Location: ../pages/home.php'));
+
 if ($user_id != $_POST["id"]) {
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Can\'t edit this profile!');
-    die(header('Location: ../pages/home.php'));
+    $_SESSION["messages"][] = array("type" => "error", "content" => "Can\'t edit this profile!");
+    die(header("Location: ../pages/home.php"));
 }
 
 // Set up of data from input

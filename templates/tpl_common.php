@@ -70,7 +70,7 @@ function draw_header($user_email)
             <?php } else {
                     $user = get_user_name($user_email);
                     $usr_id = get_user_id($user_email) ?>
-                <body onload="setInterval(function() {polling_notification(<?= $usr_id ?>); },1000);">
+                <body onload="setInterval(function() { polling_notification(<?= $usr_id ?>); }, 5000);">
                     <div id="user_options">
                         <span id="notification_bell">
                            <?php 

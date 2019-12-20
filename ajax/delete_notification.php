@@ -4,7 +4,6 @@ include_once("../database/db_notifications.php");
 include_once("../util/security_checks.php");
 
 // Security check
-verify_number($_POST["id"], "Notification");
-
-remove_notification($_POST["id"]);
-
+if (verify_number($_POST["id"], "Notification")) {
+    remove_notification($_POST["id"]);
+}

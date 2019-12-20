@@ -7,16 +7,16 @@ include_once("../database/db_notifications.php");
 include_once("../util/security_checks.php");
 
 // Security check
-verify_number($_POST["id"], "Reservation");
+if (!verify_number($_POST["id"], "Reservation")) {
+    $_SESSION["messages"][] = array("type" => "error", "content" => "Error cancelling reservation!");
+    draw_messages();
+} else {
+    // Remove notification
+    remove_reservation_notification($_POST["id"]);
 
-// Remove notification
-remove_reservation_notification($_POST["id"]);
+    //Remove reservation
+    remove_reservation($_POST["id"]);
 
-//Remove reservation
-remove_reservation($_POST["id"]);
-
-$_SESSION["messages"][] = array("type" => "success", "content" => "Reservation canceled!");
-
-draw_messages();
-
-
+    $_SESSION["messages"][] = array("type" => "success", "content" => "Reservation canceled!");
+    draw_messages();
+}

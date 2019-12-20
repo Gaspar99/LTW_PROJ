@@ -16,11 +16,13 @@ if ($_SESSION["csrf"] != $_POST["csrf"]) {
 }
 
 // Security checks 
-verify_date($_POST["check_in"], "Check In");
-verify_date($_POST["check_out"], "Check Out");
-verify_number($_POST["num_guests"], "Num. Guests");
-verify_number($_POST["tourist"], "Tourist");
-verify_number($_POST["place_id"], "Place");
+if (
+    !verify_date($_POST["check_in"], "Check In") ||
+    !verify_date($_POST["check_out"], "Check Out") ||
+    !verify_number($_POST["num_guests"], "Num. Guests") ||
+    !verify_number($_POST["tourist"], "Tourist") ||
+    !verify_number($_POST["place_id"], "Place")
+) die(header("Location: ../pages/home.php"));
 
 //Calculate price
 $price_per_night = get_place_info($_POST["place_id"])["price"];
