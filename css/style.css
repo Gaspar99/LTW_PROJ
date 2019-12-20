@@ -1681,6 +1681,10 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     font-size: 1.2em;
 }
 
+#reservations #reservations_header{
+    margin-top:2em;
+}
+
 #profile_page #user_places h3 {
     font-size: 1.5em;
     padding-left: 2em;
