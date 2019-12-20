@@ -205,7 +205,6 @@ if(get_city_by_country != null){
         request.send()
     }
 }
-
 /**
  * 
  * @param {*} country_select_element 
@@ -213,7 +212,6 @@ if(get_city_by_country != null){
  */
 function cities_received(country_select_element, obj) {
     let cities = JSON.parse(obj.responseText)
-
     let common_acestor_id = ""
     let city_selects = document.getElementsByClassName("city_select")
     for (let i = 0; i < city_selects.length; i++) {
