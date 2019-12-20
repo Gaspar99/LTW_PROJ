@@ -16,11 +16,14 @@ notification_bell_button.onclick = toggle_notifications_box
 function toggle_notifications_box() {
 
     let box = document.getElementById("notifications_box")
+    let bell= document.getElementById("notification_bell")
 
-    if (box.style.display == "flex")
+    if (box.style.display == "flex"){
         box.style.display = "none"
-    else
+    }
+    else{
         box.style.display = "flex"
+    }
 }
 
 /** 
