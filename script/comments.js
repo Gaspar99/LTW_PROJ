@@ -1,6 +1,5 @@
 "use strict"
 
-let open_reply_box = document.getElementById("reply_box")
 /** reviews  */
 /**
  * 
@@ -8,8 +7,7 @@ let open_reply_box = document.getElementById("reply_box")
 function upload_comment(id) {
     let comment = document.getElementById("comment_holder" + id).value
     let rating = document.getElementById("rating_holder" + id).value
-    console.log(comment)
-    console.log(rating)
+
     if (comment == "" || rating == "") {
         alert('All sections must be filled')
         return
@@ -26,9 +24,8 @@ function upload_comment(id) {
  * 
  * @param {*} event 
  */
-if(open_reply_box != null){
-    open_reply_box.onclick = function(event) {
 
+    function open_reply_box(event) {
         //Hiding reply button
         let reply_button = event.target
         reply_button.style.display = "none"
@@ -38,7 +35,6 @@ if(open_reply_box != null){
     
         reply_box.style.display = "block"
     }
-}
 
 /**
  * @param event

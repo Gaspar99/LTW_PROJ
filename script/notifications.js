@@ -24,7 +24,6 @@ function mark_as_seen(id){
     //remove reservation from table 
     let request = new XMLHttpRequest()
     request.addEventListener("load", function () {
-        console.log('unmarked as seen')
         //delete html displaying the reservation
         let notification_tile = document.getElementsByName("notification_id"+id)[0]
         notification_tile.setAttribute("id","read_notification")
@@ -34,7 +33,6 @@ function mark_as_seen(id){
         notification_button.setAttribute("onclick","unmark_as_seen("+id+")")
 
         check_if_bell_active(id)
-        console.log(notification_icon)
     })
     request.open("post", "../ajax/mark_as_seen.php", true)
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -49,7 +47,6 @@ function unmark_as_seen(id){
         //remove reservation from table 
         let request = new XMLHttpRequest()
         request.addEventListener("load", function () {
-            console.log('marked as seen')
             //delete html displaying the reservation
             let notification_tile = document.getElementsByName("notification_id"+id)[0]
             notification_tile.setAttribute("id","unread_notification")
@@ -60,7 +57,6 @@ function unmark_as_seen(id){
 
             check_if_bell_active(id)
 
-            console.log(notification_icon)
         })
         request.open("post", "../ajax/unmark_as_seen.php", true)
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
@@ -127,7 +123,6 @@ function notifications_handler(){
         last_notification_id = last_id.id
 
     if(last_id.id > last_notification_id){
-        console.log("new")
         
         change_bell_icon(true);
         
@@ -144,7 +139,6 @@ function notifications_handler(){
         let notification_place = document.createElement("a")
         notification_place.setAttribute("href","../pages/place.php?id="+last_id.place_id)
        
-        //todo
         //make header span 
         let notification_content = document.createElement("span")
         notification_content.innerHTML = last_id.notification_content
@@ -178,7 +172,6 @@ function notifications_handler(){
         notification_remove.appendChild(rmv_icon)
         new_notification.appendChild(notification_remove)
 
-        console.log(new_notification.innerHTML)
 
         notifications_list.appendChild(new_notification)
               

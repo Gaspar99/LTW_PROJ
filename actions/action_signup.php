@@ -23,6 +23,12 @@ $user = array(
   "country_id" => $_POST["country_id"]
 );
 
+//todo adicionar mensager por no sitio certo 
+if(get_id_by_email($_POST["email"]) != false){
+  echo 'email existe';
+   die(header("Location: ../pages/home.php"));
+}
+
 try {
   add_user($user);
 

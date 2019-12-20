@@ -15,12 +15,14 @@ let sign_up_form_button = document.getElementById("sign_up_form_button")
 let close_sign_up_form = document.getElementById("close_sign_up_form")
 let search_button = document.getElementById("search_button")
 let close_search_form = document.getElementById("close_search_form")
-let edit_profile_submit_button = document.getElementById("edit_profile_submit_button")
 let open_review_box= document.getElementById("open_review_box")
 let close_review_box = document.getElementById("close_review_box")
 let username_tile = document.getElementById("username_tile")
 let search_input = document.getElementById("search_input")
 let get_city_by_country = document.getElementById("get_city_by_country")
+let edit_profile_submit_button = document.getElementById("edit_profile_submit_button")
+let submit_sign_up = document.getElementById("submit_sign_up")
+
 
 /* --------- MENU UTILS ------------ */
 /**
@@ -110,31 +112,52 @@ if(close_review_box != null){
 /**
  * 
  */
-username_tile.onclick = function(e) {
-    let menu = document.getElementsByClassName("user_menu_option")
-
-    for (let i = 0; i < menu.length; i++) {
-        if (menu[i].style.display == "block")
-            menu[i].style.display = "none"
-        else
-            menu[i].style.display = "block"
+if(username_tile != null){
+    username_tile.onclick = function(e) {
+        let menu = document.getElementsByClassName("user_menu_option")
+    
+        for (let i = 0; i < menu.length; i++) {
+            if (menu[i].style.display == "block")
+                menu[i].style.display = "none"
+            else
+                menu[i].style.display = "block"
+        }
     }
 }
 
 /**
- * 
+ *
  */
-if (edit_profile_submit_button != null){
+if(edit_profile_submit_button != null){
     edit_profile_submit_button.onclick = function(e){
         let input_pass = document.getElementById("password")
         let confirm = document.getElementById("confirm_password")
         if(input_pass.value.length != ""){
             confirm.required =true
         }else confirm.required =false
-        
+       
         if(input_pass.value != confirm.value){
-            alert('dont match')
+            //todo mostrar uma mensagem de erro
+            alert('Passwords must match')
+            return false
         }
+        return true;
+    }
+}
+/**
+ * sign up password confrmation script
+ */
+if(submit_sign_up != null){
+    submit_sign_up.onclick = function(e){
+        let input_pass = document.getElementById("password")
+        let confirm = document.getElementById("confirm_password")   
+
+        if(input_pass.value != confirm.value){
+            //todo mostrar uma mensagem de erro
+            alert('Passwords must match')
+            return false
+        }
+        return true
     }
 }
 /*------ Search Bar ----*/
@@ -146,14 +169,11 @@ if (edit_profile_submit_button != null){
 if(search_button != null){
     search_input.onkeyup = function(e) {
         let options = document.getElementById("search_suggestions")
-        console.log(options);
       
         //switch n funcionou n sei pq...
         if (e.keyCode == '38') {
-            console.log('up')
         }
         if (e.keyCode == '40') {
-            console.log('down')
         }
         if (e.keyCode == '27') { //clear
             options.innerHTML=""
@@ -180,7 +200,6 @@ if(get_city_by_country != null){
         request.send()
     }
 }
-
 /**
  * 
  * @param {*} country_select_element 
@@ -188,7 +207,6 @@ if(get_city_by_country != null){
  */
 function cities_received(country_select_element, obj) {
     let cities = JSON.parse(obj.responseText)
-
     let common_acestor_id = ""
     let city_selects = document.getElementsByClassName("city_select")
     for (let i = 0; i < city_selects.length; i++) {
@@ -250,7 +268,6 @@ function countries_received() {
     list.innerHTML = ""; // Clean current countries
     // Add new suggestions
     for (let country in countries) {
-        //console.log(country)
         if (countries[country].city_name == null) {
             let item = document.createElement("li")
             item.id = "result_suggestions" //css 

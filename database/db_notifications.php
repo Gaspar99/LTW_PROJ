@@ -133,7 +133,6 @@ function get_read_notification_num($notification_id)
 /**
  * Generate notify reservation
  */
-//todo add notification type 
 function add_notification_reservation($reservation)
 {
 
