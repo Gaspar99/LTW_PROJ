@@ -1827,9 +1827,9 @@ input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper {
     flex-wrap: wrap;
     margin: 0 1em;
     background: white;
-    padding-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-top: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
     min-width: 666px;
     margin-top: 1em;
 }
